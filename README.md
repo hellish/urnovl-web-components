@@ -1,4 +1,4 @@
-![Alt text](icon-180x180.png)
+![Urnovl](icon-180x180.png)
 
 # Urnovl web components
 
