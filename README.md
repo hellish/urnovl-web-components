@@ -2,4 +2,4 @@
 
 # Urnovl web components
 
-* ur-novl
+https://hellish.github.io/urnovl-web-components/
