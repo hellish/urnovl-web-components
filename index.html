@@ -16,9 +16,11 @@
         }
     </style>
     <title>Urnovl Web Components</title>
+    <script>fetch("package.json").then(response => response.json()).then(pkg => document.getElementById('version').innerHTML=pkg.version)</script>
 </head>
 
 <body>
+    <h2>Urnovl Web component <span id="version"></span></h2>
     <a href="storybook-static">Go to Storybook</a>
 </body>
 
