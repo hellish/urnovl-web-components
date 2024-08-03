@@ -13,9 +13,9 @@
       "import": "./dist/urnovl-web-components/urnovl-web-components.esm.js",
       "require": "./dist/urnovl-web-components/urnovl-web-components.cjs.js"
     },
-    "./my-component": {
-      "import": "./dist/components/my-component.js",
-      "types": "./dist/components/my-component.d.ts"
+    "./ur-novl": {
+      "import": "./dist/components/ur-novl.js",
+      "types": "./dist/components/ur-novl.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
