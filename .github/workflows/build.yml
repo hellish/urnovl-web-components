@@ -40,5 +40,8 @@ jobs:
 
             [skip ci]
             "
+            git tag ${VERSION}
 
-            git status
+            git push origin v$VERSION
+            git push origin $GIT_BRANCH
+
