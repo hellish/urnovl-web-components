@@ -3,7 +3,10 @@
 
 name: build web components
 
-on: [push]
+on:
+    push:
+        branches:
+            - master
 
 env:
     CI: true
@@ -49,6 +52,9 @@ jobs:
 
             git tag ${VERSION}
 
+            npm publish --access public
+
             git push origin $VERSION
             git push origin $GIT_BRANCH
-
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH }}
