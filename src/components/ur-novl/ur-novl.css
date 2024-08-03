@@ -1,7 +1,6 @@
 :host {
     display: flex;
     flex-direction: column;
-    background: #F7F7F7;
     width: 270px;
     height: 253px;
     box-sizing: content-box;
@@ -16,6 +15,7 @@
 :host .info {
     height: 133px;
     padding: 8px 11px;
+    background: #F7F7F7;
 }
 
 :host .info .title {
