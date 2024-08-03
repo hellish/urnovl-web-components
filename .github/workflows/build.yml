@@ -6,7 +6,7 @@ name: Build web components
 on: [push]
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,8 +40,9 @@ jobs:
 
             [skip ci]
             "
+
             git tag ${VERSION}
 
-            git push origin v$VERSION
+            git push origin $VERSION
             git push origin $GIT_BRANCH
 
