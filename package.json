@@ -13,10 +13,6 @@
       "import": "./dist/urnovl-web-components/urnovl-web-components.esm.js",
       "require": "./dist/urnovl-web-components/urnovl-web-components.cjs.js"
     },
-    "./ur-novl": {
-      "import": "./dist/components/ur-novl.js",
-      "types": "./dist/components/ur-novl.d.ts"
-    },
     "./loader": {
       "import": "./loader/index.js",
       "require": "./loader/index.cjs",
