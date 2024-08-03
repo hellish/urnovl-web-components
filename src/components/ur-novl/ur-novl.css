@@ -15,4 +15,13 @@
 
 :host .info {
     height: 133px;
+    padding: 8px 11px;
+}
+
+:host .info .title {
+    color: #171818;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 14px;
 }
