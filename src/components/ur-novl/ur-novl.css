@@ -1,0 +1,18 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    background: #F7F7F7;
+    width: 270px;
+    height: 253px;
+    box-sizing: content-box;
+}
+
+:host .cover {
+    height: 120px;
+    background: #ff3c00;
+    border-radius: 16px 16px 0px 0px;
+}
+
+:host .info {
+    height: 133px;
+}
