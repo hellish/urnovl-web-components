@@ -7,11 +7,33 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface UrNovl {
+        "authorAvatar": any;
+        "authorName": any;
+        "likes": number;
+        "novlCover": any;
+        "novlDescription": any;
         "novlTitle": string;
+        "showStats": boolean;
+        "views": number;
     }
 }
+export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNovlElement;
+}
 declare global {
+    interface HTMLUrNovlElementEventMap {
+        "authorClicked": any;
+    }
     interface HTMLUrNovlElement extends Components.UrNovl, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNovlElementEventMap>(type: K, listener: (this: HTMLUrNovlElement, ev: UrNovlCustomEvent<HTMLUrNovlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNovlElementEventMap>(type: K, listener: (this: HTMLUrNovlElement, ev: UrNovlCustomEvent<HTMLUrNovlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrNovlElement: {
         prototype: HTMLUrNovlElement;
@@ -23,7 +45,15 @@ declare global {
 }
 declare namespace LocalJSX {
     interface UrNovl {
+        "authorAvatar"?: any;
+        "authorName"?: any;
+        "likes"?: number;
+        "novlCover"?: any;
+        "novlDescription"?: any;
         "novlTitle"?: string;
+        "onAuthorClicked"?: (event: UrNovlCustomEvent<any>) => void;
+        "showStats"?: boolean;
+        "views"?: number;
     }
     interface IntrinsicElements {
         "ur-novl": UrNovl;

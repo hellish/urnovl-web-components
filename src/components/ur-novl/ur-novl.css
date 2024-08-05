@@ -8,14 +8,18 @@
 
 :host .cover {
     height: 120px;
-    background: #ff3c00;
     border-radius: 16px 16px 0px 0px;
+    background-color: #131519;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
 }
 
 :host .info {
     height: 133px;
-    padding: 8px 11px;
+    padding: 7px 11px;
     background: #F7F7F7;
+    box-sizing: border-box;
 }
 
 :host .info .title {
@@ -23,5 +27,68 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
-    line-height: 14px;
+    line-height: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 7px;
+}
+
+:host .info .stats {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 7px;
+}
+
+:host .info .stats b {
+    font-weight: 700;
+}
+
+:host .info .stats .likes {
+    display: flex;
+}
+
+:host .info .stats .likes .dot {
+    margin: 0 5px;
+}
+
+:host .info .description {
+    color: #171818;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px; /* 163.636% */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 7px;
+}
+
+:host .info .author {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    color: #1D1B20;
+    cursor: pointer;
+}
+
+:host .info .author .avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+:host .info .author .name {
+    margin-left: 8px;
 }
