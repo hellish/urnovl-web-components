@@ -7,9 +7,23 @@
 
 ## Properties
 
-| Property    | Attribute    | Description | Type     | Default        |
-| ----------- | ------------ | ----------- | -------- | -------------- |
-| `novlTitle` | `novl-title` |             | `string` | `'Novl title'` |
+| Property          | Attribute          | Description | Type      | Default        |
+| ----------------- | ------------------ | ----------- | --------- | -------------- |
+| `authorAvatar`    | `author-avatar`    |             | `any`     | `undefined`    |
+| `authorName`      | `author-name`      |             | `any`     | `undefined`    |
+| `likes`           | `likes`            |             | `number`  | `0`            |
+| `novlCover`       | `novl-cover`       |             | `any`     | `undefined`    |
+| `novlDescription` | `novl-description` |             | `any`     | `undefined`    |
+| `novlTitle`       | `novl-title`       |             | `string`  | `'Novl title'` |
+| `showStats`       | `show-stats`       |             | `boolean` | `true`         |
+| `views`           | `views`            |             | `number`  | `0`            |
+
+
+## Events
+
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `authorClicked` |             | `CustomEvent<any>` |
 
 
 ----------------------------------------------
