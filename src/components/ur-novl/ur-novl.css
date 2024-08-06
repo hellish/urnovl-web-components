@@ -84,6 +84,8 @@
     padding: 7px 11px;
     background: #F7F7F7;
     box-sizing: border-box;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 :host .info .title {
