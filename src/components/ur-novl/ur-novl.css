@@ -52,6 +52,34 @@
     color: #fff;
 }
 
+:host .cover .publisher {
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.30);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 4px 11.44px;
+    box-sizing: border-box;
+}
+
+:host .cover .publisher .avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+:host .cover .publisher .name {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px; /* 100% */
+    color: #fff;
+    margin-left: 7.56px;
+}
+
 :host .info {
     padding: 7px 11px;
     background: #F7F7F7;

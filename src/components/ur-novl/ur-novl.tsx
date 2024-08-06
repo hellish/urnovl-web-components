@@ -37,6 +37,12 @@ export class UrNovl {
     @Prop()
     price: string | null = null;
 
+    @Prop()
+    publisherAvatar: string | null = null;
+
+    @Prop()
+    publisherName: string | null = null;
+
     @Event()
     authorClicked;
 
@@ -46,6 +52,10 @@ export class UrNovl {
                 <section class='cover' style={{ backgroundImage: `url(${this.novlCover})` }}>
                     {!this.published && <div class="ongoing"><span>O</span></div>}
                     {!!this.price && <div class="price"><span>{this.price}</span></div>}
+                    {!!this.publisherAvatar && this.publisherName && <div class="publisher">
+                        <div class="avatar" style={{ backgroundImage: `url(${this.publisherAvatar})` }}></div>
+                        <div class="name">{this.publisherName}</div>
+                    </div>}
                 </section>
                 <section class='info'>
                     <div class='title'>{this.novlTitle}</div>
