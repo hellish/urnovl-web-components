@@ -17,6 +17,8 @@
 | `novlTitle`       | `novl-title`       |             | `string`  | `'Novl title'` |
 | `price`           | `price`            |             | `string`  | `null`         |
 | `published`       | `published`        |             | `boolean` | `false`        |
+| `publisherAvatar` | `publisher-avatar` |             | `string`  | `null`         |
+| `publisherName`   | `publisher-name`   |             | `string`  | `null`         |
 | `showStats`       | `show-stats`       |             | `boolean` | `true`         |
 | `views`           | `views`            |             | `number`  | `0`            |
 
