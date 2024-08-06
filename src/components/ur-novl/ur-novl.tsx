@@ -31,13 +31,18 @@ export class UrNovl {
     @Prop()
     authorName;
 
+    @Prop()
+    published = false;
+
     @Event()
     authorClicked;
 
     render() {
         return (
             <Host>
-                <section class='cover' style={{ backgroundImage: `url(${this.novlCover})` }}></section>
+                <section class='cover' style={{ backgroundImage: `url(${this.novlCover})` }}>
+                    {!this.published && <div class="ongoing"><span>O</span></div>}
+                </section>
                 <section class='info'>
                     <div class='title'>{this.novlTitle}</div>
                     {this.showStats &&

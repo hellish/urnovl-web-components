@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     width: 270px;
-    height: 253px;
     box-sizing: content-box;
 }
 
@@ -13,10 +12,33 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50%;
+    position: relative;
+}
+
+:host .cover .ongoing {
+    background-color: #ff3b01;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    left: 11.44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+:host .cover .ongoing span {
+    position: relative;
+    left: -0.5px;
+    top: -1px;
 }
 
 :host .info {
-    height: 133px;
     padding: 7px 11px;
     background: #F7F7F7;
     box-sizing: border-box;

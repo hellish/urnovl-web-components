@@ -13,6 +13,7 @@ export namespace Components {
         "novlCover": any;
         "novlDescription": any;
         "novlTitle": string;
+        "published": boolean;
         "showStats": boolean;
         "views": number;
     }
@@ -52,6 +53,7 @@ declare namespace LocalJSX {
         "novlDescription"?: any;
         "novlTitle"?: string;
         "onAuthorClicked"?: (event: UrNovlCustomEvent<any>) => void;
+        "published"?: boolean;
         "showStats"?: boolean;
         "views"?: number;
     }

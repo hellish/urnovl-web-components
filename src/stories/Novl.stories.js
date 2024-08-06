@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import '../components/ur-novl/ur-novl';
 
-const Novl = ({ novlTitle, novlCover, likes, views, showStats, novlDescription, authorAvatar, authorName }) => html`
+const Novl = ({ novlTitle, novlCover, likes, views, showStats, novlDescription, authorAvatar, authorName, published }) => html`
   <ur-novl
     author-name="${authorName}"
     author-avatar="${authorAvatar}"
@@ -11,6 +11,7 @@ const Novl = ({ novlTitle, novlCover, likes, views, showStats, novlDescription, 
     likes="${likes}"
     views="${views}"
     show-stats="${showStats}"
+    published="${published}"
   ></ur-novl>
 `;
 
@@ -30,6 +31,7 @@ export const Default = {
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     authorAvatar: 'https://lh4.googleusercontent.com/-FxnW9K6NrJY/AAAAAAAAAAI/AAAAAAAAACM/irHh3OywY_Y/photo.jpg',
     authorName: 'Alex Johnson',
+    published: false,
   },
 };
 
@@ -42,6 +44,7 @@ export const NoStats = {
       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry"s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     authorAvatar: 'https://lh4.googleusercontent.com/-FxnW9K6NrJY/AAAAAAAAAAI/AAAAAAAAACM/irHh3OywY_Y/photo.jpg',
     authorName: 'Παπαδόπουλος Αλέξανδρος',
+    published: true,
   },
 };
 
@@ -55,5 +58,6 @@ export const SmallDescription = {
     novlDescription: 'Lorem Ipsum is simply dummy text.',
     authorAvatar: 'https://lh4.googleusercontent.com/-FxnW9K6NrJY/AAAAAAAAAAI/AAAAAAAAACM/irHh3OywY_Y/photo.jpg',
     authorName: 'James Bond 007',
+    published: false,
   },
 };
