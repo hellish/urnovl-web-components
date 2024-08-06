@@ -13,3 +13,7 @@ prod:
 .PHONY: serve
 serve:
 	npx http-server storybook-static
+
+.PHONY: test
+test:
+	npm run test

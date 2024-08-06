@@ -11,7 +11,13 @@ describe('ur-novl', () => {
         expect(page.root).toEqualHtml(`
             <ur-novl>
                 <mock:shadow-root>
-                    <section class="cover" style="background-image: url(undefined);"></section>
+                    <section class="cover" style="background-image: url(undefined);">
+                        <div class="ongoing">
+                            <span>
+                                O
+                            </span>
+                        </div>
+                    </section>
                     <section class="info">
                         <div class="title">
                             Novl title
