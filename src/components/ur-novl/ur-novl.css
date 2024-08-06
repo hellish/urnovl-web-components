@@ -38,6 +38,20 @@
     top: -1px;
 }
 
+:host .cover .price {
+    position: absolute;
+    top: 10px;
+    right: 11.44px;
+    border-radius: 25px;
+    background: rgba(43, 43, 39, 0.95);
+    padding: 10px 24px;
+    box-sizing: border-box;
+    line-height: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+}
+
 :host .info {
     padding: 7px 11px;
     background: #F7F7F7;
