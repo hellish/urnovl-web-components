@@ -15,6 +15,8 @@
 | `novlCover`       | `novl-cover`       |             | `any`     | `undefined`    |
 | `novlDescription` | `novl-description` |             | `any`     | `undefined`    |
 | `novlTitle`       | `novl-title`       |             | `string`  | `'Novl title'` |
+| `price`           | `price`            |             | `string`  | `null`         |
+| `published`       | `published`        |             | `boolean` | `false`        |
 | `showStats`       | `show-stats`       |             | `boolean` | `true`         |
 | `views`           | `views`            |             | `number`  | `0`            |
 
