@@ -1,4 +1,5 @@
 import { Event, Component, Host, Prop, h } from '@stencil/core';
+import { NOVL_COVER_FALLBACK } from '../../data/novls';
 
 @Component({
     tag: 'ur-novl',
@@ -12,6 +13,9 @@ export class UrNovl {
 
     @Prop()
     novlCover;
+
+    @Prop()
+    novlCoverFallback = NOVL_COVER_FALLBACK;
 
     @Prop()
     likes = 0;
@@ -49,7 +53,7 @@ export class UrNovl {
     render() {
         return (
             <Host>
-                <section class='cover' style={{ backgroundImage: `url(${this.novlCover})` }}>
+                <section class='cover' style={{ backgroundImage: this.novlCover ? `url(${this.novlCover})` : `url(${this.novlCoverFallback})` }}>
                     {!this.published && <div class="ongoing"><span>O</span></div>}
                     {!!this.price && <div class="price"><span>{this.price}</span></div>}
                     {!!this.publisherAvatar && this.publisherName && <div class="publisher">

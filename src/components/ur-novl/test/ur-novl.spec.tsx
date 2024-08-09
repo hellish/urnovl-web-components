@@ -5,13 +5,13 @@ describe('ur-novl', () => {
     it('renders', async () => {
         const page = await newSpecPage({
             components: [UrNovl],
-            html: `<ur-novl></ur-novl>`,
+            html: `<ur-novl novl-cover-fallback="test"></ur-novl>`,
         });
 
         expect(page.root).toEqualHtml(`
-            <ur-novl>
+            <ur-novl novl-cover-fallback="test">
                 <mock:shadow-root>
-                    <section class="cover" style="background-image: url(undefined);">
+                    <section class="cover" style="background-image: url(test);">
                         <div class="ongoing">
                             <span>
                                 O

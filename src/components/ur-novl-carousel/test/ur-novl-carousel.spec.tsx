@@ -10,7 +10,7 @@ describe('ur-novl-carousel', () => {
     expect(page.root).toEqualHtml(`
       <ur-novl-carousel>
         <mock:shadow-root>
-          <slot></slot>
+          <swiper-container></swiper-container>
         </mock:shadow-root>
       </ur-novl-carousel>
     `);

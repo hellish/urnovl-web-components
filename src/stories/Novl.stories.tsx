@@ -4,19 +4,19 @@ import '../components/ur-novl/ur-novl';
 import { NOVLS } from '../data/novls';
 
 const Novl = ({
-  novlTitle,
-  novlCover,
-  likes,
-  views,
-  showStats,
-  novlDescription,
-  authorAvatar,
-  authorName,
-  published,
-  price,
-  publisherName,
-  publisherAvatar,
-  width = '270px',
+    novlTitle,
+    novlCover,
+    likes,
+    views,
+    showStats,
+    novlDescription,
+    authorAvatar,
+    authorName,
+    published,
+    price,
+    publisherName,
+    publisherAvatar,
+    width = '270px',
 }) => html`
   <div style="width: ${width}; box-sizing:border-box;">
     <ur-novl
@@ -37,44 +37,51 @@ const Novl = ({
 `;
 
 export default {
-  title: 'Urnovl/Novl',
-  render: args => Novl(args),
+    title: 'Urnovl/Novl',
+    render: args => Novl(args),
 };
 
 export const Default = {
-  args: NOVLS[0],
+    args: NOVLS[0],
+};
+
+export const BrokenCover = {
+    args: {
+        ...NOVLS[0],
+        novlCover: null
+    }
 };
 
 export const NoStats = {
-  args: NOVLS[1],
+    args: NOVLS[1],
 };
 
 export const SmallDescription = {
-  args: NOVLS[2],
+    args: NOVLS[2],
 };
 
 export const WithPrice = {
-  args: NOVLS[3],
+    args: NOVLS[3],
 };
 
 export const WithPublisher = {
-  args: NOVLS[4],
+    args: NOVLS[4],
 };
 
 export const Full = {
-  args: NOVLS[5],
+    args: NOVLS[5],
 };
 
 export const BiggerWidth = {
-  args: {
-    ...NOVLS[6],
-    width: '320px',
-  },
+    args: {
+        ...NOVLS[6],
+        width: '320px',
+    },
 };
 
 export const FullWithBiggerWidth = {
-  args: {
-    ...NOVLS[7],
-    width: '350px',
-  },
+    args: {
+        ...NOVLS[7],
+        width: '350px',
+    },
 };

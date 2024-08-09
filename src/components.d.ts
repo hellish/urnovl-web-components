@@ -13,6 +13,7 @@ export namespace Components {
         "authorName": any;
         "likes": number;
         "novlCover": any;
+        "novlCoverFallback": string;
         "novlDescription": any;
         "novlTitle": string;
         "price": string | null;
@@ -65,6 +66,7 @@ declare namespace LocalJSX {
         "authorName"?: any;
         "likes"?: number;
         "novlCover"?: any;
+        "novlCoverFallback"?: string;
         "novlDescription"?: any;
         "novlTitle"?: string;
         "onAuthorClicked"?: (event: UrNovlCustomEvent<any>) => void;
