@@ -1,12 +1,14 @@
 :host {
     display: flex;
     flex-direction: column;
-    width: 270px;
+    width: 100%;
     box-sizing: content-box;
+    container-type: inline-size;
+    container-name: novl;
 }
 
 :host .cover {
-    height: 120px;
+    aspect-ratio: 2.25;
     border-radius: 16px 16px 0px 0px;
     background-color: #131519;
     background-repeat: no-repeat;
@@ -157,4 +159,18 @@
 
 :host .info .author .name {
     margin-left: 8px;
+}
+
+@container novl (min-width: 290px) {
+    :host .info .title {
+        font-size: 1rem;
+        line-height: 1.2rem;
+    }
+}
+
+@container novl (min-width: 300px) {
+    :host .info .title {
+        font-size: 1.2rem;
+        line-height: 1.5rem;
+    }
 }
