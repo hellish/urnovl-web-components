@@ -4,8 +4,11 @@
     "dictionaryDefinitions": [],
     "dictionaries": [],
     "words": [
+        "fileoverview",
         "novl",
+        "novls",
         "Parens",
+        "swiper",
         "urnovl"
     ],
     "ignoreWords": [],

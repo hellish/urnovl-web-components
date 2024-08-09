@@ -53,5 +53,8 @@
     "storybook-addon-stencil": "^0.2.1",
     "typescript": "^5.5.4"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "swiper": "^11.1.9"
+  }
 }

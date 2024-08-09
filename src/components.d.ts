@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Novl } from "./models/novl";
+export { Novl } from "./models/novl";
 export namespace Components {
     interface UrNovl {
         "authorAvatar": any;
@@ -19,6 +21,9 @@ export namespace Components {
         "publisherName": string | null;
         "showStats": boolean;
         "views": number;
+    }
+    interface UrNovlCarousel {
+        "novls": Array<Novl>;
     }
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
@@ -43,8 +48,15 @@ declare global {
         prototype: HTMLUrNovlElement;
         new (): HTMLUrNovlElement;
     };
+    interface HTMLUrNovlCarouselElement extends Components.UrNovlCarousel, HTMLStencilElement {
+    }
+    var HTMLUrNovlCarouselElement: {
+        prototype: HTMLUrNovlCarouselElement;
+        new (): HTMLUrNovlCarouselElement;
+    };
     interface HTMLElementTagNameMap {
         "ur-novl": HTMLUrNovlElement;
+        "ur-novl-carousel": HTMLUrNovlCarouselElement;
     }
 }
 declare namespace LocalJSX {
@@ -63,8 +75,12 @@ declare namespace LocalJSX {
         "showStats"?: boolean;
         "views"?: number;
     }
+    interface UrNovlCarousel {
+        "novls"?: Array<Novl>;
+    }
     interface IntrinsicElements {
         "ur-novl": UrNovl;
+        "ur-novl-carousel": UrNovlCarousel;
     }
 }
 export { LocalJSX as JSX };
@@ -72,6 +88,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
+            "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
         }
     }
 }

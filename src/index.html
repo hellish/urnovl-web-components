@@ -5,12 +5,54 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script type="module" src="/build/urnovl-web-components.esm.js"></script>
     <script nomodule src="/build/urnovl-web-components.js"></script>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        swiper-container {
+            box-sizing: border-box;
+        }
+
+        swiper-slide {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        ur-novl {
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <swiper-container slides-per-view="1" speed="500" loop="true" css-mode="true">
+        <swiper-slide>
+            <ur-novl></ur-novl>
+        </swiper-slide>
+        <swiper-slide>
+            <ur-novl></ur-novl>
+        </swiper-slide>
+        <swiper-slide>
+            <ur-novl></ur-novl>
+        </swiper-slide>
+    </swiper-container>
 </body>
 
 </html>
