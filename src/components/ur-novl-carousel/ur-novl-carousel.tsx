@@ -14,7 +14,7 @@ export class UrNovlCarousel {
     render() {
         return (
             <Host>
-                <swiper-container slides-per-view="1" speed="500" loop="true" css-mode="true">
+                <swiper-container>
                     {this.novls.map(novl => {
                         return (<swiper-slide>
                             <ur-novl {...novl}></ur-novl>
