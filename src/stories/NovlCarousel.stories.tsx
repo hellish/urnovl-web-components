@@ -32,7 +32,13 @@ export const Default = {
 
 export const TwoRowsGrid = {
     args: {
-        novls: NOVLS,
+        novls: NOVLS.map((novl, index) => {
+            if (index === 1 || index === 6) {
+                novl.borderRadius = '0'
+            }
+
+            return novl;
+        }),
         breakpoints: {},
         grid: {
             rows: 2,
