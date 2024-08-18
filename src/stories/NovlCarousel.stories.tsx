@@ -11,6 +11,7 @@ const NovlCarousel = ({
     grid,
     slidesPerView,
     spaceBetween,
+    navigation = false,
     slideWidth = '100%',
     containerWidth = '100%',
     containerPadding = '20px',
@@ -26,6 +27,7 @@ const NovlCarousel = ({
             .novls="${novls}"
             .breakpoints="${breakpoints}"
             .grid="${grid}"
+            .navigation="${navigation}"
             slides-per-view="${slidesPerView}"
             space-between="${spaceBetween}"></ur-novl-carousel>
     </div>
@@ -114,6 +116,7 @@ export const FullWithArrows = {
         },
         slidesPerView: '3',
         spaceBetween: 18,
+        navigation: true,
         // container styles
         slideWidth: '336px',
         containerWidth: '1044px',

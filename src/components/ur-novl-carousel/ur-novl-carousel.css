@@ -3,10 +3,28 @@
 }
 
 :host {
-  display: block;
-  box-sizing: border-box;
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+}
+
+:host .carousel {
+    position: relative;
 }
 
 :host swiper-slide {
     width: var(--swiper-slide-width);
+}
+
+:host ur-button-arrow-left,
+:host ur-button-arrow-right {
+    position: absolute;
+    top: calc(50% - 34px);
+    left: -17px;
+    z-index: 2;
+}
+
+:host ur-button-arrow-right {
+    left: auto;
+    right: -17px;
 }

@@ -32,6 +32,7 @@ export namespace Components {
     interface UrNovlCarousel {
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
+        "navigation"?: boolean;
         "novls": Array<Novl>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
@@ -140,6 +141,7 @@ declare namespace LocalJSX {
     interface UrNovlCarousel {
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
+        "navigation"?: boolean;
         "novls"?: Array<Novl>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
