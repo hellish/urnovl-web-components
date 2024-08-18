@@ -34,10 +34,10 @@ export const TwoRowsGrid = {
     args: {
         novls: NOVLS.map((novl, index) => {
             if (index === 1 || index === 6) {
-                novl.borderRadius = '0'
+                return { ...novl, borderRadius: '0' };
             }
 
-            return novl;
+            return { ...novl };
         }),
         breakpoints: {},
         grid: {
