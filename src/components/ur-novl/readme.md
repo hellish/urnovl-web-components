@@ -11,7 +11,6 @@
 | ------------------- | --------------------- | ----------- | --------- | --------------------- |
 | `authorAvatar`      | `author-avatar`       |             | `any`     | `undefined`           |
 | `authorName`        | `author-name`         |             | `any`     | `undefined`           |
-| `borderRadius`      | `border-radius`       |             | `string`  | `'16px 16px 0px 0px'` |
 | `likes`             | `likes`               |             | `number`  | `0`                   |
 | `novlCover`         | `novl-cover`          |             | `any`     | `undefined`           |
 | `novlCoverFallback` | `novl-cover-fallback` |             | `string`  | `NOVL_COVER_FALLBACK` |
