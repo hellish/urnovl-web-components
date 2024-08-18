@@ -10,6 +10,10 @@ import { Breakpoints, Grid } from "./data/novl-carousel";
 export { Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
+    interface UrButtonArrowLeft {
+    }
+    interface UrButtonArrowRight {
+    }
     interface UrNovl {
         "authorAvatar": any;
         "authorName": any;
@@ -33,11 +37,53 @@ export namespace Components {
         "spaceBetween"?: number | string;
     }
 }
+export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrButtonArrowLeftElement;
+}
+export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrButtonArrowRightElement;
+}
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
 }
 declare global {
+    interface HTMLUrButtonArrowLeftElementEventMap {
+        "leftClicked": any;
+    }
+    interface HTMLUrButtonArrowLeftElement extends Components.UrButtonArrowLeft, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrButtonArrowLeftElementEventMap>(type: K, listener: (this: HTMLUrButtonArrowLeftElement, ev: UrButtonArrowLeftCustomEvent<HTMLUrButtonArrowLeftElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrButtonArrowLeftElementEventMap>(type: K, listener: (this: HTMLUrButtonArrowLeftElement, ev: UrButtonArrowLeftCustomEvent<HTMLUrButtonArrowLeftElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrButtonArrowLeftElement: {
+        prototype: HTMLUrButtonArrowLeftElement;
+        new (): HTMLUrButtonArrowLeftElement;
+    };
+    interface HTMLUrButtonArrowRightElementEventMap {
+        "rightClicked": any;
+    }
+    interface HTMLUrButtonArrowRightElement extends Components.UrButtonArrowRight, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrButtonArrowRightElementEventMap>(type: K, listener: (this: HTMLUrButtonArrowRightElement, ev: UrButtonArrowRightCustomEvent<HTMLUrButtonArrowRightElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrButtonArrowRightElementEventMap>(type: K, listener: (this: HTMLUrButtonArrowRightElement, ev: UrButtonArrowRightCustomEvent<HTMLUrButtonArrowRightElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrButtonArrowRightElement: {
+        prototype: HTMLUrButtonArrowRightElement;
+        new (): HTMLUrButtonArrowRightElement;
+    };
     interface HTMLUrNovlElementEventMap {
         "authorClicked": any;
     }
@@ -62,11 +108,19 @@ declare global {
         new (): HTMLUrNovlCarouselElement;
     };
     interface HTMLElementTagNameMap {
+        "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
+        "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
     }
 }
 declare namespace LocalJSX {
+    interface UrButtonArrowLeft {
+        "onLeftClicked"?: (event: UrButtonArrowLeftCustomEvent<any>) => void;
+    }
+    interface UrButtonArrowRight {
+        "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
+    }
     interface UrNovl {
         "authorAvatar"?: any;
         "authorName"?: any;
@@ -91,6 +145,8 @@ declare namespace LocalJSX {
         "spaceBetween"?: number | string;
     }
     interface IntrinsicElements {
+        "ur-button-arrow-left": UrButtonArrowLeft;
+        "ur-button-arrow-right": UrButtonArrowRight;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
     }
@@ -99,6 +155,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
+            "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
         }
