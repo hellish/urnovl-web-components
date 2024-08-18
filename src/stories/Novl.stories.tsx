@@ -92,7 +92,7 @@ export const NoBorderRadius = {
     args: {
         ...NOVLS[7],
         novlCover: NOVLS[6]['novlCover'],
-        width: '350px',
+        width: '450px',
         borderRadius: '0',
     },
 };
