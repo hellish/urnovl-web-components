@@ -81,3 +81,20 @@ export const SneakPeek = {
         containerWidth: '700px',
     },
 };
+
+export const SneakPeekWithSmallerNovl = {
+    render: args => NovlCarousel(args),
+    args: {
+        novls: NOVLS,
+        breakpoints: {},
+        grid: {
+            rows: 1,
+            fill: 'row'
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        // container styles
+        slideWidth: '250px',
+        containerWidth: '700px',
+    },
+};
