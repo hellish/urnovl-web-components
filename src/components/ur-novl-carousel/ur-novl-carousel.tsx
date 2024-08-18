@@ -38,13 +38,14 @@ export class UrNovlCarousel {
     componentDidLoad() {
         const container: any = this.el.shadowRoot.querySelector('swiper-container');
 
-        this.el.shadowRoot.querySelector('ur-button-arrow-left').addEventListener('click', () => {
-            container?.swiper?.slidePrev();
-        });
-
-        this.el.shadowRoot.querySelector('ur-button-arrow-right').addEventListener('click', () => {
-            container?.swiper?.slideNext();
-        });
+        if (this.navigation) {
+            this.el.shadowRoot.querySelector('ur-button-arrow-left').addEventListener('click', () => {
+                container?.swiper?.slidePrev();
+            });
+            this.el.shadowRoot.querySelector('ur-button-arrow-right').addEventListener('click', () => {
+                container?.swiper?.slideNext();
+            });
+        }
     }
 
     render() {
@@ -57,10 +58,6 @@ export class UrNovlCarousel {
                         <ur-button-arrow-right />
                     )}
                     <swiper-container
-                        style={{
-                            paddingLeft: this.navigation ? '0' : '0',
-                            paddingRight: this.navigation ? '0' : '0'
-                        }}
                         breakpoint-base="container"
                         grid={this.grid}
                         breakpoints={this.breakpoints}
