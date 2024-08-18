@@ -1,3 +1,6 @@
+.PHONY: run
+run: start
+
 .PHONY: start
 start:
 	npm run storybook

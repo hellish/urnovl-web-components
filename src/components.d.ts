@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Novl } from "./models/novl";
+import { Breakpoints, Grid } from "./data/novl-carousel";
 export { Novl } from "./models/novl";
+export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
     interface UrNovl {
         "authorAvatar": any;
@@ -24,7 +26,11 @@ export namespace Components {
         "views": number;
     }
     interface UrNovlCarousel {
+        "breakpoints"?: Breakpoints;
+        "grid"?: Grid;
         "novls": Array<Novl>;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
     }
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
@@ -78,7 +84,11 @@ declare namespace LocalJSX {
         "views"?: number;
     }
     interface UrNovlCarousel {
+        "breakpoints"?: Breakpoints;
+        "grid"?: Grid;
         "novls"?: Array<Novl>;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
     }
     interface IntrinsicElements {
         "ur-novl": UrNovl;

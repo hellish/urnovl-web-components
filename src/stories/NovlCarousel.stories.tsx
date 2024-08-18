@@ -3,9 +3,14 @@ import '../components/ur-novl-carousel/ur-novl-carousel';
 
 import { NOVLS } from '../data/novls';
 
-const NovlCarousel = ({ novls, width = '100%' }) => html`
-  <div style="width: ${width}; box-sizing:border-box;">
-    <ur-novl-carousel .novls="${novls}"></ur-novl-carousel>
+const NovlCarousel = ({ novls, breakpoints, grid, slidesPerView, spaceBetween, width = '100%' }) => html`
+  <div style="width: ${width}; box-sizing:border-box; background: #efefef;margin: 0;padding: 20px;">
+    <ur-novl-carousel
+        .novls="${novls}"
+        .breakpoints="${breakpoints}"
+        .grid="${grid}"
+        slides-per-view="${slidesPerView}"
+        space-between="${spaceBetween}"></ur-novl-carousel>
   </div>
 `;
 
@@ -17,6 +22,24 @@ export default {
 export const Default = {
     args: {
         novls: NOVLS,
-        width: '700px'
+        breakpoints: {},
+        grid: {},
+        slidesPerView: 1,
+        spaceBetween: 10,
+        width: '700px', // container width
+    },
+};
+
+export const TwoRows = {
+    args: {
+        novls: NOVLS,
+        breakpoints: {},
+        grid: {
+            rows: 2,
+            fill: 'row'
+        },
+        slidesPerView: 3,
+        spaceBetween: 10,
+        width: '700px', // container width
     },
 };
