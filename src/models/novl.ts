@@ -11,4 +11,5 @@ export type Novl = {
     price?: string;
     publisherAvatar?: string;
     publisherName?: string;
+    borderRadius?: string;
 };
