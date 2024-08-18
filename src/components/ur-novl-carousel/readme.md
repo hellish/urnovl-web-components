@@ -7,9 +7,13 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `novls`  | --        |             | `Novl[]` | `[]`    |
+| Property        | Attribute         | Description | Type                                                                  | Default                                        |
+| --------------- | ----------------- | ----------- | --------------------------------------------------------------------- | ---------------------------------------------- |
+| `breakpoints`   | --                |             | `{ [width: number]: SwiperOptions; [ratio: string]: SwiperOptions; }` | `{         // add default     }`               |
+| `grid`          | --                |             | `GridOptions`                                                         | `{         rows: 1,         fill: 'row'     }` |
+| `novls`         | --                |             | `Novl[]`                                                              | `[]`                                           |
+| `slidesPerView` | `slides-per-view` |             | `"auto" \| number`                                                    | `'auto'`                                       |
+| `spaceBetween`  | `space-between`   |             | `number \| string`                                                    | `'0'`                                          |
 
 
 ## Dependencies
