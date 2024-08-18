@@ -1,5 +1,7 @@
 import { html } from 'lit';
 import '../components/ur-novl-carousel/ur-novl-carousel';
+import '../components/ur-button-arrow-left/ur-button-arrow-left';
+import '../components/ur-button-arrow-right/ur-button-arrow-right';
 
 import { NOVLS } from '../data/novls';
 
@@ -10,14 +12,16 @@ const NovlCarousel = ({
     slidesPerView,
     spaceBetween,
     slideWidth = '100%',
-    containerWidth = '100%'
+    containerWidth = '100%',
+    containerPadding = '20px',
+    containerBackgroundColor = '#efefef',
 }) => html`
     <style>
         ur-novl-carousel {
             --swiper-slide-width: ${slideWidth};
         }
     </style>
-    <div style="width: ${containerWidth}; box-sizing:border-box; background: #efefef;margin: 0;padding: 20px;">
+    <div style="width: ${containerWidth}; box-sizing:border-box; background: ${containerBackgroundColor};margin: 0;padding: ${containerPadding};">
         <ur-novl-carousel
             .novls="${novls}"
             .breakpoints="${breakpoints}"
@@ -96,5 +100,24 @@ export const SneakPeekWithSmallerNovl = {
         // container styles
         slideWidth: '250px',
         containerWidth: '700px',
+    },
+};
+
+export const FullWithArrows = {
+    render: args => NovlCarousel(args),
+    args: {
+        novls: NOVLS,
+        breakpoints: {},
+        grid: {
+            rows: 1,
+            fill: 'row'
+        },
+        slidesPerView: '3',
+        spaceBetween: 18,
+        // container styles
+        slideWidth: '336px',
+        containerWidth: '1044px',
+        containerPadding: '30px',
+        containerBackgroundColor: 'transparent'
     },
 };
