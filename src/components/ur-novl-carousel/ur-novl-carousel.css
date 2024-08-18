@@ -1,4 +1,12 @@
 :host {
+    --swiper-slide-width: 100%;
+}
+
+:host {
   display: block;
   box-sizing: border-box;
+}
+
+:host swiper-slide {
+    width: var(--swiper-slide-width);
 }

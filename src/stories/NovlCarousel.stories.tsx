@@ -3,15 +3,28 @@ import '../components/ur-novl-carousel/ur-novl-carousel';
 
 import { NOVLS } from '../data/novls';
 
-const NovlCarousel = ({ novls, breakpoints, grid, slidesPerView, spaceBetween, width = '100%' }) => html`
-  <div style="width: ${width}; box-sizing:border-box; background: #efefef;margin: 0;padding: 20px;">
-    <ur-novl-carousel
-        .novls="${novls}"
-        .breakpoints="${breakpoints}"
-        .grid="${grid}"
-        slides-per-view="${slidesPerView}"
-        space-between="${spaceBetween}"></ur-novl-carousel>
-  </div>
+const NovlCarousel = ({
+    novls,
+    breakpoints,
+    grid,
+    slidesPerView,
+    spaceBetween,
+    slideWidth = '100%',
+    containerWidth = '100%'
+}) => html`
+    <style>
+        ur-novl-carousel {
+            --swiper-slide-width: ${slideWidth};
+        }
+    </style>
+    <div style="width: ${containerWidth}; box-sizing:border-box; background: #efefef;margin: 0;padding: 20px;">
+        <ur-novl-carousel
+            .novls="${novls}"
+            .breakpoints="${breakpoints}"
+            .grid="${grid}"
+            slides-per-view="${slidesPerView}"
+            space-between="${spaceBetween}"></ur-novl-carousel>
+    </div>
 `;
 
 export default {
@@ -26,7 +39,8 @@ export const Default = {
         grid: {},
         slidesPerView: 1,
         spaceBetween: 10,
-        width: '700px', // container width
+        // container styles
+        containerWidth: '700px',
     },
 };
 
@@ -46,6 +60,24 @@ export const TwoRowsGrid = {
         },
         slidesPerView: 3,
         spaceBetween: 10,
-        width: '700px', // container width
+        // container styles
+        containerWidth: '700px',
+    },
+};
+
+export const SneakPeek = {
+    render: args => NovlCarousel(args),
+    args: {
+        novls: NOVLS,
+        breakpoints: {},
+        grid: {
+            rows: 1,
+            fill: 'row'
+        },
+        slidesPerView: 'auto',
+        spaceBetween: 10,
+        // container styles
+        slideWidth: '80%',
+        containerWidth: '700px',
     },
 };
