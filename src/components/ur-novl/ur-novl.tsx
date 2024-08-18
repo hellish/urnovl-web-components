@@ -48,7 +48,7 @@ export class UrNovl {
     publisherName: string | null = null;
 
     @Prop()
-    borderRadius: string = '16px 16px 0px 0px';
+    borderRadius = '16px 16px 0px 0px';
 
     @Event()
     authorClicked;

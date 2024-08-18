@@ -16,7 +16,7 @@ const Novl = ({
     price,
     publisherName,
     publisherAvatar,
-    borderRadius,
+    borderRadius = '16px 16px 0px 0px',
     width = '270px',
 }) => html`
   <div style="width: ${width}; box-sizing:border-box;">

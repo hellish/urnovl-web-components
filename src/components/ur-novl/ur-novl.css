@@ -9,7 +9,6 @@
 
 :host .cover {
     aspect-ratio: 2.25;
-    /*border-radius: 16px 16px 0px 0px;*/
     background-color: #131519;
     background-repeat: no-repeat;
     background-size: cover;
