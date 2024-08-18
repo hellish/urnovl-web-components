@@ -19,23 +19,25 @@ const Novl = ({
     borderRadius = '16px 16px 0px 0px',
     width = '270px',
 }) => html`
-  <div style="width: ${width}; box-sizing:border-box;">
+    <style>
+        ur-novl {
+            --novl-width: ${width};
+            --novl-border-radius: ${borderRadius};
+        }
+    </style>
     <ur-novl
-      author-name="${authorName}"
-      author-avatar="${authorAvatar}"
-      novl-description="${novlDescription}"
-      novl-title="${novlTitle}"
-      novl-cover="${novlCover}"
-      likes="${likes}"
-      views="${views}"
-      show-stats="${showStats}"
-      published="${published}"
-      price="${price}"
-      publisher-name="${publisherName}"
-      publisher-avatar="${publisherAvatar}"
-      border-radius="${borderRadius}"
-    ></ur-novl>
-  </div>
+        author-name="${authorName}"
+        author-avatar="${authorAvatar}"
+        novl-description="${novlDescription}"
+        novl-title="${novlTitle}"
+        novl-cover="${novlCover}"
+        likes="${likes}"
+        views="${views}"
+        show-stats="${showStats}"
+        published="${published}"
+        price="${price}"
+        publisher-name="${publisherName}"
+        publisher-avatar="${publisherAvatar}"></ur-novl>
 `;
 
 export default {

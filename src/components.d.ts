@@ -13,7 +13,6 @@ export namespace Components {
     interface UrNovl {
         "authorAvatar": any;
         "authorName": any;
-        "borderRadius": string;
         "likes": number;
         "novlCover": any;
         "novlCoverFallback": string;
@@ -71,7 +70,6 @@ declare namespace LocalJSX {
     interface UrNovl {
         "authorAvatar"?: any;
         "authorName"?: any;
-        "borderRadius"?: string;
         "likes"?: number;
         "novlCover"?: any;
         "novlCoverFallback"?: string;
