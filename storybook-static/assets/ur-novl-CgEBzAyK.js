@@ -31,6 +31,7 @@ import{s as Ye,g as V}from"./chunk-GKNNPQCW-BkHQSocK.js";var y={allRenderFn:!1,c
     font-weight: 700;
     text-transform: uppercase;
     font-size: 14px;
+    line-height: 14px;
 }
 
 :host .cover .ongoing span {
@@ -108,6 +109,7 @@ import{s as Ye,g as V}from"./chunk-GKNNPQCW-BkHQSocK.js";var y={allRenderFn:!1,c
     display: flex;
     flex-direction: row;
     margin-bottom: 7px;
+    color: #333;
 }
 
 :host .info .stats b {

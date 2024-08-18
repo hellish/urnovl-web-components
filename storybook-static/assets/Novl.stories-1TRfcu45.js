@@ -1,4 +1,4 @@
-import{k as er}from"./lit-element-CsPioU85.js";import{N as r}from"./ur-novl-N11V5Ap6.js";import"./chunk-GKNNPQCW-BkHQSocK.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="16px 16px 0px 0px",width:rr="270px"})=>er`
+import{k as er}from"./lit-element-CsPioU85.js";import{N as r}from"./ur-novl-CgEBzAyK.js";import"./chunk-GKNNPQCW-BkHQSocK.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="16px 16px 0px 0px",width:rr="270px"})=>er`
   <div style="width: ${rr}; box-sizing:border-box;">
     <ur-novl
       author-name="${M}"
@@ -16,7 +16,7 @@ import{k as er}from"./lit-element-CsPioU85.js";import{N as r}from"./ur-novl-N11V
       border-radius="${Z}"
     ></ur-novl>
   </div>
-`,nr={title:"Urnovl/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"350px",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
+`,nr={title:"Urnovl/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"450px",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
   args: NOVLS[0]
 }`,...(g=(m=e.parameters)==null?void 0:m.docs)==null?void 0:g.source}}};var v,S,h;s.parameters={...s.parameters,docs:{...(v=s.parameters)==null?void 0:v.docs,source:{originalSource:`{
   args: {
@@ -47,7 +47,7 @@ import{k as er}from"./lit-element-CsPioU85.js";import{N as r}from"./ur-novl-N11V
   args: {
     ...NOVLS[7],
     novlCover: NOVLS[6]['novlCover'],
-    width: '350px',
+    width: '450px',
     borderRadius: '0'
   }
 }`,...(q=(j=d.parameters)==null?void 0:j.docs)==null?void 0:q.source}}};const cr=["Default","BrokenCover","NoStats","SmallDescription","WithPrice","WithPublisher","Full","BiggerWidth","FullWithBiggerWidth","NoBorderRadius"];export{i as BiggerWidth,s as BrokenCover,e as Default,c as Full,p as FullWithBiggerWidth,d as NoBorderRadius,a as NoStats,o as SmallDescription,t as WithPrice,n as WithPublisher,cr as __namedExportsOrder,nr as default};
