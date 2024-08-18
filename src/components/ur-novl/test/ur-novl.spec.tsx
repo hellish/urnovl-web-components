@@ -11,7 +11,7 @@ describe('ur-novl', () => {
         expect(page.root).toEqualHtml(`
             <ur-novl novl-cover-fallback="test">
                 <mock:shadow-root>
-                    <section class="cover" style="background-image: url(test);">
+                    <section class="cover" style="border-radius: 16px 16px 0px 0px; background-image: url(test);">
                         <div class="ongoing">
                             <span>
                                 O

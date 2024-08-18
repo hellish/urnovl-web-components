@@ -16,6 +16,7 @@ const Novl = ({
     price,
     publisherName,
     publisherAvatar,
+    borderRadius,
     width = '270px',
 }) => html`
   <div style="width: ${width}; box-sizing:border-box;">
@@ -32,6 +33,7 @@ const Novl = ({
       price="${price}"
       publisher-name="${publisherName}"
       publisher-avatar="${publisherAvatar}"
+      border-radius="${borderRadius}"
     ></ur-novl>
   </div>
 `;
@@ -83,5 +85,14 @@ export const FullWithBiggerWidth = {
     args: {
         ...NOVLS[7],
         width: '350px',
+    },
+};
+
+export const NoBorderRadius = {
+    args: {
+        ...NOVLS[7],
+        novlCover: NOVLS[6]['novlCover'],
+        width: '350px',
+        borderRadius: '0',
     },
 };

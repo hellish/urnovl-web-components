@@ -30,7 +30,7 @@ export const Default = {
     },
 };
 
-export const TwoRows = {
+export const TwoRowsGrid = {
     args: {
         novls: NOVLS,
         breakpoints: {},

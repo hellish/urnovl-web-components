@@ -9,7 +9,7 @@
 
 :host .cover {
     aspect-ratio: 2.25;
-    border-radius: 16px 16px 0px 0px;
+    /*border-radius: 16px 16px 0px 0px;*/
     background-color: #131519;
     background-repeat: no-repeat;
     background-size: cover;
@@ -36,8 +36,6 @@
 
 :host .cover .ongoing span {
     position: relative;
-    left: -0.5px;
-    top: -1px;
 }
 
 :host .cover .price {

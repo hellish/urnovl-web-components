@@ -47,13 +47,19 @@ export class UrNovl {
     @Prop()
     publisherName: string | null = null;
 
+    @Prop()
+    borderRadius: string = '16px 16px 0px 0px';
+
     @Event()
     authorClicked;
 
     render() {
         return (
             <Host>
-                <section class='cover' style={{ backgroundImage: this.novlCover ? `url(${this.novlCover})` : `url(${this.novlCoverFallback})` }}>
+                <section class='cover' style={{
+                    borderRadius: this.borderRadius,
+                    backgroundImage: this.novlCover ? `url(${this.novlCover})` : `url(${this.novlCoverFallback})`
+                }}>
                     {!this.published && <div class="ongoing"><span>O</span></div>}
                     {!!this.price && <div class="price"><span>{this.price}</span></div>}
                     {!!this.publisherAvatar && this.publisherName && <div class="publisher">
