@@ -21,8 +21,6 @@ export namespace Components {
     }
     interface UrButtonArrowRight {
     }
-    interface UrGenerate {
-    }
     interface UrLoader {
     }
     interface UrNovl {
@@ -104,12 +102,6 @@ declare global {
         prototype: HTMLUrButtonArrowRightElement;
         new (): HTMLUrButtonArrowRightElement;
     };
-    interface HTMLUrGenerateElement extends Components.UrGenerate, HTMLStencilElement {
-    }
-    var HTMLUrGenerateElement: {
-        prototype: HTMLUrGenerateElement;
-        new (): HTMLUrGenerateElement;
-    };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
     var HTMLUrLoaderElement: {
@@ -149,7 +141,6 @@ declare global {
         "ur-avatar": HTMLUrAvatarElement;
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
-        "ur-generate": HTMLUrGenerateElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
@@ -169,8 +160,6 @@ declare namespace LocalJSX {
     }
     interface UrButtonArrowRight {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
-    }
-    interface UrGenerate {
     }
     interface UrLoader {
     }
@@ -204,7 +193,6 @@ declare namespace LocalJSX {
         "ur-avatar": UrAvatar;
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
-        "ur-generate": UrGenerate;
         "ur-loader": UrLoader;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
@@ -218,7 +206,6 @@ declare module "@stencil/core" {
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
-            "ur-generate": LocalJSX.UrGenerate & JSXBase.HTMLAttributes<HTMLUrGenerateElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
