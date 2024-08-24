@@ -54,7 +54,8 @@ export class UrNovlCarousel {
                 <div class="carousel">
                     {this.navigation && (
                         <ur-button-arrow-left />
-                    )}{this.navigation && (
+                    )}
+                    {this.navigation && (
                         <ur-button-arrow-right />
                     )}
                     <swiper-container

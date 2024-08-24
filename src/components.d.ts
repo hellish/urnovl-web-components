@@ -14,6 +14,8 @@ export namespace Components {
     }
     interface UrButtonArrowRight {
     }
+    interface UrLoader {
+    }
     interface UrNovl {
         "authorAvatar": any;
         "authorName": any;
@@ -85,6 +87,12 @@ declare global {
         prototype: HTMLUrButtonArrowRightElement;
         new (): HTMLUrButtonArrowRightElement;
     };
+    interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
+    }
+    var HTMLUrLoaderElement: {
+        prototype: HTMLUrLoaderElement;
+        new (): HTMLUrLoaderElement;
+    };
     interface HTMLUrNovlElementEventMap {
         "authorClicked": any;
     }
@@ -111,6 +119,7 @@ declare global {
     interface HTMLElementTagNameMap {
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
+        "ur-loader": HTMLUrLoaderElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
     }
@@ -121,6 +130,8 @@ declare namespace LocalJSX {
     }
     interface UrButtonArrowRight {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
+    }
+    interface UrLoader {
     }
     interface UrNovl {
         "authorAvatar"?: any;
@@ -149,6 +160,7 @@ declare namespace LocalJSX {
     interface IntrinsicElements {
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
+        "ur-loader": UrLoader;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
     }
@@ -159,6 +171,7 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
+            "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
         }
