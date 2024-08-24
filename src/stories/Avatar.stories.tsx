@@ -3,6 +3,8 @@ import '../components/ur-button-arrow-left/ur-button-arrow-left';
 import '../components/ur-button-arrow-right/ur-button-arrow-right';
 import '../components/ur-avatar/ur-avatar';
 
+import publisher from '../../assets/images/publisher.svg';
+
 export default {
     title: 'Urnovl/Avatar',
 };
@@ -44,7 +46,7 @@ export const CustomImageWithLessRadius = {
         border: '5px',
         name: 'Penguin Publishing',
         radius: '25px',
-        src: '/assets/images/publisher.svg',
+        src: publisher,
     }),
 };
 
