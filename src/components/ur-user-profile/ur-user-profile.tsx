@@ -1,11 +1,11 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-    tag: 'ur-generate',
-    styleUrl: 'ur-generate.css',
+    tag: 'ur-user-profile',
+    styleUrl: 'ur-user-profile.css',
     shadow: true,
 })
-export class UrGenerate {
+export class UrUserProfile {
     render() {
         return (
             <Host>

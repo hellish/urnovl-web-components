@@ -10,9 +10,18 @@ import { Breakpoints, Grid } from "./data/novl-carousel";
 export { Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
+    interface UrAvatar {
+        "border": string;
+        "name"?: string;
+        "radius": string;
+        "size": string;
+        "src": string;
+    }
     interface UrButtonArrowLeft {
     }
     interface UrButtonArrowRight {
+    }
+    interface UrGenerate {
     }
     interface UrLoader {
     }
@@ -39,6 +48,8 @@ export namespace Components {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrUserProfile {
+    }
 }
 export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -53,6 +64,12 @@ export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     target: HTMLUrNovlElement;
 }
 declare global {
+    interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
+    }
+    var HTMLUrAvatarElement: {
+        prototype: HTMLUrAvatarElement;
+        new (): HTMLUrAvatarElement;
+    };
     interface HTMLUrButtonArrowLeftElementEventMap {
         "leftClicked": any;
     }
@@ -87,6 +104,12 @@ declare global {
         prototype: HTMLUrButtonArrowRightElement;
         new (): HTMLUrButtonArrowRightElement;
     };
+    interface HTMLUrGenerateElement extends Components.UrGenerate, HTMLStencilElement {
+    }
+    var HTMLUrGenerateElement: {
+        prototype: HTMLUrGenerateElement;
+        new (): HTMLUrGenerateElement;
+    };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
     var HTMLUrLoaderElement: {
@@ -116,20 +139,38 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
+    }
+    var HTMLUrUserProfileElement: {
+        prototype: HTMLUrUserProfileElement;
+        new (): HTMLUrUserProfileElement;
+    };
     interface HTMLElementTagNameMap {
+        "ur-avatar": HTMLUrAvatarElement;
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
+        "ur-generate": HTMLUrGenerateElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-user-profile": HTMLUrUserProfileElement;
     }
 }
 declare namespace LocalJSX {
+    interface UrAvatar {
+        "border"?: string;
+        "name"?: string;
+        "radius"?: string;
+        "size"?: string;
+        "src"?: string;
+    }
     interface UrButtonArrowLeft {
         "onLeftClicked"?: (event: UrButtonArrowLeftCustomEvent<any>) => void;
     }
     interface UrButtonArrowRight {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
+    }
+    interface UrGenerate {
     }
     interface UrLoader {
     }
@@ -157,23 +198,31 @@ declare namespace LocalJSX {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrUserProfile {
+    }
     interface IntrinsicElements {
+        "ur-avatar": UrAvatar;
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
+        "ur-generate": UrGenerate;
         "ur-loader": UrLoader;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-user-profile": UrUserProfile;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
+            "ur-generate": LocalJSX.UrGenerate & JSXBase.HTMLAttributes<HTMLUrGenerateElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
     }
 }

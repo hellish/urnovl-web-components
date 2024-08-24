@@ -1,0 +1,8 @@
+:host {
+    img {
+        display: block;
+        border-color: #ececec;
+        border-style: solid;
+        background: #fff;
+    }
+}
