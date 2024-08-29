@@ -1,4 +1,4 @@
-import{s as o,g as e}from"./chunk-GKNNPQCW-BkHQSocK.js";import{d as s,H as i,c as a,h as t,a as d}from"./index-DF7slccr.js";const c=`:host {
+import{s as o,g as e}from"./chunk-GKNNPQCW-BkHQSocK.js";import{d as s,H as i,c as a,h as t,a as d}from"./index-K5CyEtrH.js";const c=`:host {
     border-radius: 50%;
 
     button {
