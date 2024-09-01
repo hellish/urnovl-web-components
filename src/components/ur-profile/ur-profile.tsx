@@ -1,11 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import email_icon from '../../../assets/images/email.svg';
-import facebook_icon from '../../../assets/images/facebook.svg';
-import linkedin_icon from '../../../assets/images/linkedin.svg';
-import phone_icon from '../../../assets/images/phone.svg';
-import twitter_icon from '../../../assets/images/twitter.svg';
-import website_icon from '../../../assets/images/website.svg';
+import { Icons } from './icons';
 
 @Component({
     tag: 'ur-profile',
@@ -104,34 +99,35 @@ export class UrProfile {
                     <div class="social">
                         {
                             this.facebook_url && <a href={this.facebook_url} title="facebook" target="_blank">
-                                <img src={facebook_icon} alt="facebook" />
+                                <span class="icon" innerHTML={Icons.facebook}></span>
                             </a>
                         }
                         {
                             this.twitter_url && <a href={this.twitter_url} title="twitter" target="_blank">
-                                <img src={twitter_icon} alt="twitter" />
+                                <span class="icon" innerHTML={Icons.twitter}></span>
                             </a>
                         }
                         {
                             this.linkedin_url && <a href={this.linkedin_url} title="linkedin" target="_blank">
-                                <img src={linkedin_icon} alt="linkedin" />
+                                <span class="icon" innerHTML={Icons.linkedin}></span>
                             </a>
                         }
                         {
                             this.email && <a href={"mailto:" + this.email} title="email" target="_blank">
-                                <img src={email_icon} alt="email" />
+                                <span class="icon" innerHTML={Icons.email}></span>
                             </a>
                         }
                         {
                             this.phone && <a href={"tel:" + this.phone} title="phone" target="_blank">
-                                <img src={phone_icon} alt="phone" />
+                                <span class="icon" innerHTML={Icons.phone}></span>
                             </a>
                         }
                     </div>
 
                     {
                         this.website && <a class="website" href={this.website} title="website" target="_blank">
-                            <img src={website_icon} alt="website" />{this.website}
+                            <span class="icon" innerHTML={Icons.website}></span>
+                            {this.website}
                         </a>
                     }
 
