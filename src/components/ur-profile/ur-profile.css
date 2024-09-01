@@ -1,0 +1,160 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+:host .profile {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+:host .profile .name {
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.262px;
+    font-size: 22px;
+    padding-top: 16px;
+}
+
+:host .profile .description {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11px;
+    letter-spacing: -0.262px;
+    padding-top: 16px;
+}
+
+:host .profile .location {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 11px;
+    letter-spacing: -0.262px;
+    padding-top: 16px;
+    color: #aaadad;
+}
+
+:host .profile .social {
+    padding-top: 16px;
+    display: flex;
+}
+
+:host .profile .social img {
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+:host .profile .website {
+    padding-top: 16px;
+    padding-bottom: 14px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 11px;
+    letter-spacing: -0.262px;
+    text-decoration: none;
+    color: #566262;
+}
+
+:host .profile .website:hover {
+    text-decoration: underline;
+}
+
+:host .profile .website img {
+    padding-right: 10px;
+}
+
+:host .profile .action {
+    width: 100%;
+}
+
+:host .profile .action button {
+    margin-top: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #09F;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    height: 32px;
+    cursor: pointer;
+    color: #09F;
+}
+
+:host .profile .follow-action button {
+    background: #09F;
+    color: #fff;
+}
+
+:host .profile .stats {
+    padding-top: 24px;
+}
+
+:host .profile .stats .stat {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 11px;
+    letter-spacing: -0.262px;
+    height: 22px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+:host .profile .stats .stat .value {
+    font-size: 16px;
+}
+
+:host .profile .languages,
+:host .profile .genres {
+    padding-top: 12px;
+}
+
+:host .profile .languages .title,
+:host .profile .genres .title {
+    color: #BEC0C0;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 12px;
+    font-size: 12px;
+}
+
+:host .profile .languages .pills,
+:host .profile .genres .pills {
+    padding-top: 8px;
+}
+
+:host .profile .languages .pills .pill,
+:host .profile .genres .pills .pill {
+    color: #000;
+    font-size: 12px;
+    line-height: 24px;
+    opacity: 0.7;
+    display: inline-block;
+    border-radius: 5px;
+    background: #EEF1F5;
+    padding: 0 16px;
+    margin-right: 8px;
+}
+
+:host .profile .member_since {
+    opacity: 0.7;
+    color: #BEC0C0;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 11px;
+    letter-spacing: -0.262px;
+    margin-top: 10px;
+}

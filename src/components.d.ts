@@ -46,6 +46,32 @@ export namespace Components {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrProfile {
+        "description": any;
+        "email": any;
+        "facebook_url": any;
+        "followers_count": number;
+        "genres": string;
+        "languages": string;
+        "linkedin_url": any;
+        "location": any;
+        "member_since": string;
+        "name": any;
+        "phone": any;
+        "show_become_member": boolean;
+        "show_donate": boolean;
+        "show_follow": boolean;
+        "show_genres": boolean;
+        "show_languages": boolean;
+        "show_member_since": boolean;
+        "show_send_message": boolean;
+        "show_stats": boolean;
+        "stories_count": number;
+        "twitter_url": any;
+        "views_count": number;
+        "website": any;
+        "writers_count": number;
+    }
     interface UrUserProfile {
     }
 }
@@ -131,6 +157,12 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
+    }
+    var HTMLUrProfileElement: {
+        prototype: HTMLUrProfileElement;
+        new (): HTMLUrProfileElement;
+    };
     interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
     }
     var HTMLUrUserProfileElement: {
@@ -144,6 +176,7 @@ declare global {
         "ur-loader": HTMLUrLoaderElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-profile": HTMLUrProfileElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
 }
@@ -187,6 +220,32 @@ declare namespace LocalJSX {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrProfile {
+        "description"?: any;
+        "email"?: any;
+        "facebook_url"?: any;
+        "followers_count"?: number;
+        "genres"?: string;
+        "languages"?: string;
+        "linkedin_url"?: any;
+        "location"?: any;
+        "member_since"?: string;
+        "name"?: any;
+        "phone"?: any;
+        "show_become_member"?: boolean;
+        "show_donate"?: boolean;
+        "show_follow"?: boolean;
+        "show_genres"?: boolean;
+        "show_languages"?: boolean;
+        "show_member_since"?: boolean;
+        "show_send_message"?: boolean;
+        "show_stats"?: boolean;
+        "stories_count"?: number;
+        "twitter_url"?: any;
+        "views_count"?: number;
+        "website"?: any;
+        "writers_count"?: number;
+    }
     interface UrUserProfile {
     }
     interface IntrinsicElements {
@@ -196,6 +255,7 @@ declare namespace LocalJSX {
         "ur-loader": UrLoader;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-profile": UrProfile;
         "ur-user-profile": UrUserProfile;
     }
 }
@@ -209,6 +269,7 @@ declare module "@stencil/core" {
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
     }
