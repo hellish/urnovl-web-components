@@ -77,7 +77,8 @@
     width: 100%;
 }
 
-:host .profile .action button {
+:host .profile .action button,
+:host .profile .action mdui-button {
     margin-top: 10px;
     border-radius: 5px;
     box-sizing: border-box;
@@ -86,14 +87,14 @@
     width: 100%;
     font-size: 14px;
     font-weight: 400;
-    line-height: 20px;
     letter-spacing: 0.1px;
     height: 32px;
     cursor: pointer;
     color: #09F;
 }
 
-:host .profile .follow-action button {
+:host .profile .follow-action button,
+:host .profile .follow-action mdui-button {
     background: #09F;
     color: #fff;
 }

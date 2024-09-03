@@ -2,6 +2,8 @@ import { Component, Host, Prop, h } from '@stencil/core';
 
 import { Icons } from './icons';
 
+import 'mdui/components/button';
+
 @Component({
     tag: 'ur-profile',
     styleUrl: 'ur-profile.css',
@@ -133,25 +135,25 @@ export class UrProfile {
 
                     {
                         this.show_follow && <div class="follow-action action">
-                            <button>Follow</button>
+                            <mdui-button>Follow</mdui-button>
                         </div>
                     }
 
                     {
                         this.show_donate && <div class="donate-action action">
-                            <button>Donate</button>
+                            <mdui-button variant="outlined">Donate</mdui-button>
                         </div>
                     }
 
                     {
                         this.show_become_member && <div class="member-action action">
-                            <button>Become Member</button>
+                            <mdui-button variant="outlined">Become Member</mdui-button>
                         </div>
                     }
 
                     {
                         this.show_send_message && <div class="message-action action">
-                            <button>Message</button>
+                            <mdui-button variant="outlined">Message</mdui-button>
                         </div>
                     }
 

@@ -19,6 +19,9 @@ const Profile = ({
     languages,
     width = '256px'
 }) => html`
+    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <div style="width: ${width};border: 1px solid #ccc;box-sizing: border-box;">
         <ur-profile
             name="${name}"
