@@ -1,4 +1,4 @@
-import{k as c}from"./lit-element-CsPioU85.js";import"./ur-button-arrow-right-jo96bMNg.js";import"./chunk-GKNNPQCW-BkHQSocK.js";import"./index-K5CyEtrH.js";const i=()=>c`
+import{k as c}from"./lit-element-CPYlYYac.js";import"./ur-button-arrow-right-jo96bMNg.js";import"./chunk-GKNNPQCW-BkHQSocK.js";import"./index-K5CyEtrH.js";const i=()=>c`
     <ur-button-arrow-left></ur-button-arrow-left>
 `,m=()=>c`
     <ur-button-arrow-right></ur-button-arrow-right>

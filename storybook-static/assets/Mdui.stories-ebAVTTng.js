@@ -1,4 +1,4 @@
-import{k as r}from"./lit-element-CsPioU85.js";var e=Object.freeze,d=Object.defineProperty,s=(t,c)=>e(d(t,"raw",{value:e(t.slice())})),i;const p={title:"Urnovl/MDUI"},a=()=>r(i||(i=s([`
+import{k as r}from"./lit-element-CPYlYYac.js";var e=Object.freeze,d=Object.defineProperty,s=(t,c)=>e(d(t,"raw",{value:e(t.slice())})),i;const p={title:"Urnovl/MDUI"},a=()=>r(i||(i=s([`
     <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
     <script src="https://unpkg.com/mdui@2/mdui.global.js"><\/script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
