@@ -5,10 +5,6 @@ export default {
 };
 
 const MDuiButton = () => html`
-    <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
-    <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <mdui-button>Hello, world!</mdui-button>
     <br />
     <mdui-bottom-app-bar style="position: relative;">
