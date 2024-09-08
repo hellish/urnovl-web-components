@@ -1,3 +1,25 @@
-:host {
+:host .locale-filter-panel {
     display: block;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    border: 1px solid red;
+    height: 100%;
+    flex-direction: column;
+}
+
+:host .locale-filter-panel header {
+    height: 48px;
+    position: relative;
+    border-bottom: 1px solid #73777F;
+    box-sizing: border-box;
+}
+
+:host .locale-filter-panel main {
+    flex: 1;
+    border-bottom: 1px solid #73777F;
+}
+
+:host .locale-filter-panel footer {
+    height: 72px;
 }
