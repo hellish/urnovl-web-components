@@ -5,6 +5,7 @@ const config = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-storysource',
+    '@storybook/addon-actions',
     {
       name: 'storybook-addon-stencil',
       options: {

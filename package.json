@@ -58,6 +58,7 @@
   "license": "MIT",
   "dependencies": {
     "@mdui/icons": "^1.0.2",
+    "@storybook/addon-actions": "^8.2.9",
     "mdui": "^2.1.2",
     "swiper": "^11.1.12"
   }

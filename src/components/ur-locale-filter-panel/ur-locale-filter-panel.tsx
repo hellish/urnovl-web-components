@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
 
 import 'mdui/components/button';
 import 'mdui/components/checkbox';
@@ -12,6 +12,9 @@ export class UrLocaleFilterPanel {
 
     @Prop()
     locales: Array<[label: string, value: string, checked: boolean]> = [];
+
+    @Event()
+    onSave: EventEmitter<void>;
 
     render() {
         return (
@@ -30,7 +33,7 @@ export class UrLocaleFilterPanel {
                     })}
                 </main>
                 <footer>
-                    <mdui-button>
+                    <mdui-button onClick={() => this.onSave.emit()}>
                         Save
                     </mdui-button>
                     <mdui-button variant="text">

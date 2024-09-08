@@ -1,3 +1,5 @@
+import { withActions } from '@storybook/addon-actions/decorator';
+
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
   parameters: {
@@ -7,6 +9,8 @@ const preview = {
         date: /Date$/i,
       },
     },
+    actions: { argTypesRegex: '^on.*' },
+    decorators: [withActions],
   },
 };
 
