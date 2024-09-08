@@ -46,6 +46,9 @@ export namespace Components {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrNovlLocaleFilterButton {
+        "count": number;
+    }
     interface UrProfile {
         "description": any;
         "email": any;
@@ -157,6 +160,12 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrNovlLocaleFilterButtonElement extends Components.UrNovlLocaleFilterButton, HTMLStencilElement {
+    }
+    var HTMLUrNovlLocaleFilterButtonElement: {
+        prototype: HTMLUrNovlLocaleFilterButtonElement;
+        new (): HTMLUrNovlLocaleFilterButtonElement;
+    };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
     var HTMLUrProfileElement: {
@@ -176,6 +185,7 @@ declare global {
         "ur-loader": HTMLUrLoaderElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-novl-locale-filter-button": HTMLUrNovlLocaleFilterButtonElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
@@ -220,6 +230,9 @@ declare namespace LocalJSX {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrNovlLocaleFilterButton {
+        "count"?: number;
+    }
     interface UrProfile {
         "description"?: any;
         "email"?: any;
@@ -255,6 +268,7 @@ declare namespace LocalJSX {
         "ur-loader": UrLoader;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-novl-locale-filter-button": UrNovlLocaleFilterButton;
         "ur-profile": UrProfile;
         "ur-user-profile": UrUserProfile;
     }
@@ -269,6 +283,7 @@ declare module "@stencil/core" {
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-novl-locale-filter-button": LocalJSX.UrNovlLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrNovlLocaleFilterButtonElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
