@@ -1,24 +1,37 @@
 import { html } from "lit";
-import '../components/ur-novl-locale-filter-button/ur-novl-locale-filter-button';
+import '../components/ur-locale-filter-button/ur-locale-filter-button';
+import '../components/ur-locale-filter-panel/ur-locale-filter-panel';
 
 const Button = ({
     count = 0
 }) => {
-    return html`<ur-novl-locale-filter-button count="${count}"></ur-novl-locale-filter-button>`;
+    return html`<ur-locale-filter-button count="${count}"></ur-locale-filter-button>`;
+}
+
+const Panel = ({
+    //
+}) => {
+    return html`<ur-locale-filter-panel></ur-locale-filter-panel>`;
 }
 
 export default {
     title: 'Urnovl/NovlFilters',
 };
 
-export const Default = {
+export const DefaultButton = {
     render: () => Button({
         count: 0
     })
 };
 
-export const WithSelectedFilters = {
+export const ButtonWithSelectedFilters = {
     render: () => Button({
         count: 9
+    })
+};
+
+export const LocalePanel = {
+    render: () => Panel({
+
     })
 };

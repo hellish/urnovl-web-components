@@ -3,11 +3,11 @@ import { Component, Host, Prop, h } from '@stencil/core';
 import 'mdui/components/button';
 
 @Component({
-    tag: 'ur-novl-locale-filter-button',
-    styleUrl: 'ur-novl-locale-filter-button.css',
+    tag: 'ur-locale-filter-button',
+    styleUrl: 'ur-locale-filter-button.css',
     shadow: true,
 })
-export class UrNovlLocaleFilterButton {
+export class UrLocaleFilterButton {
 
     @Prop()
     count = 0;
