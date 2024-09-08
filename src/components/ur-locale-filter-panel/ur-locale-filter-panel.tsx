@@ -1,5 +1,7 @@
 import { Component, Host, h } from '@stencil/core';
 
+import 'mdui/components/checkbox';
+
 @Component({
     tag: 'ur-locale-filter-panel',
     styleUrl: 'ur-locale-filter-panel.css',
@@ -9,7 +11,7 @@ export class UrLocaleFilterPanel {
     render() {
         return (
             <Host>
-                [panel]
+                <mdui-checkbox checked>Checkbox</mdui-checkbox>
             </Host>
         );
     }
