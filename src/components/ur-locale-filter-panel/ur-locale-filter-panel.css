@@ -16,10 +16,15 @@
 }
 
 :host .locale-filter-panel main {
-    flex: 1;
-    border-bottom: 1px solid #73777F;
+    /**/
 }
 
 :host .locale-filter-panel footer {
+    border-top: 1px solid #73777F;
     height: 72px;
+}
+
+:host .locale-filter-panel main mdui-checkbox {
+    background: red;
+    width: 100%;
 }

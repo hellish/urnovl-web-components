@@ -1,4 +1,4 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 import 'mdui/components/button';
 import 'mdui/components/checkbox';
@@ -9,6 +9,10 @@ import 'mdui/components/checkbox';
     shadow: true,
 })
 export class UrLocaleFilterPanel {
+
+    @Prop()
+    locales: Array<[label: string, value: string, checked: boolean]> = [];
+
     render() {
         return (
             <div class="locale-filter-panel">
@@ -21,7 +25,9 @@ export class UrLocaleFilterPanel {
                     <label>Filters</label>
                 </header>
                 <main>
-                    <mdui-checkbox checked>Checkbox</mdui-checkbox>
+                    {this.locales.map(([label, value, checked]) => {
+                        return <mdui-checkbox checked={checked} value={value}>{label}</mdui-checkbox>
+                    })}
                 </main>
                 <footer>
                     <mdui-button>

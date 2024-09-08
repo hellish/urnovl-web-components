@@ -9,9 +9,9 @@ const Button = ({
 }
 
 const Panel = ({
-    //
+    locales = []
 }) => {
-    return html`<ur-locale-filter-panel></ur-locale-filter-panel>`;
+    return html`<ur-locale-filter-panel .locales="${locales}"></ur-locale-filter-panel>`;
 }
 
 export default {
@@ -32,6 +32,9 @@ export const ButtonWithSelectedFilters = {
 
 export const LocalePanel = {
     render: () => Panel({
-
+        locales: [
+            [ 'English', 'en', false ],
+            [ 'Greek', 'el', false ]
+        ]
     })
 };
