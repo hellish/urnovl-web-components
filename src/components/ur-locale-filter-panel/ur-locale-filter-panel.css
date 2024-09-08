@@ -26,5 +26,6 @@
 
 :host .locale-filter-panel main mdui-checkbox {
     background: red;
+    border-radius: 0;
     width: 100%;
 }
