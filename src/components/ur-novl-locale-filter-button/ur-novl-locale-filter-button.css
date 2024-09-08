@@ -1,0 +1,42 @@
+:host {
+
+}
+
+:host mdui-button {
+    border-radius: 8px;
+    border: 1px solid #c3c6cf;
+    height: 34px;
+}
+
+:host mdui-button.with-count {
+    border: 1px solid #09f;
+}
+
+:host mdui-button .label {
+    color: #191C20;
+    font-size: 14px;
+    margin-right: 8px;
+
+    line-height: 22px;
+}
+
+:host mdui-button .count {
+    margin-right: 8px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+
+    width: 22px;
+    height: 22px;
+
+    background: #09f;
+
+    color: #fff;
+    line-height: 22px;
+
+    font-size: 9px;
+}
+
+:host mdui-button svg {
+    margin-top: 2px;
+}
