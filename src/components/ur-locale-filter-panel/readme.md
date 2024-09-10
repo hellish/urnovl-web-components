@@ -7,9 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute | Description | Type                                                 | Default |
-| --------- | --------- | ----------- | ---------------------------------------------------- | ------- |
-| `locales` | --        |             | `[label: string, value: string, checked: boolean][]` | `[]`    |
+| Property     | Attribute     | Description | Type                                                 | Default |
+| ------------ | ------------- | ----------- | ---------------------------------------------------- | ------- |
+| `locales`    | --            |             | `[label: string, value: string, checked: boolean][]` | `[]`    |
+| `showFooter` | `show-footer` |             | `boolean`                                            | `true`  |
+| `showHeader` | `show-header` |             | `boolean`                                            | `true`  |
 
 
 ## Events

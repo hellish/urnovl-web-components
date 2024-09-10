@@ -28,6 +28,8 @@ export namespace Components {
     }
     interface UrLocaleFilterPanel {
         "locales": Array<[label: string, value: string, checked: boolean]>;
+        "showFooter": boolean;
+        "showHeader": boolean;
     }
     interface UrNovl {
         "authorAvatar": any;
@@ -239,6 +241,8 @@ declare namespace LocalJSX {
         "locales"?: Array<[label: string, value: string, checked: boolean]>;
         "onCancel"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
         "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
+        "showFooter"?: boolean;
+        "showHeader"?: boolean;
     }
     interface UrNovl {
         "authorAvatar"?: any;
