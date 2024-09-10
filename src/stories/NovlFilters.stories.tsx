@@ -9,9 +9,15 @@ const Button = ({
 }
 
 const Panel = ({
+    showHeader = true,
+    showFooter = true,
     locales = []
 }) => {
-    return html`<ur-locale-filter-panel .locales="${locales}"></ur-locale-filter-panel>`;
+    return html`<ur-locale-filter-panel
+        show-footer="${showFooter}"
+        show-header="${showHeader}"
+        .locales="${locales}">
+    </ur-locale-filter-panel>`;
 }
 
 export default {
@@ -32,6 +38,61 @@ export const ButtonWithSelectedFilters = {
 
 export const LocalePanel = {
     render: () => Panel({
+        locales: [
+            [ 'English', 'en', false ],
+            [ 'German', 'de', false ],
+            [ 'Greek', 'el', false ],
+            [ 'Russian', 'eu', false ],
+            [ 'Spanish', 'es', false ],
+            [ 'Italian', 'it', false ],
+            [ 'French', 'fr', false ],
+            [ 'Italian', 'it', false ],
+            [ 'Turkish', 'tr', false ],
+            [ 'Hindi', 'hi', false ]
+        ]
+    })
+};
+
+export const LocalePanelNoHeader = {
+    render: () => Panel({
+        showHeader: false,
+        locales: [
+            [ 'English', 'en', false ],
+            [ 'German', 'de', false ],
+            [ 'Greek', 'el', false ],
+            [ 'Russian', 'eu', false ],
+            [ 'Spanish', 'es', false ],
+            [ 'Italian', 'it', false ],
+            [ 'French', 'fr', false ],
+            [ 'Italian', 'it', false ],
+            [ 'Turkish', 'tr', false ],
+            [ 'Hindi', 'hi', false ]
+        ]
+    })
+};
+
+export const LocalePanelWithNoFooter = {
+    render: () => Panel({
+        showFooter: false,
+        locales: [
+            [ 'English', 'en', false ],
+            [ 'German', 'de', false ],
+            [ 'Greek', 'el', false ],
+            [ 'Russian', 'eu', false ],
+            [ 'Spanish', 'es', false ],
+            [ 'Italian', 'it', false ],
+            [ 'French', 'fr', false ],
+            [ 'Italian', 'it', false ],
+            [ 'Turkish', 'tr', false ],
+            [ 'Hindi', 'hi', false ]
+        ]
+    })
+};
+
+export const LocalePanelWithNoHeaderNoFooter = {
+    render: () => Panel({
+        showHeader: false,
+        showFooter: false,
         locales: [
             [ 'English', 'en', false ],
             [ 'German', 'de', false ],

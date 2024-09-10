@@ -11,6 +11,12 @@ import 'mdui/components/checkbox';
 export class UrLocaleFilterPanel {
 
     @Prop()
+    showHeader = true;
+
+    @Prop()
+    showFooter = true;
+
+    @Prop()
     locales: Array<[label: string, value: string, checked: boolean]> = [];
 
     @Event()
@@ -22,14 +28,14 @@ export class UrLocaleFilterPanel {
     render() {
         return (
             <div class="locale-filter-panel">
-                <header>
+                {this.showHeader && <header>
                     <mdui-button variant="text">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="#43474E" />
                         </svg>
                     </mdui-button>
                     <label>Filters</label>
-                </header>
+                </header>}
                 <main>
                     <div class="description">
                         <div class="title">Content Languages</div>
@@ -41,14 +47,14 @@ export class UrLocaleFilterPanel {
                         })}
                     </div>
                 </main>
-                <footer>
+                {this.showFooter && <footer>
                     <mdui-button class="save" onClick={() => this.save.emit()}>
                         Save
                     </mdui-button>
                     <mdui-button class="cancel" variant="text" onClick={() => this.cancel.emit()}>
                         Cancel
                     </mdui-button>
-                </footer>
+                </footer>}
             </div>
         );
     }
