@@ -16,6 +16,9 @@ export class UrLocaleFilterPanel {
     @Event()
     onSave: EventEmitter<void>;
 
+    @Event()
+    onCancel: EventEmitter<void>;
+
     render() {
         return (
             <div class="locale-filter-panel">
@@ -28,15 +31,21 @@ export class UrLocaleFilterPanel {
                     <label>Filters</label>
                 </header>
                 <main>
-                    {this.locales.map(([label, value, checked]) => {
-                        return <mdui-checkbox checked={checked} value={value}>{label}</mdui-checkbox>
-                    })}
+                    <div class="description">
+                        <div class="title">Content Languages</div>
+                        <div class="text">Choose the language you want to see for the stories, pages and competitions</div>
+                    </div>
+                    <div class="locales">
+                        {this.locales.map(([label, value, checked]) => {
+                            return <mdui-checkbox checked={checked} value={value}>{label}</mdui-checkbox>
+                        })}
+                    </div>
                 </main>
                 <footer>
-                    <mdui-button onClick={() => this.onSave.emit()}>
+                    <mdui-button class="save" onClick={() => this.onSave.emit()}>
                         Save
                     </mdui-button>
-                    <mdui-button variant="text">
+                    <mdui-button class="cancel" variant="text" onClick={() => this.onCancel.emit()}>
                         Cancel
                     </mdui-button>
                 </footer>

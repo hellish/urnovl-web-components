@@ -34,7 +34,15 @@ export const LocalePanel = {
     render: () => Panel({
         locales: [
             [ 'English', 'en', false ],
-            [ 'Greek', 'el', false ]
+            [ 'German', 'de', false ],
+            [ 'Greek', 'el', false ],
+            [ 'Russian', 'eu', false ],
+            [ 'Spanish', 'es', false ],
+            [ 'Italian', 'it', false ],
+            [ 'French', 'fr', false ],
+            [ 'Italian', 'it', false ],
+            [ 'Turkish', 'tr', false ],
+            [ 'Hindi', 'hi', false ]
         ]
     })
 };

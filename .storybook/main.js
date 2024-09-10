@@ -12,7 +12,7 @@ const config = {
         stencilOptions: {},
       },
     },
-    'storybook-dark-mode'
+    'storybook-dark-mode',
   ],
   framework: {
     name: '@storybook/web-components-vite',
