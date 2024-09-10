@@ -27,6 +27,7 @@ export namespace Components {
         "count": number;
     }
     interface UrLocaleFilterPanel {
+        "locales": Array<[label: string, value: string, checked: boolean]>;
     }
     interface UrNovl {
         "authorAvatar": any;
@@ -88,6 +89,10 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrLocaleFilterPanelElement;
+}
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
@@ -145,7 +150,19 @@ declare global {
         prototype: HTMLUrLocaleFilterButtonElement;
         new (): HTMLUrLocaleFilterButtonElement;
     };
+    interface HTMLUrLocaleFilterPanelElementEventMap {
+        "save": void;
+        "cancel": void;
+    }
     interface HTMLUrLocaleFilterPanelElement extends Components.UrLocaleFilterPanel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrLocaleFilterPanelElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterPanelElement, ev: UrLocaleFilterPanelCustomEvent<HTMLUrLocaleFilterPanelElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrLocaleFilterPanelElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterPanelElement, ev: UrLocaleFilterPanelCustomEvent<HTMLUrLocaleFilterPanelElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrLocaleFilterPanelElement: {
         prototype: HTMLUrLocaleFilterPanelElement;
@@ -219,6 +236,9 @@ declare namespace LocalJSX {
         "count"?: number;
     }
     interface UrLocaleFilterPanel {
+        "locales"?: Array<[label: string, value: string, checked: boolean]>;
+        "onCancel"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
+        "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
     }
     interface UrNovl {
         "authorAvatar"?: any;
