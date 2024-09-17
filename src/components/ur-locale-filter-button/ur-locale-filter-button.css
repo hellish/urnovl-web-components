@@ -1,5 +1,5 @@
 :host {
-
+    --ur-color-primary: var(--mdui-color-primary); /* rgb format */
 }
 
 :host mdui-button {
@@ -13,10 +13,8 @@
 }
 
 :host mdui-button .label {
-    color: #191C20;
     font-size: 14px;
     margin-right: 8px;
-
     line-height: 22px;
 }
 
@@ -39,4 +37,8 @@
 
 :host mdui-button svg {
     margin-top: 2px;
+}
+
+:host mdui-button svg path {
+    stroke: rgb(var(--ur-color-primary));
 }
