@@ -2,7 +2,7 @@
     --ur-color-primary: var(--mdui-color-primary);
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --ur-color-outline: var(--mdui-color-outline);
-    --ur-color-surface-bright: var(--mdui-color-surface-bright);
+    --ur-color-surface: var(--mdui-color-surface);
 }
 
 :host mdui-button {
@@ -33,7 +33,7 @@
 
     background: rgb(var(--ur-color-primary));
 
-    color: rgb(var(--ur-color-surface-bright));
+    color: rgb(var(--ur-color-surface));
     line-height: 22px;
 
     font-size: 9px;
