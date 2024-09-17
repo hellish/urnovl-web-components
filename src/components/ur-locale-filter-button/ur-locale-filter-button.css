@@ -1,21 +1,25 @@
 :host {
-    --ur-color-primary: var(--mdui-color-primary); /* rgb format */
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-outline: var(--mdui-color-outline);
+    --ur-color-surface-bright: var(--mdui-color-surface-bright);
 }
 
 :host mdui-button {
     border-radius: 8px;
-    border: 1px solid #c3c6cf;
+    border: 1px solid rgb(var(--ur-color-outline));
     height: 34px;
 }
 
 :host mdui-button.with-count {
-    border: 1px solid #09f;
+    border: 1px solid rgb(var(--ur-color-primary));
 }
 
 :host mdui-button .label {
     font-size: 14px;
     margin-right: 8px;
     line-height: 22px;
+    color: rgb(var(--ur-color-on-surface));
 }
 
 :host mdui-button .count {
@@ -27,9 +31,9 @@
     width: 22px;
     height: 22px;
 
-    background: #09f;
+    background: rgb(var(--ur-color-primary));
 
-    color: #fff;
+    color: rgb(var(--ur-color-surface-bright));
     line-height: 22px;
 
     font-size: 9px;
@@ -40,5 +44,5 @@
 }
 
 :host mdui-button svg path {
-    stroke: rgb(var(--ur-color-primary));
+    stroke: rgb(var(--ur-color-on-surface));
 }
