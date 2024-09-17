@@ -11,6 +11,12 @@ const preview = {
     },
     actions: { argTypesRegex: '^on.*' },
     decorators: [withActions],
+    darkMode: {
+      darkClass: [ 'ur-theme-dark', 'mdui-theme-dark' ],
+      lightClass: [ 'ur-theme-light', 'mdui-theme-light' ],
+      classTarget: 'html',
+      stylePreview: true,
+    },
   },
 };
 
