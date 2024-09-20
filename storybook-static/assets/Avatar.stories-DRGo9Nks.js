@@ -1,4 +1,4 @@
-import{k as C}from"./entry-preview-BcHUnPw7.js";import"./ur-button-arrow-right-Du86Nlc6.js";import{s as E,g as i}from"./chunk-L4EGOTBX-2Jzo53v8.js";import{d as R,H as $,h as o,a as B}from"./index-K5CyEtrH.js";import"./index-DrFu-skq.js";import"./index-CQ55_KlS.js";import"./watch-ByvFYHv8.js";const L=`:host {
+import{k as C}from"./entry-preview-BcHUnPw7.js";import"./ur-button-arrow-right-Brt4uRbS.js";import{s as E,g as i}from"./chunk-L4EGOTBX-2Jzo53v8.js";import{d as R,H as $,h as o,a as B}from"./index-K5CyEtrH.js";import"./index-DrFu-skq.js";import"./index-CQ55_KlS.js";import"./watch-ByvFYHv8.js";const L=`:host {
     img {
         display: block;
         border-color: #ececec;
