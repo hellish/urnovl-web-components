@@ -17,9 +17,18 @@ export namespace Components {
         "size": string;
         "src": string;
     }
+    interface UrButton {
+        "disabled": boolean;
+        "endIcon": any;
+        "icon": any;
+        "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
+    }
     interface UrButtonArrowLeft {
     }
     interface UrButtonArrowRight {
+    }
+    interface UrCheckbox {
+        "disabled": boolean;
     }
     interface UrLoader {
     }
@@ -106,6 +115,12 @@ declare global {
         prototype: HTMLUrAvatarElement;
         new (): HTMLUrAvatarElement;
     };
+    interface HTMLUrButtonElement extends Components.UrButton, HTMLStencilElement {
+    }
+    var HTMLUrButtonElement: {
+        prototype: HTMLUrButtonElement;
+        new (): HTMLUrButtonElement;
+    };
     interface HTMLUrButtonArrowLeftElementEventMap {
         "leftClicked": any;
     }
@@ -139,6 +154,12 @@ declare global {
     var HTMLUrButtonArrowRightElement: {
         prototype: HTMLUrButtonArrowRightElement;
         new (): HTMLUrButtonArrowRightElement;
+    };
+    interface HTMLUrCheckboxElement extends Components.UrCheckbox, HTMLStencilElement {
+    }
+    var HTMLUrCheckboxElement: {
+        prototype: HTMLUrCheckboxElement;
+        new (): HTMLUrCheckboxElement;
     };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
@@ -207,8 +228,10 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ur-avatar": HTMLUrAvatarElement;
+        "ur-button": HTMLUrButtonElement;
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
+        "ur-checkbox": HTMLUrCheckboxElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
@@ -226,11 +249,20 @@ declare namespace LocalJSX {
         "size"?: string;
         "src"?: string;
     }
+    interface UrButton {
+        "disabled"?: boolean;
+        "endIcon"?: any;
+        "icon"?: any;
+        "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
+    }
     interface UrButtonArrowLeft {
         "onLeftClicked"?: (event: UrButtonArrowLeftCustomEvent<any>) => void;
     }
     interface UrButtonArrowRight {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
+    }
+    interface UrCheckbox {
+        "disabled"?: boolean;
     }
     interface UrLoader {
     }
@@ -298,8 +330,10 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ur-avatar": UrAvatar;
+        "ur-button": UrButton;
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
+        "ur-checkbox": UrCheckbox;
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
@@ -314,8 +348,10 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
+            "ur-button": LocalJSX.UrButton & JSXBase.HTMLAttributes<HTMLUrButtonElement>;
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
+            "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
