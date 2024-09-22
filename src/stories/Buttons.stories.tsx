@@ -14,14 +14,28 @@ const ButtonArrowRight = () => html`
 const Button = ({
     text = 'Welcome',
     disabled = false,
-    variant = 'filled'
+    variant = 'filled',
+    icon = null,
+    endIcon = null,
 }) => html`
-    <ur-button variant=${variant} disabled=${disabled}>${text}</ur-button>
+    <ur-button icon=${icon} end-icon=${endIcon} variant=${variant} disabled=${disabled}>${text}</ur-button>
 `;
 
 export default {
     title: 'Urnovl/Buttons',
     render: args => Button(args),
+    argTypes: {
+        variant: {
+            control: 'select',
+            options: [
+                'elevated',
+                'filled',
+                'tonal',
+                'outlined',
+                'text'
+            ]
+        }
+    }
 };
 
 export const ArrowLeft = {
@@ -57,5 +71,21 @@ export const WithVariant = {
                 'text'
             ]
         }
+    }
+}
+
+export const WithIcons = {
+    args: {
+        icon: 'search',
+        endIcon: 'arrow_forward',
+    }
+}
+
+export const Full = {
+    args: {
+        icon: 'search',
+        endIcon: 'arrow_forward',
+        variant: 'outlined',
+        disabled: false
     }
 }

@@ -15,10 +15,20 @@ export class UrButton {
     @Prop()
     variant: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text' = 'filled';
 
+    @Prop()
+    icon = null;
+
+    @Prop()
+    endIcon = null;
+
     render() {
         return (
             <Host>
-                <mdui-button variant={this.variant} disabled={this.disabled}><slot></slot></mdui-button>
+                <mdui-button
+                    icon={!!this.icon ? this.icon : false}
+                    end-icon={!!this.endIcon ? this.endIcon : false}
+                    variant={this.variant}
+                    disabled={this.disabled}><slot></slot></mdui-button>
             </Host>
         );
     }
