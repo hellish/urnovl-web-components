@@ -7,7 +7,7 @@ import avatar from '../../assets/images/avatar.svg';
 import publisher from '../../assets/images/publisher.svg';
 
 export default {
-    title: 'Urnovl/Avatar',
+    title: 'Urnovl/Basic/Avatar',
 };
 
 const Avatar = ({

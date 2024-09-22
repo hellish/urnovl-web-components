@@ -41,7 +41,7 @@ const Novl = ({
 `;
 
 export default {
-    title: 'Urnovl/Novl',
+    title: 'Urnovl/Business/Novl',
     render: args => Novl(args),
 };
 

@@ -34,7 +34,7 @@ const NovlCarousel = ({
 `;
 
 export default {
-    title: 'Urnovl/NovlCarousel',
+    title: 'Urnovl/Business/NovlCarousel',
     render: args => NovlCarousel(args)
 };
 

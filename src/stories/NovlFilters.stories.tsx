@@ -21,7 +21,7 @@ const Panel = ({
 }
 
 export default {
-    title: 'Urnovl/NovlFilters',
+    title: 'Urnovl/Business/NovlFilters',
 };
 
 export const DefaultButton = {

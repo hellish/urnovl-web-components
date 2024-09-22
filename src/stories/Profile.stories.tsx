@@ -40,7 +40,7 @@ const Profile = ({
 `;
 
 export default {
-    title: 'Urnovl/Profile',
+    title: 'Urnovl/Business/Profile',
 };
 
 export const Default = {

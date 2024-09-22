@@ -4,7 +4,7 @@ import '../components/ur-button-arrow-right/ur-button-arrow-right';
 import '../components/ur-loader/ur-loader';
 
 export default {
-    title: 'Urnovl/Loader',
+    title: 'Urnovl/Basic/Loader',
 };
 
 const Loader = () => html`
