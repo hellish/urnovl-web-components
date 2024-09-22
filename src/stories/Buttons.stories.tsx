@@ -21,6 +21,7 @@ const Button = ({
 
 export default {
     title: 'Urnovl/Buttons',
+    render: args => Button(args),
 };
 
 export const ArrowLeft = {
@@ -32,19 +33,29 @@ export const ArrowRight = {
 };
 
 export const Basic = {
-    render: () => Button({
-        //
-    }),
+    args: {}
 }
 
 export const Disabled = {
-    render: () => Button({
+    args: {
         disabled: true
-    }),
+    },
 }
 
 export const WithVariant = {
-    render: () => Button({
+    args: {
         variant: 'outlined'
-    }),
+    },
+    argTypes: {
+        variant: {
+            control: 'select',
+            options: [
+                'elevated',
+                'filled',
+                'tonal',
+                'outlined',
+                'text'
+            ]
+        }
+    }
 }
