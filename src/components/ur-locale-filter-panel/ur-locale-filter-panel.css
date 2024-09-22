@@ -1,5 +1,9 @@
 :host {
-    /* --mdui-color-primary: #09f;*/
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-surface: var(--mdui-color-surface);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
 }
 
 :host .locale-filter-panel {
@@ -9,6 +13,7 @@
     display: flex;
     height: 100%;
     flex-direction: column;
+    background: rgb(var(--ur-color-surface));
 }
 
 :host .locale-filter-panel header {
@@ -39,6 +44,7 @@
     font-weight: 700;
     line-height: 28px;
     letter-spacing: 0;
+    color: rgb(var(--ur-color-on-surface));
 }
 
 :host .locale-filter-panel main {
@@ -55,10 +61,16 @@
 :host .locale-filter-panel main .description .title {
     padding: 8px 0;
     font-weight: 700;
+    color: rgb(var(--ur-color-on-background));
+}
+
+:host .locale-filter-panel main .description .text {
+    color: rgb(var(--ur-color-on-surface-variant));
 }
 
 :host .locale-filter-panel main .locales {
     margin-left: -12px;
+    color: rgb(var(--ur-color-on-background));
 }
 
 :host .locale-filter-panel main .locales mdui-checkbox {
@@ -86,10 +98,12 @@
 }
 
 :host .locale-filter-panel footer mdui-button.save {
-    background-color: #09f;
+    background-color: rgb(var(--ur-color-primary));
+    margin-right: 8px;
 }
 
 :host .locale-filter-panel footer mdui-button.cancel {
     padding: 10px 12px;
-    color: #09f;
+    background-color: transparent;
+    color: rgb(var(--ur-color-primary));
 }
