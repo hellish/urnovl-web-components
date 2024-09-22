@@ -28,6 +28,7 @@ export namespace Components {
     interface UrButtonArrowRight {
     }
     interface UrCheckbox {
+        "checked": boolean;
         "disabled": boolean;
     }
     interface UrLoader {
@@ -262,6 +263,7 @@ declare namespace LocalJSX {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
     }
     interface UrCheckbox {
+        "checked"?: boolean;
         "disabled"?: boolean;
     }
     interface UrLoader {
