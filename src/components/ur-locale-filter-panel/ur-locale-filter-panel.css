@@ -1,5 +1,6 @@
 :host {
     --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-on-primary: var(--mdui-color-on-primary);
     --ur-color-surface: var(--mdui-color-surface);
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --ur-color-on-background: var(--mdui-color-on-background);
@@ -33,6 +34,7 @@
     box-sizing: border-box;
     border-radius: 0;
     padding: 0;
+    color: rgb(var(--ur-color-on-surface-variant));
 }
 
 :host .locale-filter-panel header label {
@@ -99,6 +101,7 @@
 
 :host .locale-filter-panel footer mdui-button.save {
     background-color: rgb(var(--ur-color-primary));
+    color: rgb(var(--ur-color-on-primary));
     margin-right: 8px;
 }
 
