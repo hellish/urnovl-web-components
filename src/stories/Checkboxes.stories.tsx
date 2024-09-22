@@ -4,8 +4,9 @@ import '../components/ur-checkbox/ur-checkbox';
 const Checkbox = ({
     text = 'Welcome',
     disabled = false,
+    checked = false,
 }) => html`
-    <ur-checkbox disabled=${disabled}>${text}</ur-checkbox>
+    <ur-checkbox checked=${checked} disabled=${disabled}>${text}</ur-checkbox>
 `;
 
 export default {
@@ -22,8 +23,21 @@ export const Default = {
     },
 };
 
+export const Checked = {
+    args: {
+        checked: true
+    },
+};
+
 export const Disabled = {
     args: {
+        disabled: true
+    },
+};
+
+export const CheckedAndDisabled = {
+    args: {
+        checked: true,
         disabled: true
     },
 };

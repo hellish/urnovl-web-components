@@ -12,10 +12,13 @@ export class UrCheckbox {
     @Prop()
     disabled = false;
 
+    @Prop()
+    checked = false;
+
     render() {
         return (
             <Host>
-                <mdui-checkbox disabled={this.disabled}><slot></slot></mdui-checkbox>
+                <mdui-checkbox checked={this.checked} disabled={this.disabled}><slot></slot></mdui-checkbox>
             </Host>
         );
     }
