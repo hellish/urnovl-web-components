@@ -90,6 +90,15 @@ export namespace Components {
         "website": any;
         "writers_count": number;
     }
+    interface UrTextField {
+        "disabled": boolean;
+        "endIcon": any;
+        "helper": string | null;
+        "label": string;
+        "placeholder": string | null;
+        "value": string;
+        "variant": 'filled' | 'outlined';
+    }
     interface UrUserProfile {
     }
 }
@@ -221,6 +230,12 @@ declare global {
         prototype: HTMLUrProfileElement;
         new (): HTMLUrProfileElement;
     };
+    interface HTMLUrTextFieldElement extends Components.UrTextField, HTMLStencilElement {
+    }
+    var HTMLUrTextFieldElement: {
+        prototype: HTMLUrTextFieldElement;
+        new (): HTMLUrTextFieldElement;
+    };
     interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
     }
     var HTMLUrUserProfileElement: {
@@ -239,6 +254,7 @@ declare global {
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-profile": HTMLUrProfileElement;
+        "ur-text-field": HTMLUrTextFieldElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
 }
@@ -328,6 +344,15 @@ declare namespace LocalJSX {
         "website"?: any;
         "writers_count"?: number;
     }
+    interface UrTextField {
+        "disabled"?: boolean;
+        "endIcon"?: any;
+        "helper"?: string | null;
+        "label"?: string;
+        "placeholder"?: string | null;
+        "value"?: string;
+        "variant"?: 'filled' | 'outlined';
+    }
     interface UrUserProfile {
     }
     interface IntrinsicElements {
@@ -342,6 +367,7 @@ declare namespace LocalJSX {
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-profile": UrProfile;
+        "ur-text-field": UrTextField;
         "ur-user-profile": UrUserProfile;
     }
 }
@@ -360,6 +386,7 @@ declare module "@stencil/core" {
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
+            "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
     }
