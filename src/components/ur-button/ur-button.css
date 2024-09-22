@@ -1,0 +1,7 @@
+:host {
+    display: block;
+}
+
+:host mdui-button {
+    border-radius: 5px;
+}
