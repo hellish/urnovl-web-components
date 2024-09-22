@@ -1,4 +1,4 @@
-import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CQxgFN6J.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="16px 16px 0px 0px",width:rr="270px"})=>er`
+import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-huFcTXxn.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="16px 16px 0px 0px",width:rr="270px"})=>er`
     <style>
         ur-novl {
             --novl-width: ${rr};
@@ -18,7 +18,7 @@ import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CQ
         price="${T}"
         publisher-name="${X}"
         publisher-avatar="${Y}"></ur-novl>
-`,ir={title:"Urnovl/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"450px",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
+`,ir={title:"Urnovl/Business/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"450px",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
   args: NOVLS[0]
 }`,...(g=(m=e.parameters)==null?void 0:m.docs)==null?void 0:g.source}}};var v,S,h;s.parameters={...s.parameters,docs:{...(v=s.parameters)==null?void 0:v.docs,source:{originalSource:`{
   args: {
@@ -29,9 +29,9 @@ import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CQ
   args: NOVLS[1]
 }`,...(x=($=a.parameters)==null?void 0:$.docs)==null?void 0:x.source}}};var O,L,V;o.parameters={...o.parameters,docs:{...(O=o.parameters)==null?void 0:O.docs,source:{originalSource:`{
   args: NOVLS[2]
-}`,...(V=(L=o.parameters)==null?void 0:L.docs)==null?void 0:V.source}}};var W,w,b;t.parameters={...t.parameters,docs:{...(W=t.parameters)==null?void 0:W.docs,source:{originalSource:`{
+}`,...(V=(L=o.parameters)==null?void 0:L.docs)==null?void 0:V.source}}};var W,w,B;t.parameters={...t.parameters,docs:{...(W=t.parameters)==null?void 0:W.docs,source:{originalSource:`{
   args: NOVLS[3]
-}`,...(b=(w=t.parameters)==null?void 0:w.docs)==null?void 0:b.source}}};var B,C,f;n.parameters={...n.parameters,docs:{...(B=n.parameters)==null?void 0:B.docs,source:{originalSource:`{
+}`,...(B=(w=t.parameters)==null?void 0:w.docs)==null?void 0:B.source}}};var b,C,f;n.parameters={...n.parameters,docs:{...(b=n.parameters)==null?void 0:b.docs,source:{originalSource:`{
   args: NOVLS[4]
 }`,...(f=(C=n.parameters)==null?void 0:C.docs)==null?void 0:f.source}}};var k,D,F;c.parameters={...c.parameters,docs:{...(k=c.parameters)==null?void 0:k.docs,source:{originalSource:`{
   args: NOVLS[5]
