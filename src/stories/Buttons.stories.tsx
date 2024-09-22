@@ -22,7 +22,7 @@ const Button = ({
 `;
 
 export default {
-    title: 'Urnovl/Buttons',
+    title: 'Core/Buttons',
     render: args => Button(args),
     argTypes: {
         variant: {

@@ -10,7 +10,7 @@ const Checkbox = ({
 `;
 
 export default {
-    title: 'Urnovl/Checkboxes',
+    title: 'Core/Checkboxes',
     render: args => Checkbox(args),
     argTypes: {
         //
