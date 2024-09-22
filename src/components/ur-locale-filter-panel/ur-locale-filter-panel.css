@@ -5,6 +5,7 @@
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --ur-color-on-background: var(--mdui-color-on-background);
     --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
+    --ur-color-outline: var(--mdui-color-outline);
 }
 
 :host .locale-filter-panel {
@@ -20,7 +21,7 @@
 :host .locale-filter-panel header {
     height: 48px;
     position: relative;
-    border-bottom: 1px solid #73777F;
+    border-bottom: 1px solid rgb(var(--ur-color-outline));
     box-sizing: border-box;
     display: flex;
     align-items: center;
