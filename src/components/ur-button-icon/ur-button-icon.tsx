@@ -16,10 +16,13 @@ export class UrButtonIcon {
     loading = false;
 
     @Prop()
-    variant: 'standard' | 'filled' | 'tonal' | 'outlined';
+    variant: 'standard' | 'filled' | 'tonal' | 'outlined' = 'standard';
 
     @Prop()
     icon = 'favorite_border';
+
+    @Prop()
+    selectedIcon = 'favorite';
 
     @Prop()
     selected = false;
@@ -33,10 +36,9 @@ export class UrButtonIcon {
                     loading={this.loading}
                     disabled={this.disabled}
                     selected={this.selected}>
-                        <mdui-icon slot="selected-icon" name="favorite"></mdui-icon>
+                        <mdui-icon slot="selected-icon" name={this.selectedIcon}></mdui-icon>
                 </mdui-button-icon>
             </Host>
         )
     }
-
 }

@@ -6,9 +6,10 @@ const ButtonIcon = ({
     disabled = false,
     variant = 'standard',
     icon = 'favorite_border',
+    selectedIcon = 'favorite',
     selected = false,
 }) => html`
-    <ur-button-icon icon=${icon} variant=${variant} disabled=${disabled} loading=${disabled} selected=${selected}></ur-button-icon>
+    <ur-button-icon icon=${icon} variant=${variant} disabled=${disabled} loading=${disabled} selected=${selected} selected-icon=${selectedIcon}></ur-button-icon>
 `;
 
 export default {
@@ -38,6 +39,7 @@ export const Selectable = {
     args: {
         icon: 'favorite_border',
         variant: 'standard',
+        selectedIcon: 'favorite',
         selected: true,
     }
 }

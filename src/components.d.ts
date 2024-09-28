@@ -32,6 +32,7 @@ export namespace Components {
         "icon": string;
         "loading": boolean;
         "selected": boolean;
+        "selectedIcon": string;
         "variant": 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
@@ -320,6 +321,7 @@ declare namespace LocalJSX {
         "icon"?: string;
         "loading"?: boolean;
         "selected"?: boolean;
+        "selectedIcon"?: string;
         "variant"?: 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
