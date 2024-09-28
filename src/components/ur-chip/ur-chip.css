@@ -1,7 +1,3 @@
 :host {
     display: block;
 }
-
-:host mdui-chip {
-    border-radius: 0;
-}
