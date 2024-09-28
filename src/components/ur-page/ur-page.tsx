@@ -50,9 +50,10 @@ export class UrPage {
                             </div>
                         }
                         <div class="follow" onClick={_ => this.pageFollowClicked.emit()}>
-                            <ur-button variant='outlined'>
-                                Followers
-                            </ur-button>
+                            <mdui-button variant='outlined'>Follow</mdui-button>
+                            {/*<ur-button variant='outlined'>*/}
+                            {/*    Follow*/}
+                            {/*</ur-button>*/}
                         </div>
                     </section>
                 </div>
