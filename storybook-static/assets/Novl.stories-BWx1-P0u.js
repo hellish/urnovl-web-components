@@ -1,4 +1,4 @@
-import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-BhJ-oAOn.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z,width:rr})=>er`
+import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CYG8rbzu.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z,width:rr})=>er`
     <style>
         ur-novl {
             --novl-width: ${rr};
