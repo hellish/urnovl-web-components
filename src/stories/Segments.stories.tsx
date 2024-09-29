@@ -2,7 +2,7 @@ import { html } from 'lit';
 import '../components/ur-segment-button/ur-segment-button';  // Import your segmented button component
 
 const SegmentButton = ({
-    
+
 }) => html`
     <ur-segment-button>
     </ur-segment-button>

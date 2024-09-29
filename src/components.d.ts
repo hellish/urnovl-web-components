@@ -114,10 +114,7 @@ export namespace Components {
         "text": string;
     }
     interface UrSegmentButton {
-        "dislikeSelected": Boolean;
         "likeLabel": string;
-        "likeSelected": Boolean;
-        "preSelected": string;
     }
     interface UrSwitch {
         "checked": boolean;
@@ -453,10 +450,7 @@ declare namespace LocalJSX {
         "text"?: string;
     }
     interface UrSegmentButton {
-        "dislikeSelected"?: Boolean;
         "likeLabel"?: string;
-        "likeSelected"?: Boolean;
-        "preSelected"?: string;
     }
     interface UrSwitch {
         "checked"?: boolean;
