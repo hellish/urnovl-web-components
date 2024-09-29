@@ -39,6 +39,16 @@ export namespace Components {
         "checked": boolean;
         "disabled": boolean;
     }
+    interface UrChip {
+        "backColor": string;
+        "border": string;
+        "disabled": boolean;
+        "fontColor": string;
+        "label": string;
+        "loading": boolean;
+        "radius": string;
+        "size": string;
+    }
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
@@ -103,9 +113,22 @@ export namespace Components {
         "disabled": boolean;
         "text": string;
     }
+    interface UrSegmentButton {
+        "likeLabel": string;
+    }
     interface UrSwitch {
         "checked": boolean;
         "disabled": boolean;
+    }
+    interface UrTabs {
+        /**
+          * The array of panels, each with content and value *
+         */
+        "panels": { content: string, value: string }[];
+        /**
+          * The array of tabs, each with a label and value *
+         */
+        "tabs": { label: string, value: string }[];
     }
     interface UrTextField {
         "disabled": boolean;
@@ -194,6 +217,12 @@ declare global {
         prototype: HTMLUrCheckboxElement;
         new (): HTMLUrCheckboxElement;
     };
+    interface HTMLUrChipElement extends Components.UrChip, HTMLStencilElement {
+    }
+    var HTMLUrChipElement: {
+        prototype: HTMLUrChipElement;
+        new (): HTMLUrChipElement;
+    };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
     var HTMLUrLoaderElement: {
@@ -259,11 +288,23 @@ declare global {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
     };
+    interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
+    }
+    var HTMLUrSegmentButtonElement: {
+        prototype: HTMLUrSegmentButtonElement;
+        new (): HTMLUrSegmentButtonElement;
+    };
     interface HTMLUrSwitchElement extends Components.UrSwitch, HTMLStencilElement {
     }
     var HTMLUrSwitchElement: {
         prototype: HTMLUrSwitchElement;
         new (): HTMLUrSwitchElement;
+    };
+    interface HTMLUrTabsElement extends Components.UrTabs, HTMLStencilElement {
+    }
+    var HTMLUrTabsElement: {
+        prototype: HTMLUrTabsElement;
+        new (): HTMLUrTabsElement;
     };
     interface HTMLUrTextFieldElement extends Components.UrTextField, HTMLStencilElement {
     }
@@ -284,6 +325,7 @@ declare global {
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
         "ur-button-icon": HTMLUrButtonIconElement;
         "ur-checkbox": HTMLUrCheckboxElement;
+        "ur-chip": HTMLUrChipElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
@@ -291,7 +333,9 @@ declare global {
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-switch": HTMLUrSwitchElement;
+        "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
@@ -327,6 +371,16 @@ declare namespace LocalJSX {
     interface UrCheckbox {
         "checked"?: boolean;
         "disabled"?: boolean;
+    }
+    interface UrChip {
+        "backColor"?: string;
+        "border"?: string;
+        "disabled"?: boolean;
+        "fontColor"?: string;
+        "label"?: string;
+        "loading"?: boolean;
+        "radius"?: string;
+        "size"?: string;
     }
     interface UrLoader {
     }
@@ -395,9 +449,22 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "text"?: string;
     }
+    interface UrSegmentButton {
+        "likeLabel"?: string;
+    }
     interface UrSwitch {
         "checked"?: boolean;
         "disabled"?: boolean;
+    }
+    interface UrTabs {
+        /**
+          * The array of panels, each with content and value *
+         */
+        "panels"?: { content: string, value: string }[];
+        /**
+          * The array of tabs, each with a label and value *
+         */
+        "tabs"?: { label: string, value: string }[];
     }
     interface UrTextField {
         "disabled"?: boolean;
@@ -417,6 +484,7 @@ declare namespace LocalJSX {
         "ur-button-arrow-right": UrButtonArrowRight;
         "ur-button-icon": UrButtonIcon;
         "ur-checkbox": UrCheckbox;
+        "ur-chip": UrChip;
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
@@ -424,7 +492,9 @@ declare namespace LocalJSX {
         "ur-novl-carousel": UrNovlCarousel;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-segment-button": UrSegmentButton;
         "ur-switch": UrSwitch;
+        "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
         "ur-user-profile": UrUserProfile;
     }
@@ -439,6 +509,7 @@ declare module "@stencil/core" {
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
             "ur-button-icon": LocalJSX.UrButtonIcon & JSXBase.HTMLAttributes<HTMLUrButtonIconElement>;
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
+            "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
@@ -446,7 +517,9 @@ declare module "@stencil/core" {
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
+            "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }

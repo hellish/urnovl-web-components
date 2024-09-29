@@ -13,6 +13,13 @@
 | `disabled` | `disabled` |             | `boolean` | `false` |
 
 
+## Shadow Parts
+
+| Part      | Description |
+| --------- | ----------- |
+| `"check"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
