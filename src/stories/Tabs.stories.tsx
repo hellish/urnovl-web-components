@@ -9,10 +9,10 @@ const Tabs = ({
         { label: 'Statistics', value: 'statistics' }
       ],
       panels = [
-        { content: 'Here user will see stories!', slot: 'stories-slot' , value: 'stories' },
-        { content: 'Here user will see settings!', slot: 'settings-slot', value: 'settings' },
-        { content: 'Here user will see transactions!', slot: 'transactions-slot', value: 'transactions' },
-        { content: 'Here user will see statistics!', slot: 'statistics-slot', value: 'statistics' }
+        { content: 'Here user will see stories!', value: 'stories' },
+        { content: 'Here user will see settings!', value: 'settings' },
+        { content: 'Here user will see transactions!', value: 'transactions' },
+        { content: 'Here user will see statistics!', value: 'statistics' }
       ]
 }) => html`
     <ur-tabs .tabs=${tabs}

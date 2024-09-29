@@ -121,7 +121,7 @@ export namespace Components {
         /**
           * The array of panels, each with content and value *
          */
-        "panels": { content: string, slot: string, value: string }[];
+        "panels": { content: string, value: string }[];
         /**
           * The array of tabs, each with a label and value *
          */
@@ -447,7 +447,7 @@ declare namespace LocalJSX {
         /**
           * The array of panels, each with content and value *
          */
-        "panels"?: { content: string, slot: string, value: string }[];
+        "panels"?: { content: string, value: string }[];
         /**
           * The array of tabs, each with a label and value *
          */

@@ -12,18 +12,10 @@ import 'mdui/components/tab-panel.js';
 
 export class UrTabs {
     /** The array of tabs, each with a label and value **/
-    @Prop() tabs: { label: string, value: string }[] = [
-        { label: 'Tab 1', value: 'tab-1' },
-        { label: 'Tab 2', value: 'tab-2' },
-        { label: 'Tab 3', value: 'tab-3' },
-    ];
+    @Prop() tabs: { label: string, value: string }[];
 
     /** The array of panels, each with content and value **/
-    @Prop() panels: { content: string, slot: string, value: string }[] = [
-        { content: 'Panel 1', slot: 'panel-1', value: 'tab-1' },
-        { content: 'Panel 2', slot: 'panel-2', value: 'tab-2' },
-        { content: 'Panel 3', slot: 'panel-3', value: 'tab-3' },
-    ];
+    @Prop() panels: { content: string, value: string }[];
 
     render() {
         return (
@@ -39,8 +31,8 @@ export class UrTabs {
 
                     {/* Render each panel */}
                     {this.panels.map(panel => (
-                        <mdui-tab-panel slot={panel.slot} value={panel.value}>
-                            {panel.content}
+                        <mdui-tab-panel value={panel.value}>
+                            <slot name={`panel-${panel.value}`}>{panel.content}</slot> {/* Named slots for each panel */}
                         </mdui-tab-panel>
                     ))}
 
