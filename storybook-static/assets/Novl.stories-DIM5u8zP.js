@@ -1,4 +1,4 @@
-import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CbxFka1m.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="16px 16px 0px 0px",width:rr="270px"})=>er`
+import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-BhJ-oAOn.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z,width:rr})=>er`
     <style>
         ur-novl {
             --novl-width: ${rr};
@@ -25,13 +25,13 @@ import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-Cb
     ...NOVLS[0],
     novlCover: null
   }
-}`,...(h=(S=s.parameters)==null?void 0:S.docs)==null?void 0:h.source}}};var N,$,x;a.parameters={...a.parameters,docs:{...(N=a.parameters)==null?void 0:N.docs,source:{originalSource:`{
+}`,...(h=(S=s.parameters)==null?void 0:S.docs)==null?void 0:h.source}}};var N,$,O;a.parameters={...a.parameters,docs:{...(N=a.parameters)==null?void 0:N.docs,source:{originalSource:`{
   args: NOVLS[1]
-}`,...(x=($=a.parameters)==null?void 0:$.docs)==null?void 0:x.source}}};var O,L,V;o.parameters={...o.parameters,docs:{...(O=o.parameters)==null?void 0:O.docs,source:{originalSource:`{
+}`,...(O=($=a.parameters)==null?void 0:$.docs)==null?void 0:O.source}}};var L,V,W;o.parameters={...o.parameters,docs:{...(L=o.parameters)==null?void 0:L.docs,source:{originalSource:`{
   args: NOVLS[2]
-}`,...(V=(L=o.parameters)==null?void 0:L.docs)==null?void 0:V.source}}};var W,w,B;t.parameters={...t.parameters,docs:{...(W=t.parameters)==null?void 0:W.docs,source:{originalSource:`{
+}`,...(W=(V=o.parameters)==null?void 0:V.docs)==null?void 0:W.source}}};var w,B,b;t.parameters={...t.parameters,docs:{...(w=t.parameters)==null?void 0:w.docs,source:{originalSource:`{
   args: NOVLS[3]
-}`,...(B=(w=t.parameters)==null?void 0:w.docs)==null?void 0:B.source}}};var b,C,f;n.parameters={...n.parameters,docs:{...(b=n.parameters)==null?void 0:b.docs,source:{originalSource:`{
+}`,...(b=(B=t.parameters)==null?void 0:B.docs)==null?void 0:b.source}}};var x,C,f;n.parameters={...n.parameters,docs:{...(x=n.parameters)==null?void 0:x.docs,source:{originalSource:`{
   args: NOVLS[4]
 }`,...(f=(C=n.parameters)==null?void 0:C.docs)==null?void 0:f.source}}};var k,D,F;c.parameters={...c.parameters,docs:{...(k=c.parameters)==null?void 0:k.docs,source:{originalSource:`{
   args: NOVLS[5]
