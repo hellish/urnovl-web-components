@@ -113,6 +113,12 @@ export namespace Components {
         "disabled": boolean;
         "text": string;
     }
+    interface UrSegmentButton {
+        "dislikeSelected": Boolean;
+        "likeLabel": string;
+        "likeSelected": Boolean;
+        "preSelected": string;
+    }
     interface UrSwitch {
         "checked": boolean;
         "disabled": boolean;
@@ -285,6 +291,12 @@ declare global {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
     };
+    interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
+    }
+    var HTMLUrSegmentButtonElement: {
+        prototype: HTMLUrSegmentButtonElement;
+        new (): HTMLUrSegmentButtonElement;
+    };
     interface HTMLUrSwitchElement extends Components.UrSwitch, HTMLStencilElement {
     }
     var HTMLUrSwitchElement: {
@@ -324,6 +336,7 @@ declare global {
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
@@ -439,6 +452,12 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "text"?: string;
     }
+    interface UrSegmentButton {
+        "dislikeSelected"?: Boolean;
+        "likeLabel"?: string;
+        "likeSelected"?: Boolean;
+        "preSelected"?: string;
+    }
     interface UrSwitch {
         "checked"?: boolean;
         "disabled"?: boolean;
@@ -479,6 +498,7 @@ declare namespace LocalJSX {
         "ur-novl-carousel": UrNovlCarousel;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-segment-button": UrSegmentButton;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
@@ -503,6 +523,7 @@ declare module "@stencil/core" {
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
