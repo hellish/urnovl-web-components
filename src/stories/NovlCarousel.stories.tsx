@@ -43,10 +43,11 @@ export const Default = {
         novls: NOVLS,
         breakpoints: {},
         grid: {},
-        slidesPerView: 1,
-        spaceBetween: 10,
+        slidesPerView: 6,
+        spaceBetween: 8,
         // container styles
-        containerWidth: '700px',
+        containerWidth: '100%',
+        containerBackgroundColor: 'transparent',
     },
 };
 
@@ -65,9 +66,10 @@ export const TwoRowsGrid = {
             fill: 'row'
         },
         slidesPerView: 3,
-        spaceBetween: 10,
+        spaceBetween: 8,
         // container styles
         containerWidth: '700px',
+        containerBackgroundColor: 'transparent',
     },
 };
 
@@ -75,33 +77,42 @@ export const SneakPeek = {
     render: args => NovlCarousel(args),
     args: {
         novls: NOVLS,
-        breakpoints: {},
+        breakpoints: {
+            2075: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1700: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1420: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1090: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            321: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            },
+            0: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            }
+        },
         grid: {
             rows: 1,
             fill: 'row'
         },
         slidesPerView: 'auto',
-        spaceBetween: 10,
+        spaceBetween: 4,
         // container styles
-        slideWidth: '80%',
-        containerWidth: '700px',
-    },
-};
-
-export const SneakPeekWithSmallerNovl = {
-    render: args => NovlCarousel(args),
-    args: {
-        novls: NOVLS,
-        breakpoints: {},
-        grid: {
-            rows: 1,
-            fill: 'row'
-        },
-        slidesPerView: 'auto',
-        spaceBetween: 10,
-        // container styles
-        slideWidth: '250px',
-        containerWidth: '700px',
+        //slideWidth: '80%',
+        containerWidth: '100%',
+        containerBackgroundColor: 'transparent',
     },
 };
 
@@ -109,18 +120,41 @@ export const FullWithArrows = {
     render: args => NovlCarousel(args),
     args: {
         novls: NOVLS,
-        breakpoints: {},
+        breakpoints: {
+            2075: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1700: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1420: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1090: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            321: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            },
+            0: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            }
+        },
         grid: {
             rows: 1,
             fill: 'row'
         },
-        slidesPerView: '3',
-        spaceBetween: 18,
+        //slidesPerView: 'auto',
+        //spaceBetween: 8,
         navigation: true,
         // container styles
-        slideWidth: '336px',
-        containerWidth: '1044px',
-        containerPadding: '30px',
-        containerBackgroundColor: 'transparent'
+        containerWidth: '100%',
+        containerBackgroundColor: 'transparent',
     },
 };
