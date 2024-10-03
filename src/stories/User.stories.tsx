@@ -1,45 +1,45 @@
 import { html } from 'lit';
-import '../components/ur-page/ur-page';
+import '../components/ur-user/ur-user';
 
-import { PAGES } from '../data/page';
+import { USERS } from '../data/user';
 
-const Page = ({
-                  pageTitle,
-                  pageCover,
+const User = ({
+                  userTitle,
+                  userCover,
                   followers,
                   showStats,
-                  pageDescription,
+                  userDescription,
                   borderRadius = '16px 16px 0px 0px',
                   width = '270px',
               }) => html`
     <style>
-        ur-page {
-            --page-width: ${width};
-            --page-border-radius: ${borderRadius};
+        ur-user {
+            --user-width: ${width};
+            --user-border-radius: ${borderRadius};
         }
     </style>
-    <ur-page
-        page-description="${pageDescription}"
-        page-title="${pageTitle}"
-        page-cover="${pageCover}"
+    <ur-user
+        user-description="${userDescription}"
+        user-title="${userTitle}"
+        user-cover="${userCover}"
         followers="${followers}"
         show-stats="${showStats}"
-    </ur-page>
+    </ur-user>
 `;
 
 export default {
-    title: 'Urnovl/Business/Page',
-    render: args => Page(args),
+    title: 'Urnovl/Business/User',
+    render: args => User(args),
 };
 
 export const Default = {
-    args: PAGES[0],
+    args: USERS[0],
 };
 
 export const BrokenCover = {
     args: {
-        ...PAGES[0],
-        pageCover: null
+        ...USERS[0],
+        userCover: null
     }
 };
 

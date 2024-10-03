@@ -1,6 +1,6 @@
 :host {
-    --page-width: 100%;
-    --page-border-radius: 8px;
+    --user-width: 100%;
+    --user-border-radius: 16px 16px 5px 5px;
 }
 
 :host {
@@ -11,10 +11,10 @@
     container-name: page;
 }
 
-:host .page {
+:host .user {
     overflow: hidden;
-    width: var(--page-width);
-    border-radius: var(--page-border-radius);
+    width: var(--user-width);
+    border-radius: var(--user-border-radius);
 }
 
 :host .cover {
@@ -97,10 +97,9 @@
 }
 
 :host .info .title {
-    color: #191C20;
-    font-size: 18px;
+    color: #171818;
+    font-size: 14px;
     font-style: normal;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     line-height: 18px;
     display: -webkit-box;
@@ -129,26 +128,18 @@
     display: flex;
 }
 :host .follow {
-    display: flex;
     width: 100%;
-    padding: 0 8px 8px 8px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    align-self: stretch;
 }
 :host .info .stats .likes .dot {
     margin: 0 5px;
 }
 
 :host .info .description {
-    color: #73777F;
-    font-size: 12px;
+    color: #171818;
+    font-size: 11px;
     font-style: normal;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    align-self: stretch;
-    line-height: 12px; /* 163.636% */
+    line-height: 18px; /* 163.636% */
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Number of lines */
     -webkit-box-orient: vertical;
@@ -179,14 +170,14 @@
     margin-left: 8px;
 }
 
-@container page (min-width: 290px) {
+@container user (min-width: 290px) {
     :host .info .title {
         font-size: 1rem;
         line-height: 1.2rem;
     }
 }
 
-@container page (min-width: 300px) {
+@container user (min-width: 300px) {
     :host .info .title {
         font-size: 1.2rem;
         line-height: 1.5rem;

@@ -4,7 +4,7 @@ export const PAGE_COVER_FALLBACK = 'data:image/webp;base64,UklGRtQAAABXRUJQVlA4T
 
 export const PAGES: Array<Page> = [
     {
-        pageTitle: 'Welcome to my nightmare',
+        pageTitle: 'Ianos Publishing House',
         pageCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',
         followers: 3500,
         showStats: true,

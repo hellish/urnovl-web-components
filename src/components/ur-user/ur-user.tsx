@@ -1,21 +1,21 @@
-import {Component, Host, h, Prop, Event} from '@stencil/core';
-import { PAGE_COVER_FALLBACK } from '../../data/page';
+import { Component, Host, h, Prop, Event } from '@stencil/core';
+import { USER_COVER_FALLBACK } from '../../data/user';
 
 @Component({
-  tag: 'ur-page',
-  styleUrl: 'ur-page.css',
-  shadow: true,
+    tag: 'ur-user',
+    styleUrl: 'ur-user.css',
+    shadow: true,
 })
-export class UrPage {
+export class UrUser {
 
     @Prop()
-    pageTitle = 'Page title'
+    userTitle = 'User title'
 
     @Prop()
-    pageCover;
+    userCover;
 
     @Prop()
-    pageCoverFallback = PAGE_COVER_FALLBACK;
+    userCoverFallback = USER_COVER_FALLBACK;
 
     @Prop()
     followers = 0;
@@ -24,22 +24,21 @@ export class UrPage {
     showStats = true;
 
     @Prop()
-    pageDescription;
+    userDescription;
 
     @Event()
-    pageFollowClicked;
+    userFollowClicked;
 
     render() {
         return (
             <Host>
-                <div class="page">
+                <div class="user">
                     <section class='cover' style={{
-                        backgroundImage: this.pageCover ? `url(${this.pageCover})` : `url(${this.pageCoverFallback})`
+                        backgroundImage: this.userCover ? `url(${this.userCover})` : `url(${this.userCoverFallback})`
                     }}>
                     </section>
                     <section class='info'>
-                        <div class='title'>{this.pageTitle}</div>
-                        <div class="description">{this.pageDescription}</div>
+                        <div class='title'>{this.userTitle}</div>
                         {this.showStats &&
                             <div class='stats'>
                                 <div class="followers">
@@ -49,8 +48,9 @@ export class UrPage {
                                 </div>
                             </div>
                         }
-                        <div class="follow" onClick={_ => this.pageFollowClicked.emit()}>
-                            <ur-button variant='outlined'>
+                        <div class="description">{this.userDescription}</div>
+                        <div class="follow" onClick={_ => this.userFollowClicked.emit()}>
+                            <ur-button variant='outlined' >
                                 Follow
                             </ur-button>
                         </div>
