@@ -28,3 +28,43 @@
     left: auto;
     right: -17px;
 }
+
+@media (min-width: 0px) {
+    :host swiper-slide {
+        width: calc(90% / 2);
+    }
+}
+
+@media (min-width: 321px) {
+    :host swiper-slide {
+        width: calc(90% / 2);
+    }
+}
+
+@media (min-width: 640px) {
+    :host swiper-slide {
+        width: calc(90% / 3);
+    }
+}
+
+@media (min-width: 1150px) {
+    :host swiper-slide {
+        width: calc(90% / 4);
+    }
+}
+
+@media (min-width: 1770px) {
+    :host swiper-slide {
+        width: calc(90% / 5);
+    }
+}
+
+@media (min-width: 2140px) {
+    :host swiper-slide {
+        width: calc(90% / 6);
+    }
+}
+
+
+
+

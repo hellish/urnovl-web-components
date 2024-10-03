@@ -16,8 +16,8 @@ const Novl = ({
     price,
     publisherName,
     publisherAvatar,
-    borderRadius = '16px 16px 0px 0px',
-    width = '270px',
+    borderRadius,
+    width,
 }) => html`
     <style>
         ur-novl {
@@ -94,7 +94,7 @@ export const NoBorderRadius = {
     args: {
         ...NOVLS[7],
         novlCover: NOVLS[6]['novlCover'],
-        width: '450px',
+        width: '100%',
         borderRadius: '0',
     },
 };

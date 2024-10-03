@@ -18,7 +18,7 @@ export class UrCheckbox {
     render() {
         return (
             <Host>
-                <mdui-checkbox checked={this.checked} disabled={this.disabled}><slot></slot></mdui-checkbox>
+                <mdui-checkbox part="check" checked={this.checked} disabled={this.disabled}><slot></slot></mdui-checkbox>
             </Host>
         );
     }

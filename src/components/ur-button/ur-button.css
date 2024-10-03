@@ -3,5 +3,5 @@
 }
 
 :host mdui-button {
-    border-radius: 5px;
+    border-radius: var(--mdui-shape-corner-small);
 }
