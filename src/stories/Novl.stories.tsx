@@ -16,7 +16,7 @@ const Novl = ({
     price,
     publisherName,
     publisherAvatar,
-    borderRadius,
+    borderRadius = '8px',
     width,
 }) => html`
     <style>
@@ -37,8 +37,7 @@ const Novl = ({
         published="${published}"
         price="${price}"
         publisher-name="${publisherName}"
-        publisher-avatar="${publisherAvatar}"></ur-novl>
-`;
+        publisher-avatar="${publisherAvatar}"></ur-novl>`;
 
 export default {
     title: 'Urnovl/Business/Novl',
