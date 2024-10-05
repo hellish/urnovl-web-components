@@ -1,4 +1,4 @@
-import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-CyuN1e9V.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z,width:rr})=>er`
+import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-DxgefClB.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-K5CyEtrH.js";const sr=({novlTitle:l,novlCover:A,likes:G,views:H,showStats:I,novlDescription:J,authorAvatar:K,authorName:M,published:Q,price:T,publisherName:X,publisherAvatar:Y,borderRadius:Z="8px",width:rr})=>er`
     <style>
         ur-novl {
             --novl-width: ${rr};
@@ -17,8 +17,7 @@ import{k as er}from"./entry-preview-BcHUnPw7.js";import{N as r}from"./ur-novl-Cy
         published="${Q}"
         price="${T}"
         publisher-name="${X}"
-        publisher-avatar="${Y}"></ur-novl>
-`,ir={title:"Urnovl/Business/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"100%",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
+        publisher-avatar="${Y}"></ur-novl>`,ir={title:"Urnovl/Business/Novl",render:l=>sr(l)},e={args:r[0]},s={args:{...r[0],novlCover:null}},a={args:r[1]},o={args:r[2]},t={args:r[3]},n={args:r[4]},c={args:r[5]},i={args:{...r[6],width:"320px"}},p={args:{...r[7],width:"350px"}},d={args:{...r[7],novlCover:r[6].novlCover,width:"100%",borderRadius:"0"}};var u,m,g;e.parameters={...e.parameters,docs:{...(u=e.parameters)==null?void 0:u.docs,source:{originalSource:`{
   args: NOVLS[0]
 }`,...(g=(m=e.parameters)==null?void 0:m.docs)==null?void 0:g.source}}};var v,S,h;s.parameters={...s.parameters,docs:{...(v=s.parameters)==null?void 0:v.docs,source:{originalSource:`{
   args: {
