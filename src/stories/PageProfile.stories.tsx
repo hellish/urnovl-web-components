@@ -348,7 +348,7 @@ const PageProfileBackground = () => {
                 padding: 0;
             }
         </style>
-        <div style="background: url('assets/demo/background.png') no-repeat;width: 100%;height: 215px;">
+        <div style="background: url('https://raw.githubusercontent.com/hellish/urnovl-web-components/refs/heads/master/assets/demo/background.png') no-repeat;width: 100%;height: 215px;">
             <div style="top: 135px;position: relative;display: flex;">
                 <div style="width: 250px;">
                     ${PageProfile({
