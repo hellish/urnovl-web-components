@@ -2,6 +2,19 @@ import { html } from "lit";
 import '../components/ur-locale-filter-button/ur-locale-filter-button';
 import '../components/ur-locale-filter-panel/ur-locale-filter-panel';
 
+const LOCALES = [
+    ['English', 'en', false],
+    ['German', 'de', false],
+    ['Greek', 'el', false],
+    ['Russian', 'eu', false],
+    ['Spanish', 'es', false],
+    ['Italian', 'it', false],
+    ['French', 'fr', false],
+    ['Italian', 'it', false],
+    ['Turkish', 'tr', false],
+    ['Hindi', 'hi', false]
+];
+
 const Button = ({
     count = 0
 }) => {
@@ -24,7 +37,7 @@ export default {
     title: 'Urnovl/Business/NovlFilters',
 };
 
-export const DefaultButton = {
+export const Default = {
     render: () => Button({
         count: 0
     })
@@ -38,54 +51,21 @@ export const ButtonWithSelectedFilters = {
 
 export const LocalePanel = {
     render: () => Panel({
-        locales: [
-            [ 'English', 'en', false ],
-            [ 'German', 'de', false ],
-            [ 'Greek', 'el', false ],
-            [ 'Russian', 'eu', false ],
-            [ 'Spanish', 'es', false ],
-            [ 'Italian', 'it', false ],
-            [ 'French', 'fr', false ],
-            [ 'Italian', 'it', false ],
-            [ 'Turkish', 'tr', false ],
-            [ 'Hindi', 'hi', false ]
-        ]
+        locales: LOCALES
     })
 };
 
 export const LocalePanelNoHeader = {
     render: () => Panel({
         showHeader: false,
-        locales: [
-            [ 'English', 'en', false ],
-            [ 'German', 'de', false ],
-            [ 'Greek', 'el', false ],
-            [ 'Russian', 'eu', false ],
-            [ 'Spanish', 'es', false ],
-            [ 'Italian', 'it', false ],
-            [ 'French', 'fr', false ],
-            [ 'Italian', 'it', false ],
-            [ 'Turkish', 'tr', false ],
-            [ 'Hindi', 'hi', false ]
-        ]
+        locales: LOCALES
     })
 };
 
 export const LocalePanelWithNoFooter = {
     render: () => Panel({
         showFooter: false,
-        locales: [
-            [ 'English', 'en', false ],
-            [ 'German', 'de', false ],
-            [ 'Greek', 'el', false ],
-            [ 'Russian', 'eu', false ],
-            [ 'Spanish', 'es', false ],
-            [ 'Italian', 'it', false ],
-            [ 'French', 'fr', false ],
-            [ 'Italian', 'it', false ],
-            [ 'Turkish', 'tr', false ],
-            [ 'Hindi', 'hi', false ]
-        ]
+        locales: LOCALES
     })
 };
 
@@ -93,17 +73,6 @@ export const LocalePanelWithNoHeaderNoFooter = {
     render: () => Panel({
         showHeader: false,
         showFooter: false,
-        locales: [
-            [ 'English', 'en', false ],
-            [ 'German', 'de', false ],
-            [ 'Greek', 'el', false ],
-            [ 'Russian', 'eu', false ],
-            [ 'Spanish', 'es', false ],
-            [ 'Italian', 'it', false ],
-            [ 'French', 'fr', false ],
-            [ 'Italian', 'it', false ],
-            [ 'Turkish', 'tr', false ],
-            [ 'Hindi', 'hi', false ]
-        ]
+        locales: LOCALES
     })
 };
