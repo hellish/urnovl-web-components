@@ -312,6 +312,35 @@ export const Wider = {
     })
 };
 
+export const FullWidth = {
+    render: () => PageProfile({
+        containerWidth: '100%',
+        location: "London, UK",
+        description: DESCRIPTION,
+        facebook_url: 'https://facebook.com',
+        twitter_url: 'https://twitter.com',
+        linkedin_url: 'https://linkedin.com',
+        phone: '999666333',
+        email: 'urnovl@gmail.com',
+        website: 'https://urnovl.co',
+        stories: 0,
+        views: 350745,
+        following: 1556,
+        followers: 1557,
+        members: 17,
+        showFollow: true,
+        showBecomeAMember: true,
+        showDonate: true,
+        showSendMessage: true,
+        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
+        genres: [ "Horror", "Thriller" ],
+        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
+        pageCreatorName: 'Malik Abubakari',
+        pageCreatorImage: creator,
+        pageCreationDate: 'May 25, 2015'
+    })
+};
+
 const PageProfileBackground = () => {
     return html`
         <style>
