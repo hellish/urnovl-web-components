@@ -1,7 +1,9 @@
 :host {
-    display: block;
+    display: inline-block;
+    --ur-shape-corner-small: var(--mdui-shape-corner-small);
 }
 
 :host mdui-button {
-    border-radius: var(--mdui-shape-corner-small);
+    width: inherit;
+    border-radius: var(--ur-shape-corner-small);
 }

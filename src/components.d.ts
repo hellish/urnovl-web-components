@@ -82,6 +82,33 @@ export namespace Components {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrPageProfile {
+        "avatar": any;
+        "description": any;
+        "email": any;
+        "facebook_url": any;
+        "followers": number | null;
+        "following": number | null;
+        "genres": string | null;
+        "languages": string | null;
+        "linkedin_url": any;
+        "literatureTypes": string | null;
+        "location": any;
+        "members": number | null;
+        "name": any;
+        "pageCreationDate": any;
+        "pageCreatorImage": any;
+        "pageCreatorName": any;
+        "phone": any;
+        "showBecomeMember": boolean;
+        "showDonate": boolean;
+        "showFollow": boolean;
+        "showSendMessage": boolean;
+        "stories": number | null;
+        "twitter_url": any;
+        "views": number | null;
+        "website": any;
+    }
     interface UrProfile {
         "description": any;
         "email": any;
@@ -157,6 +184,10 @@ export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
+}
+export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageProfileElement;
 }
 declare global {
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
@@ -276,6 +307,26 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrPageProfileElementEventMap {
+        "follow": any;
+        "member": any;
+        "donate": any;
+        "sendMessage": any;
+    }
+    interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageProfileElement: {
+        prototype: HTMLUrPageProfileElement;
+        new (): HTMLUrPageProfileElement;
+    };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
     var HTMLUrProfileElement: {
@@ -331,6 +382,7 @@ declare global {
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
@@ -418,6 +470,37 @@ declare namespace LocalJSX {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrPageProfile {
+        "avatar"?: any;
+        "description"?: any;
+        "email"?: any;
+        "facebook_url"?: any;
+        "followers"?: number | null;
+        "following"?: number | null;
+        "genres"?: string | null;
+        "languages"?: string | null;
+        "linkedin_url"?: any;
+        "literatureTypes"?: string | null;
+        "location"?: any;
+        "members"?: number | null;
+        "name"?: any;
+        "onDonate"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "pageCreationDate"?: any;
+        "pageCreatorImage"?: any;
+        "pageCreatorName"?: any;
+        "phone"?: any;
+        "showBecomeMember"?: boolean;
+        "showDonate"?: boolean;
+        "showFollow"?: boolean;
+        "showSendMessage"?: boolean;
+        "stories"?: number | null;
+        "twitter_url"?: any;
+        "views"?: number | null;
+        "website"?: any;
+    }
     interface UrProfile {
         "description"?: any;
         "email"?: any;
@@ -490,6 +573,7 @@ declare namespace LocalJSX {
         "ur-locale-filter-panel": UrLocaleFilterPanel;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-segment-button": UrSegmentButton;
@@ -515,6 +599,7 @@ declare module "@stencil/core" {
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
