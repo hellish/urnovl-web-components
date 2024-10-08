@@ -18,107 +18,42 @@
 }
 
 :host .cover {
-    aspect-ratio: 2.25;
-    background-color: #131519;
+    aspect-ratio: 1.5;
+    background-color: rgb(var(--mdui-color-error));
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 50%;
+    background-position: center;
     position: relative;
-}
-
-:host .cover .ongoing {
-    background-color: #ff3b01;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    position: absolute;
-    top: 10px;
-    left: 11.44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 14px;
-    line-height: 14px;
-}
-
-:host .cover .ongoing span {
-    position: relative;
-}
-
-:host .cover .price {
-    position: absolute;
-    top: 10px;
-    right: 11.44px;
-    border-radius: 25px;
-    background: rgba(43, 43, 39, 0.95);
-    padding: 10px 24px;
-    box-sizing: border-box;
-    line-height: 12px;
-    font-weight: 700;
-    font-size: 14px;
-    color: #fff;
-}
-
-:host .cover .publisher {
-    position: absolute;
-    bottom: 0;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.30);
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 4px 11.44px;
-    box-sizing: border-box;
-}
-
-:host .cover .publisher .avatar {
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    background-size: cover;
-}
-
-:host .cover .publisher .name {
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 12px; /* 100% */
-    color: #fff;
-    margin-left: 7.56px;
 }
 
 :host .info {
-    padding: 7px 11px;
-    background: #F7F7F7;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    row-gap: 8px;
+    background: rgb(var(--mdui-color-background));
     box-sizing: border-box;
 }
 
 :host .info .title {
-    color: #191C20;
-    font-size: 18px;
+    color: rgb(var(--mdui-color-on-background));
+    font-size: 16px;
     font-style: normal;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 700;
-    line-height: 18px;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Number of lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 7px;
 }
 
 :host .info .stats {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 12px;
     display: flex;
     flex-direction: row;
-    margin-bottom: 7px;
-    color: #333;
+    color: rgb(var(--mdui-color-on-background));
 }
 
 :host .info .stats b {
@@ -128,67 +63,52 @@
 :host .info .stats .followers {
     display: flex;
 }
+
+:host .page .actions {
+    padding-top: 16px;
+}
+
+:host .page .actions ur-button {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
 :host .follow {
     display: flex;
     width: 100%;
     padding: 0 8px 8px 8px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    align-self: stretch;
-}
-:host .info .stats .likes .dot {
-    margin: 0 5px;
 }
 
 :host .info .description {
+    /*color: rgb(var(--mdui-color-on-background));*/
     color: #73777F;
     font-size: 12px;
     font-style: normal;
-    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    align-self: stretch;
-    line-height: 12px; /* 163.636% */
+    line-height: 16px; /* 163.636% */
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Number of lines */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 7px;
 }
 
-:host .info .author {
-    height: 32px;
-    display: flex;
-    align-items: center;
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 600;
-    color: #1D1B20;
-    cursor: pointer;
-}
-
-:host .info .author .avatar {
-    height: 32px;
-    width: 32px;
-    border-radius: 50%;
-    background-size: cover;
-}
-
-:host .info .author .name {
-    margin-left: 8px;
-}
-
-@container page (min-width: 290px) {
+@container page (max-width: 300px) {
     :host .info .title {
-        font-size: 1rem;
+        font-size: 14px;
         line-height: 1.2rem;
     }
-}
 
-@container page (min-width: 300px) {
-    :host .info .title {
-        font-size: 1.2rem;
-        line-height: 1.5rem;
+    :host .info .stats {
+        font-size: 11px;
+    }
+
+    :host .info .description{
+        font-size: 11px;
+    }
+
+    :host .info {
+        row-gap: 4px;
+        padding: 4px;
     }
 }

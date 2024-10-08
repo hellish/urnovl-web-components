@@ -33,11 +33,11 @@ export class UrPage {
         return (
             <Host>
                 <div class="page">
-                    <section class='cover' style={{
+                    <div class='cover' style={{
                         backgroundImage: this.pageCover ? `url(${this.pageCover})` : `url(${this.pageCoverFallback})`
                     }}>
-                    </section>
-                    <section class='info'>
+                    </div>
+                    <div class='info'>
                         <div class='title'>{this.pageTitle}</div>
                         <div class="description">{this.pageDescription}</div>
                         {this.showStats &&
@@ -49,14 +49,11 @@ export class UrPage {
                                 </div>
                             </div>
                         }
-                        <div class="follow" onClick={_ => this.pageFollowClicked.emit()}>
-                            <ur-button variant='outlined'>
-                                Follow
-                            </ur-button>
-                        </div>
-                    </section>
+                    </div>
+                    <div class="actions">
+                        <ur-button class="follow" variant="outlined" onClick={() => this.pageFollowClicked.emit()}>Follow</ur-button>
+                    </div>
                 </div>
-                <slot></slot>
             </Host>
         );
     }
