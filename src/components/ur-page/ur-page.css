@@ -65,7 +65,7 @@
 }
 
 :host .page .actions {
-    padding-top: 16px;
+    padding-top: 10px;
 }
 
 :host .page .actions ur-button {
@@ -76,7 +76,6 @@
 :host .follow {
     display: flex;
     width: 100%;
-    padding: 0 8px 8px 8px;
 }
 
 :host .info .description {

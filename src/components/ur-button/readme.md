@@ -19,12 +19,16 @@
 
 ### Used by
 
+ - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
+ - [ur-user](../ur-user)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-page --> ur-button
   ur-page-profile --> ur-button
+  ur-user --> ur-button
   style ur-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -9,19 +9,21 @@ const Page = ({
     showStats,
     pageDescription,
     borderRadius = '8px',
-    width = '100%',
+    width,
 }) => html`
-    <div style="width:${width}; border-radius:${borderRadius};">
-        <ur-page
-            page-border-radius: ${borderRadius};
-            page-width: ${width};
-            page-description="${pageDescription}"
-            page-title="${pageTitle}"
-            page-cover="${pageCover}"
-            followers="${followers}"
-            show-stats="${showStats}"
-        </ur-page>
-    </div>
+    <style>
+        ur-page {
+            --page-width: ${width};
+            --page-border-radius: ${borderRadius};
+        }
+    </style>
+    <ur-page
+        page-description="${pageDescription}"
+        page-title="${pageTitle}"
+        page-cover="${pageCover}"
+        followers="${followers}"
+        show-stats="${showStats}"
+    </ur-page>
 `;
 
 export default {
@@ -76,8 +78,8 @@ export const BigDescriptionWithBiggerWidth = {
 export const NoBorderRadius = {
     args: {
         ...PAGES[0],
-        novlCover: PAGES[6],
-        width: '350px',
-        borderRadius: '0px',
+        pageCover: PAGES[0]['pageCover'],
+        width: '100%',
+        borderRadius: '0',
     },
 };
