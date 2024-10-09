@@ -79,8 +79,7 @@
 }
 
 :host .info .description {
-    /*color: rgb(var(--mdui-color-on-background));*/
-    color: #73777F;
+    color: rgb(var(--mdui-color-on-container-lite-dark));
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
