@@ -38,19 +38,19 @@ export class UrUser {
                     }}>
                     </section>
                     <section class='info'>
-                        <div className='title'>{this.userTitle}</div>
+                        <div class='title'>{this.userTitle}</div>
                         {this.showStats &&
-                            <div className='stats'>
-                                <div className="followers">
+                            <div class='stats'>
+                                <div class="followers">
                                     <div>
                                         <b>{this.followers}</b> Followers
                                     </div>
                                 </div>
                             </div>
                         }
-                        <div className="description">{this.userDescription}</div>
-                        <div className="actions">
-                            <ur-button className="follow" variant="outlined"
+                        <div class="description">{this.userDescription}</div>
+                        <div class="actions">
+                            <ur-button class="follow" variant="outlined"
                                        onClick={() => this.userFollowClicked.emit()}>Follow
                             </ur-button>
                         </div>
