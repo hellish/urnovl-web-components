@@ -1,6 +1,8 @@
 :host {
     --user-width: 100%;
     --user-border-radius: 8px;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
 }
 
 :host {
@@ -19,7 +21,7 @@
 
 :host .cover {
     aspect-ratio: 1.5;
-    background-color: rgb(var(--mdui-color-on-background));
+    background-color: rgb(var(--ur-color-on-background));
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -31,12 +33,12 @@
     flex-direction: column;
     padding: 8px;
     row-gap: 8px;
-    background: rgb(var(--mdui-color-background));
+    background: rgb(var(--ur-color-background));
     box-sizing: border-box;
 }
 
 :host .info .title {
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -53,7 +55,7 @@
     line-height: 12px;
     display: flex;
     flex-direction: row;
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
 }
 
 :host .info .stats b {
@@ -79,7 +81,7 @@
 }
 
 :host .info .description {
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
