@@ -9,7 +9,7 @@ const menuItems = [
 ];
 
 const Select = ({
-    label = 'Welcome',
+    label = '',
     name = 'Test Name',
     value = '',
     placeholder = "",
@@ -23,8 +23,6 @@ const Select = ({
     placement = 'auto',
     icon = null,
     endIcon = null,
-    errorIcon = null,
-    clearIcon = null,
     form = null,
     menuItems = [],
 }) => html`
@@ -43,8 +41,6 @@ const Select = ({
         placement=${placement}
         icon=${icon}
         end-icon=${endIcon}
-        error-icon=${errorIcon}
-        clear-icon=${clearIcon}
         form=${form}
         .menuItems=${menuItems}
     </ur-select>
@@ -81,7 +77,7 @@ export const Disabled = {
         menuItems: menuItems
     },
 };
-
+// TODO need multiple scenario
 export const WithValue = {
     args: {
         variant: 'outlined',
@@ -106,10 +102,18 @@ export const WithHelper = {
     },
 };
 
+export const WithIcon = {
+    args: {
+        variant: 'outlined',
+        icon: 'keyboard_arrow_down',
+        menuItems: menuItems
+    },
+};
+
 export const WithEndIcon = {
     args: {
         variant: 'outlined',
-        endIcon: 'mic',
+        endIcon: 'keyboard_arrow_down',
         menuItems: menuItems
     },
 };
@@ -120,7 +124,7 @@ export const Full = {
         placeholder: 'test placeholder',
         helper: 'test helper',
         value: 'test',
-        endIcon: 'mic',
+        endIcon: 'keyboard_arrow_down',
         disabled: false,
         menuItems: menuItems
     },

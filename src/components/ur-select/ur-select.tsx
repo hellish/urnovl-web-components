@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 import 'mdui/components/select.js';
 import 'mdui/components/menu-item.js';
@@ -52,16 +52,13 @@ export class UrSelect {
     endIcon: string = null;
 
     @Prop()
-    errorIcon: string = null;
-
-    @Prop()
-    clearIcon: string = null;
-
-    @Prop()
     form: string = null;
 
     @Prop()
     menuItems: Array<[label: string, value: string]> = [];
+
+    @Event()
+    itemClicked: EventEmitter;
 
     render() {
         return (
@@ -81,13 +78,11 @@ export class UrSelect {
                     placement={this.placement}
                     icon={this.icon}
                     end-icon={this.endIcon}
-                    error-icon={this.errorIcon}
-                    clear-icon={this.clearIcon}
                     form={this.form}
                 >
                     <div class="items">
                         {this.menuItems.map(([label, value]) => {
-                            return <mdui-menu-item value={value}>{label}</mdui-menu-item>
+                            return <mdui-menu-item value={value} onClick={() => this.itemClicked.emit()}>{label}</mdui-menu-item>
                         })}
                     </div>
                 </mdui-select>
