@@ -82,6 +82,14 @@ export namespace Components {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrPage {
+        "followers": number;
+        "pageCover": any;
+        "pageCoverFallback": string;
+        "pageDescription": any;
+        "pageTitle": string;
+        "showStats": boolean;
+    }
     interface UrPageProfile {
         "avatar": any;
         "description": any;
@@ -166,6 +174,14 @@ export namespace Components {
         "value": string;
         "variant": 'filled' | 'outlined';
     }
+    interface UrUser {
+        "followers": number;
+        "showStats": boolean;
+        "userCover": any;
+        "userCoverFallback": string;
+        "userDescription": any;
+        "userTitle": string;
+    }
     interface UrUserProfile {
     }
 }
@@ -185,9 +201,17 @@ export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
 }
+export interface UrPageCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageElement;
+}
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrUserCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserElement;
 }
 declare global {
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
@@ -307,6 +331,23 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrPageElementEventMap {
+        "pageFollowClicked": any;
+    }
+    interface HTMLUrPageElement extends Components.UrPage, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageElementEventMap>(type: K, listener: (this: HTMLUrPageElement, ev: UrPageCustomEvent<HTMLUrPageElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageElementEventMap>(type: K, listener: (this: HTMLUrPageElement, ev: UrPageCustomEvent<HTMLUrPageElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageElement: {
+        prototype: HTMLUrPageElement;
+        new (): HTMLUrPageElement;
+    };
     interface HTMLUrPageProfileElementEventMap {
         "follow": any;
         "member": any;
@@ -363,6 +404,23 @@ declare global {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
     };
+    interface HTMLUrUserElementEventMap {
+        "userFollowClicked": any;
+    }
+    interface HTMLUrUserElement extends Components.UrUser, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserElementEventMap>(type: K, listener: (this: HTMLUrUserElement, ev: UrUserCustomEvent<HTMLUrUserElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserElementEventMap>(type: K, listener: (this: HTMLUrUserElement, ev: UrUserCustomEvent<HTMLUrUserElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserElement: {
+        prototype: HTMLUrUserElement;
+        new (): HTMLUrUserElement;
+    };
     interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
     }
     var HTMLUrUserProfileElement: {
@@ -382,6 +440,7 @@ declare global {
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-page": HTMLUrPageElement;
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
@@ -389,6 +448,7 @@ declare global {
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
 }
@@ -469,6 +529,15 @@ declare namespace LocalJSX {
         "novls"?: Array<Novl>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
+    }
+    interface UrPage {
+        "followers"?: number;
+        "onPageFollowClicked"?: (event: UrPageCustomEvent<any>) => void;
+        "pageCover"?: any;
+        "pageCoverFallback"?: string;
+        "pageDescription"?: any;
+        "pageTitle"?: string;
+        "showStats"?: boolean;
     }
     interface UrPageProfile {
         "avatar"?: any;
@@ -558,6 +627,15 @@ declare namespace LocalJSX {
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
     }
+    interface UrUser {
+        "followers"?: number;
+        "onUserFollowClicked"?: (event: UrUserCustomEvent<any>) => void;
+        "showStats"?: boolean;
+        "userCover"?: any;
+        "userCoverFallback"?: string;
+        "userDescription"?: any;
+        "userTitle"?: string;
+    }
     interface UrUserProfile {
     }
     interface IntrinsicElements {
@@ -573,6 +651,7 @@ declare namespace LocalJSX {
         "ur-locale-filter-panel": UrLocaleFilterPanel;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-page": UrPage;
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
@@ -580,6 +659,7 @@ declare namespace LocalJSX {
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
     }
 }
@@ -599,6 +679,7 @@ declare module "@stencil/core" {
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
@@ -606,6 +687,7 @@ declare module "@stencil/core" {
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
     }
