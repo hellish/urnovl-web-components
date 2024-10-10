@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Host, h } from '@stencil/core';
 
 import 'mdui/components/button-icon';
 
@@ -14,7 +14,7 @@ export class UrButtonArrowRight {
 
     render() {
         return (
-            <div>
+            <Host>
                 <mdui-button-icon onClick={() => this.rightClicked.emit()}>
                     <svg width="29" height="28" viewBox="0 0 29 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="Arrow right">
@@ -22,7 +22,7 @@ export class UrButtonArrowRight {
                         </g>
                     </svg>
                 </mdui-button-icon>
-            </div>
+            </Host>
         );
     }
 }
