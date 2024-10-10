@@ -1,17 +1,17 @@
 import { html } from 'lit';
 import '../components/ur-select/ur-select';
+import { Listen } from '@stencil/core';
 
-
-const menuItems = [
+const ITEMS = [
     ['English', 'en'],
     ['German', 'de'],
-    ['Greek', 'el']
+    ['Greek', 'gr']
 ];
 
 const Select = ({
-    label = '',
+    label = [],
     name = 'Test Name',
-    value = '',
+    value = [],
     placeholder = "",
     helper = "",
     readonly = false,
@@ -24,7 +24,7 @@ const Select = ({
     icon = null,
     endIcon = null,
     form = null,
-    menuItems = [],
+    items = [],
 }) => html`
     <ur-select
         label=${label}
@@ -42,7 +42,7 @@ const Select = ({
         icon=${icon}
         end-icon=${endIcon}
         form=${form}
-        .menuItems=${menuItems}
+        .items=${items}
     </ur-select>
 `;
 
@@ -56,8 +56,13 @@ export default {
                 'filled',
                 'outlined'
             ]
-        }
-    }
+        },
+        onClick: {action: 'onClick'},
+    },
+    // @Listen('itemClicked')
+    // itemClickedHandler(event: CustomEvent<void>) {
+    //     console.log('Received the itemClicked event: ', event.detail);
+    // }
 };
 
 export const Default = {
@@ -65,7 +70,7 @@ export const Default = {
         disabled: false,
         variant: 'outlined',
         value: '',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
 
@@ -74,15 +79,24 @@ export const Disabled = {
         disabled: true,
         variant: 'outlined',
         value: '',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
-// TODO need multiple scenario
+
 export const WithValue = {
     args: {
         variant: 'outlined',
         value: 'test',
-        menuItems: menuItems
+        items: ITEMS
+    },
+};
+
+export const WithMultipleValues = {
+    args: {
+        variant: 'outlined',
+        value: [ITEMS],
+        multiple: true,
+        items: ITEMS
     },
 };
 
@@ -90,7 +104,7 @@ export const WithPlaceholder = {
     args: {
         variant: 'outlined',
         placeholder: 'test placeholder',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
 
@@ -98,7 +112,7 @@ export const WithHelper = {
     args: {
         variant: 'outlined',
         helper: 'test helper',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
 
@@ -106,7 +120,7 @@ export const WithIcon = {
     args: {
         variant: 'outlined',
         icon: 'keyboard_arrow_down',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
 
@@ -114,7 +128,7 @@ export const WithEndIcon = {
     args: {
         variant: 'outlined',
         endIcon: 'keyboard_arrow_down',
-        menuItems: menuItems
+        items: ITEMS
     },
 };
 
@@ -126,6 +140,6 @@ export const Full = {
         value: 'test',
         endIcon: 'keyboard_arrow_down',
         disabled: false,
-        menuItems: menuItems
+        items: ITEMS
     },
 };
