@@ -20,7 +20,7 @@
 }
 
 :host .cover {
-    aspect-ratio: 1.5;
+    aspect-ratio: 1;
     background-color: rgb(var(--ur-color-on-background));
     background-repeat: no-repeat;
     background-size: cover;
