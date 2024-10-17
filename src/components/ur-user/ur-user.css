@@ -1,0 +1,114 @@
+:host {
+    --user-width: 100%;
+    --user-border-radius: 8px;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    box-sizing: content-box;
+    container-type: inline-size;
+    container-name: page;
+}
+
+:host .user {
+    overflow: hidden;
+    width: var(--user-width);
+    border-radius: var(--user-border-radius);
+}
+
+:host .cover {
+    aspect-ratio: 1;
+    background-color: rgb(var(--ur-color-on-background));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+:host .info {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    row-gap: 8px;
+    background: rgb(var(--ur-color-background));
+    box-sizing: border-box;
+}
+
+:host .info .title {
+    color: rgb(var(--ur-color-on-background));
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host .info .stats {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    display: flex;
+    flex-direction: row;
+    color: rgb(var(--ur-color-on-background));
+}
+
+:host .info .stats b {
+    font-weight: 700;
+}
+
+:host .info .stats .followers {
+    display: flex;
+}
+
+:host .user .actions {
+    padding-top: 10px;
+}
+
+:host .user .actions ur-button {
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+:host .follow {
+    display: flex;
+    width: 100%;
+}
+
+:host .info .description {
+    color: rgb(var(--ur-color-on-background));
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 163.636% */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@container user (max-width: 300px) {
+    :host .info .title {
+        font-size: 14px;
+        line-height: 1.2rem;
+    }
+
+    :host .info .stats {
+        font-size: 11px;
+    }
+
+    :host .info .description{
+        font-size: 11px;
+    }
+
+    :host .info {
+        row-gap: 4px;
+        padding: 4px;
+    }
+}
