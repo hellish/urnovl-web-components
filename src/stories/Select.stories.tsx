@@ -1,19 +1,18 @@
 import { html } from 'lit';
 import '../components/ur-select/ur-select';
-import { Listen } from '@stencil/core';
 
 const ITEMS = [
-    ['English', 'en'],
-    ['German', 'de'],
-    ['Greek', 'gr']
+    ['English', 'English'],
+    ['German', 'German'],
+    ['Greek', 'Greek']
 ];
 
 const Select = ({
-    label = [],
-    name = 'Test Name',
-    value = [],
-    placeholder = "",
-    helper = "",
+    label = 'Select Language',
+    name = 'language',
+    value = '',
+    placeholder = '',
+    helper = '',
     readonly = false,
     disabled = false,
     clearable = false,
@@ -43,7 +42,8 @@ const Select = ({
         end-icon=${endIcon}
         form=${form}
         .items=${items}
-    </ur-select>
+        @itemClicked=${(e) => console.log('Selected item value:', e.detail)}
+    ></ur-select>
 `;
 
 export default {
@@ -52,73 +52,64 @@ export default {
     argTypes: {
         variant: {
             control: 'select',
-            options: [
-                'filled',
-                'outlined'
-            ]
+            options: ['filled', 'outlined']
         },
-        onClick: {action: 'onClick'},
     },
-    // @Listen('itemClicked')
-    // itemClickedHandler(event: CustomEvent<void>) {
-    //     console.log('Received the itemClicked event: ', event.detail);
-    // }
 };
 
 export const Default = {
     args: {
-        disabled: false,
-        variant: 'outlined',
-        value: '',
-        items: ITEMS
+        label: 'Select Language',
+        items: ITEMS,
     },
 };
 
 export const Disabled = {
     args: {
         disabled: true,
-        variant: 'outlined',
-        value: '',
         items: ITEMS
     },
 };
 
-export const WithValue = {
+export const WithPreSetValue = {
     args: {
-        variant: 'outlined',
-        value: 'test',
+        label: 'Select Language',
+        value: 'English',
+        items: ITEMS,
+    },
+};
+
+export const WithFilledVariant = {
+    args: {
+        variant: 'filled',
         items: ITEMS
     },
 };
 
-export const WithMultipleValues = {
+export const WithMultipleSelection = {
     args: {
-        variant: 'outlined',
-        value: [ITEMS],
+        label: 'Select Languages',
         multiple: true,
-        items: ITEMS
+        items: ITEMS,
     },
 };
 
 export const WithPlaceholder = {
     args: {
-        variant: 'outlined',
-        placeholder: 'test placeholder',
+        placeholder: 'Choose a language',
         items: ITEMS
     },
 };
 
 export const WithHelper = {
     args: {
-        variant: 'outlined',
-        helper: 'test helper',
+        helper: 'Select your preferred language',
         items: ITEMS
     },
 };
 
 export const WithIcon = {
     args: {
-        variant: 'outlined',
         icon: 'keyboard_arrow_down',
         items: ITEMS
     },
@@ -126,7 +117,6 @@ export const WithIcon = {
 
 export const WithEndIcon = {
     args: {
-        variant: 'outlined',
         endIcon: 'keyboard_arrow_down',
         items: ITEMS
     },
@@ -135,11 +125,11 @@ export const WithEndIcon = {
 export const Full = {
     args: {
         variant: 'outlined',
-        placeholder: 'test placeholder',
-        helper: 'test helper',
-        value: 'test',
+        placeholder: 'Choose a language',
+        helper: 'Select your preferred language',
         endIcon: 'keyboard_arrow_down',
         disabled: false,
+        multiple: true,
         items: ITEMS
     },
 };

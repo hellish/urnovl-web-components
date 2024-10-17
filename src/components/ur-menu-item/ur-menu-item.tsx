@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 
 import 'mdui/components/menu-item.js';
 
@@ -15,15 +15,20 @@ export class UrMenuItem {
     @Prop()
     label: string = '';
 
-  render() {
-    return (
-      <Host>
-          <mdui-menu-item
-              value={this.value}
-          >
-              {this.label}
-          </mdui-menu-item>
-      </Host>
-    );
-  }
+    @Event()
+    itemClicked: EventEmitter<string>;
+
+    handleClick() {
+        this.itemClicked.emit(this.value); // Emit the value of the clicked item
+    }
+
+    render() {
+        return (
+            <Host>
+                <mdui-menu-item value={this.value} onClick={() => this.handleClick()}>
+                    {this.label}
+                </mdui-menu-item>
+            </Host>
+        );
+    }
 }
