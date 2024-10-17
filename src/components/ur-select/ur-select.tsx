@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Method, State, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 import '../ur-menu-item/ur-menu-item';
 import 'mdui/components/select.js';
