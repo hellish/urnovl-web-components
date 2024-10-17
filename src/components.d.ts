@@ -49,6 +49,16 @@ export namespace Components {
         "radius": string;
         "size": string;
     }
+    interface UrDialog {
+        "closeOnEsc": boolean;
+        "closeOnOverlayClick": boolean;
+        "description": string;
+        "fullscreen": boolean;
+        "headline": string;
+        "icon": string;
+        "open": boolean;
+        "stackedActions": boolean;
+    }
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
@@ -193,6 +203,10 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrDialogCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrDialogElement;
+}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
@@ -277,6 +291,23 @@ declare global {
     var HTMLUrChipElement: {
         prototype: HTMLUrChipElement;
         new (): HTMLUrChipElement;
+    };
+    interface HTMLUrDialogElementEventMap {
+        "dialogConfirmed": void;
+    }
+    interface HTMLUrDialogElement extends Components.UrDialog, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrDialogElementEventMap>(type: K, listener: (this: HTMLUrDialogElement, ev: UrDialogCustomEvent<HTMLUrDialogElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrDialogElementEventMap>(type: K, listener: (this: HTMLUrDialogElement, ev: UrDialogCustomEvent<HTMLUrDialogElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrDialogElement: {
+        prototype: HTMLUrDialogElement;
+        new (): HTMLUrDialogElement;
     };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
@@ -435,6 +466,7 @@ declare global {
         "ur-button-icon": HTMLUrButtonIconElement;
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-chip": HTMLUrChipElement;
+        "ur-dialog": HTMLUrDialogElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
@@ -493,6 +525,17 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         "radius"?: string;
         "size"?: string;
+    }
+    interface UrDialog {
+        "closeOnEsc"?: boolean;
+        "closeOnOverlayClick"?: boolean;
+        "description"?: string;
+        "fullscreen"?: boolean;
+        "headline"?: string;
+        "icon"?: string;
+        "onDialogConfirmed"?: (event: UrDialogCustomEvent<void>) => void;
+        "open"?: boolean;
+        "stackedActions"?: boolean;
     }
     interface UrLoader {
     }
@@ -646,6 +689,7 @@ declare namespace LocalJSX {
         "ur-button-icon": UrButtonIcon;
         "ur-checkbox": UrCheckbox;
         "ur-chip": UrChip;
+        "ur-dialog": UrDialog;
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
@@ -674,6 +718,7 @@ declare module "@stencil/core" {
             "ur-button-icon": LocalJSX.UrButtonIcon & JSXBase.HTMLAttributes<HTMLUrButtonIconElement>;
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
+            "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
