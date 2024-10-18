@@ -113,7 +113,7 @@ import{k as V}from"./entry-preview-BcHUnPw7.js";import"./ur-button-ChCGp26u.js";
         padding: 4px;
     }
 }
-`,oe=class extends J{constructor(){super(),this.__registerHost(),this.__attachShadow(),this.pageFollowClicked=X(this,"pageFollowClicked",7),this.pageTitle="Page title",this.pageCover=void 0,this.pageCoverFallback=Y,this.followers=0,this.showStats=!0,this.pageDescription=void 0}render(){return e(Z,{key:"42c1b0be1a822715e7a41b8c4cbdb4c19270e282"},e("div",{key:"19f2cf956fca444c791bc35a68b931a7668ff92c",class:"page"},e("section",{key:"bd809cbd885d759461bfd39aeb771cc1f3344236",class:"cover",style:{backgroundImage:this.pageCover?`url(${this.pageCover})`:`url(${this.pageCoverFallback})`}}),e("section",{key:"7b87b2fa92c66bae3ea0fa0a722c568147f9c88c",class:"info"},e("div",{key:"87e0239450489e23adabbaa640ee0aca1104adda",class:"title"},this.pageTitle),e("div",{key:"c73a41b7526c6b830358af995dba7974af387617",class:"description"},this.pageDescription),this.showStats&&e("div",{key:"3a1f8a4aa8ed9a03117ef21aaca80ddf90ff8a83",class:"stats"},e("div",{key:"a459028d7e1030436de44d76307e09e7d8739594",class:"followers"},e("div",{key:"4fca46b6876e6bcc4f6cb8f45ecd644e760fb605"},e("b",{key:"ce098c4f34b70034214b3928b90d338a0e467870"},this.followers)," Followers"))),e("div",{key:"19aa4124744c412ed9b06ae90f14e0f60d04b445",class:"actions"},e("ur-button",{key:"3225db164fa02f8352f46a840ae40e520d83851e",class:"follow",variant:"outlined",onClick:()=>this.pageFollowClicked.emit()},"Follow")))))}static get style(){return ee}};q(oe,[1,"ur-page",{pageTitle:[1,"page-title"],pageCover:[8,"page-cover"],pageCoverFallback:[8,"page-cover-fallback"],followers:[2],showStats:[4,"show-stats"],pageDescription:[8,"page-description"]}]);const u={schemaVersion:"1.0.0",modules:[{kind:"javascript-module",path:"",declarations:[{kind:"class",name:"UrPage",tagName:"ur-page",customElement:!0,members:[{kind:"field",name:"pageTitle",type:"string",description:"",default:"'Page title'"},{kind:"field",name:"pageCover",type:"any",description:""},{kind:"field",name:"pageCoverFallback",type:"any",description:"",default:"PAGE_COVER_FALLBACK"},{kind:"field",name:"followers",type:"number",description:"",default:"0"},{kind:"field",name:"showStats",type:"boolean",description:"",default:"true"},{kind:"field",name:"pageDescription",type:"any",description:""}],events:[{kind:"event",name:"pageFollowClicked",description:""}]}],exports:[{kind:"js",name:"UrPage",declaration:{name:"UrPage",module:"src/components/ur-page/ur-page.tsx"}},{kind:"custom-element-definition",name:"ur-page",declaration:{name:"UrPage",module:"src/components/ur-page/ur-page.tsx"}}]}]};K({...g()||{},...u,modules:[...(g()||{}).modules||[],...u.modules]});const ne=({pageTitle:d,pageCover:T,followers:H,showStats:N,pageDescription:j,borderRadius:Q="8px",width:M})=>V`
+`,oe=class extends J{constructor(){super(),this.__registerHost(),this.__attachShadow(),this.pageFollowClicked=X(this,"pageFollowClicked",7),this.pageTitle="Page title",this.pageCover=void 0,this.pageCoverFallback=Y,this.followers=0,this.showStats=!0,this.pageDescription=void 0}render(){return e(Z,{key:"88b779c20e1e6c4da7336cf8182e6695af66eb2e"},e("div",{key:"ded333935f88302ba6197fd71499195544463b1c",class:"page"},e("section",{key:"9ad05a1296e73146c207819d2ea06094d5a4d518",class:"cover",style:{backgroundImage:this.pageCover?`url(${this.pageCover})`:`url(${this.pageCoverFallback})`}}),e("section",{key:"3efd9ea7a58467e20be5991c9dac7784771c53b2",class:"info"},e("div",{key:"233f62c290fffa7005d7f1e5c9b2b646a702454a",class:"title"},this.pageTitle),e("div",{key:"2528eeb1c4c762a05cf394dfe744ef9a5007dd14",class:"description"},this.pageDescription),this.showStats&&e("div",{key:"91d35b08213dedec687d6d76fefda5ffca749348",class:"stats"},e("div",{key:"d7b8d3a74e21eaac97ad3a485cedc24bf783bbce",class:"followers"},e("div",{key:"a655480c265ec32e2279fedca42ff8149ef296c9"},e("b",{key:"75ae9e1f98ae6f8dae132b6151487cac913e5e1a"},this.followers)," Followers"))),e("div",{key:"010e9293a3f07990767f1781ea1d453927ae1984",class:"actions"},e("ur-button",{key:"fc7093418c63f79ddf6d9f42969fd506f64709e0",class:"follow",variant:"outlined",onClick:()=>this.pageFollowClicked.emit()},"Follow")))))}static get style(){return ee}};q(oe,[1,"ur-page",{pageTitle:[1,"page-title"],pageCover:[8,"page-cover"],pageCoverFallback:[8,"page-cover-fallback"],followers:[2],showStats:[4,"show-stats"],pageDescription:[8,"page-description"]}]);const u={schemaVersion:"1.0.0",modules:[{kind:"javascript-module",path:"",declarations:[{kind:"class",name:"UrPage",tagName:"ur-page",customElement:!0,members:[{kind:"field",name:"pageTitle",type:"string",description:"",default:"'Page title'"},{kind:"field",name:"pageCover",type:"any",description:""},{kind:"field",name:"pageCoverFallback",type:"any",description:"",default:"PAGE_COVER_FALLBACK"},{kind:"field",name:"followers",type:"number",description:"",default:"0"},{kind:"field",name:"showStats",type:"boolean",description:"",default:"true"},{kind:"field",name:"pageDescription",type:"any",description:""}],events:[{kind:"event",name:"pageFollowClicked",description:""}]}],exports:[{kind:"js",name:"UrPage",declaration:{name:"UrPage",module:"src/components/ur-page/ur-page.tsx"}},{kind:"custom-element-definition",name:"ur-page",declaration:{name:"UrPage",module:"src/components/ur-page/ur-page.tsx"}}]}]};K({...g()||{},...u,modules:[...(g()||{}).modules||[],...u.modules]});const ne=({pageTitle:p,pageCover:T,followers:H,showStats:N,pageDescription:j,borderRadius:Q="8px",width:M})=>V`
     <style>
         ur-page {
             --page-width: ${M};
@@ -122,19 +122,19 @@ import{k as V}from"./entry-preview-BcHUnPw7.js";import"./ur-button-ChCGp26u.js";
     </style>
     <ur-page
         page-description="${j}"
-        page-title="${d}"
+        page-title="${p}"
         page-cover="${T}"
         followers="${H}"
         show-stats="${N}"
     </ur-page>
-`,ue={title:"Urnovl/Business/Page",render:d=>ne(d)},n={args:o[0]},a={args:{...o[0],pageCover:null}},r={args:o[1]},t={args:o[0]},s={args:o[2]},i={args:{...o[0],width:"250px"}},c={args:{...o[0],width:"650px"}},l={args:{...o[2],width:"650px"}},p={args:{...o[0],pageCover:o[0].pageCover,width:"100%",borderRadius:"0"}};var m,f,h;n.parameters={...n.parameters,docs:{...(m=n.parameters)==null?void 0:m.docs,source:{originalSource:`{
+`,ue={title:"Urnovl/Business/Page",render:p=>ne(p)},n={args:o[0]},a={args:{...o[0],pageCover:null}},r={args:o[1]},t={args:o[0]},s={args:o[2]},i={args:{...o[0],width:"250px"}},c={args:{...o[0],width:"650px"}},d={args:{...o[2],width:"650px"}},l={args:{...o[0],pageCover:o[0].pageCover,width:"100%",borderRadius:"0"}};var m,f,h;n.parameters={...n.parameters,docs:{...(m=n.parameters)==null?void 0:m.docs,source:{originalSource:`{
   args: PAGES[0]
-}`,...(h=(f=n.parameters)==null?void 0:f.docs)==null?void 0:h.source}}};var b,v,k;a.parameters={...a.parameters,docs:{...(b=a.parameters)==null?void 0:b.docs,source:{originalSource:`{
+}`,...(h=(f=n.parameters)==null?void 0:f.docs)==null?void 0:h.source}}};var v,b,k;a.parameters={...a.parameters,docs:{...(v=a.parameters)==null?void 0:v.docs,source:{originalSource:`{
   args: {
     ...PAGES[0],
     pageCover: null
   }
-}`,...(k=(v=a.parameters)==null?void 0:v.docs)==null?void 0:k.source}}};var w,y,x;r.parameters={...r.parameters,docs:{...(w=r.parameters)==null?void 0:w.docs,source:{originalSource:`{
+}`,...(k=(b=a.parameters)==null?void 0:b.docs)==null?void 0:k.source}}};var w,y,x;r.parameters={...r.parameters,docs:{...(w=r.parameters)==null?void 0:w.docs,source:{originalSource:`{
   args: PAGES[1]
 }`,...(x=(y=r.parameters)==null?void 0:y.docs)==null?void 0:x.source}}};var P,C,S;t.parameters={...t.parameters,docs:{...(P=t.parameters)==null?void 0:P.docs,source:{originalSource:`{
   args: PAGES[0]
@@ -150,16 +150,16 @@ import{k as V}from"./entry-preview-BcHUnPw7.js";import"./ur-button-ChCGp26u.js";
     ...PAGES[0],
     width: '650px'
   }
-}`,...(F=(I=c.parameters)==null?void 0:I.docs)==null?void 0:F.source}}};var _,W,L;l.parameters={...l.parameters,docs:{...(_=l.parameters)==null?void 0:_.docs,source:{originalSource:`{
+}`,...(F=(I=c.parameters)==null?void 0:I.docs)==null?void 0:F.source}}};var _,W,L;d.parameters={...d.parameters,docs:{...(_=d.parameters)==null?void 0:_.docs,source:{originalSource:`{
   args: {
     ...PAGES[2],
     width: '650px'
   }
-}`,...(L=(W=l.parameters)==null?void 0:W.docs)==null?void 0:L.source}}};var U,$,R;p.parameters={...p.parameters,docs:{...(U=p.parameters)==null?void 0:U.docs,source:{originalSource:`{
+}`,...(L=(W=d.parameters)==null?void 0:W.docs)==null?void 0:L.source}}};var U,$,R;l.parameters={...l.parameters,docs:{...(U=l.parameters)==null?void 0:U.docs,source:{originalSource:`{
   args: {
     ...PAGES[0],
     pageCover: PAGES[0]['pageCover'],
     width: '100%',
     borderRadius: '0'
   }
-}`,...(R=($=p.parameters)==null?void 0:$.docs)==null?void 0:R.source}}};const me=["Default","BrokenCover","NoStats","SmallDescription","BigDescription","SmallerWidth","BiggerWidth","BigDescriptionWithBiggerWidth","NoBorderRadius"];export{s as BigDescription,l as BigDescriptionWithBiggerWidth,c as BiggerWidth,a as BrokenCover,n as Default,p as NoBorderRadius,r as NoStats,t as SmallDescription,i as SmallerWidth,me as __namedExportsOrder,ue as default};
+}`,...(R=($=l.parameters)==null?void 0:$.docs)==null?void 0:R.source}}};const me=["Default","BrokenCover","NoStats","SmallDescription","BigDescription","SmallerWidth","BiggerWidth","BigDescriptionWithBiggerWidth","NoBorderRadius"];export{s as BigDescription,d as BigDescriptionWithBiggerWidth,c as BiggerWidth,a as BrokenCover,n as Default,l as NoBorderRadius,r as NoStats,t as SmallDescription,i as SmallerWidth,me as __namedExportsOrder,ue as default};
