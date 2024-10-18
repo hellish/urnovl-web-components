@@ -59,6 +59,10 @@ export namespace Components {
         "showFooter": boolean;
         "showHeader": boolean;
     }
+    interface UrMenuItem {
+        "label": string;
+        "value": string;
+    }
     interface UrNovl {
         "authorAvatar": any;
         "authorName": any;
@@ -151,6 +155,24 @@ export namespace Components {
     interface UrSegmentButton {
         "likeLabel": string;
     }
+    interface UrSelect {
+        "clearable": boolean;
+        "disabled": boolean;
+        "endAligned": boolean;
+        "endIcon": string;
+        "form": string;
+        "helper": string;
+        "icon": string;
+        "items": Array<[label: string, value: string]>;
+        "label": string;
+        "multiple": boolean;
+        "name": string;
+        "placeholder": string;
+        "placement": 'auto' | 'bottom' | 'top';
+        "readonly": boolean;
+        "value": string | string[];
+        "variant": 'filled' | 'outlined';
+    }
     interface UrSwitch {
         "checked": boolean;
         "disabled": boolean;
@@ -197,6 +219,10 @@ export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
 }
+export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrMenuItemElement;
+}
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
@@ -208,6 +234,10 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrSelectElement;
 }
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -308,6 +338,23 @@ declare global {
         prototype: HTMLUrLocaleFilterPanelElement;
         new (): HTMLUrLocaleFilterPanelElement;
     };
+    interface HTMLUrMenuItemElementEventMap {
+        "itemClicked": string;
+    }
+    interface HTMLUrMenuItemElement extends Components.UrMenuItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrMenuItemElement: {
+        prototype: HTMLUrMenuItemElement;
+        new (): HTMLUrMenuItemElement;
+    };
     interface HTMLUrNovlElementEventMap {
         "authorClicked": any;
     }
@@ -386,6 +433,23 @@ declare global {
         prototype: HTMLUrSegmentButtonElement;
         new (): HTMLUrSegmentButtonElement;
     };
+    interface HTMLUrSelectElementEventMap {
+        "itemClicked": string | string[];
+    }
+    interface HTMLUrSelectElement extends Components.UrSelect, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrSelectElementEventMap>(type: K, listener: (this: HTMLUrSelectElement, ev: UrSelectCustomEvent<HTMLUrSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrSelectElementEventMap>(type: K, listener: (this: HTMLUrSelectElement, ev: UrSelectCustomEvent<HTMLUrSelectElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrSelectElement: {
+        prototype: HTMLUrSelectElement;
+        new (): HTMLUrSelectElement;
+    };
     interface HTMLUrSwitchElement extends Components.UrSwitch, HTMLStencilElement {
     }
     var HTMLUrSwitchElement: {
@@ -438,6 +502,7 @@ declare global {
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
+        "ur-menu-item": HTMLUrMenuItemElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
@@ -445,6 +510,7 @@ declare global {
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
+        "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
@@ -505,6 +571,11 @@ declare namespace LocalJSX {
         "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
         "showFooter"?: boolean;
         "showHeader"?: boolean;
+    }
+    interface UrMenuItem {
+        "label"?: string;
+        "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
+        "value"?: string;
     }
     interface UrNovl {
         "authorAvatar"?: any;
@@ -604,6 +675,25 @@ declare namespace LocalJSX {
     interface UrSegmentButton {
         "likeLabel"?: string;
     }
+    interface UrSelect {
+        "clearable"?: boolean;
+        "disabled"?: boolean;
+        "endAligned"?: boolean;
+        "endIcon"?: string;
+        "form"?: string;
+        "helper"?: string;
+        "icon"?: string;
+        "items"?: Array<[label: string, value: string]>;
+        "label"?: string;
+        "multiple"?: boolean;
+        "name"?: string;
+        "onItemClicked"?: (event: UrSelectCustomEvent<string | string[]>) => void;
+        "placeholder"?: string;
+        "placement"?: 'auto' | 'bottom' | 'top';
+        "readonly"?: boolean;
+        "value"?: string | string[];
+        "variant"?: 'filled' | 'outlined';
+    }
     interface UrSwitch {
         "checked"?: boolean;
         "disabled"?: boolean;
@@ -649,6 +739,7 @@ declare namespace LocalJSX {
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
+        "ur-menu-item": UrMenuItem;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
@@ -656,6 +747,7 @@ declare namespace LocalJSX {
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-segment-button": UrSegmentButton;
+        "ur-select": UrSelect;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
@@ -677,6 +769,7 @@ declare module "@stencil/core" {
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
+            "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
@@ -684,6 +777,7 @@ declare module "@stencil/core" {
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
+            "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
