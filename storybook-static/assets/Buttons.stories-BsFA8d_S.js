@@ -1,4 +1,4 @@
-import{k as i}from"./entry-preview-BcHUnPw7.js";import"./ur-button-ChCGp26u.js";import"./ur-button-arrow-right-BXhizl-Q.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-CXMOPRVH.js";import"./index-DgJ_IeSW.js";import"./index-CtULszVu.js";import"./template-yncBVCyc.js";import"./button-base-DCiXq4ub.js";import"./form-CYSikw0H.js";import"./index-DJNny1By.js";import"./watch-ByvFYHv8.js";const F=()=>i`
+import{k as i}from"./entry-preview-BcHUnPw7.js";import"./ur-button-C8nBwC0R.js";import"./ur-button-arrow-right-BXhizl-Q.js";import"./index-DrFu-skq.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-CXMOPRVH.js";import"./index-DgJ_IeSW.js";import"./index-CtULszVu.js";import"./template-yncBVCyc.js";import"./button-base-DCiXq4ub.js";import"./form-CYSikw0H.js";import"./index-DJNny1By.js";import"./watch-ByvFYHv8.js";const F=()=>i`
     <ur-button-arrow-left></ur-button-arrow-left>
 `,V=()=>i`
     <ur-button-arrow-right></ur-button-arrow-right>
