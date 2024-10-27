@@ -36,6 +36,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^2.0.2",
     "@stencil/core": "^4.22.1",
+    "@stencil/sass": "^3.0.12",
     "@storybook/addon-actions": "^8.3.6",
     "@storybook/addon-essentials": "^8.3.6",
     "@storybook/addon-links": "^8.3.6",
@@ -60,7 +61,6 @@
   "license": "MIT",
   "dependencies": {
     "@mdui/icons": "^1.0.2",
-    "@stencil/sass": "^3.0.12",
     "mdui": "^2.1.2",
     "swiper": "^11.1.14"
   }
