@@ -2,9 +2,9 @@ import { html } from 'lit';
 import '../components/ur-select/ur-select';
 
 const ITEMS = [
-    ['English', 'English'],
-    ['German', 'German'],
-    ['Greek', 'Greek']
+    ['English', 'English', false],
+    ['German', 'German', false],
+    ['Greek', 'Greek', false]
 ];
 
 const Select = ({
@@ -131,5 +131,21 @@ export const Full = {
         disabled: false,
         multiple: true,
         items: ITEMS
+    },
+};
+
+export const FullWithDisabledItems = {
+    args: {
+        variant: 'outlined',
+        placeholder: 'Choose a language',
+        helper: 'Select your preferred language',
+        endIcon: 'keyboard_arrow_down',
+        disabled: false,
+        multiple: true,
+        items: [
+            ['English', 'English', true],
+            ['German', 'German', true],
+            ['Greek', 'Greek', false]
+        ]
     },
 };

@@ -55,7 +55,7 @@ export class UrSelect {
     form: string = null;
 
     @Prop()
-    items: Array<[label: string, value: string]> = [];
+    items: Array<[label: string, value: string, disabled: boolean]> = [];
 
     @State()
     selectedValue: string | string[] = this.multiple ? [] : '';
@@ -113,10 +113,11 @@ export class UrSelect {
                     end-icon={this.endIcon}
                     form={this.form}
                 >
-                    {this.items.map(([label, value]) => (
+                    {this.items.map(([label, value, disabled]) => (
                         <ur-menu-item
                             value={value}
                             label={label}
+                            disabled={disabled}
                             onItemClicked={(event) => this.handleItemClicked(event)}
                         ></ur-menu-item>
                     ))}
