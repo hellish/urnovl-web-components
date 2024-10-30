@@ -1,26 +1,32 @@
 import { Config } from '@stencil/core';
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
-  namespace: 'urnovl-web-components',
-  outputTargets: [
-    {
-      type: 'dist',
-      esmLoaderPath: '../loader',
+    namespace: 'urnovl-web-components',
+    buildDist: true,
+    sourceMap: false,
+    plugins: [
+        sass()
+    ],
+    outputTargets: [
+        {
+            type: 'dist',
+            esmLoaderPath: '../loader',
+        },
+        {
+            type: 'dist-custom-elements',
+            customElementsExportBehavior: 'auto-define-custom-elements',
+            externalRuntime: false,
+        },
+        {
+            type: 'docs-readme',
+        },
+        {
+            type: 'www',
+            serviceWorker: null, // disable service workers
+        }
+    ],
+    testing: {
+        browserHeadless: "new",
     },
-    {
-      type: 'dist-custom-elements',
-      customElementsExportBehavior: 'auto-define-custom-elements',
-      externalRuntime: false,
-    },
-    {
-      type: 'docs-readme',
-    },
-    {
-      type: 'www',
-      serviceWorker: null, // disable service workers
-    },
-  ],
-  testing: {
-    browserHeadless: "new",
-  },
 };
