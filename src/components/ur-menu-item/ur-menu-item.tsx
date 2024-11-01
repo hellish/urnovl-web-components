@@ -15,6 +15,9 @@ export class UrMenuItem {
     @Prop()
     label: string = '';
 
+    @Prop()
+    disabled: boolean = false;
+
     @Event()
     itemClicked: EventEmitter<string>;
 
@@ -25,7 +28,7 @@ export class UrMenuItem {
     render() {
         return (
             <Host>
-                <mdui-menu-item value={this.value} onClick={() => this.handleClick()}>
+                <mdui-menu-item disabled={this.disabled} value={this.value} onClick={() => this.handleClick()}>
                     {this.label}
                 </mdui-menu-item>
             </Host>
