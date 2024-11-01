@@ -39,7 +39,7 @@ export class UrDialog {
     dialogConfirmed: EventEmitter<void>;
 
     componentDidLoad() {
-        this.dialogElement = this.el.shadowRoot.querySelector(".my-dialog");
+        this.dialogElement = this.el.shadowRoot.querySelector(".inner-dialog");
     }
 
     @Method()
@@ -65,7 +65,7 @@ export class UrDialog {
                     close-on-overlay-click={this.closeOnOverlayClick}
                     close-on-esc={this.closeOnEsc}
                     fullscreen={this.fullscreen}
-                    class="my-dialog">
+                    class="inner-dialog">
                     <div class="title">{this.headline}</div>
                     <div class="description">{this.description}</div>
                     <div class="actions">
