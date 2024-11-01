@@ -2,12 +2,12 @@ import { html } from 'lit';
 import '../components/ur-dialog/ur-dialog';
 
 const Dialog = ({
-                    headline = 'My Test Dialog',
-                    description = 'Test Description Content',
-                    open = false,
-                    fullscreen = false,
-                    closeOnEsc = true,
-                    closeOnOverlayClick = true,
+    headline,
+    description,
+    open = false,
+    fullscreen = false,
+    closeOnEsc = true,
+    closeOnOverlayClick = true,
 }) => html`
     <ur-dialog
         headline=${headline}
@@ -41,19 +41,46 @@ export const Default = {
 export const OpenByDefault = {
     args: {
         open: true,
-        headline: 'My Open Test Dialog',
-        description: 'Test Open Description Content',
+    },
+};
+
+export const WithoutCloseOnEsc = {
+    args: {
         closeOnEsc: false,
+    },
+};
+
+export const WithoutCloseOnOverlayClick = {
+    args: {
         closeOnOverlayClick: false,
     },
 };
 
-export const fullscreen = {
+export const Fullscreen = {
     args: {
         headline: 'My Open Test Dialog',
         description: 'Test Open Description Content',
-        closeOnEsc: false,
-        closeOnOverlayClick: false,
         fullscreen: true,
+    },
+};
+
+export const WithHeadline = {
+    args: {
+        headline: 'My Open Test Dialog',
+    },
+};
+
+export const WithDescription = {
+    args: {
+        description: 'Test Open Description Content',
+    },
+};
+
+export const WithHeadlineAndDescription = {
+    args: {
+        headline: 'My Open Test Dialog',
+        description: 'Test Open Description Content',
+        closeOnEsc: true,
+        closeOnOverlayClick: true,
     },
 };

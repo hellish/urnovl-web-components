@@ -18,10 +18,10 @@ export class UrDialog {
     icon: string = null;
 
     @Prop()
-    headline: string = 'My test dialog';
+    headline: string = null;
 
     @Prop()
-    description: string = "Test Description";
+    description: string = null;
 
     @Prop()
     open: boolean = false;
@@ -39,7 +39,7 @@ export class UrDialog {
     dialogConfirmed: EventEmitter<void>;
 
     componentDidLoad() {
-        this.dialogElement = this.el.shadowRoot.querySelector(".example-dialog");
+        this.dialogElement = this.el.shadowRoot.querySelector(".my-dialog");
     }
 
     @Method()
@@ -53,8 +53,8 @@ export class UrDialog {
     }
 
     handleConfirm() {
-        this.dialogConfirmed.emit(); // Emit the confirmation event
-        this.closeDialog(); // Close the dialog after confirmation
+        this.dialogConfirmed.emit();
+        this.closeDialog();
     }
 
     render() {
@@ -64,12 +64,13 @@ export class UrDialog {
                     open={this.open}
                     close-on-overlay-click={this.closeOnOverlayClick}
                     close-on-esc={this.closeOnEsc}
-                    class="example-dialog">
-                    <div class="mdui-dialog-title">{this.headline}</div>
-                    <div class="mdui-dialog-content">{this.description}</div>
-                    <div class="mdui-dialog-actions">
+                    fullscreen={this.fullscreen}
+                    class="my-dialog">
+                    <div class="title">{this.headline}</div>
+                    <div class="description">{this.description}</div>
+                    <div class="actions">
                         <ur-button onClick={() => this.handleConfirm()}>Confirm</ur-button>
-                        <ur-button class="mdui-button" onClick={() => this.closeDialog()}>Cancel</ur-button>
+                        <ur-button onClick={() => this.closeDialog()}>Cancel</ur-button>
                     </div>
                 </mdui-dialog>
                 <ur-button onClick={() => this.openDialog()}>Open Dialog</ur-button>
