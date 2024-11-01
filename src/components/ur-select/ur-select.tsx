@@ -9,6 +9,7 @@ import 'mdui/components/select.js';
     shadow: true,
 })
 export class UrSelect {
+
     @Prop()
     label: string = "Text Field"
 

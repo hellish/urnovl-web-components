@@ -8,11 +8,11 @@ import 'mdui/components/dialog.js';
     shadow: true,
 })
 export class UrDialog {
+
     @Element()
     el: HTMLElement;
 
-    private urDialog: any;
-    private dialogElement!: HTMLElement;
+    private dialogElement!: HTMLElement & { open: boolean };
 
     @Prop()
     icon: string = null;
@@ -43,12 +43,12 @@ export class UrDialog {
     }
 
     @Method()
-    openDialog() {
+    async openDialog() {
         this.dialogElement.open = true;
     }
 
     @Method()
-    closeDialog() {
+    async closeDialog() {
         this.dialogElement.open = false
     }
 
