@@ -7,16 +7,15 @@
 
 ## Properties
 
-| Property              | Attribute                | Description | Type      | Default              |
-| --------------------- | ------------------------ | ----------- | --------- | -------------------- |
-| `closeOnEsc`          | `close-on-esc`           |             | `boolean` | `true`               |
-| `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean` | `true`               |
-| `description`         | `description`            |             | `string`  | `"Test Description"` |
-| `fullscreen`          | `fullscreen`             |             | `boolean` | `false`              |
-| `headline`            | `headline`               |             | `string`  | `'My test dialog'`   |
-| `icon`                | `icon`                   |             | `string`  | `null`               |
-| `open`                | `open`                   |             | `boolean` | `false`              |
-| `stackedActions`      | `stacked-actions`        |             | `boolean` | `false`              |
+| Property              | Attribute                | Description | Type      | Default |
+| --------------------- | ------------------------ | ----------- | --------- | ------- |
+| `closeOnEsc`          | `close-on-esc`           |             | `boolean` | `true`  |
+| `closeOnOverlayClick` | `close-on-overlay-click` |             | `boolean` | `true`  |
+| `description`         | `description`            |             | `string`  | `null`  |
+| `fullscreen`          | `fullscreen`             |             | `boolean` | `false` |
+| `headline`            | `headline`               |             | `string`  | `null`  |
+| `icon`                | `icon`                   |             | `string`  | `null`  |
+| `open`                | `open`                   |             | `boolean` | `false` |
 
 
 ## Events
@@ -24,6 +23,29 @@
 | Event             | Description | Type                |
 | ----------------- | ----------- | ------------------- |
 | `dialogConfirmed` |             | `CustomEvent<void>` |
+
+
+## Methods
+
+### `closeDialog() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `openDialog() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies

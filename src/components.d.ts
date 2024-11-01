@@ -50,6 +50,7 @@ export namespace Components {
         "size": string;
     }
     interface UrDialog {
+        "closeDialog": () => Promise<void>;
         "closeOnEsc": boolean;
         "closeOnOverlayClick": boolean;
         "description": string;
@@ -57,7 +58,7 @@ export namespace Components {
         "headline": string;
         "icon": string;
         "open": boolean;
-        "stackedActions": boolean;
+        "openDialog": () => Promise<void>;
     }
     interface UrLoader {
     }
@@ -70,6 +71,7 @@ export namespace Components {
         "showHeader": boolean;
     }
     interface UrMenuItem {
+        "disabled": boolean;
         "label": string;
         "value": string;
     }
@@ -173,7 +175,7 @@ export namespace Components {
         "form": string;
         "helper": string;
         "icon": string;
-        "items": Array<[label: string, value: string]>;
+        "items": Array<[label: string, value: string, disabled: boolean]>;
         "label": string;
         "multiple": boolean;
         "name": string;
@@ -601,7 +603,6 @@ declare namespace LocalJSX {
         "icon"?: string;
         "onDialogConfirmed"?: (event: UrDialogCustomEvent<void>) => void;
         "open"?: boolean;
-        "stackedActions"?: boolean;
     }
     interface UrLoader {
     }
@@ -616,6 +617,7 @@ declare namespace LocalJSX {
         "showHeader"?: boolean;
     }
     interface UrMenuItem {
+        "disabled"?: boolean;
         "label"?: string;
         "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
         "value"?: string;
@@ -726,7 +728,7 @@ declare namespace LocalJSX {
         "form"?: string;
         "helper"?: string;
         "icon"?: string;
-        "items"?: Array<[label: string, value: string]>;
+        "items"?: Array<[label: string, value: string, disabled: boolean]>;
         "label"?: string;
         "multiple"?: boolean;
         "name"?: string;

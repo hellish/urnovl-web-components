@@ -19,6 +19,7 @@
 
 ### Used by
 
+ - [ur-dialog](../ur-dialog)
  - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
  - [ur-user](../ur-user)
@@ -26,6 +27,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ur-dialog --> ur-button
   ur-page --> ur-button
   ur-page-profile --> ur-button
   ur-user --> ur-button
