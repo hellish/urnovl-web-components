@@ -12,6 +12,7 @@
 | `authorAvatar`      | `author-avatar`       |             | `any`     | `undefined`           |
 | `authorName`        | `author-name`         |             | `any`     | `undefined`           |
 | `likes`             | `likes`               |             | `number`  | `0`                   |
+| `loading`           | `loading`             |             | `boolean` | `false`               |
 | `novlCover`         | `novl-cover`          |             | `any`     | `undefined`           |
 | `novlCoverFallback` | `novl-cover-fallback` |             | `string`  | `NOVL_COVER_FALLBACK` |
 | `novlDescription`   | `novl-description`    |             | `any`     | `undefined`           |

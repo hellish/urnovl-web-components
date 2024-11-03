@@ -5,6 +5,7 @@ export const config: Config = {
     namespace: 'urnovl-web-components',
     buildDist: true,
     sourceMap: false,
+    globalStyle: 'src/global.css',
     plugins: [
         sass()
     ],

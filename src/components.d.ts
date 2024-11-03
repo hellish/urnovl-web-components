@@ -78,6 +78,7 @@ export namespace Components {
         "authorAvatar": any;
         "authorName": any;
         "likes": number;
+        "loading": boolean;
         "novlCover": any;
         "novlCoverFallback": string;
         "novlDescription": any;
@@ -608,6 +609,7 @@ declare namespace LocalJSX {
         "authorAvatar"?: any;
         "authorName"?: any;
         "likes"?: number;
+        "loading"?: boolean;
         "novlCover"?: any;
         "novlCoverFallback"?: string;
         "novlDescription"?: any;

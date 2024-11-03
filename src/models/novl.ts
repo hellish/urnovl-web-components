@@ -1,4 +1,8 @@
-export type Novl = {
+export type LoadingNovl = {
+    loading: true;
+}
+
+export type LoadedNovl = {
     novlTitle: string;
     novlCover: string;
     likes?: number;
@@ -12,4 +16,6 @@ export type Novl = {
     publisherAvatar?: string;
     publisherName?: string;
     borderRadius?: string;
-};
+}
+
+export type Novl = LoadingNovl | LoadedNovl;

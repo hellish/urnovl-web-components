@@ -18,6 +18,7 @@ const Novl = ({
     publisherAvatar,
     borderRadius = '8px',
     width,
+    loading = false,
 }) => html`
     <style>
         ur-novl {
@@ -37,7 +38,8 @@ const Novl = ({
         published="${published}"
         price="${price}"
         publisher-name="${publisherName}"
-        publisher-avatar="${publisherAvatar}"></ur-novl>`;
+        publisher-avatar="${publisherAvatar}"
+        loading=${loading}></ur-novl>`;
 
 export default {
     title: 'Urnovl/Business/Novl',
@@ -96,4 +98,13 @@ export const NoBorderRadius = {
         width: '100%',
         borderRadius: '0',
     },
+};
+
+export const LoadingData = {
+    args: {
+        ...NOVLS[2],
+        loading: true,
+        showStats: true,
+        width: '300px'
+    }
 };
