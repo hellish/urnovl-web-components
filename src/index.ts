@@ -9,5 +9,5 @@
  */
 
 export { format } from './utils/utils';
-export type * from './models/novl';
-export type * from './components.d.ts';
+export type { Novl } from './models/novl';
+// export type * from './components.d.ts';
