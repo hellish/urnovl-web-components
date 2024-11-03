@@ -2,6 +2,10 @@ import { html } from 'lit';
 import '../components/ur-button/ur-button';
 import '../components/ur-dialog/ur-dialog';
 
+const DialogContent = () => html`
+    <div style="padding: 25px">[show any dialog content here]</div>
+`;
+
 const Dialog = ({
     open = false,
     fullscreen = false,
@@ -23,7 +27,7 @@ const Dialog = ({
         close-on-esc=${closeOnEsc}
         close-on-overlay-click=${closeOnOverlayClick}
     >
-        <div style="padding: 25px">[show any dialog content here]</div>
+        ${DialogContent()}
     </ur-dialog>
 `;
 
