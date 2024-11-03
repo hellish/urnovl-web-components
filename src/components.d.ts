@@ -397,6 +397,8 @@ declare global {
     };
     interface HTMLUrNovlCarouselElementEventMap {
         "intersectionUpdated": Array<IntersectionObserverEntry>;
+        "prevClicked": void;
+        "nextClicked": void;
     }
     interface HTMLUrNovlCarouselElement extends Components.UrNovlCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlCarouselElementEventMap>(type: K, listener: (this: HTMLUrNovlCarouselElement, ev: UrNovlCarouselCustomEvent<HTMLUrNovlCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -645,6 +647,8 @@ declare namespace LocalJSX {
         "navigation"?: boolean;
         "novls"?: Array<Novl>;
         "onIntersectionUpdated"?: (event: UrNovlCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
+        "onNextClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
+        "onPrevClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }

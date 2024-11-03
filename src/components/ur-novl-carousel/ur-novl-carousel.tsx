@@ -40,6 +40,12 @@ export class UrNovlCarousel {
     @Event()
     intersectionUpdated: EventEmitter<Array<IntersectionObserverEntry>>;
 
+    @Event()
+    prevClicked: EventEmitter<void>;
+
+    @Event()
+    nextClicked: EventEmitter<void>;
+
     private onIntersection = async (entries: Array<IntersectionObserverEntry>) => {
         this.intersectionUpdated.emit(entries);
     };
@@ -50,9 +56,11 @@ export class UrNovlCarousel {
         if (this.navigation) {
             this.el.shadowRoot.querySelector('ur-button-arrow-left').addEventListener('click', () => {
                 container?.swiper?.slidePrev();
+                this.prevClicked.emit();
             });
             this.el.shadowRoot.querySelector('ur-button-arrow-right').addEventListener('click', () => {
                 container?.swiper?.slideNext();
+                this.nextClicked.emit();
             });
         }
 
