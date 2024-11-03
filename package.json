@@ -1,19 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "urnovl-web-components",
-  "version": "0.0.134",
-  "description": "Web components for Urnovl",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/urnovl-web-components/urnovl-web-components.esm.js",
-  "exports": {
-    ".": {
-      "import": "./dist/urnovl-web-components/urnovl-web-components.esm.js",
-      "require": "./dist/urnovl-web-components/urnovl-web-components.cjs.js"
-=======
     "name": "urnovl-web-components",
     "version": "0.0.133",
     "description": "Web components for Urnovl",
@@ -33,7 +18,6 @@
             "require": "./loader/index.cjs",
             "types": "./loader/index.d.ts"
         }
->>>>>>> e802c13 (Support loading state for novl)
     },
     "files": [
         "dist/",
