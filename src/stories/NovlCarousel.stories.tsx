@@ -18,10 +18,11 @@ const NovlCarousel = ({
     containerBackgroundColor = '#efefef',
 }) => html`
     <script>
-        const carousel = document.getElementById('novls-carousel')
-        carousel.addEventListener('novlClicked', (event) => {
-            alert('novl clicked with id ' + event.detail);
-        });
+        for (const item of document.getElementsByClassName('novls-carousel')) {
+            item.addEventListener('novlClicked', (event) => {
+                alert('novl clicked with id ' + event.detail);
+            })
+        }
     </script>
     <style>
         ur-novl-carousel {
@@ -30,7 +31,7 @@ const NovlCarousel = ({
     </style>
     <div style="width: ${containerWidth}; box-sizing:border-box; background: ${containerBackgroundColor};margin: 0;padding: ${containerPadding};">
         <ur-novl-carousel
-            id="novls-carousel"
+            class="novls-carousel"
             .novls="${novls}"
             .breakpoints="${breakpoints}"
             .grid="${grid}"
