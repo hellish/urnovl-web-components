@@ -28,9 +28,9 @@
 
 ## Events
 
-| Event           | Description | Type               |
-| --------------- | ----------- | ------------------ |
-| `authorClicked` |             | `CustomEvent<any>` |
+| Event         | Description | Type                  |
+| ------------- | ----------- | --------------------- |
+| `novlClicked` |             | `CustomEvent<string>` |
 
 
 ## Dependencies
