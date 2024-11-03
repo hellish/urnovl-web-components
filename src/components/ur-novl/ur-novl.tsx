@@ -56,12 +56,32 @@ export class UrNovl {
     @Event()
     authorClicked;
 
+    renderLoading() {
+        return <Host>
+            <div class="novl loading">
+                <section class="cover loading"></section>
+                <section class="info">
+                    <div class="title loading">&nbsp;</div>
+                    <div class="stats loading"></div>
+                    <div class="description loading">&nbsp;</div>
+                    <div class="author">
+                        <div class="avatar loading">&nbsp;</div>
+                        <div class="name loading">&nbsp;</div>
+                    </div>
+                </section>
+            </div>
+        </Host>
+    }
+
     render() {
+        if (this.loading) {
+            return this.renderLoading();
+        }
+
         return (
             <Host>
                 <div class="novl">
-                    {this.loading && <section class="cover loading"></section>}
-                    {!this.loading && <section
+                    <section
                         class="cover"
                         style={{
                             backgroundImage: this.novlCover ? `url(${this.novlCover})` : `url(${this.novlCoverFallback})`,
@@ -83,12 +103,10 @@ export class UrNovl {
                                 <div class="name">{this.publisherName}</div>
                             </div>
                         )}
-                    </section>}
+                    </section>
                     <section class="info">
-                        {this.loading && <div class="title loading">&nbsp;</div>}
-                        {!this.loading && <div class="title">{this.novlTitle}</div>}
-                        {this.loading && <div class="stats loading"></div>}
-                        {this.showStats && !this.loading && (
+                        <div class="title">{this.novlTitle}</div>
+                        {this.showStats && (
                             <div class="stats">
                                 <div class="likes">
                                     <div>
@@ -101,13 +119,10 @@ export class UrNovl {
                                 </div>
                             </div>
                         )}
-                        {this.loading && <div class="description loading">&nbsp;</div>}
-                        {!this.loading && <div class="description">{this.novlDescription}</div>}
+                        <div class="description">{this.novlDescription}</div>
                         <div class="author" onClick={_ => this.authorClicked.emit()}>
-                            {this.loading && <div class="avatar loading">&nbsp;</div>}
-                            {!this.loading && <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar})` }}></div>}
-                            {this.loading && <div class="name loading">&nbsp;</div>}
-                            {!this.loading && <div class="name">{this.authorName}</div>}
+                            <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar})` }}></div>
+                            <div class="name">{this.authorName}</div>
                         </div>
                     </section>
                 </div>

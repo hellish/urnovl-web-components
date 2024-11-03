@@ -20,6 +20,11 @@
     overflow: hidden;
     width: var(--novl-width);
     border-radius: var(--novl-border-radius);
+    cursor: pointer;
+}
+
+:host .novl.loading {
+    cursor: default;
 }
 
 :host .cover {
