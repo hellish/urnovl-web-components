@@ -22,6 +22,8 @@
 | Event                 | Description | Type                                       |
 | --------------------- | ----------- | ------------------------------------------ |
 | `intersectionUpdated` |             | `CustomEvent<IntersectionObserverEntry[]>` |
+| `nextClicked`         |             | `CustomEvent<void>`                        |
+| `prevClicked`         |             | `CustomEvent<void>`                        |
 
 
 ## Dependencies
