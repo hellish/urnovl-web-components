@@ -1,4 +1,4 @@
-import { Event, Component, Host, Prop, h } from '@stencil/core';
+import { Event, Component, Host, Prop, h, EventEmitter } from '@stencil/core';
 import { NOVL_COVER_FALLBACK } from '../../data/novls';
 
 @Component({
@@ -54,7 +54,7 @@ export class UrNovl {
     publisherName: string | null = null;
 
     @Event()
-    authorClicked;
+    novlClicked: EventEmitter<string>;
 
     renderLoading() {
         return <Host>
@@ -80,7 +80,7 @@ export class UrNovl {
 
         return (
             <Host>
-                <div class="novl">
+                <div class="novl" onClick={() => this.novlClicked.emit(this.novlId)}>
                     <section
                         class="cover"
                         style={{
@@ -120,7 +120,7 @@ export class UrNovl {
                             </div>
                         )}
                         <div class="description">{this.novlDescription}</div>
-                        <div class="author" onClick={_ => this.authorClicked.emit()}>
+                        <div class="author">
                             <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar})` }}></div>
                             <div class="name">{this.authorName}</div>
                         </div>

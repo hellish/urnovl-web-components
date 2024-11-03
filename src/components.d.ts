@@ -379,7 +379,7 @@ declare global {
         new (): HTMLUrMenuItemElement;
     };
     interface HTMLUrNovlElementEventMap {
-        "authorClicked": any;
+        "novlClicked": string;
     }
     interface HTMLUrNovlElement extends Components.UrNovl, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlElementEventMap>(type: K, listener: (this: HTMLUrNovlElement, ev: UrNovlCustomEvent<HTMLUrNovlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -631,7 +631,7 @@ declare namespace LocalJSX {
         "novlDescription"?: any;
         "novlId"?: any;
         "novlTitle"?: string;
-        "onAuthorClicked"?: (event: UrNovlCustomEvent<any>) => void;
+        "onNovlClicked"?: (event: UrNovlCustomEvent<string>) => void;
         "price"?: string | null;
         "published"?: boolean;
         "publisherAvatar"?: string | null;
