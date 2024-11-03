@@ -16,6 +16,9 @@ export const NOVLS: Array<Novl> = [
         published: false,
     },
     {
+        loading: true,
+    },
+    {
         novlTitle: 'Welcome to my nightmare',
         novlCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',
         showStats: false,
@@ -49,6 +52,9 @@ export const NOVLS: Array<Novl> = [
         price: '15$',
     },
     {
+        loading: true,
+    },
+    {
         novlTitle: 'Welcome to my nightmare',
         novlCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',
         likes: 7,
@@ -249,16 +255,7 @@ export const NOVLS: Array<Novl> = [
         price: '15$',
     },
     {
-        novlTitle: 'Welcome to my nightmare',
-        novlCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',
-        likes: 7,
-        views: 1024,
-        showStats: true,
-        novlDescription: 'Lorem Ipsum is simply dummy text.',
-        authorAvatar: 'https://lh4.googleusercontent.com/-FxnW9K6NrJY/AAAAAAAAAAI/AAAAAAAAACM/irHh3OywY_Y/photo.jpg',
-        authorName: 'James Bond 007',
-        published: true,
-        price: '15$',
+        loading: true,
     },
     {
         novlTitle: 'Welcome to my nightmare',
@@ -283,6 +280,21 @@ export const NOVLS: Array<Novl> = [
         authorName: 'James Bond 007',
         published: true,
         price: '15$',
+    },
+    {
+        novlTitle: 'Welcome to my nightmare',
+        novlCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',
+        likes: 7,
+        views: 1024,
+        showStats: true,
+        novlDescription: 'Lorem Ipsum is simply dummy text.',
+        authorAvatar: 'https://lh4.googleusercontent.com/-FxnW9K6NrJY/AAAAAAAAAAI/AAAAAAAAACM/irHh3OywY_Y/photo.jpg',
+        authorName: 'James Bond 007',
+        published: true,
+        price: '15$',
+    },,
+    {
+        loading: true,
     },
     {
         novlTitle: 'Welcome to my nightmare',
@@ -312,5 +324,8 @@ export const NOVLS: Array<Novl> = [
         publisherName: 'Penguin',
         published: false,
         price: '1555€',
+    },
+    {
+        loading: true,
     }
 ];
