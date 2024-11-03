@@ -8,6 +8,9 @@ import { NOVL_COVER_FALLBACK } from '../../data/novls';
 })
 export class UrNovl {
 
+    @Prop({ reflect: true })
+    novlId;
+
     @Prop()
     loading = false;
 

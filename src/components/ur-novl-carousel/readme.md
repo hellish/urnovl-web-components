@@ -17,6 +17,13 @@
 | `spaceBetween`  | `space-between`   |             | `number \| string`                                                    | `'0'`                                          |
 
 
+## Events
+
+| Event                 | Description | Type                                       |
+| --------------------- | ----------- | ------------------------------------------ |
+| `intersectionUpdated` |             | `CustomEvent<IntersectionObserverEntry[]>` |
+
+
 ## Dependencies
 
 ### Depends on

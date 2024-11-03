@@ -1,8 +1,10 @@
 export type LoadingNovl = {
+    novlId: string;
     loading: true;
 }
 
 export type LoadedNovl = {
+    novlId: string;
     novlTitle: string;
     novlCover: string;
     likes?: number;

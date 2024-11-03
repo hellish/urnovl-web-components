@@ -4,6 +4,7 @@ import '../components/ur-novl/ur-novl';
 import { NOVLS } from '../data/novls';
 
 const Novl = ({
+    novlId,
     novlTitle,
     novlCover,
     likes,
@@ -27,6 +28,7 @@ const Novl = ({
         }
     </style>
     <ur-novl
+        novl-id="${novlId}"
         author-name="${authorName}"
         author-avatar="${authorAvatar}"
         novl-description="${novlDescription}"

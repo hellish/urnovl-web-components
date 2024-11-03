@@ -1,4 +1,4 @@
-import { Component, Element, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import { Novl } from '../../models/novl';
 import { Breakpoints, Grid } from '../../data/novl-carousel';
 
@@ -8,6 +8,8 @@ import { Breakpoints, Grid } from '../../data/novl-carousel';
     shadow: true,
 })
 export class UrNovlCarousel {
+
+    private observer: IntersectionObserver;
 
     @Element()
     el: HTMLElement;
@@ -35,6 +37,13 @@ export class UrNovlCarousel {
     @Prop()
     navigation?: boolean = false;
 
+    @Event()
+    intersectionUpdated: EventEmitter<Array<IntersectionObserverEntry>>;
+
+    private onIntersection = async (entries: Array<IntersectionObserverEntry>) => {
+        this.intersectionUpdated.emit(entries);
+    };
+
     componentDidLoad() {
         const container: any = this.el.shadowRoot.querySelector('swiper-container');
 
@@ -46,6 +55,12 @@ export class UrNovlCarousel {
                 container?.swiper?.slideNext();
             });
         }
+
+        const novls = this.el.shadowRoot.querySelectorAll('ur-novl');
+        this.observer = new IntersectionObserver(this.onIntersection);
+        novls.forEach(novl => {
+            this.observer.observe(novl);
+        })
     }
 
     render() {

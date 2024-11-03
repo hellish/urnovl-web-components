@@ -82,6 +82,7 @@ export namespace Components {
         "novlCover": any;
         "novlCoverFallback": string;
         "novlDescription": any;
+        "novlId": any;
         "novlTitle": string;
         "price": string | null;
         "published": boolean;
@@ -239,6 +240,10 @@ export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlElement;
 }
+export interface UrNovlCarouselCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNovlCarouselElement;
+}
 export interface UrPageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageElement;
@@ -390,7 +395,18 @@ declare global {
         prototype: HTMLUrNovlElement;
         new (): HTMLUrNovlElement;
     };
+    interface HTMLUrNovlCarouselElementEventMap {
+        "intersectionUpdated": Array<IntersectionObserverEntry>;
+    }
     interface HTMLUrNovlCarouselElement extends Components.UrNovlCarousel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNovlCarouselElementEventMap>(type: K, listener: (this: HTMLUrNovlCarouselElement, ev: UrNovlCarouselCustomEvent<HTMLUrNovlCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNovlCarouselElementEventMap>(type: K, listener: (this: HTMLUrNovlCarouselElement, ev: UrNovlCarouselCustomEvent<HTMLUrNovlCarouselElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrNovlCarouselElement: {
         prototype: HTMLUrNovlCarouselElement;
@@ -613,6 +629,7 @@ declare namespace LocalJSX {
         "novlCover"?: any;
         "novlCoverFallback"?: string;
         "novlDescription"?: any;
+        "novlId"?: any;
         "novlTitle"?: string;
         "onAuthorClicked"?: (event: UrNovlCustomEvent<any>) => void;
         "price"?: string | null;
@@ -627,6 +644,7 @@ declare namespace LocalJSX {
         "grid"?: Grid;
         "navigation"?: boolean;
         "novls"?: Array<Novl>;
+        "onIntersectionUpdated"?: (event: UrNovlCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }

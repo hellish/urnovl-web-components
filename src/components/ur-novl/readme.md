@@ -16,6 +16,7 @@
 | `novlCover`         | `novl-cover`          |             | `any`     | `undefined`           |
 | `novlCoverFallback` | `novl-cover-fallback` |             | `string`  | `NOVL_COVER_FALLBACK` |
 | `novlDescription`   | `novl-description`    |             | `any`     | `undefined`           |
+| `novlId`            | `novl-id`             |             | `any`     | `undefined`           |
 | `novlTitle`         | `novl-title`          |             | `string`  | `'Novl title'`        |
 | `price`             | `price`               |             | `string`  | `null`                |
 | `published`         | `published`           |             | `boolean` | `false`               |
