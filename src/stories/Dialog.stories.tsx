@@ -73,8 +73,6 @@ export const RoundedWithBorderRadius = {
 
 export const Fullscreen = {
     args: {
-        headline: 'My Open Test Dialog',
-        description: 'Test Open Description Content',
         fullscreen: true,
     },
 };
