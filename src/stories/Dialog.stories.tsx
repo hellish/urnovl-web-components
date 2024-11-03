@@ -1,23 +1,30 @@
 import { html } from 'lit';
+import '../components/ur-button/ur-button';
 import '../components/ur-dialog/ur-dialog';
 
 const Dialog = ({
-    headline,
-    description,
     open = false,
     fullscreen = false,
     closeOnEsc = true,
     closeOnOverlayClick = true,
+    borderRadius = "0",
 }) => html`
+    <script>
+        function handleClick() {
+            document.getElementById('ur-dialog-1').openDialog();
+        }
+    </script>
+    <ur-button onclick="handleClick()">Open</ur-button>
     <ur-dialog
-        headline=${headline}
-        description=${description}
+        id="ur-dialog-1"
         open=${open}
+        border-radius=${borderRadius}
         fullscreen=${fullscreen}
         close-on-esc=${closeOnEsc}
         close-on-overlay-click=${closeOnOverlayClick}
-        @dialogConfirmed=${() => console.log('Dialog confirmed!')}
-    ></ur-dialog>
+    >
+        <div style="padding: 25px">[show any dialog content here]</div>
+    </ur-dialog>
 `;
 
 export default {
@@ -27,8 +34,6 @@ export default {
         open: { control: 'boolean' },
         closeOnEsc: { control: 'boolean' },
         closeOnOverlayClick: { control: 'boolean' },
-        headline: { control: 'text' },
-        description: { control: 'text' },
     },
 };
 
@@ -56,31 +61,16 @@ export const WithoutCloseOnOverlayClick = {
     },
 };
 
+export const RoundedWithBorderRadius = {
+    args: {
+        borderRadius: "15px"
+    },
+};
+
 export const Fullscreen = {
     args: {
         headline: 'My Open Test Dialog',
         description: 'Test Open Description Content',
         fullscreen: true,
-    },
-};
-
-export const WithHeadline = {
-    args: {
-        headline: 'My Open Test Dialog',
-    },
-};
-
-export const WithDescription = {
-    args: {
-        description: 'Test Open Description Content',
-    },
-};
-
-export const WithHeadlineAndDescription = {
-    args: {
-        headline: 'My Open Test Dialog',
-        description: 'Test Open Description Content',
-        closeOnEsc: true,
-        closeOnOverlayClick: true,
     },
 };

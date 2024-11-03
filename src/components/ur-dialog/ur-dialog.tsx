@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
 
 import 'mdui/components/dialog.js';
 
@@ -9,36 +9,31 @@ import 'mdui/components/dialog.js';
 })
 export class UrDialog {
 
+    private dialogElement!: HTMLElement & { open: boolean };
+
     @Element()
     el: HTMLElement;
 
-    private dialogElement!: HTMLElement & { open: boolean };
+    @Prop()
+    description: string | null = null;
 
     @Prop()
-    icon: string = null;
+    open = false;
 
     @Prop()
-    headline: string = null;
+    fullscreen = false;
 
     @Prop()
-    description: string = null;
+    closeOnEsc = true;
 
     @Prop()
-    open: boolean = false;
+    closeOnOverlayClick = true;
 
     @Prop()
-    fullscreen: boolean = false;
-
-    @Prop()
-    closeOnEsc: boolean = true;
-
-    @Prop()
-    closeOnOverlayClick: boolean = true;
-
-    @Event()
-    dialogConfirmed: EventEmitter<void>;
+    borderRadius: string | null = "0";
 
     componentDidLoad() {
+        this.el.style.setProperty("--ur-dialog-panel-border-radius", this.borderRadius);
         this.dialogElement = this.el.shadowRoot.querySelector(".inner-dialog");
     }
 
@@ -52,11 +47,6 @@ export class UrDialog {
         this.dialogElement.open = false
     }
 
-    handleConfirm() {
-        this.dialogConfirmed.emit();
-        this.closeDialog();
-    }
-
     render() {
         return (
             <Host>
@@ -66,14 +56,8 @@ export class UrDialog {
                     close-on-esc={this.closeOnEsc}
                     fullscreen={this.fullscreen}
                     class="inner-dialog">
-                    <div class="title">{this.headline}</div>
-                    <div class="description">{this.description}</div>
-                    <div class="actions">
-                        <ur-button onClick={() => this.handleConfirm()}>Confirm</ur-button>
-                        <ur-button onClick={() => this.closeDialog()}>Cancel</ur-button>
-                    </div>
+                    <slot></slot>
                 </mdui-dialog>
-                <ur-button onClick={() => this.openDialog()}>Open Dialog</ur-button>
             </Host>
         );
     }

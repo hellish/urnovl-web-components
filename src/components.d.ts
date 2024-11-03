@@ -50,13 +50,12 @@ export namespace Components {
         "size": string;
     }
     interface UrDialog {
+        "borderRadius": string | null;
         "closeDialog": () => Promise<void>;
         "closeOnEsc": boolean;
         "closeOnOverlayClick": boolean;
-        "description": string;
+        "description": string | null;
         "fullscreen": boolean;
-        "headline": string;
-        "icon": string;
         "open": boolean;
         "openDialog": () => Promise<void>;
     }
@@ -227,10 +226,6 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
-export interface UrDialogCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrDialogElement;
-}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
@@ -324,18 +319,7 @@ declare global {
         prototype: HTMLUrChipElement;
         new (): HTMLUrChipElement;
     };
-    interface HTMLUrDialogElementEventMap {
-        "dialogConfirmed": void;
-    }
     interface HTMLUrDialogElement extends Components.UrDialog, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrDialogElementEventMap>(type: K, listener: (this: HTMLUrDialogElement, ev: UrDialogCustomEvent<HTMLUrDialogElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrDialogElementEventMap>(type: K, listener: (this: HTMLUrDialogElement, ev: UrDialogCustomEvent<HTMLUrDialogElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrDialogElement: {
         prototype: HTMLUrDialogElement;
@@ -595,13 +579,11 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface UrDialog {
+        "borderRadius"?: string | null;
         "closeOnEsc"?: boolean;
         "closeOnOverlayClick"?: boolean;
-        "description"?: string;
+        "description"?: string | null;
         "fullscreen"?: boolean;
-        "headline"?: string;
-        "icon"?: string;
-        "onDialogConfirmed"?: (event: UrDialogCustomEvent<void>) => void;
         "open"?: boolean;
     }
     interface UrLoader {
