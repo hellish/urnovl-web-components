@@ -17,6 +17,12 @@ const NovlCarousel = ({
     containerPadding = '20px',
     containerBackgroundColor = '#efefef',
 }) => html`
+    <script>
+        const carousel = document.getElementById('novls-carousel')
+        carousel.addEventListener('novlClicked', (event) => {
+            alert('novl clicked with id ' + event.detail);
+        });
+    </script>
     <style>
         ur-novl-carousel {
             --swiper-slide-width: ${slideWidth};
@@ -24,6 +30,7 @@ const NovlCarousel = ({
     </style>
     <div style="width: ${containerWidth}; box-sizing:border-box; background: ${containerBackgroundColor};margin: 0;padding: ${containerPadding};">
         <ur-novl-carousel
+            id="novls-carousel"
             .novls="${novls}"
             .breakpoints="${breakpoints}"
             .grid="${grid}"
