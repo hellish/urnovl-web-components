@@ -23,7 +23,7 @@
     display: flex;
     padding: 0 32px;
     height: 48px;
-    margin: 4px 0 0 0;
+    margin: 5px 0 0 0;
     align-items: center;
     justify-content: center;
 }
@@ -53,6 +53,9 @@ mdui-top-app-bar-title {
     padding: 0 24px 0 8px;
     background: #EFEEF0;
     cursor: text;
+    flex: 1; /* Only grow as much as needed for content */
+    max-width: max-content;
+    overflow: hidden;
 }
 
 :host-context(html.ur-theme-dark) .search-lnk {
@@ -67,4 +70,7 @@ mdui-top-app-bar-title {
 
 .search-txt {
     font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
