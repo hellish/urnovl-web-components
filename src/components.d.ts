@@ -69,6 +69,34 @@ export namespace Components {
         "showFooter": boolean;
         "showHeader": boolean;
     }
+    interface UrLogo {
+        /**
+          * Color of the logo
+         */
+        "color": string;
+        /**
+          * Height of the logo
+         */
+        "height": string;
+        /**
+          * Opacity of the logo
+         */
+        "opacity": number;
+        /**
+          * Rotation angle of the logo in degrees
+         */
+        "rotation": number;
+        /**
+          * Width of the logo
+         */
+        "width": string;
+    }
+    interface UrMainDesktopTopappbar {
+        "logoOpacity": number;
+        "logoRotation": number;
+        "searchText": string;
+        "variant": string;
+    }
     interface UrMenuItem {
         "disabled": boolean;
         "label": string;
@@ -209,6 +237,14 @@ export namespace Components {
         "value": string;
         "variant": 'filled' | 'outlined';
     }
+    interface UrTopappbar {
+        "headerTitle": string;
+        "logoOpacity": number;
+        "logoRotation": number;
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold": number;
+        "variant": string;
+    }
     interface UrUser {
         "followers": number;
         "showStats": boolean;
@@ -231,6 +267,10 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
+}
+export interface UrMainDesktopTopappbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrMainDesktopTopappbarElement;
 }
 export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -360,6 +400,29 @@ declare global {
     var HTMLUrLocaleFilterPanelElement: {
         prototype: HTMLUrLocaleFilterPanelElement;
         new (): HTMLUrLocaleFilterPanelElement;
+    };
+    interface HTMLUrLogoElement extends Components.UrLogo, HTMLStencilElement {
+    }
+    var HTMLUrLogoElement: {
+        prototype: HTMLUrLogoElement;
+        new (): HTMLUrLogoElement;
+    };
+    interface HTMLUrMainDesktopTopappbarElementEventMap {
+        "searchLinkClicked": void;
+    }
+    interface HTMLUrMainDesktopTopappbarElement extends Components.UrMainDesktopTopappbar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrMainDesktopTopappbarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopappbarElement, ev: UrMainDesktopTopappbarCustomEvent<HTMLUrMainDesktopTopappbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrMainDesktopTopappbarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopappbarElement, ev: UrMainDesktopTopappbarCustomEvent<HTMLUrMainDesktopTopappbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrMainDesktopTopappbarElement: {
+        prototype: HTMLUrMainDesktopTopappbarElement;
+        new (): HTMLUrMainDesktopTopappbarElement;
     };
     interface HTMLUrMenuItemElementEventMap {
         "itemClicked": string;
@@ -504,6 +567,12 @@ declare global {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
     };
+    interface HTMLUrTopappbarElement extends Components.UrTopappbar, HTMLStencilElement {
+    }
+    var HTMLUrTopappbarElement: {
+        prototype: HTMLUrTopappbarElement;
+        new (): HTMLUrTopappbarElement;
+    };
     interface HTMLUrUserElementEventMap {
         "userFollowClicked": any;
     }
@@ -539,6 +608,8 @@ declare global {
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
+        "ur-logo": HTMLUrLogoElement;
+        "ur-main-desktop-topappbar": HTMLUrMainDesktopTopappbarElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
@@ -551,6 +622,7 @@ declare global {
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-topappbar": HTMLUrTopappbarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
@@ -616,6 +688,35 @@ declare namespace LocalJSX {
         "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
         "showFooter"?: boolean;
         "showHeader"?: boolean;
+    }
+    interface UrLogo {
+        /**
+          * Color of the logo
+         */
+        "color"?: string;
+        /**
+          * Height of the logo
+         */
+        "height"?: string;
+        /**
+          * Opacity of the logo
+         */
+        "opacity"?: number;
+        /**
+          * Rotation angle of the logo in degrees
+         */
+        "rotation"?: number;
+        /**
+          * Width of the logo
+         */
+        "width"?: string;
+    }
+    interface UrMainDesktopTopappbar {
+        "logoOpacity"?: number;
+        "logoRotation"?: number;
+        "onSearchLinkClicked"?: (event: UrMainDesktopTopappbarCustomEvent<void>) => void;
+        "searchText"?: string;
+        "variant"?: string;
     }
     interface UrMenuItem {
         "disabled"?: boolean;
@@ -768,6 +869,14 @@ declare namespace LocalJSX {
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
     }
+    interface UrTopappbar {
+        "headerTitle"?: string;
+        "logoOpacity"?: number;
+        "logoRotation"?: number;
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold"?: number;
+        "variant"?: string;
+    }
     interface UrUser {
         "followers"?: number;
         "onUserFollowClicked"?: (event: UrUserCustomEvent<any>) => void;
@@ -791,6 +900,8 @@ declare namespace LocalJSX {
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
+        "ur-logo": UrLogo;
+        "ur-main-desktop-topappbar": UrMainDesktopTopappbar;
         "ur-menu-item": UrMenuItem;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
@@ -803,6 +914,7 @@ declare namespace LocalJSX {
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-topappbar": UrTopappbar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
     }
@@ -822,6 +934,8 @@ declare module "@stencil/core" {
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
+            "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
+            "ur-main-desktop-topappbar": LocalJSX.UrMainDesktopTopappbar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopappbarElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
@@ -834,6 +948,7 @@ declare module "@stencil/core" {
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-topappbar": LocalJSX.UrTopappbar & JSXBase.HTMLAttributes<HTMLUrTopappbarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }

@@ -1,0 +1,34 @@
+:host {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
+    --ur-state-layers-outline-variant-opacity-16: var(--mdui-state-layers-outline-variant-opacity-16);
+}
+
+.urnovl-logo {
+    width: 70px;
+    height: 19px;
+    margin: auto 8;
+    fill: var(--ur-color-on-background, #000);
+}
+
+mdui-top-app-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    column-gap: 8px;
+    padding: 0 16px;
+}
+
+mdui-top-app-bar[variant="small"] {
+    height: 48px;
+}
+
+mdui-top-app-bar-title {
+    font-size: 20px;
+    color: var(--ur-color-on-background, #000);
+}
