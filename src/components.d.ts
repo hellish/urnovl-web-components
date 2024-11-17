@@ -64,6 +64,7 @@ export namespace Components {
     interface UrListItem {
         "active": boolean;
         "alignment": 'start' | 'center' | 'end';
+        "content"?: string;
         "description"?: string;
         "disabled": boolean;
         "endIcon"?: string;
@@ -73,6 +74,9 @@ export namespace Components {
         "rel"?: string;
         "rounded": boolean;
         "target"?: '_blank' | '_self' | '_parent' | '_top';
+    }
+    interface UrListSubheader {
+        "text": string;
     }
     interface UrLoader {
     }
@@ -398,6 +402,12 @@ declare global {
         prototype: HTMLUrListItemElement;
         new (): HTMLUrListItemElement;
     };
+    interface HTMLUrListSubheaderElement extends Components.UrListSubheader, HTMLStencilElement {
+    }
+    var HTMLUrListSubheaderElement: {
+        prototype: HTMLUrListSubheaderElement;
+        new (): HTMLUrListSubheaderElement;
+    };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
     var HTMLUrLoaderElement: {
@@ -634,6 +644,7 @@ declare global {
         "ur-dialog": HTMLUrDialogElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
+        "ur-list-subheader": HTMLUrListSubheaderElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
@@ -711,6 +722,7 @@ declare namespace LocalJSX {
     interface UrListItem {
         "active"?: boolean;
         "alignment"?: 'start' | 'center' | 'end';
+        "content"?: string;
         "description"?: string;
         "disabled"?: boolean;
         "endIcon"?: string;
@@ -720,6 +732,9 @@ declare namespace LocalJSX {
         "rel"?: string;
         "rounded"?: boolean;
         "target"?: '_blank' | '_self' | '_parent' | '_top';
+    }
+    interface UrListSubheader {
+        "text"?: string;
     }
     interface UrLoader {
     }
@@ -943,6 +958,7 @@ declare namespace LocalJSX {
         "ur-dialog": UrDialog;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
+        "ur-list-subheader": UrListSubheader;
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
@@ -979,6 +995,7 @@ declare module "@stencil/core" {
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
+            "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;

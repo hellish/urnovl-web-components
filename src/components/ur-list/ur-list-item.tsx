@@ -9,6 +9,7 @@ import 'mdui/components/list-item.js';
     shadow: true,
 })
 export class UrListItem {
+    @Prop() content?: string; // Main content of the list item
     @Prop() disabled = false; // Disable the list item
     @Prop() active = false; // Mark the list item as active
     @Prop() nonclickable = false; // Make the item non-clickable
@@ -41,10 +42,10 @@ export class UrListItem {
                     class={classes}
                     {...(this.href
                         ? {
-                            href: this.href,
-                            target: this.target,
-                            rel: this.rel || undefined, // Ensure `rel` is passed only if provided
-                        }
+                              href: this.href,
+                              target: this.target,
+                              rel: this.rel || undefined, // Ensure `rel` is passed only if provided
+                          }
                         : {
                               disabled: this.disabled,
                               nonclickable: this.nonclickable || undefined, // Reflect `nonclickable` as an attribute
@@ -56,7 +57,7 @@ export class UrListItem {
 
                     {/* Content */}
                     <div class="content">
-                        <slot></slot>
+                        {this.content || <slot></slot>}
                         {this.description && <div class="description">{this.description}</div>}
                     </div>
 
