@@ -1,0 +1,100 @@
+:host {
+    align-items: center;
+    width: 100%;
+}
+
+.ur-list-item {
+    align-items: center;
+    gap: 16px; /* Spacing between items */
+}
+
+/* ur-list-item.css */
+mdui-icon {
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+.ur-list-item--active {
+    background-color: #f0f0f0;
+}
+
+.ur-list-item--nonclickable {
+    cursor: default;
+}
+
+.ur-list-item--rounded {
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.ur-list-item--align-start {
+    align-items: flex-start;
+}
+
+.ur-list-item--align-center {
+    align-items: center;
+}
+
+.ur-list-item--align-end {
+    align-items: flex-end;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    font-size: 0.875rem; /* Adjust for secondary text size */
+    color: #6c757d; /* Secondary text color */
+    margin-top: 4px;
+}
+
+/* Target the top-level element in the custom slot */
+::slotted([slot='custom']) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px; /* Spacing between items */
+}
+
+/* Profile Picture Styling */
+::part(custom-slot) img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+/* User Information Styling */
+::slotted([slot='custom']) .custom-content__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow the info container to grow */
+}
+
+/* Username Styling */
+::slotted([slot='custom']) .custom-content__username {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0; /* Reset margin */
+}
+
+/* Subtitle Styling */
+::slotted([slot='custom']) .custom-content__subtitle {
+    font-size: 14px;
+    color: gray;
+    margin: 0; /* Reset margin */
+}
+
+.ur-list-item .end-icon {
+    font-size: 1.25rem; /* Adjust size of the end icon */
+    color: gray; /* End icon color */
+}
