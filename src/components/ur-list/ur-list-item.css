@@ -1,6 +1,9 @@
 :host {
     align-items: center;
     width: 100%;
+
+    --list-item-active-light: rgba(223, 226, 235, 1);
+    --list-item-active-dark: rgba(39, 42, 47, 1);
 }
 
 .ur-list-item {
@@ -17,6 +20,16 @@ mdui-icon {
     justify-content: center;
     text-align: center;
     align-content: center;
+}
+
+:host-context(html.ur-theme-light) .ur-list-item--active {
+    background-color: var(--list-item-active-light);
+    color: var(--mdui-color-on-surface-light);
+}
+
+:host-context(html.ur-theme-dark) .ur-list-item--active {
+    background-color: var(--list-item-active-dark);
+    color: var(--mdui-color-on-surface-dark);
 }
 
 .ur-list-item--active {
