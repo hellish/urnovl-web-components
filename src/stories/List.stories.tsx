@@ -107,6 +107,25 @@ const CustomContentTemplate = () => html`
     </ur-list>
 `;
 
+const CustomWithAvatarTemplate = () => html`
+        <ur-list>
+            <ur-list-item end-icon="chevron_right">
+                <div slot="custom" class="custom-content" part="custom-slot">
+                    <ur-avatar
+                        src="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5"
+                        name="John Doe"
+                        size="64px"
+                        radius="50%"
+                    ></ur-avatar>
+                    <div class="custom-content__info" style="flex-grow: 1;">
+                        <div class="custom-content__username" style="font-size: 18px; font-weight: bold;">John Doe</div>
+                        <div class="custom-content__subtitle" style="font-size: 14px; color: gray;">Contributor</div>
+                    </div>
+                </div>
+            </ur-list-item>
+        </ur-list>
+`;
+
 const ListWithSubheaderTemplate = () => html`
     <ur-list>
         <ur-list-subheader text="Subheader"></ur-list-subheader>
@@ -153,6 +172,10 @@ export const Links = {
 
 export const CustomContent = {
     render: CustomContentTemplate,
+};
+
+export const CustomWithAvatar = {
+    render: CustomWithAvatarTemplate,
 };
 
 export const WithSubheader = {
