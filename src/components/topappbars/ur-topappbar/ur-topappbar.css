@@ -8,14 +8,14 @@
     --ur-state-layers-outline-variant-opacity-16: var(--mdui-state-layers-outline-variant-opacity-16);
 }
 
-.urnovl-logo {
+:host .urnovl-logo {
     width: 70px;
     height: 19px;
     margin: auto 8;
     fill: var(--ur-color-on-background, #000);
 }
 
-mdui-top-app-bar {
+:host mdui-top-app-bar {
     width: 100%;
     display: flex;
     align-items: center;
@@ -24,11 +24,25 @@ mdui-top-app-bar {
     padding: 0 16px;
 }
 
-mdui-top-app-bar[variant="small"] {
+:host mdui-top-app-bar[variant="small"] {
     height: 48px;
 }
 
-mdui-top-app-bar-title {
-    font-size: 20px;
+:host mdui-top-app-bar-title {
+    flex: 1;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: -.26px;
     color: var(--ur-color-on-background, #000);
+
+    /* Truncation styles */
+    overflow: hidden; /* Hide any overflowed text */
+    text-overflow: ellipsis; /* Show ellipsis (...) for truncated text */
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    max-width: 100%; /* Constrain the width to the parent container */
+    display: block; /* Ensure it's treated as a block element for proper layout */
+}
+
+:host ur-button-icon {
+    margin-right: initial;
 }

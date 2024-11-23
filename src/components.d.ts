@@ -224,6 +224,12 @@ export namespace Components {
         "disabled": boolean;
         "text": string;
     }
+    interface UrReadMobileTopappbar {
+        "headerTitle": string;
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold": number;
+        "variant": string;
+    }
     interface UrSegmentButton {
         "likeLabel": string;
     }
@@ -326,6 +332,10 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrReadMobileTopappbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadMobileTopappbarElement;
 }
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -602,6 +612,25 @@ declare global {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
     };
+    interface HTMLUrReadMobileTopappbarElementEventMap {
+        "backClick": void;
+        "chaptersClick": void;
+        "readingSettingsClick": void;
+    }
+    interface HTMLUrReadMobileTopappbarElement extends Components.UrReadMobileTopappbar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadMobileTopappbarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopappbarElement, ev: UrReadMobileTopappbarCustomEvent<HTMLUrReadMobileTopappbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadMobileTopappbarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopappbarElement, ev: UrReadMobileTopappbarCustomEvent<HTMLUrReadMobileTopappbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadMobileTopappbarElement: {
+        prototype: HTMLUrReadMobileTopappbarElement;
+        new (): HTMLUrReadMobileTopappbarElement;
+    };
     interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
     }
     var HTMLUrSegmentButtonElement: {
@@ -698,6 +727,7 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-read-mobile-topappbar": HTMLUrReadMobileTopappbarElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
@@ -937,6 +967,15 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "text"?: string;
     }
+    interface UrReadMobileTopappbar {
+        "headerTitle"?: string;
+        "onBackClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
+        "onChaptersClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
+        "onReadingSettingsClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold"?: number;
+        "variant"?: string;
+    }
     interface UrSegmentButton {
         "likeLabel"?: string;
     }
@@ -1027,6 +1066,7 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-read-mobile-topappbar": UrReadMobileTopappbar;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
@@ -1066,6 +1106,7 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-read-mobile-topappbar": LocalJSX.UrReadMobileTopappbar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopappbarElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
