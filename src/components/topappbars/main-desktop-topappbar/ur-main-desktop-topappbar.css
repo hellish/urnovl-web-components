@@ -12,14 +12,14 @@
     background: var(--ur-color-background);
 }
 
-.urnovl-logo {
+:host .urnovl-logo {
     width: 70px;
     height: 19px;
     margin: auto 8;
     fill: var(--ur-color-on-background, #000);
 }
 
-.logo-hld {
+:host .logo-hld {
     display: flex;
     padding: 0 32px;
     height: 48px;
@@ -28,7 +28,7 @@
     justify-content: center;
 }
 
-mdui-top-app-bar {
+:host mdui-top-app-bar {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -36,16 +36,16 @@ mdui-top-app-bar {
     padding: 0 16px;
 }
 
-mdui-top-app-bar[variant="small"] {
+:host mdui-top-app-bar[variant="small"] {
     height: 48px;
 }
 
-mdui-top-app-bar-title {
+:host mdui-top-app-bar-title {
     font-size: 20px;
     color: var(--ur-color-on-background, #000);
 }
 
-.search-lnk {
+:host .search-lnk {
     display: flex;
     height: 40px;
     align-items: center;
@@ -58,17 +58,17 @@ mdui-top-app-bar-title {
     overflow: hidden;
 }
 
-:host-context(html.ur-theme-dark) .search-lnk {
+:host-context(html.ur-theme-dark) .search-lnk { /*fix this */
     background: #1A1C21;
 }
 
-.icon {
+:host .icon {
     width: 40px;
     margin-right: 8px; /* Space between icon and text */
     text-align: center; /* Align icon with text */
 }
 
-.search-txt {
+:host .search-txt {
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;

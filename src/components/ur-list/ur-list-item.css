@@ -4,11 +4,12 @@
 
     --list-item-active-light: rgba(223, 226, 235, 1);
     --list-item-active-dark: rgba(39, 42, 47, 1);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
 }
 
-.ur-list-item {
+:host .ur-list-item {
+    flex-direction: row;
     align-items: center;
-    gap: 16px; /* Spacing between items */
 }
 
 /* ur-list-item.css */
@@ -23,47 +24,47 @@ mdui-icon {
 }
 
 :host-context(html.ur-theme-light) .ur-list-item--active {
-    background-color: var(--list-item-active-light);
-    color: var(--mdui-color-on-surface-light);
+    background-color: rgb(var(--list-item-active-light));
+    color: rgb(var(--mdui-color-on-surface-light));
 }
 
 :host-context(html.ur-theme-dark) .ur-list-item--active {
-    background-color: var(--list-item-active-dark);
-    color: var(--mdui-color-on-surface-dark);
+    background-color: rgb(var(--list-item-active-dark));
+    color: rgb(var(--mdui-color-on-surface-dark));
 }
 
-.ur-list-item--active {
+:host .ur-list-item--active {
     background-color: #f0f0f0;
 }
 
-.ur-list-item--nonclickable {
+:host .ur-list-item--nonclickable {
     cursor: default;
 }
 
-.ur-list-item--rounded {
+:host .ur-list-item--rounded {
     border-radius: 50px;
     overflow: hidden;
 }
 
-.ur-list-item--align-start {
+:host .ur-list-item--align-start {
     align-items: flex-start;
 }
 
-.ur-list-item--align-center {
+:host .ur-list-item--align-center {
     align-items: center;
 }
 
-.ur-list-item--align-end {
+:host .ur-list-item--align-end {
     align-items: flex-end;
 }
 
-.content {
+:host .content {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-.description {
+:host .description {
     font-size: 0.875rem; /* Adjust for secondary text size */
     color: #6c757d; /* Secondary text color */
     margin-top: 4px;
@@ -107,7 +108,34 @@ mdui-icon {
     margin: 0; /* Reset margin */
 }
 
-.ur-list-item .end-icon {
+:host .ur-list-item .end-icon {
     font-size: 1.25rem; /* Adjust size of the end icon */
     color: gray; /* End icon color */
+}
+
+:host mdui-list-item::part(container) {
+    /* Your CSS styles here */
+    padding: 0 12px;
+    min-height: 40px;
+}
+
+:host mdui-list-item::part(icon) {
+    margin-right: 12px;
+}
+
+:host .ur-list-item mdui-icon {
+    font-size: 22px;
+    color: rgb(var(--ur-color-on-surface));
+}
+
+:host .ur-list-item .avatar {
+    background: red;
+}
+
+:host mdui-list-item::part(headline) {
+    font-size: 12px;
+}
+
+:host mdui-list-item::part(menuprofile) {
+    padding: 0;
 }

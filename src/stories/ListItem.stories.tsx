@@ -167,3 +167,20 @@ export const CustomContent = {
         </ur-list-item>
     `,
 };
+
+export const CustomWithAvatar = {
+    render: () => html`
+        <ur-list-item end-icon="chevron_right">
+            <div slot="custom" class="custom-content" part="custom-slot">
+                <!-- Profile Picture -->
+                
+
+                <!-- User Information -->
+                <div class="custom-content__info" style="flex-grow: 1;">
+                    <div class="custom-content__username" style="font-size: 18px; font-weight: bold;">Tsipidis Anastasios</div>
+                    <div class="custom-content__subtitle" style="font-size: 14px; color: gray;">Author & Reader</div>
+                </div>
+            </div>
+        </ur-list-item>
+    `,
+};

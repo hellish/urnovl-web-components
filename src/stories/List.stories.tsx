@@ -2,6 +2,7 @@ import { html } from 'lit';
 import '../components/ur-list/ur-list'; // Import your list component
 import '../components/ur-list/ur-list-item'; // Import your list-item component
 import '../components/ur-list/ur-list-subheader'; // Import the list-subheader component
+import '../components/ur-avatar/ur-avatar'; // Import the list-subheader component
 
 export default {
     title: 'Core/List', // Story location in Storybook
@@ -17,9 +18,9 @@ const DefaultTemplate = () => html`
 
 const WithIconsTemplate = () => html`
     <ur-list>
-        <ur-list-item icon="home" end-icon="chevron_right" content="Home"></ur-list-item>
-        <ur-list-item icon="settings" end-icon="chevron_right" content="Settings"></ur-list-item>
-        <ur-list-item icon="help" end-icon="chevron_right" content="Help"></ur-list-item>
+        <ur-list-item icon="home--outlined" end-icon="chevron_right" content="Home"></ur-list-item>
+        <ur-list-item icon="settings--outlined" end-icon="chevron_right" content="Settings"></ur-list-item>
+        <ur-list-item icon="help--outlined" end-icon="chevron_right" content="Help"></ur-list-item>
     </ur-list>
 `;
 

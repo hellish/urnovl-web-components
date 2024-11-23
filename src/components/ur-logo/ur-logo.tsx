@@ -30,6 +30,7 @@ export class UrLogo {
      * Opacity of the logo
      */
     @Prop() opacity: number = 0.9; // Default opacity is 0.9
+    
     render() {
         // Apply rotation as an inline style
         const rotationStyle = {
