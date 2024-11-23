@@ -128,14 +128,16 @@ mdui-icon {
     color: rgb(var(--ur-color-on-surface));
 }
 
-:host .ur-list-item .avatar {
-    background: red;
-}
-
 :host mdui-list-item::part(headline) {
-    font-size: 12px;
+    font-size: 14px;
 }
 
-:host mdui-list-item::part(menuprofile) {
-    padding: 0;
+:host mdui-list-item {
+    /* Add transition for smooth changes */
+    transition: background-color 0.3s ease;
+}
+
+:host mdui-list-item[hover] {
+
+    background-color: rgba(var(--ur-color-on-surface), .07); /* Use 'var' inside rgba */
 }

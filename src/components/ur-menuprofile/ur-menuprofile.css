@@ -5,12 +5,15 @@
     padding: 8px 0;
     --ur-color-outline: var(--mdui-color-outline);
     --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    user-select: none; /* Disable text selection */
 }
 
 /* Hover styles for the host */
 :host(:hover) {
     cursor: pointer; /* Change cursor to pointer */
-    box-shadow: inset 4px 0 0 0 rgb(var(--ur-color-primary));
+    transition: background-color 0.3s ease;
+    background-color: rgba(var(--ur-color-on-surface), .07); /* Use 'var' inside rgba */
 }
 
 :host .profile-container {
