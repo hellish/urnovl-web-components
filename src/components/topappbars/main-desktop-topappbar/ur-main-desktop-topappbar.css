@@ -9,7 +9,9 @@
     --ur-color-on-secondary: var(--mdui-color-on-secondary);
     --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
     --ur-state-layers-outline-variant-opacity-16: var(--mdui-state-layers-outline-variant-opacity-16);
-
+    --ur-color-outline: var(--mdui-color-outline);
+    --ur-state-layers-primary-opacity-08: var(--mdui-state-layers-primary-opacity-08);
+    z-index: 0;
     background: var(--ur-color-background);
 }
 
@@ -17,7 +19,7 @@
     width: 70px;
     height: 19px;
     margin: auto 8;
-    fill: var(--ur-color-on-background, #000);
+    fill: rgb(var(--ur-color-on-background));
 }
 
 :host .logo-hld {
@@ -57,10 +59,24 @@
     flex: 1; /* Only grow as much as needed for content */
     max-width: max-content;
     overflow: hidden;
+    -webkit-user-select: none; /* Prevent text selection in WebKit browsers */
+    -moz-user-select: none;    /* Prevent text selection in Firefox */
+    -ms-user-select: none;     /* Prevent text selection in older IE/Edge */
+    user-select: none;         /* Prevent text selection in modern browsers */
+}
+
+:host .search-lnk:hover {
+    transition: all 0.2s ease; /* Smooth transition for shadow and color */
+    background: rgba(var(--ur-color-outline), .2);
 }
 
 :host-context(html.ur-theme-dark) .search-lnk { /*fix this */
     background: #1A1C21;
+}
+
+:host-context(html.ur-theme-dark) .search-lnk:hover { /*fix this */
+    transition: all 0.2s ease; /* Smooth transition for shadow and color */
+    background: rgba(var(--ur-color-outline), .2);
 }
 
 :host .icon {

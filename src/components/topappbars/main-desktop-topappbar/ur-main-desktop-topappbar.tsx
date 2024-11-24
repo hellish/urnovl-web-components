@@ -18,7 +18,6 @@ export class UrMainDesktopTopAppBar {
 
     private handleSearchClick = () => {
         this.searchLinkClicked.emit(); // Emit the event
-        alert('Search link clicked!'); // Temporary behavior for testing
     };
     render() {
         return (
