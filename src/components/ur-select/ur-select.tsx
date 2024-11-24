@@ -119,6 +119,7 @@ export class UrSelect {
                             value={value}
                             label={label}
                             disabled={disabled}
+                            selected={this.multiple ? this.selectedValue.includes(value) : this.selectedValue === value}
                             onItemClicked={(event) => this.handleItemClicked(event)}
                         ></ur-menu-item>
                     ))}
