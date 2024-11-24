@@ -1,4 +1,4 @@
-import{s as r,g as e}from"./chunk-L4EGOTBX-2Jzo53v8.js";import"./entry-preview-BcHUnPw7.js";import{d as a,H as i,h as t,a as n}from"./index-CLClakx-.js";const d=`:host {
+import{s as r,g as e}from"./chunk-L4EGOTBX-2Jzo53v8.js";import"./entry-preview-BcHUnPw7.js";import{d as a,H as i,h as t,a as n}from"./index-Dnt4yWMo.js";const d=`:host {
     img {
         display: block;
         border-color: #ececec;
