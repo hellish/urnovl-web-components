@@ -3,7 +3,7 @@ import '../components/topappbars/read-mobile-topappbar/ur-read-mobile-topappbar'
 
 const Template = args => html`
   <ur-read-mobile-topappbar
-    title="${args.title}">
+    header-title="${args.headerTitle}">
   </ur-read-mobile-topappbar>
 
   <div class="example-scroll-target" style="background: #F0F0F0; height: 250px; overflow: auto;">
@@ -15,7 +15,7 @@ export default {
   title: 'urnovl/Business/TopAppBars/Reading Mobile TopAppBar',
   render: Template,
   argTypes: {
-    title: {
+    headerTitle: { // Use the correct prop name here
       control: 'text',
       description: 'Title displayed in the app bar',
     },
@@ -24,6 +24,6 @@ export default {
 
 export const Default = {
   args: {
-    title: 'Reading Mode', // Default title for the top app bar
+    headerTitle: 'Harry Potter and the Sorcerer’s Stone', // Default title for the top app bar
   },
 };

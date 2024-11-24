@@ -60,6 +60,36 @@ export namespace Components {
         "open": boolean;
         "openDialog": () => Promise<void>;
     }
+    interface UrHero {
+        /**
+          * Background color overlay
+         */
+        "backgroundColor": string;
+        /**
+          * Background image URL
+         */
+        "backgroundImage": string;
+        /**
+          * Background justification variant: top, center, or bottom
+         */
+        "backgroundJustification": 'top' | 'center' | 'bottom';
+        /**
+          * Call to action button text
+         */
+        "ctaText": string;
+        /**
+          * Hero subtitle
+         */
+        "heroSubtitle": string;
+        /**
+          * Hero title
+         */
+        "heroTitle": string;
+        /**
+          * Layout variant: left, right, or center
+         */
+        "layout": 'left' | 'right' | 'center';
+    }
     interface UrList {
     }
     interface UrListItem {
@@ -416,6 +446,12 @@ declare global {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
     };
+    interface HTMLUrHeroElement extends Components.UrHero, HTMLStencilElement {
+    }
+    var HTMLUrHeroElement: {
+        prototype: HTMLUrHeroElement;
+        new (): HTMLUrHeroElement;
+    };
     interface HTMLUrListElement extends Components.UrList, HTMLStencilElement {
     }
     var HTMLUrListElement: {
@@ -710,6 +746,7 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
+        "ur-hero": HTMLUrHeroElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
         "ur-list-subheader": HTMLUrListSubheaderElement;
@@ -788,6 +825,36 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
+    }
+    interface UrHero {
+        /**
+          * Background color overlay
+         */
+        "backgroundColor"?: string;
+        /**
+          * Background image URL
+         */
+        "backgroundImage"?: string;
+        /**
+          * Background justification variant: top, center, or bottom
+         */
+        "backgroundJustification"?: 'top' | 'center' | 'bottom';
+        /**
+          * Call to action button text
+         */
+        "ctaText"?: string;
+        /**
+          * Hero subtitle
+         */
+        "heroSubtitle"?: string;
+        /**
+          * Hero title
+         */
+        "heroTitle"?: string;
+        /**
+          * Layout variant: left, right, or center
+         */
+        "layout"?: 'left' | 'right' | 'center';
     }
     interface UrList {
     }
@@ -1049,6 +1116,7 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
+        "ur-hero": UrHero;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
         "ur-list-subheader": UrListSubheader;
@@ -1089,6 +1157,7 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
+            "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
             "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;

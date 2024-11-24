@@ -1,7 +1,8 @@
 :host {
     display: flex;
     align-items: center;
-    width: 100%;    
+    height: 48px;
+    width: 100%;
     --ur-color-background: var(--mdui-color-background);
     --ur-color-on-background: var(--mdui-color-on-background);
     --ur-color-on-surface: var(--mdui-color-on-surface);

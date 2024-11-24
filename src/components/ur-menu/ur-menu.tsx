@@ -30,10 +30,6 @@ export class UrLeftMenu {
         this.toggleExpand.emit(this.isExpanded); // Emit the updated state
     }
 
-    handleToggle() {
-        this.toggleExpand.emit(this.isExpanded); // Emit the toggled state
-    }
-
     renderNavigation() {
         return (
             <div class="menu-navigation">
@@ -167,8 +163,7 @@ export class UrLeftMenu {
                     variant="text"
                     class="toggle-button"
                     onClick={() => {
-                        this.toggleMenu(); // Update the internal state
-                        this.handleToggle(); // Emit the event
+                        this.toggleMenu(); // Update the internal state and emit event
                     }}
                 >
                     <mdui-icon class="icon" name={this.isExpanded ? 'close' : 'menu'}></mdui-icon>

@@ -1,5 +1,22 @@
-import type { GridOptions, SwiperOptions } from "swiper/types";
+export type Breakpoints = {
+    [width: number]: any;
+    [ratio: string]: any;
+}
 
-export type Breakpoints = SwiperOptions['breakpoints'];
+export type Grid = {
+    /**
+   * Number of slides rows, for multirow layout
+   *
+   * @default 1
+   */
+  rows?: number;
 
-export type Grid = GridOptions;
+  /**
+   * Can be 'column' or 'row'. Defines how slides should fill rows, by column or by row
+   *
+   * @note if used with loop mode make sure number of slides is even specified in loop mode requirements, or enable loopAddBlankSlides parameter
+   *
+   * @default 'column'
+   */
+  fill?: 'row' | 'column';
+};

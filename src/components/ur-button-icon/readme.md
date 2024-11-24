@@ -17,6 +17,21 @@
 | `variant`      | `variant`       |             | `"filled" \| "outlined" \| "standard" \| "tonal"` | `'standard'`        |
 
 
+## Dependencies
+
+### Used by
+
+ - [ur-menu](../ur-menu)
+ - [ur-read-mobile-topappbar](../topappbars/read-mobile-topappbar)
+
+### Graph
+```mermaid
+graph TD;
+  ur-menu --> ur-button-icon
+  ur-read-mobile-topappbar --> ur-button-icon
+  style ur-button-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

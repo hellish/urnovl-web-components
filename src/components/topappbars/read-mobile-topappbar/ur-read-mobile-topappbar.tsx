@@ -13,7 +13,7 @@ export class UrMainDesktopTopAppBar {
     variant: string = 'small'; // Variant prop with a default value
 
     @Prop()
-    headerTitle: string = 'Harry Potter and the Sorcerer’s Stone'; // Default title text
+    headerTitle: string; // Default title text
 
     @Prop()
     scrollBehavior: 'hide' | 'shrink' | 'elevate' = 'hide'; // Scroll behavior with default "hide"

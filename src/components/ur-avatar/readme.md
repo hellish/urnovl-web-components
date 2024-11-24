@@ -20,11 +20,13 @@
 
 ### Used by
 
+ - [ur-menuprofile](../ur-menuprofile)
  - [ur-page-profile](../ur-page-profile)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-menuprofile --> ur-avatar
   ur-page-profile --> ur-avatar
   style ur-avatar fill:#f9f,stroke:#333,stroke-width:4px
 ```

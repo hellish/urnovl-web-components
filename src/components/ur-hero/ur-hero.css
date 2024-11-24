@@ -1,0 +1,91 @@
+:host {
+    display: block;
+    width: 100%;
+    height: calc(100vw / 3); /* Sets the height to width divided by 1.25 */
+    min-height: 200px;
+    position: relative;
+    max-height: 300px;
+  }
+
+:host .hero-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://www.urnovl.co/writers.6f4ce69….png) no-repeat 100% 100%;
+    background-size: auto 100%;
+}
+
+:host .overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--ur-hero-overlay-color, rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}
+
+:host .hero-title {
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+:host .hero-subtitle {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+:host .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: white;
+    background: var(--ur-button-background, #007bff);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+:host .cta-button mat-icon {
+    margin-right: 0.5rem;
+}
+
+/* Layout Variants */
+:host .layout-left .overlay {
+    align-items: flex-start;
+    text-align: left;
+}
+
+:host .layout-right .overlay {
+    align-items: flex-end;
+    text-align: right;
+}
+
+:host .layout-center .overlay {
+    align-items: center;
+    text-align: center;
+}
+
+/* Background Position Variants */
+:host .background-top {
+    background-position: top;
+}
+
+:host .background-center {
+    background-position: center;
+}
+
+:host .background-bottom {
+    background-position: bottom;
+}
