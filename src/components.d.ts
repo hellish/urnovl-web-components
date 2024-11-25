@@ -62,6 +62,10 @@ export namespace Components {
     }
     interface UrHero {
         /**
+          * Background horizontal alignment: left, center, or right
+         */
+        "backgroundAlignment": 'left' | 'center' | 'right';
+        /**
           * Background color overlay
          */
         "backgroundColor": string;
@@ -70,7 +74,7 @@ export namespace Components {
          */
         "backgroundImage": string;
         /**
-          * Background justification variant: top, center, or bottom
+          * Background vertical justification: top, center, or bottom
          */
         "backgroundJustification": 'top' | 'center' | 'bottom';
         /**
@@ -82,9 +86,17 @@ export namespace Components {
          */
         "heroSubtitle": string;
         /**
+          * Hero subtitle color
+         */
+        "heroSubtitleColor": string;
+        /**
           * Hero title
          */
         "heroTitle": string;
+        /**
+          * Hero title color
+         */
+        "heroTitleColor": string;
         /**
           * Layout variant: left, right, or center
          */
@@ -331,6 +343,10 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrHeroElement;
+}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
@@ -446,7 +462,18 @@ declare global {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
     };
+    interface HTMLUrHeroElementEventMap {
+        "ctaClicked": void;
+    }
     interface HTMLUrHeroElement extends Components.UrHero, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrHeroElementEventMap>(type: K, listener: (this: HTMLUrHeroElement, ev: UrHeroCustomEvent<HTMLUrHeroElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrHeroElementEventMap>(type: K, listener: (this: HTMLUrHeroElement, ev: UrHeroCustomEvent<HTMLUrHeroElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrHeroElement: {
         prototype: HTMLUrHeroElement;
@@ -828,6 +855,10 @@ declare namespace LocalJSX {
     }
     interface UrHero {
         /**
+          * Background horizontal alignment: left, center, or right
+         */
+        "backgroundAlignment"?: 'left' | 'center' | 'right';
+        /**
           * Background color overlay
          */
         "backgroundColor"?: string;
@@ -836,7 +867,7 @@ declare namespace LocalJSX {
          */
         "backgroundImage"?: string;
         /**
-          * Background justification variant: top, center, or bottom
+          * Background vertical justification: top, center, or bottom
          */
         "backgroundJustification"?: 'top' | 'center' | 'bottom';
         /**
@@ -848,13 +879,25 @@ declare namespace LocalJSX {
          */
         "heroSubtitle"?: string;
         /**
+          * Hero subtitle color
+         */
+        "heroSubtitleColor"?: string;
+        /**
           * Hero title
          */
         "heroTitle"?: string;
         /**
+          * Hero title color
+         */
+        "heroTitleColor"?: string;
+        /**
           * Layout variant: left, right, or center
          */
         "layout"?: 'left' | 'right' | 'center';
+        /**
+          * Event emitted when CTA button is clicked
+         */
+        "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
     }
     interface UrList {
     }

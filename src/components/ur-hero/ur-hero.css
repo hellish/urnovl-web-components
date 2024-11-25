@@ -5,19 +5,20 @@
     min-height: 200px;
     position: relative;
     max-height: 300px;
-  }
+    border-radius: 12px;
+    overflow: hidden;
+    container-type: inline-size; /* Enables container queries */
+    container-name: hero-container; /* Optional: name the container */
+}
 
 :host .hero-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: relative;
     height: 100%;
     width: 100%;
-    background-image: url(https://www.urnovl.co/writers.6f4ce69….png) no-repeat 100% 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-size: auto 100%;
 }
 
@@ -35,13 +36,39 @@
 }
 
 :host .hero-title {
-    font-size: 2rem;
+    font-size: 34px;
+    line-height: 1rem;
     margin: 0.5rem 0;
 }
 
 :host .hero-subtitle {
-    font-size: 1rem;
+    font-size: 18px;
+    line-height: 1rem;
     margin: 0.5rem 0;
+}
+
+:host(.small-hero) .hero-title {
+    font-size: 1.25rem;
+}
+
+:host(.small-hero) .hero-subtitle {
+    font-size: 0.75rem;
+}
+
+:host(.medium-hero) .hero-title {
+    font-size: 1.5rem;
+}
+
+:host(.medium-hero) .hero-subtitle {
+    font-size: 0.875rem;
+}
+
+:host(.large-hero) .hero-title {
+    font-size: 2rem;
+}
+
+:host(.large-hero) .hero-subtitle {
+    font-size: 1rem;
 }
 
 :host .cta-button {
@@ -88,4 +115,15 @@
 
 :host .background-bottom {
     background-position: bottom;
+}
+
+/* Horizontal Alignment */
+:host .align-left {
+    background-position-x: left;
+}
+:host .align-center {
+    background-position-x: center;
+}
+:host .align-right {
+    background-position-x: right;
 }

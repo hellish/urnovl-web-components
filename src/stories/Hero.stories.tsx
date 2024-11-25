@@ -10,6 +10,10 @@ const Template = args => html`
     background-color="${args.backgroundColor}"
     layout="${args.layout}"
     background-justification="${args.backgroundJustification}"
+    background-alignment="${args.backgroundAlignment}"
+    hero-title-color="${args.heroTitleColor}"
+    hero-subtitle-color="${args.heroSubtitleColor}"
+    onCtaClicked="handleCtaClick"
   ></ur-hero>
 `;
 
@@ -47,6 +51,19 @@ export default {
       options: ['top', 'center', 'bottom'],
       description: 'Vertical alignment for the background image',
     },
+    backgroundAlignment: {
+      control: 'select',
+      options: ['left', 'center', 'right'],
+      description: 'Horizontal alignment for the background image',
+    },
+    heroTitleColor: {
+      control: 'color',
+      description: 'Color for the hero title text',
+    },
+    heroSubtitleColor: {
+      control: 'color',
+      description: 'Color for the hero subtitle text',
+    },
   },
 };
 
@@ -57,11 +74,14 @@ export const Default = {
     heroSubtitle: 'Do what you love most, upload Free Stories or become a Partner and get rewarded',
     ctaText: 'Learn how',
     backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgb(25 26 31)',
     layout: 'center',
     backgroundJustification: 'center',
+    heroTitleColor: '#ffffff',
+    heroSubtitleColor: '#cccccc',
   },
 };
+
 
 // Left-aligned content
 export const LeftAligned = {
@@ -83,6 +103,7 @@ export const RightAligned = {
 export const TopBackground = {
   args: {
     ...Default.args,
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
     backgroundJustification: 'top',
   },
 };
@@ -91,7 +112,34 @@ export const TopBackground = {
 export const BottomBackground = {
   args: {
     ...Default.args,
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
     backgroundJustification: 'bottom',
+  },
+};
+
+// Left-aligned background with right-aligned content
+export const LeftAlignedBackground = {
+  args: {
+    ...Default.args,
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
+    backgroundAlignment: 'left',
+    layout: 'right',
+    heroTitle: 'Welcome Writers!',
+    heroSubtitle: 'Place your stories in the spotlight.',
+    ctaText: 'Join Now',
+  },
+};
+
+// Right-aligned background with left-aligned content
+export const RightAlignedBackground = {
+  args: {
+    ...Default.args,
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
+    backgroundAlignment: 'right',
+    layout: 'left',
+    heroTitle: 'Your Story, Your Way',
+    heroSubtitle: 'Let your creativity shine with us.',
+    ctaText: 'Get Started',
   },
 };
 
@@ -108,9 +156,19 @@ export const NoBackgroundImage = {
 export const LightTheme = {
   args: {
     ...Default.args,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
     heroTitle: 'Welcome to Urnovl!',
     heroSubtitle: 'Explore the world of stories, novels, and creative writing.',
     ctaText: 'Get Started',
+  },
+};
+
+// Custom Title and Subtitle Colors
+export const CustomColors = {
+  args: {
+    ...Default.args,
+    backgroundImage: 'https://www.urnovl.co/writers.6f4ce691fca351ed73ee.png', // Move URL here
+    heroTitleColor: '#ff5733', // Orange title
+    heroSubtitleColor: '#33b5e5', // Blue subtitle
   },
 };
