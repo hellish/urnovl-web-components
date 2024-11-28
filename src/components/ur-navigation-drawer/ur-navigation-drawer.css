@@ -1,0 +1,22 @@
+:host {
+    display: block;
+    position: relative;
+}
+
+:host mdui-navigation-drawer {
+    width: 300px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+:host mdui-navigation-drawer[placement='right'] {
+    right: 0;
+}
+
+:host mdui-navigation-drawer[placement='left'] {
+    left: 0;
+}
+
+:host .slot-content {
+    padding: 16px;
+}

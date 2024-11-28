@@ -9,7 +9,6 @@ import 'mdui/components/checkbox';
     shadow: true,
 })
 export class UrLocaleFilterPanel {
-
     @Prop()
     showHeader = true;
 
@@ -19,23 +18,39 @@ export class UrLocaleFilterPanel {
     @Prop()
     locales: Array<[label: string, value: string, checked: boolean]> = [];
 
-    @Event()
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
     save: EventEmitter<void>;
-
-    @Event()
+    
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
     cancel: EventEmitter<void>;
+
+    private handleCancel() {
+        this.cancel.emit(); // Emit the cancel event
+    }
+
+    private handleSave() {
+        this.save.emit(); // Emit the save event
+    }
 
     render() {
         return (
             <div class="locale-filter-panel">
-                {this.showHeader && <header>
-                    <mdui-button variant="text">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="currentColor" />
-                        </svg>
-                    </mdui-button>
-                    <label>Filters</label>
-                </header>}
+                {this.showHeader && (
+                    <header>
+                        <ur-button-icon
+                            class="close-panel"
+                            icon="close"
+                            onClick={() => this.handleCancel()} // Emit cancel on [x] button click
+                        ></ur-button-icon>
+                        <label>Filters</label>
+                    </header>
+                )}
                 <main>
                     <div class="description">
                         <div class="title">Content Languages</div>
@@ -43,18 +58,24 @@ export class UrLocaleFilterPanel {
                     </div>
                     <div class="locales">
                         {this.locales.map(([label, value, checked]) => {
-                            return <mdui-checkbox checked={checked} value={value}>{label}</mdui-checkbox>
+                            return (
+                                <mdui-checkbox checked={checked} value={value}>
+                                    {label}
+                                </mdui-checkbox>
+                            );
                         })}
                     </div>
                 </main>
-                {this.showFooter && <footer>
-                    <mdui-button class="save" onClick={() => this.save.emit()}>
-                        Save
-                    </mdui-button>
-                    <mdui-button class="cancel" variant="text" onClick={() => this.cancel.emit()}>
-                        Cancel
-                    </mdui-button>
-                </footer>}
+                {this.showFooter && (
+                    <footer>
+                        <mdui-button class="save" onClick={() => this.handleSave()}>
+                            Save
+                        </mdui-button>
+                        <mdui-button class="cancel" variant="text" onClick={() => this.handleCancel()}>
+                            Cancel
+                        </mdui-button>
+                    </footer>
+                )}
             </div>
         );
     }

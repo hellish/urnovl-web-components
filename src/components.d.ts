@@ -124,6 +124,9 @@ export namespace Components {
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
+        /**
+          * Count displayed on the button
+         */
         "count": number;
     }
     interface UrLocaleFilterPanel {
@@ -174,6 +177,36 @@ export namespace Components {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+    }
+    interface UrNavigationDrawer {
+        /**
+          * Closes the drawer
+         */
+        "closeDrawer": () => Promise<void>;
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc": boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick": boolean;
+        /**
+          * Contains the drawer within its parent element
+         */
+        "contained": boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open": boolean;
+        /**
+          * Opens the drawer
+         */
+        "openDrawer": () => Promise<void>;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement": 'left' | 'right';
     }
     interface UrNovl {
         "authorAvatar": any;
@@ -347,6 +380,10 @@ export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
 }
+export interface UrLocaleFilterButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrLocaleFilterButtonElement;
+}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
@@ -362,6 +399,10 @@ export interface UrMenuCustomEvent<T> extends CustomEvent<T> {
 export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrMenuItemElement;
+}
+export interface UrNavigationDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNavigationDrawerElement;
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -503,7 +544,18 @@ declare global {
         prototype: HTMLUrLoaderElement;
         new (): HTMLUrLoaderElement;
     };
+    interface HTMLUrLocaleFilterButtonElementEventMap {
+        "stateChanged": boolean;
+    }
     interface HTMLUrLocaleFilterButtonElement extends Components.UrLocaleFilterButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrLocaleFilterButtonElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterButtonElement, ev: UrLocaleFilterButtonCustomEvent<HTMLUrLocaleFilterButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrLocaleFilterButtonElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterButtonElement, ev: UrLocaleFilterButtonCustomEvent<HTMLUrLocaleFilterButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrLocaleFilterButtonElement: {
         prototype: HTMLUrLocaleFilterButtonElement;
@@ -589,6 +641,24 @@ declare global {
     var HTMLUrMenuprofileElement: {
         prototype: HTMLUrMenuprofileElement;
         new (): HTMLUrMenuprofileElement;
+    };
+    interface HTMLUrNavigationDrawerElementEventMap {
+        "opened": void;
+        "closed": void;
+    }
+    interface HTMLUrNavigationDrawerElement extends Components.UrNavigationDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNavigationDrawerElementEventMap>(type: K, listener: (this: HTMLUrNavigationDrawerElement, ev: UrNavigationDrawerCustomEvent<HTMLUrNavigationDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNavigationDrawerElementEventMap>(type: K, listener: (this: HTMLUrNavigationDrawerElement, ev: UrNavigationDrawerCustomEvent<HTMLUrNavigationDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrNavigationDrawerElement: {
+        prototype: HTMLUrNavigationDrawerElement;
+        new (): HTMLUrNavigationDrawerElement;
     };
     interface HTMLUrNovlElementEventMap {
         "novlClicked": string;
@@ -785,6 +855,7 @@ declare global {
         "ur-menu": HTMLUrMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menuprofile": HTMLUrMenuprofileElement;
+        "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
@@ -921,7 +992,14 @@ declare namespace LocalJSX {
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
+        /**
+          * Count displayed on the button
+         */
         "count"?: number;
+        /**
+          * Event emitted when the selected state changes
+         */
+        "onStateChanged"?: (event: UrLocaleFilterButtonCustomEvent<boolean>) => void;
     }
     interface UrLocaleFilterPanel {
         "locales"?: Array<[label: string, value: string, checked: boolean]>;
@@ -976,6 +1054,36 @@ declare namespace LocalJSX {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+    }
+    interface UrNavigationDrawer {
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc"?: boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick"?: boolean;
+        /**
+          * Contains the drawer within its parent element
+         */
+        "contained"?: boolean;
+        /**
+          * Event emitted when the drawer is closed
+         */
+        "onClosed"?: (event: UrNavigationDrawerCustomEvent<void>) => void;
+        /**
+          * Event emitted when the drawer is opened
+         */
+        "onOpened"?: (event: UrNavigationDrawerCustomEvent<void>) => void;
+        /**
+          * Determines if the drawer is open
+         */
+        "open"?: boolean;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement"?: 'left' | 'right';
     }
     interface UrNovl {
         "authorAvatar"?: any;
@@ -1171,6 +1279,7 @@ declare namespace LocalJSX {
         "ur-menu": UrMenu;
         "ur-menu-item": UrMenuItem;
         "ur-menuprofile": UrMenuprofile;
+        "ur-navigation-drawer": UrNavigationDrawer;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
@@ -1212,6 +1321,7 @@ declare module "@stencil/core" {
             "ur-menu": LocalJSX.UrMenu & JSXBase.HTMLAttributes<HTMLUrMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menuprofile": LocalJSX.UrMenuprofile & JSXBase.HTMLAttributes<HTMLUrMenuprofileElement>;
+            "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
