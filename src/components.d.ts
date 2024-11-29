@@ -128,10 +128,23 @@ export namespace Components {
           * Count displayed on the button
          */
         "count": number;
+        /**
+          * Method to reset the selected state programmatically
+         */
+        "resetSelected": (emitEvent?: boolean) => Promise<void>;
     }
     interface UrLocaleFilterPanel {
-        "locales": Array<[label: string, value: string, checked: boolean]>;
+        /**
+          * List of available languages
+         */
+        "locales": Array<{ label: string; value: string; checked: boolean }>;
+        /**
+          * Whether to show the footer
+         */
         "showFooter": boolean;
+        /**
+          * Whether to show the header
+         */
         "showHeader": boolean;
     }
     interface UrLogo {
@@ -562,7 +575,7 @@ declare global {
         new (): HTMLUrLocaleFilterButtonElement;
     };
     interface HTMLUrLocaleFilterPanelElementEventMap {
-        "save": void;
+        "save": string[];
         "cancel": void;
     }
     interface HTMLUrLocaleFilterPanelElement extends Components.UrLocaleFilterPanel, HTMLStencilElement {
@@ -1002,10 +1015,25 @@ declare namespace LocalJSX {
         "onStateChanged"?: (event: UrLocaleFilterButtonCustomEvent<boolean>) => void;
     }
     interface UrLocaleFilterPanel {
-        "locales"?: Array<[label: string, value: string, checked: boolean]>;
+        /**
+          * List of available languages
+         */
+        "locales"?: Array<{ label: string; value: string; checked: boolean }>;
+        /**
+          * Event emitted when canceling
+         */
         "onCancel"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
-        "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
+        /**
+          * Event emitted when saving languages
+         */
+        "onSave"?: (event: UrLocaleFilterPanelCustomEvent<string[]>) => void;
+        /**
+          * Whether to show the footer
+         */
         "showFooter"?: boolean;
+        /**
+          * Whether to show the header
+         */
         "showHeader"?: boolean;
     }
     interface UrLogo {

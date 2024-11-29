@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Host, Prop, State, Event, EventEmitter, Method, h } from '@stencil/core';
 
 import 'mdui/components/button';
 
@@ -22,14 +22,23 @@ export class UrLocaleFilterButton {
         this.stateChanged.emit(this.selected); // Emit the new state
     }
 
+    /** Method to reset the selected state programmatically */
+    @Method()
+    resetSelected(emitEvent = true) {
+        this.selected = false; // Reset the selected state
+        if (emitEvent) {
+            this.stateChanged.emit(this.selected); // Emit only if explicitly allowed
+        }
+    }
+
     render() {
         return (
             <Host>
                 <mdui-button
                     variant="outlined"
                     class={{
-                        "with-count": this.count > 0,
-                        "selected": this.selected, // Apply selected state class
+                        'with-count': this.count > 0,
+                        'selected': this.selected, // Apply selected state class
                     }}
                     onClick={() => this.toggleSelected()}
                 >

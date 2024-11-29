@@ -22,6 +22,19 @@
 | `save`   |             | `CustomEvent<void>` |
 
 
+## Dependencies
+
+### Depends on
+
+- [ur-button-icon](../ur-button-icon)
+
+### Graph
+```mermaid
+graph TD;
+  ur-locale-filter-panel --> ur-button-icon
+  style ur-locale-filter-panel fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
