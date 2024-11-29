@@ -29,8 +29,13 @@ export class UrLocaleFilterPanel {
 
     componentWillLoad() {
         console.log('Component initialized with locales:', this.locales);
-        this.mutableLocales = [...this.locales];
+    
+        // Deep copy the array to prevent any reference issues
+        this.mutableLocales = this.locales.map(locale => ({ ...locale }));
+    
+        console.log('Initialized mutableLocales:', this.mutableLocales);
     }
+
 
     private handleCancel() {
         this.cancel.emit(); // Emit the cancel event
@@ -45,33 +50,45 @@ export class UrLocaleFilterPanel {
     private toggleLocale(value: string) {
         console.log('ToggleLocale triggered for value:', value);
         console.trace('Call stack for toggleLocale');
-      
-        this.mutableLocales = this.mutableLocales.map(locale =>
-          locale.value === value ? { ...locale, checked: !locale.checked } : locale
-        );
-      
-        console.log('Updated mutableLocales:', this.mutableLocales); 
-      }
+    
+        this.mutableLocales = this.mutableLocales.map(locale => {
+            if (locale.value === value) {
+                return { ...locale, checked: !locale.checked }; // Toggle only the target locale
+            }
+            return { ...locale }; // Return other locales as is
+        });
+    
+        console.log('Updated mutableLocales:', this.mutableLocales);
+    }
+    
 
     render() {
         return (
             <div class="locale-filter-panel">
                 {this.showHeader && (
                     <header>
-                        <ur-button-icon class="close-panel" icon="close" onClick={() => this.handleCancel()}></ur-button-icon>
+                        <ur-button-icon
+                            class="close-panel"
+                            icon="close"
+                            onClick={() => this.handleCancel()}
+                        ></ur-button-icon>
                         <label>Filters</label>
                     </header>
                 )}
                 <main>
                     <div class="description">
                         <div class="title">Content Languages</div>
-                        <div class="text">Choose the language you want to see for the stories, pages, and competitions</div>
+                        <div class="text">
+                            Choose the language you want to see for the stories, pages, and competitions
+                        </div>
                     </div>
                     <div class="locales">
                         {this.mutableLocales.map(({ label, value, checked }) => (
                             <mdui-checkbox
                                 checked={checked}
                                 value={value}
+                                disabled={value === 'en'} // Disable the checkbox for 'en'
+                                class={value === 'en' ? 'non-selectable' : ''} // Add a class for styling if needed
                                 onChange={() => {
                                     console.log('Checkbox value changed:', value);
                                     this.toggleLocale(value);
@@ -95,4 +112,5 @@ export class UrLocaleFilterPanel {
             </div>
         );
     }
+    
 }
