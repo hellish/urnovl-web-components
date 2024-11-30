@@ -1,11 +1,11 @@
 import { html } from 'lit';
-import '../components/ur-menu/ur-menu';
+import '../components/ur-menu/ur-left-menu';
 import '../components/ur-avatar/ur-avatar'; // Assuming you have the avatar component
 import '../components/ur-list/ur-list'; // Assuming you have the list component
 
 // Helper function to render the menu with different states
 const MenuWithProfile = ({ isExpanded, isLoggedIn, userName, userAvatar, userRole }) => html`
-    <ur-menu
+    <ur-left-menu
         .isExpanded=${isExpanded}
         .isLoggedIn=${isLoggedIn}
         user-name=${userName}
@@ -24,7 +24,7 @@ const MenuWithProfile = ({ isExpanded, isLoggedIn, userName, userAvatar, userRol
                   ></ur-menuprofile>
               `
             : ''}
-    </ur-menu>
+    </ur-left-menu>
 `;
 
 export default {

@@ -1,13 +1,22 @@
 import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
 
+const links = [
+    { href: '/terms-of-service', label: 'Terms of Service' },
+    { href: '/house-rules', label: 'House Rules' },
+    { href: '/privacy-policy', label: 'Privacy Policy' },
+    { href: '/terms-of-pay', label: 'Payment Terms' },
+    { href: '/quills-acceptable-use-policy', label: 'Quills Acceptable Use Policy' },
+    { href: '/affiliate-agreement', label: 'Partnership Program' },
+];
+
 @Component({
-    tag: 'ur-menu',
-    styleUrl: 'ur-menu.css',
+    tag: 'ur-left-menu',
+    styleUrl: 'ur-left-menu.css',
     shadow: true,
 })
 export class UrLeftMenu {
     @State()
-    isExpanded: boolean = false; // Initialize with default state
+    isExpanded = false; // Initialize with default state
 
     @Prop()
     isLoggedIn: boolean;
@@ -125,17 +134,6 @@ export class UrLeftMenu {
     }
 
     renderFooter() {
-        const currentPath = window.location.pathname;
-
-        const links = [
-            { href: '/terms-of-service', label: 'Terms of Service' },
-            { href: '/house-rules', label: 'House Rules' },
-            { href: '/privacy-policy', label: 'Privacy Policy' },
-            { href: '/terms-of-pay', label: 'Payment Terms' },
-            { href: '/quills-acceptable-use-policy', label: 'Quills Acceptable Use Policy' },
-            { href: '/affiliate-agreement', label: 'Partnership Program' },
-        ];
-
         return (
             <footer class="menu-footer">
                 <div class="horizontal-logo">
@@ -145,7 +143,7 @@ export class UrLeftMenu {
                 </div>
                 <div class="link-hld">
                     {links.map((link, index) => (
-                        <a key={index} href={link.href} class={`link ${currentPath === link.href ? 'active' : ''}`} slot="guide-links-primary" style={{ display: 'block' }}>
+                        <a key={index} href={link.href} class="link" slot="guide-links-primary" style={{ display: 'block' }}>
                             {link.label}
                         </a>
                     ))}

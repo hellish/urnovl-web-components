@@ -18,7 +18,7 @@ const Template = args => html`
 `;
 
 export default {
-  title: 'urnovl/Basic/Hero',
+  title: 'urnovl/Business/Hero',
   render: Template,
   argTypes: {
     heroTitle: {

@@ -9,12 +9,20 @@ import 'mdui/components/icon.js';
     shadow: true,
 })
 export class UrMainDesktopTopAppBar {
-    @Prop() variant: string = 'small'; // Variant prop with a default value
-    @Prop() logoRotation: number = 0; // Rotation angle for the logo, default 0 degrees
-    @Prop() logoOpacity: number = 1; // Opacity for the logo
-    @Prop() searchText: string = 'Search for stories, writers & publishers'; // Default text for search link
+    @Prop() 
+    variant: string = 'small'; // Variant prop with a default value
+    
+    @Prop() 
+    logoRotation: number = 0; // Rotation angle for the logo, default 0 degrees
+    
+    @Prop() 
+    logoOpacity: number = 1; // Opacity for the logo
+    
+    @Prop() 
+    searchText: string = 'Search for stories, writers & publishers'; // Default text for search link
 
-    @Event() searchLinkClicked: EventEmitter<void>; // Event emitter for search link click
+    @Event() 
+    searchLinkClicked: EventEmitter<void>; // Event emitter for search link click
 
     private handleSearchClick = () => {
         this.searchLinkClicked.emit(); // Emit the event

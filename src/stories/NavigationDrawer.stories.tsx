@@ -105,7 +105,7 @@ const DrawerExample = ({ open = false, placement = 'right', closeOnEsc = true, c
 };
 
 export default {
-    title: 'Core/Navigation Drawer with Locale Filter Panel',
+    title: 'urnovl/Business/Navigation Drawer w/ Locale Filter Panel',
     render: args => DrawerExample(args),
     argTypes: {
         open: { control: 'boolean' },

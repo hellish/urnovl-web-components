@@ -102,6 +102,12 @@ export namespace Components {
          */
         "layout": 'left' | 'right' | 'center';
     }
+    interface UrLeftMenu {
+        "isLoggedIn": boolean;
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
+    }
     interface UrList {
     }
     interface UrListItem {
@@ -174,12 +180,6 @@ export namespace Components {
         "logoRotation": number;
         "searchText": string;
         "variant": string;
-    }
-    interface UrMenu {
-        "isLoggedIn": boolean;
-        "userAvatar"?: string;
-        "userName"?: string;
-        "userRole"?: string;
     }
     interface UrMenuItem {
         "disabled": boolean;
@@ -393,6 +393,10 @@ export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
 }
+export interface UrLeftMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrLeftMenuElement;
+}
 export interface UrLocaleFilterButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterButtonElement;
@@ -404,10 +408,6 @@ export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
 export interface UrMainDesktopTopappbarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrMainDesktopTopappbarElement;
-}
-export interface UrMenuCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrMenuElement;
 }
 export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -533,6 +533,23 @@ declare global {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
     };
+    interface HTMLUrLeftMenuElementEventMap {
+        "toggleExpand": boolean;
+    }
+    interface HTMLUrLeftMenuElement extends Components.UrLeftMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrLeftMenuElementEventMap>(type: K, listener: (this: HTMLUrLeftMenuElement, ev: UrLeftMenuCustomEvent<HTMLUrLeftMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrLeftMenuElementEventMap>(type: K, listener: (this: HTMLUrLeftMenuElement, ev: UrLeftMenuCustomEvent<HTMLUrLeftMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrLeftMenuElement: {
+        prototype: HTMLUrLeftMenuElement;
+        new (): HTMLUrLeftMenuElement;
+    };
     interface HTMLUrListElement extends Components.UrList, HTMLStencilElement {
     }
     var HTMLUrListElement: {
@@ -614,23 +631,6 @@ declare global {
     var HTMLUrMainDesktopTopappbarElement: {
         prototype: HTMLUrMainDesktopTopappbarElement;
         new (): HTMLUrMainDesktopTopappbarElement;
-    };
-    interface HTMLUrMenuElementEventMap {
-        "toggleExpand": boolean;
-    }
-    interface HTMLUrMenuElement extends Components.UrMenu, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrMenuElementEventMap>(type: K, listener: (this: HTMLUrMenuElement, ev: UrMenuCustomEvent<HTMLUrMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrMenuElementEventMap>(type: K, listener: (this: HTMLUrMenuElement, ev: UrMenuCustomEvent<HTMLUrMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrMenuElement: {
-        prototype: HTMLUrMenuElement;
-        new (): HTMLUrMenuElement;
     };
     interface HTMLUrMenuItemElementEventMap {
         "itemClicked": string;
@@ -857,6 +857,7 @@ declare global {
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-left-menu": HTMLUrLeftMenuElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
         "ur-list-subheader": HTMLUrListSubheaderElement;
@@ -865,7 +866,6 @@ declare global {
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
         "ur-logo": HTMLUrLogoElement;
         "ur-main-desktop-topappbar": HTMLUrMainDesktopTopappbarElement;
-        "ur-menu": HTMLUrMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menuprofile": HTMLUrMenuprofileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
@@ -983,6 +983,13 @@ declare namespace LocalJSX {
          */
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
     }
+    interface UrLeftMenu {
+        "isLoggedIn"?: boolean;
+        "onToggleExpand"?: (event: UrLeftMenuCustomEvent<boolean>) => void;
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
+    }
     interface UrList {
     }
     interface UrListItem {
@@ -1064,13 +1071,6 @@ declare namespace LocalJSX {
         "onSearchLinkClicked"?: (event: UrMainDesktopTopappbarCustomEvent<void>) => void;
         "searchText"?: string;
         "variant"?: string;
-    }
-    interface UrMenu {
-        "isLoggedIn"?: boolean;
-        "onToggleExpand"?: (event: UrMenuCustomEvent<boolean>) => void;
-        "userAvatar"?: string;
-        "userName"?: string;
-        "userRole"?: string;
     }
     interface UrMenuItem {
         "disabled"?: boolean;
@@ -1296,6 +1296,7 @@ declare namespace LocalJSX {
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
         "ur-hero": UrHero;
+        "ur-left-menu": UrLeftMenu;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
         "ur-list-subheader": UrListSubheader;
@@ -1304,7 +1305,6 @@ declare namespace LocalJSX {
         "ur-locale-filter-panel": UrLocaleFilterPanel;
         "ur-logo": UrLogo;
         "ur-main-desktop-topappbar": UrMainDesktopTopappbar;
-        "ur-menu": UrMenu;
         "ur-menu-item": UrMenuItem;
         "ur-menuprofile": UrMenuprofile;
         "ur-navigation-drawer": UrNavigationDrawer;
@@ -1338,6 +1338,7 @@ declare module "@stencil/core" {
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-left-menu": LocalJSX.UrLeftMenu & JSXBase.HTMLAttributes<HTMLUrLeftMenuElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
             "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;
@@ -1346,7 +1347,6 @@ declare module "@stencil/core" {
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
             "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
             "ur-main-desktop-topappbar": LocalJSX.UrMainDesktopTopappbar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopappbarElement>;
-            "ur-menu": LocalJSX.UrMenu & JSXBase.HTMLAttributes<HTMLUrMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menuprofile": LocalJSX.UrMenuprofile & JSXBase.HTMLAttributes<HTMLUrMenuprofileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
