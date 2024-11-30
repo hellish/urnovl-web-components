@@ -24,11 +24,12 @@ export class UrLocaleFilterButton {
 
     /** Method to reset the selected state programmatically */
     @Method()
-    resetSelected(emitEvent = true) {
+    async resetSelected(emitEvent = true): Promise<void> {
         this.selected = false; // Reset the selected state
         if (emitEvent) {
             this.stateChanged.emit(this.selected); // Emit only if explicitly allowed
         }
+        return Promise.resolve(); // Ensure it returns a Promise
     }
 
     render() {
