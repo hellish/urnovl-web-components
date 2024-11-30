@@ -3,13 +3,13 @@ import '../components/ur-navigation-drawer/ur-navigation-drawer';
 import '../components/ur-locale-filter-button/ur-locale-filter-button';
 import '../components/ur-locale-filter-panel/ur-locale-filter-panel';
 
-// Make locales reactive by defining it outside and ensuring updates persist
+// Updated locales to use 'key'
 let locales = [
-    { label: 'English', value: 'en', checked: true },
-    { label: 'Spanish', value: 'es', checked: false },
-    { label: 'French', value: 'fr', checked: false },
-    { label: 'German', value: 'de', checked: true },
-    { label: 'Souaxilian', value: 'su', checked: true },
+    { label: 'English', key: 'en', checked: true },
+    { label: 'Spanish', key: 'es', checked: false },
+    { label: 'French', key: 'fr', checked: false },
+    { label: 'German', key: 'de', checked: true },
+    { label: 'Souaxilian', key: 'su', checked: true },
 ];
 
 const DrawerExample = ({ open = false, placement = 'right', closeOnEsc = true, closeOnOverlayClick = true, contained = true }) => {
@@ -50,11 +50,11 @@ const DrawerExample = ({ open = false, placement = 'right', closeOnEsc = true, c
         // Update the locales to reflect the selected languages
         locales = locales.map(locale => ({
             ...locale,
-            checked: selectedLanguages.includes(locale.value),
+            checked: selectedLanguages.includes(locale.key), // Use key for identifier
         }));
 
         // Simulate the application of the changes
-        const appliedLanguages = locales.filter(locale => locale.checked).map(locale => locale.value);
+        const appliedLanguages = locales.filter(locale => locale.checked).map(locale => locale.key);
         console.info('Applied languages:', appliedLanguages);
 
         // Simulate the closure of the drawer

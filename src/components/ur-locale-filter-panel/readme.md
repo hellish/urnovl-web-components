@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                 | Type                                                    | Default |
-| ------------ | ------------- | --------------------------- | ------------------------------------------------------- | ------- |
-| `locales`    | --            | List of available languages | `{ label: string; value: string; checked: boolean; }[]` | `[]`    |
-| `showFooter` | `show-footer` | Whether to show the footer  | `boolean`                                               | `true`  |
-| `showHeader` | `show-header` | Whether to show the header  | `boolean`                                               | `true`  |
+| Property          | Attribute          | Description                                       | Type                                                                   | Default   |
+| ----------------- | ------------------ | ------------------------------------------------- | ---------------------------------------------------------------------- | --------- |
+| `identifierField` | `identifier-field` | Field to use as the identifier ('key' or 'value') | `"key" \| "value"`                                                     | `'value'` |
+| `locales`         | --                 | List of available languages                       | `{ label: string; value?: string; key?: string; checked: boolean; }[]` | `[]`      |
+| `showFooter`      | `show-footer`      | Whether to show the footer                        | `boolean`                                                              | `true`    |
+| `showHeader`      | `show-header`      | Whether to show the header                        | `boolean`                                                              | `true`    |
 
 
 ## Events

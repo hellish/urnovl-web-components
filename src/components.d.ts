@@ -135,13 +135,9 @@ export namespace Components {
     }
     interface UrLocaleFilterPanel {
         /**
-          * Field to use as the identifier ('key' or 'value')
-         */
-        "identifierField": 'key' | 'value';
-        /**
           * List of available languages
          */
-        "locales": Array<{ label: string; value?: string; key?: string; checked: boolean }>;
+        "locales": Array<{ label: string; key: string; checked: boolean }>;
         /**
           * Whether to show the footer
          */
@@ -1020,13 +1016,9 @@ declare namespace LocalJSX {
     }
     interface UrLocaleFilterPanel {
         /**
-          * Field to use as the identifier ('key' or 'value')
-         */
-        "identifierField"?: 'key' | 'value';
-        /**
           * List of available languages
          */
-        "locales"?: Array<{ label: string; value?: string; key?: string; checked: boolean }>;
+        "locales"?: Array<{ label: string; key: string; checked: boolean }>;
         /**
           * Event emitted when canceling
          */
