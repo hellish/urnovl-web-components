@@ -21,7 +21,7 @@
 ### Used by
 
  - [ur-hero](../ur-hero)
- - [ur-left-menu](../ur-menu)
+ - [ur-main-left-menu](../ur-main-left-menu)
  - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
  - [ur-user](../ur-user)
@@ -30,7 +30,7 @@
 ```mermaid
 graph TD;
   ur-hero --> ur-button
-  ur-left-menu --> ur-button
+  ur-main-left-menu --> ur-button
   ur-page --> ur-button
   ur-page-profile --> ur-button
   ur-user --> ur-button

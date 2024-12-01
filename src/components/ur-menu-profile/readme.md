@@ -18,7 +18,7 @@
 
 ### Used by
 
- - [ur-left-menu](../ur-menu)
+ - [ur-main-left-menu](../ur-main-left-menu)
 
 ### Depends on
 
@@ -28,7 +28,7 @@
 ```mermaid
 graph TD;
   ur-menu-profile --> ur-avatar
-  ur-left-menu --> ur-menu-profile
+  ur-main-left-menu --> ur-menu-profile
   style ur-menu-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
