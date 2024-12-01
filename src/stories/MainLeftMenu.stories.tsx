@@ -4,9 +4,9 @@ import '../components/ur-avatar/ur-avatar'; // Assuming you have the avatar comp
 import '../components/ur-list/ur-list'; // Assuming you have the list component
 
 // Helper function to render the menu with different states
-const MenuWithProfile = ({ expanded, loggedIn, userName, userAvatar, userRole }) => html`
+const MenuWithProfile = ({ opened, loggedIn, userName, userAvatar, userRole }) => html`
     <ur-main-left-menu
-        expanded=${expanded}
+        opened=${opened}
         logged-in=${loggedIn}
         user-name=${userName}
         user-avatar=${userAvatar}
@@ -16,7 +16,7 @@ const MenuWithProfile = ({ expanded, loggedIn, userName, userAvatar, userRole })
         ${loggedIn
             ? html`
                   <ur-menu-profile
-                      class=${expanded ? 'expanded' : 'collapsed'}
+                      class=${opened ? 'expanded' : 'collapsed'}
                       user-avatar=${userAvatar}
                       user-name=${userName}
                       user-role=${userRole}
@@ -30,7 +30,7 @@ export default {
     title: 'urnovl/Business/MainLeftMenu',
     render: args => MenuWithProfile(args),
     argTypes: {
-        expanded: {
+        opened: {
             control: 'boolean',
             description: 'Determines whether the menu is expanded (open) or collapsed (closed)',
         },
@@ -61,7 +61,7 @@ export default {
 // Story Definitions
 export const Default = {
     args: {
-        expanded: false,
+        opened: false,
         loggedIn: false,
         userName: 'Guest',
         userRole: '',
@@ -71,7 +71,7 @@ export const Default = {
 
 export const LoggedOutOpened = {
     args: {
-        expanded: true,
+        opened: true,
         loggedIn: false,
         userName: 'Guest',
         userRole: '',
@@ -81,7 +81,7 @@ export const LoggedOutOpened = {
 
 export const LoggedInClosed = {
     args: {
-        expanded: false,
+        opened: false,
         loggedIn: true,
         userName: 'Tasos Tsipos',
         userRole: 'Author & Reader',
@@ -91,7 +91,7 @@ export const LoggedInClosed = {
 
 export const LoggedInOpened = {
     args: {
-        expanded: true,
+        opened: true,
         loggedIn: true,
         userName: 'Tasos Tsipidopoulakoglou',
         userRole: 'Author & Reader',

@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 
 const links = [
     { href: '/terms-of-service', label: 'Terms of Service' },
@@ -20,6 +20,14 @@ export class UrLeftMenu {
     expanded = false; // Initialize with default state
 
     @Prop()
+    opened = false;
+
+    @Watch('opened')
+    watchOpenedHandler(newVal: boolean) {
+        this.expanded = newVal;
+    }
+
+    @Prop()
     loggedIn: boolean;
 
     @Prop()
@@ -33,6 +41,10 @@ export class UrLeftMenu {
 
     @Event()
     toggleExpand: EventEmitter<boolean>; // Emit the new state of isExpanded
+
+    componentDidLoad() {
+        this.expanded = this.opened;
+    }
 
     // Toggle menu state and emit event
     toggleMenu() {
@@ -168,7 +180,7 @@ export class UrLeftMenu {
                     <mdui-icon class="icon" name={this.expanded ? 'close' : 'menu'}></mdui-icon>
                 </ur-button>
 
-                {/* Use ur-menuprofile for both expanded and collapsed states */}
+                {/* Use ur-menu-profile for both expanded and collapsed states */}
                 {this.loggedIn && (
                     <ur-menu-profile
                         user-avatar={this.userAvatar}
