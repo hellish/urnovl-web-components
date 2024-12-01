@@ -1,7 +1,7 @@
 import { Component, Prop, Host, h, Event, EventEmitter } from '@stencil/core';
 
-import 'mdui/components/top-app-bar.js';
-import 'mdui/components/icon.js';
+import 'mdui/components/top-app-bar';
+import 'mdui/components/icon';
 
 @Component({
     tag: 'ur-read-mobile-top-app-bar',

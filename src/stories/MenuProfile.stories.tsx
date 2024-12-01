@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import '../components/ur-menuprofile/ur-menuprofile'; // Import the menu profile component
+import '../components/ur-menu-profile/ur-menu-profile'; // Import the menu profile component
 
 // Define the Menu Profile component in Storybook
 const MenuProfile = ({
@@ -9,11 +9,11 @@ const MenuProfile = ({
     wrapperWidth = '220px', // Default width for the wrapper to test avatar resizing
 }) => html`
     <div style="width: ${wrapperWidth}; border: 1px solid #ddd;">
-        <ur-menuprofile
+        <ur-menu-profile
             user-avatar=${userAvatar}
             user-name=${userName}
             user-role=${userRole}
-        ></ur-menuprofile>
+        ></ur-menu-profile>
     </div>
 `;
 

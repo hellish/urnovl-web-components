@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import '../components/ur-list/ur-list-item'; // Import your list-item component
-import 'mdui/components/icon.js';
+import 'mdui/components/icon';
 
 export default {
     title: 'Core/List/List Items', // Story location in Storybook
@@ -173,7 +173,7 @@ export const CustomWithAvatar = {
         <ur-list-item end-icon="chevron_right">
             <div slot="custom" class="custom-content" part="custom-slot">
                 <!-- Profile Picture -->
-                
+
 
                 <!-- User Information -->
                 <div class="custom-content__info" style="flex-grow: 1;">

@@ -1,7 +1,7 @@
 import { Component, Prop, Host, h } from '@stencil/core';
 
-import 'mdui/components/top-app-bar.js';
-import 'mdui/components/top-app-bar-title.js';
+import 'mdui/components/top-app-bar';
+import 'mdui/components/top-app-bar-title';
 
 @Component({
     tag: 'ur-top-app-bar',
@@ -9,12 +9,24 @@ import 'mdui/components/top-app-bar-title.js';
     shadow: true,
 })
 export class UrTopAppBar {
-    @Prop() headerTitle: string = 'Default Title'; // Set a default value if desired
-    @Prop() variant: string = 'small'; // Variant prop with a default value
-    @Prop() logoRotation: number = 0; // Rotation angle for the logo, default 0 degrees
-    @Prop() logoOpacity: number = 1; // Opacity for the logo
-    @Prop() scrollBehavior: 'hide' | 'shrink' | 'elevate'; // Scroll behavior with default "hide"
-    @Prop() scrollThreshold: number = 30; // Default value
+
+    @Prop()
+    headerTitle = 'Default Title'; // Set a default value if desired
+
+    @Prop()
+    variant = 'small'; // Variant prop with a default value
+
+    @Prop()
+    logoRotation = 0; // Rotation angle for the logo, default 0 degrees
+
+    @Prop()
+    logoOpacity = 1; // Opacity for the logo
+
+    @Prop()
+    scrollBehavior: 'hide' | 'shrink' | 'elevate'; // Scroll behavior with default "hide"
+
+    @Prop()
+    scrollThreshold: number = 30; // Default value
 
     render() {
         return (

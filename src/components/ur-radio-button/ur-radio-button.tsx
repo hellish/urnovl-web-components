@@ -1,6 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/radio.js';
+import 'mdui/components/radio';
 
 @Component({
   tag: 'ur-radio-button',
@@ -17,7 +17,7 @@ export class UrRadioButton {
 
   @Prop()
   text: string = 'Mandarin';
-  
+
   render() {
     return (
       <Host>

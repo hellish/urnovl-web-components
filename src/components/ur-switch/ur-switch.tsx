@@ -1,6 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/switch.js';
+import 'mdui/components/switch';
 
 @Component({
     tag: 'ur-switch',

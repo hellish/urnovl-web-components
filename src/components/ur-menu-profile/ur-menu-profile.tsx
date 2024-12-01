@@ -1,11 +1,17 @@
 import { Component, Prop, h, Element } from '@stencil/core';
 
 @Component({
-    tag: 'ur-menuprofile',
-    styleUrl: 'ur-menuprofile.css',
+    tag: 'ur-menu-profile',
+    styleUrl: 'ur-menu-profile.css',
     shadow: true,
 })
 export class UrMenuProfile {
+
+    private resizeObserver: ResizeObserver;
+
+    @Element()
+    el: HTMLElement;
+
     @Prop()
     userAvatar?: string;
 
@@ -15,11 +21,8 @@ export class UrMenuProfile {
     @Prop()
     userRole?: string;
 
-    @Element()
-    el: HTMLElement;
-
     componentDidLoad() {
-        const observer = new ResizeObserver(entries => {
+        this.resizeObserver = new ResizeObserver(entries => {
             for (let entry of entries) {
                 const width = entry.contentRect.width; // Observe the host width
                 const avatarSize = width >= 57 ? '40px' : '32px';
@@ -35,7 +38,11 @@ export class UrMenuProfile {
         });
 
         // Observe the host element
-        observer.observe(this.el);
+        this.resizeObserver.observe(this.el);
+    }
+
+    disconnectedCallback() {
+        this.resizeObserver.disconnect();
     }
 
     render() {

@@ -1,8 +1,8 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/tabs.js';
-import 'mdui/components/tab.js';
-import 'mdui/components/tab-panel.js';
+import 'mdui/components/tabs';
+import 'mdui/components/tab';
+import 'mdui/components/tab-panel';
 
 @Component({
     tag: 'ur-tabs',
@@ -11,11 +11,12 @@ import 'mdui/components/tab-panel.js';
 })
 
 export class UrTabs {
-    /** The array of tabs, each with a label and value **/
-    @Prop() tabs: { label: string, value: string }[];
 
-    /** The array of panels, each with content and value **/
-    @Prop() panels: { content: string, value: string }[];
+    @Prop()
+    tabs: { label: string, value: string }[];
+
+    @Prop()
+    panels: { content: string, value: string }[];
 
     render() {
         return (

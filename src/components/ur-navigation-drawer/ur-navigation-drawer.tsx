@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
 
-import 'mdui/components/navigation-drawer.js';
+import 'mdui/components/navigation-drawer';
 
 @Component({
     tag: 'ur-navigation-drawer',

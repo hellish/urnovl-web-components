@@ -63,45 +63,15 @@ export namespace Components {
         "openDialog": () => Promise<void>;
     }
     interface UrHero {
-        /**
-          * Background horizontal alignment: left, center, or right
-         */
         "backgroundAlignment": 'left' | 'center' | 'right';
-        /**
-          * Background color overlay
-         */
         "backgroundColor": string;
-        /**
-          * Background image URL
-         */
         "backgroundImage": string;
-        /**
-          * Background vertical justification: top, center, or bottom
-         */
         "backgroundJustification": 'top' | 'center' | 'bottom';
-        /**
-          * Call to action button text
-         */
         "ctaText": string;
-        /**
-          * Hero subtitle
-         */
         "heroSubtitle": string;
-        /**
-          * Hero subtitle color
-         */
         "heroSubtitleColor": string;
-        /**
-          * Hero title
-         */
         "heroTitle": string;
-        /**
-          * Hero title color
-         */
         "heroTitleColor": string;
-        /**
-          * Layout variant: left, right, or center
-         */
         "layout": 'left' | 'right' | 'center';
     }
     interface UrLeftMenu {
@@ -184,7 +154,7 @@ export namespace Components {
         "selected": boolean;
         "value": string;
     }
-    interface UrMenuprofile {
+    interface UrMenuProfile {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
@@ -336,13 +306,7 @@ export namespace Components {
         "disabled": boolean;
     }
     interface UrTabs {
-        /**
-          * The array of panels, each with content and value *
-         */
         "panels": { content: string, value: string }[];
-        /**
-          * The array of tabs, each with a label and value *
-         */
         "tabs": { label: string, value: string }[];
     }
     interface UrTextField {
@@ -622,11 +586,11 @@ declare global {
         prototype: HTMLUrMenuItemElement;
         new (): HTMLUrMenuItemElement;
     };
-    interface HTMLUrMenuprofileElement extends Components.UrMenuprofile, HTMLStencilElement {
+    interface HTMLUrMenuProfileElement extends Components.UrMenuProfile, HTMLStencilElement {
     }
-    var HTMLUrMenuprofileElement: {
-        prototype: HTMLUrMenuprofileElement;
-        new (): HTMLUrMenuprofileElement;
+    var HTMLUrMenuProfileElement: {
+        prototype: HTMLUrMenuProfileElement;
+        new (): HTMLUrMenuProfileElement;
     };
     interface HTMLUrNavigationDrawerElement extends Components.UrNavigationDrawer, HTMLStencilElement {
     }
@@ -828,7 +792,7 @@ declare global {
         "ur-logo": HTMLUrLogoElement;
         "ur-main-desktop-top-app-bar": HTMLUrMainDesktopTopAppBarElement;
         "ur-menu-item": HTMLUrMenuItemElement;
-        "ur-menuprofile": HTMLUrMenuprofileElement;
+        "ur-menu-profile": HTMLUrMenuProfileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
@@ -899,49 +863,16 @@ declare namespace LocalJSX {
         "open"?: boolean;
     }
     interface UrHero {
-        /**
-          * Background horizontal alignment: left, center, or right
-         */
         "backgroundAlignment"?: 'left' | 'center' | 'right';
-        /**
-          * Background color overlay
-         */
         "backgroundColor"?: string;
-        /**
-          * Background image URL
-         */
         "backgroundImage"?: string;
-        /**
-          * Background vertical justification: top, center, or bottom
-         */
         "backgroundJustification"?: 'top' | 'center' | 'bottom';
-        /**
-          * Call to action button text
-         */
         "ctaText"?: string;
-        /**
-          * Hero subtitle
-         */
         "heroSubtitle"?: string;
-        /**
-          * Hero subtitle color
-         */
         "heroSubtitleColor"?: string;
-        /**
-          * Hero title
-         */
         "heroTitle"?: string;
-        /**
-          * Hero title color
-         */
         "heroTitleColor"?: string;
-        /**
-          * Layout variant: left, right, or center
-         */
         "layout"?: 'left' | 'right' | 'center';
-        /**
-          * Event emitted when CTA button is clicked
-         */
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
     }
     interface UrLeftMenu {
@@ -1035,7 +966,7 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         "value"?: string;
     }
-    interface UrMenuprofile {
+    interface UrMenuProfile {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
@@ -1198,13 +1129,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
     }
     interface UrTabs {
-        /**
-          * The array of panels, each with content and value *
-         */
         "panels"?: { content: string, value: string }[];
-        /**
-          * The array of tabs, each with a label and value *
-         */
         "tabs"?: { label: string, value: string }[];
     }
     interface UrTextField {
@@ -1255,7 +1180,7 @@ declare namespace LocalJSX {
         "ur-logo": UrLogo;
         "ur-main-desktop-top-app-bar": UrMainDesktopTopAppBar;
         "ur-menu-item": UrMenuItem;
-        "ur-menuprofile": UrMenuprofile;
+        "ur-menu-profile": UrMenuProfile;
         "ur-navigation-drawer": UrNavigationDrawer;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
@@ -1297,7 +1222,7 @@ declare module "@stencil/core" {
             "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
             "ur-main-desktop-top-app-bar": LocalJSX.UrMainDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopAppBarElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
-            "ur-menuprofile": LocalJSX.UrMenuprofile & JSXBase.HTMLAttributes<HTMLUrMenuprofileElement>;
+            "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;

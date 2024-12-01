@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, State, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, Host, h, State, Event, Element, EventEmitter } from '@stencil/core';
 
 @Component({
     tag: 'ur-hero',
@@ -6,43 +6,47 @@ import { Component, Prop, Host, h, State, Event, EventEmitter } from '@stencil/c
     shadow: true,
 })
 export class UrHero {
-    /** Hero title */
-    @Prop() heroTitle: string;
 
-    /** Hero subtitle */
-    @Prop() heroSubtitle: string;
+    private resizeObserver: ResizeObserver;
 
-    /** Call to action button text */
-    @Prop() ctaText: string;
+    @Element()
+    el: HTMLElement;
 
-    /** Background image URL */
-    @Prop() backgroundImage: string;
+    @Prop()
+    heroTitle: string;
 
-    /** Background color overlay */
-    @Prop() backgroundColor: string = 'rgba(0, 0, 0, 0.5)';
+    @Prop()
+    heroSubtitle: string;
 
-    /** Layout variant: left, right, or center */
-    @Prop() layout: 'left' | 'right' | 'center' = 'center';
+    @Prop()
+    ctaText: string;
 
-    /** Background vertical justification: top, center, or bottom */
-    @Prop() backgroundJustification: 'top' | 'center' | 'bottom' = 'center';
+    @Prop()
+    backgroundImage: string;
 
-    /** Background horizontal alignment: left, center, or right */
-    @Prop() backgroundAlignment: 'left' | 'center' | 'right' = 'center';
+    @Prop()
+    backgroundColor = 'rgba(0, 0, 0, 0.5)';
 
-    /** Hero title color */
-    @Prop() heroTitleColor: string = '#ffffff'; // Default to white
+    @Prop()
+    layout: 'left' | 'right' | 'center' = 'center';
 
-    /** Hero subtitle color */
-    @Prop() heroSubtitleColor: string = '#cccccc'; // Default to light gray
+    @Prop()
+    backgroundJustification: 'top' | 'center' | 'bottom' = 'center';
 
-    /** Event emitted when CTA button is clicked */
-    @Event() ctaClicked: EventEmitter<void>;
+    @Prop()
+    backgroundAlignment: 'left' | 'center' | 'right' = 'center';
 
-    /** State to store width-based class */
-    @State() widthClass: string = 'large-hero';
+    @Prop()
+    heroTitleColor = '#fff'; // Default to white
 
-    private containerElement!: HTMLElement;
+    @Prop()
+    heroSubtitleColor = '#ccc'; // Default to light gray
+
+    @Event()
+    ctaClicked: EventEmitter<void>;
+
+    @State()
+    widthClass: string = 'large-hero';
 
     private updateWidthClass(width: number) {
         if (width <= 480) {
@@ -54,29 +58,29 @@ export class UrHero {
         }
     }
 
-    private observeResize() {
-        const resizeObserver = new ResizeObserver(entries => {
-            for (const entry of entries) {
-                const width = entry.contentRect.width;
-                this.updateWidthClass(width);
-            }
-        });
-        resizeObserver.observe(this.containerElement);
-    }
-
     /** Handles CTA button click */
     private handleCtaClick = () => {
         this.ctaClicked.emit(); // Emit the event
     };
 
     componentDidLoad() {
-        this.observeResize();
+        this.resizeObserver = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                const width = entry.contentRect.width;
+                this.updateWidthClass(width);
+            }
+        });
+
+        this.resizeObserver.observe(this.el);
+    }
+
+    disconnectedCallback() {
+        this.resizeObserver.disconnect();
     }
 
     render() {
         return (
             <Host
-                ref={el => (this.containerElement = el)}
                 class={this.widthClass} // Dynamically apply class to :host
             >
                 <div

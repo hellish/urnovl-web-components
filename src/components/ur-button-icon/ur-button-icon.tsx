@@ -1,6 +1,6 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/button-icon.js';
+import 'mdui/components/button-icon';
 
 @Component({
     tag: 'ur-button-icon',

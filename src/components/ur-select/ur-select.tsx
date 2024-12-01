@@ -1,7 +1,7 @@
 import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 import '../ur-menu-item/ur-menu-item';
-import 'mdui/components/select.js';
+import 'mdui/components/select';
 
 @Component({
     tag: 'ur-select',
