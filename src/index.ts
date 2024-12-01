@@ -10,4 +10,4 @@
 
 export type { Novl } from './models/novl';
 export type { Locale } from './models/locale';
-// export type * from './components.d.ts';
+export type * from './components.d.ts';
