@@ -1,19 +1,15 @@
-import { format } from './utils';
+import { isNumber } from './utils';
 
-describe('format', () => {
-  it('returns empty string for no names defined', () => {
-    expect(format(undefined, undefined, undefined)).toEqual('');
-  });
+describe('isNumber', () => {
+    it('check number if number', () => {
+        expect(isNumber(1)).toEqual(true);
+    });
 
-  it('formats just first names', () => {
-    expect(format('Joseph', undefined, undefined)).toEqual('Joseph');
-  });
+    it('check string if number', () => {
+        expect(isNumber('2')).toEqual(false);
+    });
 
-  it('formats first and last names', () => {
-    expect(format('Joseph', undefined, 'Publique')).toEqual('Joseph Publique');
-  });
-
-  it('formats first, middle and last names', () => {
-    expect(format('Joseph', 'Quincy', 'Publique')).toEqual('Joseph Quincy Publique');
-  });
+    it('check string+ if number', () => {
+        expect(isNumber(+'3')).toEqual(true);
+    });
 });

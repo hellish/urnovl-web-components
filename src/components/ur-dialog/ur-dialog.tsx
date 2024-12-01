@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
 
-import 'mdui/components/dialog.js';
+import 'mdui/components/dialog';
 
 @Component({
     tag: 'ur-dialog',

@@ -1,7 +1,7 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/segmented-button-group.js';
-import 'mdui/components/segmented-button.js';
+import 'mdui/components/segmented-button-group';
+import 'mdui/components/segmented-button';
 
 @Component({
     tag: 'ur-segment-button',
@@ -11,8 +11,8 @@ import 'mdui/components/segmented-button.js';
 
 export class UrSegment {
 
-    // New prop for the "Like" button label
-    @Prop() likeLabel: string = '2.5k';  // Default label is 'Like'
+    @Prop()
+    likeLabel: string = '2.5k';  // Default label is 'Like'
 
     render() {
         return (

@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `count`  | `count`   |             | `number` | `0`     |
+| Property   | Attribute  | Description | Type      | Default |
+| ---------- | ---------- | ----------- | --------- | ------- |
+| `count`    | `count`    |             | `number`  | `0`     |
+| `selected` | `selected` |             | `boolean` | `false` |
 
 
 ----------------------------------------------

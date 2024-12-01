@@ -1,0 +1,143 @@
+:host {
+    align-items: center;
+    width: 100%;
+
+    --list-item-active-light: rgba(223, 226, 235, 1);
+    --list-item-active-dark: rgba(39, 42, 47, 1);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+}
+
+:host .ur-list-item {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* ur-list-item.css */
+:host mdui-icon {
+    font-size: 24px;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+:host-context(html.ur-theme-light) .ur-list-item--active {
+    background-color: rgb(var(--list-item-active-light));
+    color: rgb(var(--mdui-color-on-surface-light));
+}
+
+:host-context(html.ur-theme-dark) .ur-list-item--active {
+    background-color: rgb(var(--list-item-active-dark));
+    color: rgb(var(--mdui-color-on-surface-dark));
+}
+
+:host .ur-list-item--active {
+    background-color: #f0f0f0;
+}
+
+:host .ur-list-item--nonclickable {
+    cursor: default;
+}
+
+:host .ur-list-item--rounded {
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+:host .ur-list-item--align-start {
+    align-items: flex-start;
+}
+
+:host .ur-list-item--align-center {
+    align-items: center;
+}
+
+:host .ur-list-item--align-end {
+    align-items: flex-end;
+}
+
+:host .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+:host .description {
+    font-size: 0.875rem; /* Adjust for secondary text size */
+    color: #6c757d; /* Secondary text color */
+    margin-top: 4px;
+}
+
+/* Target the top-level element in the custom slot */
+::slotted([slot='custom']) {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px; /* Spacing between items */
+}
+
+/* Profile Picture Styling */
+::part(custom-slot) img {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    margin-right: 16px;
+}
+
+/* User Information Styling */
+::slotted([slot='custom']) .custom-content__info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow the info container to grow */
+}
+
+/* Username Styling */
+::slotted([slot='custom']) .custom-content__username {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0; /* Reset margin */
+}
+
+/* Subtitle Styling */
+::slotted([slot='custom']) .custom-content__subtitle {
+    font-size: 14px;
+    color: gray;
+    margin: 0; /* Reset margin */
+}
+
+:host .ur-list-item .end-icon {
+    font-size: 1.25rem; /* Adjust size of the end icon */
+    color: gray; /* End icon color */
+}
+
+:host mdui-list-item::part(container) {
+    /* Your CSS styles here */
+    padding: 0 12px;
+    min-height: 40px;
+}
+
+:host mdui-list-item::part(icon) {
+    margin-right: 12px;
+}
+
+:host .ur-list-item mdui-icon {
+    font-size: 22px;
+    color: rgb(var(--ur-color-on-surface));
+}
+
+:host mdui-list-item::part(headline) {
+    font-size: 14px;
+}
+
+:host mdui-list-item {
+    /* Add transition for smooth changes */
+    transition: background-color 0.3s ease;
+}
+
+:host mdui-list-item[hover] {
+
+    background-color: rgba(var(--ur-color-on-surface), .07); /* Use 'var' inside rgba */
+}

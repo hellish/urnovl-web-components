@@ -21,6 +21,9 @@ export class UrButton {
     @Prop()
     endIcon = null;
 
+    @Prop()
+    fullWidth: boolean;
+
     render() {
         return (
             <Host>
@@ -28,6 +31,7 @@ export class UrButton {
                     icon={!!this.icon ? this.icon : false}
                     end-icon={!!this.endIcon ? this.endIcon : false}
                     variant={this.variant}
+                    full-width={this.fullWidth}
                     disabled={this.disabled}><slot></slot></mdui-button>
             </Host>
         );

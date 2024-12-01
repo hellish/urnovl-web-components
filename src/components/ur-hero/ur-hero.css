@@ -1,0 +1,129 @@
+:host {
+    display: block;
+    width: 100%;
+    height: calc(100vw / 3); /* Sets the height to width divided by 1.25 */
+    min-height: 200px;
+    position: relative;
+    max-height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    container-type: inline-size; /* Enables container queries */
+    container-name: hero-container; /* Optional: name the container */
+}
+
+:host .hero-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+}
+
+:host .overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--ur-hero-overlay-color, rgba(0, 0, 0, 0.5));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}
+
+:host .hero-title {
+    font-size: 34px;
+    line-height: 1rem;
+    margin: 0.5rem 0;
+}
+
+:host .hero-subtitle {
+    font-size: 18px;
+    line-height: 1rem;
+    margin: 0.5rem 0;
+}
+
+:host(.small-hero) .hero-title {
+    font-size: 1.25rem;
+}
+
+:host(.small-hero) .hero-subtitle {
+    font-size: 0.75rem;
+}
+
+:host(.medium-hero) .hero-title {
+    font-size: 1.5rem;
+}
+
+:host(.medium-hero) .hero-subtitle {
+    font-size: 0.875rem;
+}
+
+:host(.large-hero) .hero-title {
+    font-size: 2rem;
+}
+
+:host(.large-hero) .hero-subtitle {
+    font-size: 1rem;
+}
+
+:host .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: white;
+    background: var(--ur-button-background, #007bff);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+:host .cta-button mat-icon {
+    margin-right: 0.5rem;
+}
+
+/* Layout Variants */
+:host .layout-left .overlay {
+    align-items: flex-start;
+    text-align: left;
+}
+
+:host .layout-right .overlay {
+    align-items: flex-end;
+    text-align: right;
+}
+
+:host .layout-center .overlay {
+    align-items: center;
+    text-align: center;
+}
+
+/* Background Position Variants */
+:host .background-top {
+    background-position: top;
+}
+
+:host .background-center {
+    background-position: center;
+}
+
+:host .background-bottom {
+    background-position: bottom;
+}
+
+/* Horizontal Alignment */
+:host .align-left {
+    background-position-x: left;
+}
+:host .align-center {
+    background-position-x: center;
+}
+:host .align-right {
+    background-position-x: right;
+}

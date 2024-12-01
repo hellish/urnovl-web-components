@@ -1,0 +1,8 @@
+:host {
+    display: inline-block;
+    opacity: 0.7; /* Default opacity */
+}
+
+:host(:hover) {
+    opacity: 1 !important; /* Full opacity on hover, important required, keep it*/
+}

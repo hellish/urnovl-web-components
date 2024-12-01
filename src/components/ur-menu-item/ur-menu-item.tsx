@@ -1,6 +1,6 @@
 import { Component, Host, h, Prop, Event, EventEmitter } from '@stencil/core';
 
-import 'mdui/components/menu-item.js';
+import 'mdui/components/menu-item';
 
 @Component({
   tag: 'ur-menu-item',

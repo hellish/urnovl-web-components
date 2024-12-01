@@ -3,15 +3,24 @@
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --ur-color-outline: var(--mdui-color-outline);
     --ur-color-surface: var(--mdui-color-surface);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
 }
 
 :host mdui-button {
     border-radius: 8px;
     border: 1px solid rgb(var(--ur-color-outline));
     height: 34px;
+    background: rgb(var(--ur-color-background));
 }
 
+/*
 :host mdui-button.with-count {
+    border: 1px solid rgb(var(--ur-color-primary));
+}*/
+
+
+:host mdui-button.selected {
     border: 1px solid rgb(var(--ur-color-primary));
 }
 
@@ -19,7 +28,15 @@
     font-size: 14px;
     margin-right: 8px;
     line-height: 22px;
-    color: rgb(var(--ur-color-on-surface));
+    color: rgb(var(--ur-color-on-background));
+}
+
+:host mdui-button.selected .label {
+    color: rgb(var(--ur-color-primary));
+}
+
+:host mdui-button.selected svg path {
+    stroke: rgb(var(--ur-color-primary));
 }
 
 :host mdui-button .count {

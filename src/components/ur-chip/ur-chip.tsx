@@ -1,11 +1,11 @@
 import { Component, Host, Prop, h } from '@stencil/core';
 
-import 'mdui/components/chip.js';
+import 'mdui/components/chip';
 
 @Component({
     tag: 'ur-chip',
     styleUrl: 'ur-chip.css',
-    shadow: false,
+    shadow: true,
 })
 export class UrChip {
 

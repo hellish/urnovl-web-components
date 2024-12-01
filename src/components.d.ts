@@ -5,8 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Locale } from "./models/locale";
 import { Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
+export { Locale } from "./models/locale";
 export { Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
@@ -20,6 +22,7 @@ export namespace Components {
     interface UrButton {
         "disabled": boolean;
         "endIcon": any;
+        "fullWidth": boolean;
         "icon": any;
         "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
@@ -59,21 +62,127 @@ export namespace Components {
         "open": boolean;
         "openDialog": () => Promise<void>;
     }
+    interface UrHero {
+        "backgroundAlignment": 'left' | 'center' | 'right';
+        "backgroundColor": string;
+        "backgroundImage": string;
+        "backgroundJustification": 'top' | 'center' | 'bottom';
+        "ctaText": string;
+        "heroSubtitle": string;
+        "heroSubtitleColor": string;
+        "heroTitle": string;
+        "heroTitleColor": string;
+        "layout": 'left' | 'right' | 'center';
+    }
+    interface UrList {
+    }
+    interface UrListItem {
+        "active": boolean;
+        "alignment": 'start' | 'center' | 'end';
+        "content"?: string;
+        "description"?: string;
+        "disabled": boolean;
+        "endIcon"?: string;
+        "href"?: string;
+        "icon"?: string;
+        "nonclickable": boolean;
+        "rel"?: string;
+        "rounded": boolean;
+        "target"?: '_blank' | '_self' | '_parent' | '_top';
+    }
+    interface UrListSubheader {
+        "text": string;
+    }
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
         "count": number;
+        "selected": boolean;
     }
     interface UrLocaleFilterPanel {
-        "locales": Array<[label: string, value: string, checked: boolean]>;
+        "disabledLocales": string[];
+        /**
+          * List of available languages
+         */
+        "locales": Array<Locale>;
+        /**
+          * Whether to show the footer
+         */
         "showFooter": boolean;
+        /**
+          * Whether to show the header
+         */
         "showHeader": boolean;
+    }
+    interface UrLogo {
+        /**
+          * Color of the logo
+         */
+        "color": string;
+        /**
+          * Height of the logo
+         */
+        "height": string;
+        /**
+          * Opacity of the logo
+         */
+        "opacity": number;
+        /**
+          * Rotation angle of the logo in degrees
+         */
+        "rotation": number;
+        /**
+          * Width of the logo
+         */
+        "width": string;
+    }
+    interface UrMainDesktopTopAppBar {
+        "logoOpacity": number;
+        "logoRotation": number;
+        "searchText": string;
+        "variant": string;
+    }
+    interface UrMainLeftMenu {
+        "loggedIn": boolean;
+        "opened": boolean;
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
     }
     interface UrMenuItem {
         "disabled": boolean;
         "label": string;
         "selected": boolean;
         "value": string;
+    }
+    interface UrMenuProfile {
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
+    }
+    interface UrNavigationDrawer {
+        "closeDrawer": () => Promise<void>;
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc": boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick": boolean;
+        /**
+          * Contains the drawer within its parent element
+         */
+        "contained": boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open": boolean;
+        "openDrawer": () => Promise<void>;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement": 'left' | 'right';
     }
     interface UrNovl {
         "authorAvatar": any;
@@ -166,6 +275,12 @@ export namespace Components {
         "disabled": boolean;
         "text": string;
     }
+    interface UrReadMobileTopAppBar {
+        "headerTitle": string;
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold": number;
+        "variant": string;
+    }
     interface UrSegmentButton {
         "likeLabel": string;
     }
@@ -192,13 +307,7 @@ export namespace Components {
         "disabled": boolean;
     }
     interface UrTabs {
-        /**
-          * The array of panels, each with content and value *
-         */
         "panels": { content: string, value: string }[];
-        /**
-          * The array of tabs, each with a label and value *
-         */
         "tabs": { label: string, value: string }[];
     }
     interface UrTextField {
@@ -209,6 +318,14 @@ export namespace Components {
         "placeholder": string | null;
         "value": string;
         "variant": 'filled' | 'outlined';
+    }
+    interface UrTopAppBar {
+        "headerTitle": string;
+        "logoOpacity": number;
+        "logoRotation": number;
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold": number;
+        "variant": string;
     }
     interface UrUser {
         "followers": number;
@@ -229,9 +346,21 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrHeroElement;
+}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
+}
+export interface UrMainDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrMainDesktopTopAppBarElement;
+}
+export interface UrMainLeftMenuCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrMainLeftMenuElement;
 }
 export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -252,6 +381,10 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadMobileTopAppBarElement;
 }
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -332,6 +465,41 @@ declare global {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
     };
+    interface HTMLUrHeroElementEventMap {
+        "ctaClicked": void;
+    }
+    interface HTMLUrHeroElement extends Components.UrHero, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrHeroElementEventMap>(type: K, listener: (this: HTMLUrHeroElement, ev: UrHeroCustomEvent<HTMLUrHeroElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrHeroElementEventMap>(type: K, listener: (this: HTMLUrHeroElement, ev: UrHeroCustomEvent<HTMLUrHeroElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrHeroElement: {
+        prototype: HTMLUrHeroElement;
+        new (): HTMLUrHeroElement;
+    };
+    interface HTMLUrListElement extends Components.UrList, HTMLStencilElement {
+    }
+    var HTMLUrListElement: {
+        prototype: HTMLUrListElement;
+        new (): HTMLUrListElement;
+    };
+    interface HTMLUrListItemElement extends Components.UrListItem, HTMLStencilElement {
+    }
+    var HTMLUrListItemElement: {
+        prototype: HTMLUrListItemElement;
+        new (): HTMLUrListItemElement;
+    };
+    interface HTMLUrListSubheaderElement extends Components.UrListSubheader, HTMLStencilElement {
+    }
+    var HTMLUrListSubheaderElement: {
+        prototype: HTMLUrListSubheaderElement;
+        new (): HTMLUrListSubheaderElement;
+    };
     interface HTMLUrLoaderElement extends Components.UrLoader, HTMLStencilElement {
     }
     var HTMLUrLoaderElement: {
@@ -345,7 +513,7 @@ declare global {
         new (): HTMLUrLocaleFilterButtonElement;
     };
     interface HTMLUrLocaleFilterPanelElementEventMap {
-        "save": void;
+        "save": Array<Locale>;
         "cancel": void;
     }
     interface HTMLUrLocaleFilterPanelElement extends Components.UrLocaleFilterPanel, HTMLStencilElement {
@@ -361,6 +529,46 @@ declare global {
     var HTMLUrLocaleFilterPanelElement: {
         prototype: HTMLUrLocaleFilterPanelElement;
         new (): HTMLUrLocaleFilterPanelElement;
+    };
+    interface HTMLUrLogoElement extends Components.UrLogo, HTMLStencilElement {
+    }
+    var HTMLUrLogoElement: {
+        prototype: HTMLUrLogoElement;
+        new (): HTMLUrLogoElement;
+    };
+    interface HTMLUrMainDesktopTopAppBarElementEventMap {
+        "searchLinkClicked": void;
+    }
+    interface HTMLUrMainDesktopTopAppBarElement extends Components.UrMainDesktopTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrMainDesktopTopAppBarElement: {
+        prototype: HTMLUrMainDesktopTopAppBarElement;
+        new (): HTMLUrMainDesktopTopAppBarElement;
+    };
+    interface HTMLUrMainLeftMenuElementEventMap {
+        "toggleExpand": boolean;
+    }
+    interface HTMLUrMainLeftMenuElement extends Components.UrMainLeftMenu, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrMainLeftMenuElementEventMap>(type: K, listener: (this: HTMLUrMainLeftMenuElement, ev: UrMainLeftMenuCustomEvent<HTMLUrMainLeftMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrMainLeftMenuElementEventMap>(type: K, listener: (this: HTMLUrMainLeftMenuElement, ev: UrMainLeftMenuCustomEvent<HTMLUrMainLeftMenuElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrMainLeftMenuElement: {
+        prototype: HTMLUrMainLeftMenuElement;
+        new (): HTMLUrMainLeftMenuElement;
     };
     interface HTMLUrMenuItemElementEventMap {
         "itemClicked": string;
@@ -378,6 +586,18 @@ declare global {
     var HTMLUrMenuItemElement: {
         prototype: HTMLUrMenuItemElement;
         new (): HTMLUrMenuItemElement;
+    };
+    interface HTMLUrMenuProfileElement extends Components.UrMenuProfile, HTMLStencilElement {
+    }
+    var HTMLUrMenuProfileElement: {
+        prototype: HTMLUrMenuProfileElement;
+        new (): HTMLUrMenuProfileElement;
+    };
+    interface HTMLUrNavigationDrawerElement extends Components.UrNavigationDrawer, HTMLStencilElement {
+    }
+    var HTMLUrNavigationDrawerElement: {
+        prototype: HTMLUrNavigationDrawerElement;
+        new (): HTMLUrNavigationDrawerElement;
     };
     interface HTMLUrNovlElementEventMap {
         "novlClicked": string;
@@ -464,6 +684,25 @@ declare global {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
     };
+    interface HTMLUrReadMobileTopAppBarElementEventMap {
+        "backClick": void;
+        "chaptersClick": void;
+        "readingSettingsClick": void;
+    }
+    interface HTMLUrReadMobileTopAppBarElement extends Components.UrReadMobileTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadMobileTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopAppBarElement, ev: UrReadMobileTopAppBarCustomEvent<HTMLUrReadMobileTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadMobileTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopAppBarElement, ev: UrReadMobileTopAppBarCustomEvent<HTMLUrReadMobileTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadMobileTopAppBarElement: {
+        prototype: HTMLUrReadMobileTopAppBarElement;
+        new (): HTMLUrReadMobileTopAppBarElement;
+    };
     interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
     }
     var HTMLUrSegmentButtonElement: {
@@ -505,6 +744,12 @@ declare global {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
     };
+    interface HTMLUrTopAppBarElement extends Components.UrTopAppBar, HTMLStencilElement {
+    }
+    var HTMLUrTopAppBarElement: {
+        prototype: HTMLUrTopAppBarElement;
+        new (): HTMLUrTopAppBarElement;
+    };
     interface HTMLUrUserElementEventMap {
         "userFollowClicked": any;
     }
@@ -537,21 +782,32 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
+        "ur-hero": HTMLUrHeroElement;
+        "ur-list": HTMLUrListElement;
+        "ur-list-item": HTMLUrListItemElement;
+        "ur-list-subheader": HTMLUrListSubheaderElement;
         "ur-loader": HTMLUrLoaderElement;
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
+        "ur-logo": HTMLUrLogoElement;
+        "ur-main-desktop-top-app-bar": HTMLUrMainDesktopTopAppBarElement;
+        "ur-main-left-menu": HTMLUrMainLeftMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
+        "ur-menu-profile": HTMLUrMenuProfileElement;
+        "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
@@ -567,6 +823,7 @@ declare namespace LocalJSX {
     interface UrButton {
         "disabled"?: boolean;
         "endIcon"?: any;
+        "fullWidth"?: boolean;
         "icon"?: any;
         "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
@@ -606,17 +863,103 @@ declare namespace LocalJSX {
         "fullscreen"?: boolean;
         "open"?: boolean;
     }
+    interface UrHero {
+        "backgroundAlignment"?: 'left' | 'center' | 'right';
+        "backgroundColor"?: string;
+        "backgroundImage"?: string;
+        "backgroundJustification"?: 'top' | 'center' | 'bottom';
+        "ctaText"?: string;
+        "heroSubtitle"?: string;
+        "heroSubtitleColor"?: string;
+        "heroTitle"?: string;
+        "heroTitleColor"?: string;
+        "layout"?: 'left' | 'right' | 'center';
+        "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
+    }
+    interface UrList {
+    }
+    interface UrListItem {
+        "active"?: boolean;
+        "alignment"?: 'start' | 'center' | 'end';
+        "content"?: string;
+        "description"?: string;
+        "disabled"?: boolean;
+        "endIcon"?: string;
+        "href"?: string;
+        "icon"?: string;
+        "nonclickable"?: boolean;
+        "rel"?: string;
+        "rounded"?: boolean;
+        "target"?: '_blank' | '_self' | '_parent' | '_top';
+    }
+    interface UrListSubheader {
+        "text"?: string;
+    }
     interface UrLoader {
     }
     interface UrLocaleFilterButton {
         "count"?: number;
+        "selected"?: boolean;
     }
     interface UrLocaleFilterPanel {
-        "locales"?: Array<[label: string, value: string, checked: boolean]>;
+        "disabledLocales"?: string[];
+        /**
+          * List of available languages
+         */
+        "locales"?: Array<Locale>;
+        /**
+          * Event emitted when canceling
+         */
         "onCancel"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
-        "onSave"?: (event: UrLocaleFilterPanelCustomEvent<void>) => void;
+        /**
+          * Event emitted when saving languages
+         */
+        "onSave"?: (event: UrLocaleFilterPanelCustomEvent<Array<Locale>>) => void;
+        /**
+          * Whether to show the footer
+         */
         "showFooter"?: boolean;
+        /**
+          * Whether to show the header
+         */
         "showHeader"?: boolean;
+    }
+    interface UrLogo {
+        /**
+          * Color of the logo
+         */
+        "color"?: string;
+        /**
+          * Height of the logo
+         */
+        "height"?: string;
+        /**
+          * Opacity of the logo
+         */
+        "opacity"?: number;
+        /**
+          * Rotation angle of the logo in degrees
+         */
+        "rotation"?: number;
+        /**
+          * Width of the logo
+         */
+        "width"?: string;
+    }
+    interface UrMainDesktopTopAppBar {
+        "logoOpacity"?: number;
+        "logoRotation"?: number;
+        "onSearchLinkClicked"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
+        "searchText"?: string;
+        "variant"?: string;
+    }
+    interface UrMainLeftMenu {
+        "loggedIn"?: boolean;
+        "onToggleExpand"?: (event: UrMainLeftMenuCustomEvent<boolean>) => void;
+        "opened"?: boolean;
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
     }
     interface UrMenuItem {
         "disabled"?: boolean;
@@ -624,6 +967,33 @@ declare namespace LocalJSX {
         "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
         "selected"?: boolean;
         "value"?: string;
+    }
+    interface UrMenuProfile {
+        "userAvatar"?: string;
+        "userName"?: string;
+        "userRole"?: string;
+    }
+    interface UrNavigationDrawer {
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc"?: boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick"?: boolean;
+        /**
+          * Contains the drawer within its parent element
+         */
+        "contained"?: boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open"?: boolean;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement"?: 'left' | 'right';
     }
     interface UrNovl {
         "authorAvatar"?: any;
@@ -725,6 +1095,15 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "text"?: string;
     }
+    interface UrReadMobileTopAppBar {
+        "headerTitle"?: string;
+        "onBackClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
+        "onChaptersClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
+        "onReadingSettingsClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold"?: number;
+        "variant"?: string;
+    }
     interface UrSegmentButton {
         "likeLabel"?: string;
     }
@@ -752,13 +1131,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
     }
     interface UrTabs {
-        /**
-          * The array of panels, each with content and value *
-         */
         "panels"?: { content: string, value: string }[];
-        /**
-          * The array of tabs, each with a label and value *
-         */
         "tabs"?: { label: string, value: string }[];
     }
     interface UrTextField {
@@ -769,6 +1142,14 @@ declare namespace LocalJSX {
         "placeholder"?: string | null;
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
+    }
+    interface UrTopAppBar {
+        "headerTitle"?: string;
+        "logoOpacity"?: number;
+        "logoRotation"?: number;
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        "scrollThreshold"?: number;
+        "variant"?: string;
     }
     interface UrUser {
         "followers"?: number;
@@ -790,21 +1171,32 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
+        "ur-hero": UrHero;
+        "ur-list": UrList;
+        "ur-list-item": UrListItem;
+        "ur-list-subheader": UrListSubheader;
         "ur-loader": UrLoader;
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
+        "ur-logo": UrLogo;
+        "ur-main-desktop-top-app-bar": UrMainDesktopTopAppBar;
+        "ur-main-left-menu": UrMainLeftMenu;
         "ur-menu-item": UrMenuItem;
+        "ur-menu-profile": UrMenuProfile;
+        "ur-navigation-drawer": UrNavigationDrawer;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
     }
@@ -821,21 +1213,32 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
+            "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
+            "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
+            "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;
             "ur-loader": LocalJSX.UrLoader & JSXBase.HTMLAttributes<HTMLUrLoaderElement>;
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
+            "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
+            "ur-main-desktop-top-app-bar": LocalJSX.UrMainDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopAppBarElement>;
+            "ur-main-left-menu": LocalJSX.UrMainLeftMenu & JSXBase.HTMLAttributes<HTMLUrMainLeftMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
+            "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
+            "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }

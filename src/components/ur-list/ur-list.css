@@ -1,0 +1,9 @@
+:host {
+    display: block;
+}
+
+:host mdui-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}

@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import postcss from 'rollup-plugin-postcss';
 
 export const config: Config = {
     namespace: 'urnovl-web-components',

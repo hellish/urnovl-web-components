@@ -2,8 +2,10 @@
     --ur-color-primary: var(--mdui-color-primary);
     --ur-color-on-primary: var(--mdui-color-on-primary);
     --ur-color-surface: var(--mdui-color-surface);
+    --ur-color-background: var(--mdui-color-background);
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-outline-variant: var(--mdui-color-outline-variant);
     --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
     --ur-color-outline: var(--mdui-color-outline);
 }
@@ -11,31 +13,23 @@
 :host .locale-filter-panel {
     display: block;
     width: 100%;
-    max-width: 500px;
     display: flex;
     height: 100%;
     flex-direction: column;
-    background: rgb(var(--ur-color-surface));
+    background: rgb(var(--ur-color-background));
 }
 
 :host .locale-filter-panel header {
     height: 48px;
     position: relative;
-    border-bottom: 1px solid rgb(var(--ur-color-outline));
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    padding: 4px;
+    padding: 0 8px;
 }
 
-:host .locale-filter-panel header mdui-button {
-    height: 40px;
-    width: 40px;
-    min-width: 40px;
-    box-sizing: border-box;
-    border-radius: 0;
-    padding: 0;
-    color: rgb(var(--ur-color-on-surface-variant));
+:host .locale-filter-panel header .close-panel {
+    z-index: 1;
 }
 
 :host .locale-filter-panel header label {
@@ -47,11 +41,12 @@
     font-weight: 700;
     line-height: 28px;
     letter-spacing: 0;
-    color: rgb(var(--ur-color-on-surface));
+    z-index: 0;
+    color: rgb(var(--ur-color-on-background));
 }
 
 :host .locale-filter-panel main {
-    padding: 16px;
+    padding: 0 24px 24px 24px;
 }
 
 :host .locale-filter-panel main .description {
@@ -62,12 +57,18 @@
 }
 
 :host .locale-filter-panel main .description .title {
-    padding: 8px 0;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    padding: 0 0 8px 0;
     font-weight: 700;
     color: rgb(var(--ur-color-on-background));
 }
 
 :host .locale-filter-panel main .description .text {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
     color: rgb(var(--ur-color-on-surface-variant));
 }
 
@@ -81,8 +82,16 @@
     width: 100%;
 }
 
+:host .locale-filter-panel main .locales mdui-checkbox input {
+    order: 2; /* Move the checkbox to the end */
+}
+
+:host .locale-filter-panel main .locales mdui-checkbox span {
+    order: 1; /* Ensure the label comes first */
+}
+
 :host .locale-filter-panel footer {
-    border-top: 1px solid #73777F;
+    border-top: 1px solid rgb(var(--ur-color-outline-variant));
     height: 72px;
     display: flex;
     align-items: center;
