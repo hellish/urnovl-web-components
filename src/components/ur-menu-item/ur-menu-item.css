@@ -1,3 +1,13 @@
 :host {
-  display: block;
+    --ur-color-on-background: var(--mdui-color-on-container-lite-dark);
+}
+
+:host .check-icon {
+    margin-right: 6px;
+    visibility: hidden;
+    color: var(--ur-color-on-background);
+}
+
+:host .check-icon.selected {
+    visibility: visible;
 }

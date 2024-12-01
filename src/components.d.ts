@@ -184,6 +184,7 @@ export namespace Components {
     interface UrMenuItem {
         "disabled": boolean;
         "label": string;
+        "selected": boolean;
         "value": string;
     }
     interface UrMenuprofile {
@@ -1076,6 +1077,7 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "label"?: string;
         "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
+        "selected"?: boolean;
         "value"?: string;
     }
     interface UrMenuprofile {

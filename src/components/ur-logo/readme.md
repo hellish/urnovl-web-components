@@ -20,15 +20,15 @@
 
 ### Used by
 
+ - [ur-left-menu](../ur-menu)
  - [ur-main-desktop-topappbar](../topappbars/main-desktop-topappbar)
- - [ur-menu](../ur-menu)
  - [ur-topappbar](../topappbars/ur-topappbar)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-left-menu --> ur-logo
   ur-main-desktop-topappbar --> ur-logo
-  ur-menu --> ur-logo
   ur-topappbar --> ur-logo
   style ur-logo fill:#f9f,stroke:#333,stroke-width:4px
 ```

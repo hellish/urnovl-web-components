@@ -21,15 +21,15 @@
 
 ### Used by
 
+ - [ur-left-menu](../ur-menu)
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
- - [ur-menu](../ur-menu)
  - [ur-read-mobile-topappbar](../topappbars/read-mobile-topappbar)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-left-menu --> ur-button-icon
   ur-locale-filter-panel --> ur-button-icon
-  ur-menu --> ur-button-icon
   ur-read-mobile-topappbar --> ur-button-icon
   style ur-button-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```

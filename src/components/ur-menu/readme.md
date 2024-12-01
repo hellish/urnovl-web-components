@@ -36,14 +36,14 @@
 ### Graph
 ```mermaid
 graph TD;
-  ur-menu --> ur-list
-  ur-menu --> ur-list-item
-  ur-menu --> ur-logo
-  ur-menu --> ur-button
-  ur-menu --> ur-button-icon
-  ur-menu --> ur-menuprofile
+  ur-left-menu --> ur-list
+  ur-left-menu --> ur-list-item
+  ur-left-menu --> ur-logo
+  ur-left-menu --> ur-button
+  ur-left-menu --> ur-button-icon
+  ur-left-menu --> ur-menuprofile
   ur-menuprofile --> ur-avatar
-  style ur-menu fill:#f9f,stroke:#333,stroke-width:4px
+  style ur-left-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

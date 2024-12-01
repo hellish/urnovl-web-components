@@ -11,6 +11,7 @@
 | ---------- | ---------- | ----------- | --------- | ------- |
 | `disabled` | `disabled` |             | `boolean` | `false` |
 | `label`    | `label`    |             | `string`  | `''`    |
+| `selected` | `selected` |             | `boolean` | `false` |
 | `value`    | `value`    |             | `string`  | `''`    |
 
 
