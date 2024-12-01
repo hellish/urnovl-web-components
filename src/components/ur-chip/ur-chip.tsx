@@ -5,7 +5,7 @@ import 'mdui/components/chip.js';
 @Component({
     tag: 'ur-chip',
     styleUrl: 'ur-chip.css',
-    shadow: false,
+    shadow: true,
 })
 export class UrChip {
 
