@@ -27,7 +27,7 @@ const MenuWithProfile = ({ opened, loggedIn, userName, userAvatar, userRole }) =
 `;
 
 export default {
-    title: 'urnovl/Business/MainLeftMenu',
+    title: 'urnovl/Business/Main Left Menu',
     render: args => MenuWithProfile(args),
     argTypes: {
         opened: {

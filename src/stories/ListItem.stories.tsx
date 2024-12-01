@@ -3,7 +3,7 @@ import '../components/ur-list/ur-list-item'; // Import your list-item component
 import 'mdui/components/icon';
 
 export default {
-    title: 'Core/List/List Items', // Story location in Storybook
+    title: 'Core/List Items', // Story location in Storybook
     argTypes: {
         content: { control: 'text', description: 'Main content of the list item' },
         disabled: { control: 'boolean', description: 'Disable the list item' },
