@@ -144,6 +144,7 @@ export namespace Components {
     }
     interface UrMainLeftMenu {
         "loggedIn": boolean;
+        "opened": boolean;
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
@@ -955,6 +956,7 @@ declare namespace LocalJSX {
     interface UrMainLeftMenu {
         "loggedIn"?: boolean;
         "onToggleExpand"?: (event: UrMainLeftMenuCustomEvent<boolean>) => void;
+        "opened"?: boolean;
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;

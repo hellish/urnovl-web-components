@@ -10,6 +10,7 @@
 | Property     | Attribute     | Description | Type      | Default     |
 | ------------ | ------------- | ----------- | --------- | ----------- |
 | `loggedIn`   | `logged-in`   |             | `boolean` | `undefined` |
+| `opened`     | `opened`      |             | `boolean` | `false`     |
 | `userAvatar` | `user-avatar` |             | `string`  | `undefined` |
 | `userName`   | `user-name`   |             | `string`  | `undefined` |
 | `userRole`   | `user-role`   |             | `string`  | `undefined` |
