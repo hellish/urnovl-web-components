@@ -7,16 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default |
-| -------- | --------- | ----------- | -------- | ------- |
-| `count`  | `count`   |             | `number` | `0`     |
-
-
-## Events
-
-| Event     | Description | Type                |
-| --------- | ----------- | ------------------- |
-| `onClick` |             | `CustomEvent<void>` |
+| Property   | Attribute  | Description | Type      | Default |
+| ---------- | ---------- | ----------- | --------- | ------- |
+| `count`    | `count`    |             | `number`  | `0`     |
+| `selected` | `selected` |             | `boolean` | `false` |
 
 
 ----------------------------------------------

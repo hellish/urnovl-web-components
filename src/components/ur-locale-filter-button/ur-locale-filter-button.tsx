@@ -1,4 +1,4 @@
-import { Component, Host, Prop, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Host, Prop, h } from '@stencil/core';
 
 import 'mdui/components/button';
 
@@ -15,9 +15,6 @@ export class UrLocaleFilterButton {
     @Prop()
     selected = false;
 
-    @Event()
-    onClick: EventEmitter<void>;
-
     render() {
         return (
             <Host>
@@ -27,7 +24,6 @@ export class UrLocaleFilterButton {
                         'with-count': this.count > 0,
                         'selected': this.selected, // Apply selected state class
                     }}
-                    onClick={() => this.onClick.emit()}
                 >
                     <span class="label">Filter</span>
                     {this.count > 0 && <span class="count">{this.count}</span>}

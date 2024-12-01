@@ -1,10 +1,9 @@
 import { Component, Event, EventEmitter, Prop, h, State } from '@stencil/core';
 import { dev_log_info } from '../../utils/utils';
+import { Locale } from '../../models/locale';
 
 import 'mdui/components/button';
 import 'mdui/components/checkbox';
-
-type Locale = { label: string; key: string; checked: boolean };
 
 @Component({
     tag: 'ur-locale-filter-panel',

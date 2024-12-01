@@ -5,8 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Locale } from "./models/locale";
 import { Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
+export { Locale } from "./models/locale";
 export { Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
@@ -170,7 +172,7 @@ export namespace Components {
          */
         "width": string;
     }
-    interface UrMainDesktopTopappbar {
+    interface UrMainDesktopTopAppBar {
         "logoOpacity": number;
         "logoRotation": number;
         "searchText": string;
@@ -302,7 +304,7 @@ export namespace Components {
         "disabled": boolean;
         "text": string;
     }
-    interface UrReadMobileTopappbar {
+    interface UrReadMobileTopAppBar {
         "headerTitle": string;
         "scrollBehavior": 'hide' | 'shrink' | 'elevate';
         "scrollThreshold": number;
@@ -352,7 +354,7 @@ export namespace Components {
         "value": string;
         "variant": 'filled' | 'outlined';
     }
-    interface UrTopappbar {
+    interface UrTopAppBar {
         "headerTitle": string;
         "logoOpacity": number;
         "logoRotation": number;
@@ -387,17 +389,13 @@ export interface UrLeftMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLeftMenuElement;
 }
-export interface UrLocaleFilterButtonCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrLocaleFilterButtonElement;
-}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
 }
-export interface UrMainDesktopTopappbarCustomEvent<T> extends CustomEvent<T> {
+export interface UrMainDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLUrMainDesktopTopappbarElement;
+    target: HTMLUrMainDesktopTopAppBarElement;
 }
 export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -419,9 +417,9 @@ export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
 }
-export interface UrReadMobileTopappbarCustomEvent<T> extends CustomEvent<T> {
+export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLUrReadMobileTopappbarElement;
+    target: HTMLUrReadMobileTopAppBarElement;
 }
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -560,18 +558,7 @@ declare global {
         prototype: HTMLUrLoaderElement;
         new (): HTMLUrLoaderElement;
     };
-    interface HTMLUrLocaleFilterButtonElementEventMap {
-        "onClick": void;
-    }
     interface HTMLUrLocaleFilterButtonElement extends Components.UrLocaleFilterButton, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrLocaleFilterButtonElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterButtonElement, ev: UrLocaleFilterButtonCustomEvent<HTMLUrLocaleFilterButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrLocaleFilterButtonElementEventMap>(type: K, listener: (this: HTMLUrLocaleFilterButtonElement, ev: UrLocaleFilterButtonCustomEvent<HTMLUrLocaleFilterButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrLocaleFilterButtonElement: {
         prototype: HTMLUrLocaleFilterButtonElement;
@@ -601,22 +588,22 @@ declare global {
         prototype: HTMLUrLogoElement;
         new (): HTMLUrLogoElement;
     };
-    interface HTMLUrMainDesktopTopappbarElementEventMap {
+    interface HTMLUrMainDesktopTopAppBarElementEventMap {
         "searchLinkClicked": void;
     }
-    interface HTMLUrMainDesktopTopappbarElement extends Components.UrMainDesktopTopappbar, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrMainDesktopTopappbarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopappbarElement, ev: UrMainDesktopTopappbarCustomEvent<HTMLUrMainDesktopTopappbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLUrMainDesktopTopAppBarElement extends Components.UrMainDesktopTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrMainDesktopTopappbarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopappbarElement, ev: UrMainDesktopTopappbarCustomEvent<HTMLUrMainDesktopTopappbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLUrMainDesktopTopappbarElement: {
-        prototype: HTMLUrMainDesktopTopappbarElement;
-        new (): HTMLUrMainDesktopTopappbarElement;
+    var HTMLUrMainDesktopTopAppBarElement: {
+        prototype: HTMLUrMainDesktopTopAppBarElement;
+        new (): HTMLUrMainDesktopTopAppBarElement;
     };
     interface HTMLUrMenuItemElementEventMap {
         "itemClicked": string;
@@ -732,24 +719,24 @@ declare global {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
     };
-    interface HTMLUrReadMobileTopappbarElementEventMap {
+    interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
         "chaptersClick": void;
         "readingSettingsClick": void;
     }
-    interface HTMLUrReadMobileTopappbarElement extends Components.UrReadMobileTopappbar, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrReadMobileTopappbarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopappbarElement, ev: UrReadMobileTopappbarCustomEvent<HTMLUrReadMobileTopappbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLUrReadMobileTopAppBarElement extends Components.UrReadMobileTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadMobileTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopAppBarElement, ev: UrReadMobileTopAppBarCustomEvent<HTMLUrReadMobileTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrReadMobileTopappbarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopappbarElement, ev: UrReadMobileTopappbarCustomEvent<HTMLUrReadMobileTopappbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadMobileTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadMobileTopAppBarElement, ev: UrReadMobileTopAppBarCustomEvent<HTMLUrReadMobileTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLUrReadMobileTopappbarElement: {
-        prototype: HTMLUrReadMobileTopappbarElement;
-        new (): HTMLUrReadMobileTopappbarElement;
+    var HTMLUrReadMobileTopAppBarElement: {
+        prototype: HTMLUrReadMobileTopAppBarElement;
+        new (): HTMLUrReadMobileTopAppBarElement;
     };
     interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
     }
@@ -792,11 +779,11 @@ declare global {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
     };
-    interface HTMLUrTopappbarElement extends Components.UrTopappbar, HTMLStencilElement {
+    interface HTMLUrTopAppBarElement extends Components.UrTopAppBar, HTMLStencilElement {
     }
-    var HTMLUrTopappbarElement: {
-        prototype: HTMLUrTopappbarElement;
-        new (): HTMLUrTopappbarElement;
+    var HTMLUrTopAppBarElement: {
+        prototype: HTMLUrTopAppBarElement;
+        new (): HTMLUrTopAppBarElement;
     };
     interface HTMLUrUserElementEventMap {
         "userFollowClicked": any;
@@ -839,7 +826,7 @@ declare global {
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
         "ur-logo": HTMLUrLogoElement;
-        "ur-main-desktop-topappbar": HTMLUrMainDesktopTopappbarElement;
+        "ur-main-desktop-top-app-bar": HTMLUrMainDesktopTopAppBarElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menuprofile": HTMLUrMenuprofileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
@@ -849,13 +836,13 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
-        "ur-read-mobile-topappbar": HTMLUrReadMobileTopappbarElement;
+        "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
-        "ur-topappbar": HTMLUrTopappbarElement;
+        "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
     }
@@ -987,7 +974,6 @@ declare namespace LocalJSX {
     }
     interface UrLocaleFilterButton {
         "count"?: number;
-        "onOnClick"?: (event: UrLocaleFilterButtonCustomEvent<void>) => void;
         "selected"?: boolean;
     }
     interface UrLocaleFilterPanel {
@@ -1035,10 +1021,10 @@ declare namespace LocalJSX {
          */
         "width"?: string;
     }
-    interface UrMainDesktopTopappbar {
+    interface UrMainDesktopTopAppBar {
         "logoOpacity"?: number;
         "logoRotation"?: number;
-        "onSearchLinkClicked"?: (event: UrMainDesktopTopappbarCustomEvent<void>) => void;
+        "onSearchLinkClicked"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
         "searchText"?: string;
         "variant"?: string;
     }
@@ -1176,11 +1162,11 @@ declare namespace LocalJSX {
         "disabled"?: boolean;
         "text"?: string;
     }
-    interface UrReadMobileTopappbar {
+    interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
-        "onBackClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
-        "onChaptersClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
-        "onReadingSettingsClick"?: (event: UrReadMobileTopappbarCustomEvent<void>) => void;
+        "onBackClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
+        "onChaptersClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
+        "onReadingSettingsClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
         "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
         "scrollThreshold"?: number;
         "variant"?: string;
@@ -1230,7 +1216,7 @@ declare namespace LocalJSX {
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
     }
-    interface UrTopappbar {
+    interface UrTopAppBar {
         "headerTitle"?: string;
         "logoOpacity"?: number;
         "logoRotation"?: number;
@@ -1267,7 +1253,7 @@ declare namespace LocalJSX {
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
         "ur-logo": UrLogo;
-        "ur-main-desktop-topappbar": UrMainDesktopTopappbar;
+        "ur-main-desktop-top-app-bar": UrMainDesktopTopAppBar;
         "ur-menu-item": UrMenuItem;
         "ur-menuprofile": UrMenuprofile;
         "ur-navigation-drawer": UrNavigationDrawer;
@@ -1277,13 +1263,13 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
-        "ur-read-mobile-topappbar": UrReadMobileTopappbar;
+        "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
-        "ur-topappbar": UrTopappbar;
+        "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
     }
@@ -1309,7 +1295,7 @@ declare module "@stencil/core" {
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
             "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
-            "ur-main-desktop-topappbar": LocalJSX.UrMainDesktopTopappbar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopappbarElement>;
+            "ur-main-desktop-top-app-bar": LocalJSX.UrMainDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopAppBarElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menuprofile": LocalJSX.UrMenuprofile & JSXBase.HTMLAttributes<HTMLUrMenuprofileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
@@ -1319,13 +1305,13 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
-            "ur-read-mobile-topappbar": LocalJSX.UrReadMobileTopappbar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopappbarElement>;
+            "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
-            "ur-topappbar": LocalJSX.UrTopappbar & JSXBase.HTMLAttributes<HTMLUrTopappbarElement>;
+            "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
         }
