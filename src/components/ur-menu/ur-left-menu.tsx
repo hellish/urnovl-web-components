@@ -15,11 +15,12 @@ const links = [
     shadow: true,
 })
 export class UrLeftMenu {
+
     @State()
-    isExpanded = false; // Initialize with default state
+    expanded = false; // Initialize with default state
 
     @Prop()
-    isLoggedIn: boolean;
+    loggedIn: boolean;
 
     @Prop()
     userName?: string;
@@ -35,8 +36,8 @@ export class UrLeftMenu {
 
     // Toggle menu state and emit event
     toggleMenu() {
-        this.isExpanded = !this.isExpanded; // Update the internal state
-        this.toggleExpand.emit(this.isExpanded); // Emit the updated state
+        this.expanded = !this.expanded; // Update the internal state
+        this.toggleExpand.emit(this.expanded); // Emit the updated state
     }
 
     renderNavigation() {
@@ -155,7 +156,7 @@ export class UrLeftMenu {
 
     render() {
         return (
-            <div class={`left-menu ${this.isExpanded ? 'expanded' : 'collapsed'}`}>
+            <div class={`left-menu ${this.expanded ? 'expanded' : 'collapsed'}`}>
                 {/* Toggle Button */}
                 <ur-button
                     variant="text"
@@ -164,28 +165,28 @@ export class UrLeftMenu {
                         this.toggleMenu(); // Update the internal state and emit event
                     }}
                 >
-                    <mdui-icon class="icon" name={this.isExpanded ? 'close' : 'menu'}></mdui-icon>
+                    <mdui-icon class="icon" name={this.expanded ? 'close' : 'menu'}></mdui-icon>
                 </ur-button>
 
                 {/* Use ur-menuprofile for both expanded and collapsed states */}
-                {this.isLoggedIn && (
-                    <ur-menuprofile
+                {this.loggedIn && (
+                    <ur-menu-profile
                         user-avatar={this.userAvatar}
                         user-name={this.userName}
                         user-role={this.userRole}
-                        class={this.isExpanded ? 'expanded' : 'collapsed'}
-                    ></ur-menuprofile>
+                        class={this.expanded ? 'expanded' : 'collapsed'}
+                    ></ur-menu-profile>
                 )}
 
-                {this.isLoggedIn && this.isExpanded && this.renderPremiumExpanded()}
-                {this.isLoggedIn && !this.isExpanded && this.renderPremiumCollapsed()}
+                {this.loggedIn && this.expanded && this.renderPremiumExpanded()}
+                {this.loggedIn && !this.expanded && this.renderPremiumCollapsed()}
 
-                {!this.isLoggedIn && this.isExpanded && this.renderLoggedOutExpanded()}
-                {!this.isLoggedIn && !this.isExpanded && this.renderLoggedOutCollapsed()}
+                {!this.loggedIn && this.expanded && this.renderLoggedOutExpanded()}
+                {!this.loggedIn && !this.expanded && this.renderLoggedOutCollapsed()}
 
                 {this.renderNavigation()}
 
-                {this.isExpanded ? this.renderFooter() : this.renderCollapsedFooter()}
+                {this.expanded ? this.renderFooter() : this.renderCollapsedFooter()}
             </div>
         );
     }

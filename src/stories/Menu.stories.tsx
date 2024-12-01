@@ -4,24 +4,23 @@ import '../components/ur-avatar/ur-avatar'; // Assuming you have the avatar comp
 import '../components/ur-list/ur-list'; // Assuming you have the list component
 
 // Helper function to render the menu with different states
-const MenuWithProfile = ({ isExpanded, isLoggedIn, userName, userAvatar, userRole }) => html`
+const MenuWithProfile = ({ expanded, loggedIn, userName, userAvatar, userRole }) => html`
     <ur-left-menu
-        .isExpanded=${isExpanded}
-        .isLoggedIn=${isLoggedIn}
+        expanded=${expanded}
+        logged-in=${loggedIn}
         user-name=${userName}
         user-avatar=${userAvatar}
         user-role=${userRole}
         @toggleExpand=${e => console.log('toggleExpand event payload:', e.detail)}
     >
-        <!-- Include ur-menuprofile directly -->
-        ${isLoggedIn
+        ${loggedIn
             ? html`
-                  <ur-menuprofile
-                      class=${isExpanded ? 'expanded' : 'collapsed'}
+                  <ur-menu-profile
+                      class=${expanded ? 'expanded' : 'collapsed'}
                       user-avatar=${userAvatar}
                       user-name=${userName}
                       user-role=${userRole}
-                  ></ur-menuprofile>
+                  ></ur-menu-profile>
               `
             : ''}
     </ur-left-menu>
@@ -31,11 +30,11 @@ export default {
     title: 'urnovl/Business/Menu',
     render: args => MenuWithProfile(args),
     argTypes: {
-        isExpanded: {
+        expanded: {
             control: 'boolean',
             description: 'Determines whether the menu is expanded (open) or collapsed (closed)',
         },
-        isLoggedIn: {
+        loggedIn: {
             control: 'boolean',
             description: 'Determines if the user is logged in',
         },
@@ -62,8 +61,8 @@ export default {
 // Story Definitions
 export const Default = {
     args: {
-        isExpanded: false,
-        isLoggedIn: false,
+        expanded: false,
+        loggedIn: false,
         userName: 'Guest',
         userRole: '',
         userAvatar: '',
@@ -72,8 +71,8 @@ export const Default = {
 
 export const LoggedOutOpened = {
     args: {
-        isExpanded: true,
-        isLoggedIn: false,
+        expanded: true,
+        loggedIn: false,
         userName: 'Guest',
         userRole: '',
         userAvatar: '',
@@ -82,8 +81,8 @@ export const LoggedOutOpened = {
 
 export const LoggedInClosed = {
     args: {
-        isExpanded: false,
-        isLoggedIn: true,
+        expanded: false,
+        loggedIn: true,
         userName: 'Tasos Tsipos',
         userRole: 'Author & Reader',
         userAvatar: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5',
@@ -92,8 +91,8 @@ export const LoggedInClosed = {
 
 export const LoggedInOpened = {
     args: {
-        isExpanded: true,
-        isLoggedIn: true,
+        expanded: true,
+        loggedIn: true,
         userName: 'Tasos Tsipidopoulakoglou',
         userRole: 'Author & Reader',
         userAvatar: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5',

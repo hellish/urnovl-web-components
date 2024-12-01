@@ -75,7 +75,7 @@ export namespace Components {
         "layout": 'left' | 'right' | 'center';
     }
     interface UrLeftMenu {
-        "isLoggedIn": boolean;
+        "loggedIn": boolean;
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
@@ -876,7 +876,7 @@ declare namespace LocalJSX {
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
     }
     interface UrLeftMenu {
-        "isLoggedIn"?: boolean;
+        "loggedIn"?: boolean;
         "onToggleExpand"?: (event: UrLeftMenuCustomEvent<boolean>) => void;
         "userAvatar"?: string;
         "userName"?: string;

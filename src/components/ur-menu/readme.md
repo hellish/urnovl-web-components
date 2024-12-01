@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute      | Description | Type      | Default     |
-| ------------ | -------------- | ----------- | --------- | ----------- |
-| `isLoggedIn` | `is-logged-in` |             | `boolean` | `undefined` |
-| `userAvatar` | `user-avatar`  |             | `string`  | `undefined` |
-| `userName`   | `user-name`    |             | `string`  | `undefined` |
-| `userRole`   | `user-role`    |             | `string`  | `undefined` |
+| Property     | Attribute     | Description | Type      | Default     |
+| ------------ | ------------- | ----------- | --------- | ----------- |
+| `loggedIn`   | `logged-in`   |             | `boolean` | `undefined` |
+| `userAvatar` | `user-avatar` |             | `string`  | `undefined` |
+| `userName`   | `user-name`   |             | `string`  | `undefined` |
+| `userRole`   | `user-role`   |             | `string`  | `undefined` |
 
 
 ## Events
@@ -31,6 +31,7 @@
 - [ur-logo](../ur-logo)
 - [ur-button](../ur-button)
 - [ur-button-icon](../ur-button-icon)
+- [ur-menu-profile](../ur-menu-profile)
 
 ### Graph
 ```mermaid
@@ -40,6 +41,8 @@ graph TD;
   ur-left-menu --> ur-logo
   ur-left-menu --> ur-button
   ur-left-menu --> ur-button-icon
+  ur-left-menu --> ur-menu-profile
+  ur-menu-profile --> ur-avatar
   style ur-left-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
