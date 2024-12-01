@@ -1,11 +1,11 @@
 import { html } from 'lit';
-import '../components/ur-menu/ur-left-menu';
+import '../components/ur-main-left-menu/ur-main-left-menu';
 import '../components/ur-avatar/ur-avatar'; // Assuming you have the avatar component
 import '../components/ur-list/ur-list'; // Assuming you have the list component
 
 // Helper function to render the menu with different states
 const MenuWithProfile = ({ expanded, loggedIn, userName, userAvatar, userRole }) => html`
-    <ur-left-menu
+    <ur-main-left-menu
         expanded=${expanded}
         logged-in=${loggedIn}
         user-name=${userName}
@@ -23,11 +23,11 @@ const MenuWithProfile = ({ expanded, loggedIn, userName, userAvatar, userRole })
                   ></ur-menu-profile>
               `
             : ''}
-    </ur-left-menu>
+    </ur-main-left-menu>
 `;
 
 export default {
-    title: 'urnovl/Business/Menu',
+    title: 'urnovl/Business/MainLeftMenu',
     render: args => MenuWithProfile(args),
     argTypes: {
         expanded: {

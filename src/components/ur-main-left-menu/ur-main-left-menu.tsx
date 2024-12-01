@@ -10,8 +10,8 @@ const links = [
 ];
 
 @Component({
-    tag: 'ur-left-menu',
-    styleUrl: 'ur-left-menu.css',
+    tag: 'ur-main-left-menu',
+    styleUrl: 'ur-main-left-menu.css',
     shadow: true,
 })
 export class UrLeftMenu {
