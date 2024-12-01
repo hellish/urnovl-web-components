@@ -31,7 +31,6 @@
 - [ur-logo](../ur-logo)
 - [ur-button](../ur-button)
 - [ur-button-icon](../ur-button-icon)
-- [ur-menuprofile](../ur-menuprofile)
 
 ### Graph
 ```mermaid
@@ -41,8 +40,6 @@ graph TD;
   ur-left-menu --> ur-logo
   ur-left-menu --> ur-button
   ur-left-menu --> ur-button-icon
-  ur-left-menu --> ur-menuprofile
-  ur-menuprofile --> ur-avatar
   style ur-left-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

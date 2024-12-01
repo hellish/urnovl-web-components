@@ -1,4 +1,4 @@
-# ur-menuprofile
+# ur-menu-profile
 
 
 
@@ -16,10 +16,6 @@
 
 ## Dependencies
 
-### Used by
-
- - [ur-left-menu](../ur-menu)
-
 ### Depends on
 
 - [ur-avatar](../ur-avatar)
@@ -27,9 +23,8 @@
 ### Graph
 ```mermaid
 graph TD;
-  ur-menuprofile --> ur-avatar
-  ur-left-menu --> ur-menuprofile
-  style ur-menuprofile fill:#f9f,stroke:#333,stroke-width:4px
+  ur-menu-profile --> ur-avatar
+  style ur-menu-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

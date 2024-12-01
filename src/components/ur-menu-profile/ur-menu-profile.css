@@ -7,7 +7,6 @@
     --ur-color-primary: var(--mdui-color-primary);
     --ur-color-on-surface: var(--mdui-color-on-surface);
     --webkit-user-select: none;
-    user-select: none;
 }
 
 /* Hover styles for the host */
