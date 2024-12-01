@@ -7,11 +7,12 @@
 
 ## Properties
 
-| Property     | Attribute     | Description                 | Type                                                  | Default |
-| ------------ | ------------- | --------------------------- | ----------------------------------------------------- | ------- |
-| `locales`    | --            | List of available languages | `{ label: string; key: string; checked: boolean; }[]` | `[]`    |
-| `showFooter` | `show-footer` | Whether to show the footer  | `boolean`                                             | `true`  |
-| `showHeader` | `show-header` | Whether to show the header  | `boolean`                                             | `true`  |
+| Property          | Attribute     | Description                 | Type       | Default    |
+| ----------------- | ------------- | --------------------------- | ---------- | ---------- |
+| `disabledLocales` | --            |                             | `string[]` | `[ 'en' ]` |
+| `locales`         | --            | List of available languages | `Locale[]` | `[]`       |
+| `showFooter`      | `show-footer` | Whether to show the footer  | `boolean`  | `true`     |
+| `showHeader`      | `show-header` | Whether to show the header  | `boolean`  | `true`     |
 
 
 ## Events
@@ -19,7 +20,7 @@
 | Event    | Description                         | Type                    |
 | -------- | ----------------------------------- | ----------------------- |
 | `cancel` | Event emitted when canceling        | `CustomEvent<void>`     |
-| `save`   | Event emitted when saving languages | `CustomEvent<string[]>` |
+| `save`   | Event emitted when saving languages | `CustomEvent<Locale[]>` |
 
 
 ## Dependencies

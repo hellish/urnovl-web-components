@@ -1,4 +1,4 @@
-import { Component, Host, Prop, State, Event, EventEmitter, Method, h } from '@stencil/core';
+import { Component, Host, Prop, Event, EventEmitter, h } from '@stencil/core';
 
 import 'mdui/components/button';
 
@@ -8,29 +8,15 @@ import 'mdui/components/button';
     shadow: true,
 })
 export class UrLocaleFilterButton {
-    /** Count displayed on the button */
-    @Prop() count = 0;
 
-    /** Whether the button is selected */
-    @State() selected: boolean = false;
+    @Prop()
+    count = 0;
 
-    /** Event emitted when the selected state changes */
-    @Event() stateChanged: EventEmitter<boolean>;
+    @Prop()
+    selected = false;
 
-    private toggleSelected() {
-        this.selected = !this.selected;
-        this.stateChanged.emit(this.selected); // Emit the new state
-    }
-
-    /** Method to reset the selected state programmatically */
-    @Method()
-    async resetSelected(emitEvent = true): Promise<void> {
-        this.selected = false; // Reset the selected state
-        if (emitEvent) {
-            this.stateChanged.emit(this.selected); // Emit only if explicitly allowed
-        }
-        return Promise.resolve(); // Ensure it returns a Promise
-    }
+    @Event()
+    onClick: EventEmitter<void>;
 
     render() {
         return (
@@ -41,7 +27,7 @@ export class UrLocaleFilterButton {
                         'with-count': this.count > 0,
                         'selected': this.selected, // Apply selected state class
                     }}
-                    onClick={() => this.toggleSelected()}
+                    onClick={() => this.onClick.emit()}
                 >
                     <span class="label">Filter</span>
                     {this.count > 0 && <span class="count">{this.count}</span>}

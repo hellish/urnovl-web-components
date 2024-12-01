@@ -1,7 +1,10 @@
 import { Component, Event, EventEmitter, Prop, h, State } from '@stencil/core';
+import { dev_log_info } from '../../utils/utils';
 
 import 'mdui/components/button';
 import 'mdui/components/checkbox';
+
+type Locale = { label: string; key: string; checked: boolean };
 
 @Component({
     tag: 'ur-locale-filter-panel',
@@ -9,36 +12,38 @@ import 'mdui/components/checkbox';
     shadow: true,
 })
 export class UrLocaleFilterPanel {
+
     /** Whether to show the header */
-    @Prop() showHeader = true;
+    @Prop()
+    showHeader = true;
 
     /** Whether to show the footer */
-    @Prop() showFooter = true;
+    @Prop()
+    showFooter = true;
 
     /** List of available languages */
-    @Prop() locales: Array<{ label: string; key: string; checked: boolean }> = []; // Use key exclusively
+    @Prop()
+    locales: Array<Locale> = []; // Use key exclusively
+
+    @Prop()
+    disabledLocales = [ 'en' ];
 
     /** Internal state for mutable locales */
-    @State() mutableLocales: Array<{ label: string; key: string; checked: boolean }> = [];
+    @State()
+    mutableLocales: Array<Locale> = [];
 
     /** Event emitted when saving languages */
-    @Event({ bubbles: true, composed: true }) save: EventEmitter<string[]>;
+    @Event()
+    save: EventEmitter<Array<Locale>>;
 
     /** Event emitted when canceling */
-    @Event({ bubbles: true, composed: true }) cancel: EventEmitter<void>;
+    @Event()
+    cancel: EventEmitter<void>;
 
     componentWillLoad() {
-        console.log('Component initialized with locales:', this.locales);
-
-        // Deep copy the array
-        this.mutableLocales = this.locales.map(locale => {
-            if (!locale.key) {
-                console.error('Locale is missing key:', locale);
-            }
-            return { ...locale };
-        });
-
-        console.log('Initialized mutableLocales:', this.mutableLocales);
+        dev_log_info('Component initialized with locales:', this.locales);
+        this.mutableLocales = [...this.locales];
+        dev_log_info('Initialized mutableLocales:', this.mutableLocales);
     }
 
     private handleCancel() {
@@ -46,24 +51,21 @@ export class UrLocaleFilterPanel {
     }
 
     private handleSave() {
-        const selectedLanguages = this.mutableLocales
-            .filter(locale => locale.checked)
-            .map(locale => locale.key); // Use key as the identifier
-        console.log('Selected languages on Save:', selectedLanguages);
-        this.save.emit(selectedLanguages); // Emit selected languages
+        this.save.emit(this.mutableLocales);
     }
 
     private toggleLocale(key: string) {
-        console.log('ToggleLocale triggered for key:', key);
+        dev_log_info('ToggleLocale triggered for key:', key);
 
         this.mutableLocales = this.mutableLocales.map(locale => {
             if (locale.key === key) {
                 return { ...locale, checked: !locale.checked }; // Toggle only the target locale
             }
+
             return { ...locale }; // Return other locales as is
         });
 
-        console.log('Updated mutableLocales:', this.mutableLocales);
+        dev_log_info('Updated mutableLocales:', this.mutableLocales);
     }
 
     render() {
@@ -88,19 +90,15 @@ export class UrLocaleFilterPanel {
                     </div>
                     <div class="locales">
                         {this.mutableLocales.map(locale => {
-                            if (!locale.key) {
-                                console.error('Skipping locale with missing key:', locale);
-                                return null; // Skip rendering if key is missing
-                            }
                             return (
                                 <mdui-checkbox
                                     checked={locale.checked}
                                     value={locale.key} // Use key exclusively
-                                    disabled={locale.key === 'en'} // Disable 'en' dynamically
-                                    class={locale.key === 'en' ? 'non-selectable' : ''}
+                                    disabled={this.disabledLocales.includes(locale.key)} // Disable 'en' dynamically
+                                    class={this.disabledLocales.includes(locale.key) ? 'non-selectable' : ''}
                                     onChange={(event: Event) => {
                                         const checkbox = event.target as HTMLInputElement;
-                                        console.log('Checkbox value changed:', checkbox.value);
+                                        dev_log_info('Checkbox value changed:', checkbox.value);
                                         this.toggleLocale(checkbox.value);
                                     }}
                                 >

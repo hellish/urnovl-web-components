@@ -16,19 +16,11 @@
 | `placement`           | `placement`              | Placement of the drawer: 'left' or 'right'      | `"left" \| "right"` | `'right'` |
 
 
-## Events
-
-| Event    | Description                             | Type                |
-| -------- | --------------------------------------- | ------------------- |
-| `closed` | Event emitted when the drawer is closed | `CustomEvent<void>` |
-| `opened` | Event emitted when the drawer is opened | `CustomEvent<void>` |
-
-
 ## Methods
 
 ### `closeDrawer() => Promise<void>`
 
-Closes the drawer
+
 
 #### Returns
 
@@ -38,7 +30,7 @@ Type: `Promise<void>`
 
 ### `openDrawer() => Promise<void>`
 
-Opens the drawer
+
 
 #### Returns
 
