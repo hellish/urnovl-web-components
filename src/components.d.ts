@@ -62,6 +62,10 @@ export namespace Components {
         "open": boolean;
         "openDialog": () => Promise<void>;
     }
+    interface UrForm {
+        "resetForm": () => Promise<void>;
+        "submitForm": () => Promise<void>;
+    }
     interface UrHero {
         "backgroundAlignment": 'left' | 'center' | 'right';
         "backgroundColor": string;
@@ -311,11 +315,27 @@ export namespace Components {
         "tabs": { label: string, value: string }[];
     }
     interface UrTextField {
+        "autosize": boolean;
+        "counter": boolean;
         "disabled": boolean;
-        "endIcon": any;
+        "endIcon": string | null;
+        "error": boolean;
+        "errorMessage": string | null;
         "helper": string | null;
         "label": string;
+        "max": number | string | null;
+        "maxRows": number | null;
+        "maxlength": number | null;
+        "min": number | string | null;
+        "minRows": number | null;
+        "minlength": number | null;
+        "name": string;
+        "pattern": string | null;
         "placeholder": string | null;
+        "required": boolean;
+        "rows": number | null;
+        "step": number | string | null;
+        "type": string;
         "value": string;
         "variant": 'filled' | 'outlined';
     }
@@ -337,6 +357,60 @@ export namespace Components {
     }
     interface UrUserProfile {
     }
+    interface UrWizardStep {
+        /**
+          * Custom CSS class for the component
+         */
+        "customClass": string;
+        /**
+          * Determines if the step can be skipped
+         */
+        "isSkippable": boolean;
+        /**
+          * Validation state of the step
+         */
+        "isValid": boolean;
+        /**
+          * Title of the "Next" button
+         */
+        "nextButtonTitle": string;
+        /**
+          * Title of the "Previous" button
+         */
+        "previousButtonTitle": string;
+        /**
+          * Reset the form within the step
+         */
+        "resetStepForm": () => Promise<void>;
+        /**
+          * Determines if the "Next" button is visible
+         */
+        "showNext": boolean;
+        /**
+          * Determines if the "Previous" button is visible
+         */
+        "showPrevious": boolean;
+        /**
+          * Step number of the wizard
+         */
+        "step": number;
+        /**
+          * Title of the wizard step
+         */
+        "stepTitle": string;
+        /**
+          * Trigger form submission programmatically
+         */
+        "submitStepForm": () => Promise<void>;
+        /**
+          * Subtitle or instructions for the step
+         */
+        "subtitle": string;
+        /**
+          * Custom validation message
+         */
+        "validationMessage": string;
+    }
 }
 export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -345,6 +419,10 @@ export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
 export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
+}
+export interface UrFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrFormElement;
 }
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -390,9 +468,17 @@ export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSelectElement;
 }
+export interface UrTextFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrTextFieldElement;
+}
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserElement;
+}
+export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrWizardStepElement;
 }
 declare global {
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
@@ -464,6 +550,25 @@ declare global {
     var HTMLUrDialogElement: {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
+    };
+    interface HTMLUrFormElementEventMap {
+        "formValid": void;
+        "formInvalid": { errors: { [key: string]: string } };
+        "formDataChanged": { [key: string]: any };
+    }
+    interface HTMLUrFormElement extends Components.UrForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrFormElement: {
+        prototype: HTMLUrFormElement;
+        new (): HTMLUrFormElement;
     };
     interface HTMLUrHeroElementEventMap {
         "ctaClicked": void;
@@ -738,7 +843,19 @@ declare global {
         prototype: HTMLUrTabsElement;
         new (): HTMLUrTabsElement;
     };
+    interface HTMLUrTextFieldElementEventMap {
+        "valueChanged": { name: string; value: string };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
     interface HTMLUrTextFieldElement extends Components.UrTextField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrTextFieldElementEventMap>(type: K, listener: (this: HTMLUrTextFieldElement, ev: UrTextFieldCustomEvent<HTMLUrTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrTextFieldElementEventMap>(type: K, listener: (this: HTMLUrTextFieldElement, ev: UrTextFieldCustomEvent<HTMLUrTextFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrTextFieldElement: {
         prototype: HTMLUrTextFieldElement;
@@ -773,6 +890,24 @@ declare global {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
     };
+    interface HTMLUrWizardStepElementEventMap {
+        "stepCompleted": { step: number; formData: { [key: string]: any } };
+        "stepBack": number;
+    }
+    interface HTMLUrWizardStepElement extends Components.UrWizardStep, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrWizardStepElement: {
+        prototype: HTMLUrWizardStepElement;
+        new (): HTMLUrWizardStepElement;
+    };
     interface HTMLElementTagNameMap {
         "ur-avatar": HTMLUrAvatarElement;
         "ur-button": HTMLUrButtonElement;
@@ -782,6 +917,7 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
+        "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
@@ -810,6 +946,7 @@ declare global {
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
+        "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
 declare namespace LocalJSX {
@@ -862,6 +999,20 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
+    }
+    interface UrForm {
+        /**
+          * Event emitted whenever the form data changes
+         */
+        "onFormDataChanged"?: (event: UrFormCustomEvent<{ [key: string]: any }>) => void;
+        /**
+          * Event emitted when the form is invalid
+         */
+        "onFormInvalid"?: (event: UrFormCustomEvent<{ errors: { [key: string]: string } }>) => void;
+        /**
+          * Event emitted when the form is valid
+         */
+        "onFormValid"?: (event: UrFormCustomEvent<void>) => void;
     }
     interface UrHero {
         "backgroundAlignment"?: 'left' | 'center' | 'right';
@@ -1135,11 +1286,29 @@ declare namespace LocalJSX {
         "tabs"?: { label: string, value: string }[];
     }
     interface UrTextField {
+        "autosize"?: boolean;
+        "counter"?: boolean;
         "disabled"?: boolean;
-        "endIcon"?: any;
+        "endIcon"?: string | null;
+        "error"?: boolean;
+        "errorMessage"?: string | null;
         "helper"?: string | null;
         "label"?: string;
+        "max"?: number | string | null;
+        "maxRows"?: number | null;
+        "maxlength"?: number | null;
+        "min"?: number | string | null;
+        "minRows"?: number | null;
+        "minlength"?: number | null;
+        "name"?: string;
+        "onErrorStateChanged"?: (event: UrTextFieldCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        "onValueChanged"?: (event: UrTextFieldCustomEvent<{ name: string; value: string }>) => void;
+        "pattern"?: string | null;
         "placeholder"?: string | null;
+        "required"?: boolean;
+        "rows"?: number | null;
+        "step"?: number | string | null;
+        "type"?: string;
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
     }
@@ -1162,6 +1331,60 @@ declare namespace LocalJSX {
     }
     interface UrUserProfile {
     }
+    interface UrWizardStep {
+        /**
+          * Custom CSS class for the component
+         */
+        "customClass"?: string;
+        /**
+          * Determines if the step can be skipped
+         */
+        "isSkippable"?: boolean;
+        /**
+          * Validation state of the step
+         */
+        "isValid"?: boolean;
+        /**
+          * Title of the "Next" button
+         */
+        "nextButtonTitle"?: string;
+        /**
+          * Event emitted when navigating back
+         */
+        "onStepBack"?: (event: UrWizardStepCustomEvent<number>) => void;
+        /**
+          * Event emitted when the step is completed
+         */
+        "onStepCompleted"?: (event: UrWizardStepCustomEvent<{ step: number; formData: { [key: string]: any } }>) => void;
+        /**
+          * Title of the "Previous" button
+         */
+        "previousButtonTitle"?: string;
+        /**
+          * Determines if the "Next" button is visible
+         */
+        "showNext"?: boolean;
+        /**
+          * Determines if the "Previous" button is visible
+         */
+        "showPrevious"?: boolean;
+        /**
+          * Step number of the wizard
+         */
+        "step"?: number;
+        /**
+          * Title of the wizard step
+         */
+        "stepTitle"?: string;
+        /**
+          * Subtitle or instructions for the step
+         */
+        "subtitle"?: string;
+        /**
+          * Custom validation message
+         */
+        "validationMessage"?: string;
+    }
     interface IntrinsicElements {
         "ur-avatar": UrAvatar;
         "ur-button": UrButton;
@@ -1171,6 +1394,7 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
+        "ur-form": UrForm;
         "ur-hero": UrHero;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
@@ -1199,6 +1423,7 @@ declare namespace LocalJSX {
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
+        "ur-wizard-step": UrWizardStep;
     }
 }
 export { LocalJSX as JSX };
@@ -1213,6 +1438,7 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
+            "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
@@ -1241,6 +1467,7 @@ declare module "@stencil/core" {
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
+            "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
     }
 }
