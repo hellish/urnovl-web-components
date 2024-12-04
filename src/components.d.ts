@@ -27,8 +27,10 @@ export namespace Components {
         "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
+        "disabled": boolean;
     }
     interface UrButtonArrowRight {
+        "disabled": boolean;
     }
     interface UrButtonIcon {
         "disabled": boolean;
@@ -829,9 +831,11 @@ declare namespace LocalJSX {
         "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
+        "disabled"?: boolean;
         "onLeftClicked"?: (event: UrButtonArrowLeftCustomEvent<any>) => void;
     }
     interface UrButtonArrowRight {
+        "disabled"?: boolean;
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
     }
     interface UrButtonIcon {

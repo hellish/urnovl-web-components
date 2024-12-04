@@ -9,6 +9,9 @@ import { Breakpoints, Grid } from '../../data/novl-carousel';
 })
 export class UrNovlCarousel {
 
+    private swiperContainer!: any;
+    private leftArrow?: HTMLElement;
+    private rightArrow?: HTMLElement;
     private observer: IntersectionObserver;
 
     @Element()
@@ -35,7 +38,7 @@ export class UrNovlCarousel {
     spaceBetween?: number | string = '0';
 
     @Prop()
-    navigation?: boolean = false;
+    navigation? = false;
 
     @Event()
     intersectionUpdated: EventEmitter<Array<IntersectionObserverEntry>>;
@@ -50,18 +53,32 @@ export class UrNovlCarousel {
         this.intersectionUpdated.emit(entries);
     };
 
+    private onSlideChange = () => {
+        this.leftArrow?.setAttribute('disabled', this.swiperContainer?.swiper?.isBeginning);
+        this.rightArrow?.setAttribute('disabled', this.swiperContainer?.swiper?.isEnd);
+    };
+
+    private onLeftClick = () => {
+        this.swiperContainer?.swiper?.slidePrev();
+        this.prevClicked.emit();
+    };
+
+    private onRightClick = () => {
+        this.swiperContainer?.swiper?.slideNext();
+        this.nextClicked.emit();
+    };
+
     componentDidLoad() {
-        const container: any = this.el.shadowRoot.querySelector('swiper-container');
+        this.swiperContainer = this.el.shadowRoot.querySelector('swiper-container');
 
         if (this.navigation) {
-            this.el.shadowRoot.querySelector('ur-button-arrow-left').addEventListener('click', () => {
-                container?.swiper?.slidePrev();
-                this.prevClicked.emit();
-            });
-            this.el.shadowRoot.querySelector('ur-button-arrow-right').addEventListener('click', () => {
-                container?.swiper?.slideNext();
-                this.nextClicked.emit();
-            });
+            this.leftArrow = this.el.shadowRoot.querySelector('ur-button-arrow-left');
+            this.rightArrow = this.el.shadowRoot.querySelector('ur-button-arrow-right');
+            this.leftArrow.setAttribute('disabled', 'true');
+            this.rightArrow.setAttribute('disabled', `${this.novls.length === 0}`);
+            this.leftArrow.addEventListener('click', this.onLeftClick);
+            this.rightArrow .addEventListener('click', this.onRightClick);
+            this.swiperContainer?.swiper.on('slideChange', this.onSlideChange);
         }
 
         const novls = this.el.shadowRoot.querySelectorAll('ur-novl');
@@ -71,15 +88,22 @@ export class UrNovlCarousel {
         })
     }
 
+    disconnectedCallback() {
+        this.leftArrow?.removeEventListener('click', this.onLeftClick);
+        this.rightArrow?.removeEventListener('click', this.onRightClick);
+        this.swiperContainer?.swiper.destroy(true, true);
+        this.observer.disconnect();
+    }
+
     render() {
         return (
             <Host>
                 <div class="carousel">
                     {this.navigation && (
-                        <ur-button-arrow-left />
+                        <ur-button-arrow-left disabled />
                     )}
                     {this.navigation && (
-                        <ur-button-arrow-right />
+                        <ur-button-arrow-right disabled />
                     )}
                     <swiper-container
                         breakpoint-base="container"

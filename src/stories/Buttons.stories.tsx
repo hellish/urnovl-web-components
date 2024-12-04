@@ -3,12 +3,16 @@ import '../components/ur-button/ur-button';
 import '../components/ur-button-arrow-left/ur-button-arrow-left';
 import '../components/ur-button-arrow-right/ur-button-arrow-right';
 
-const ButtonArrowLeft = () => html`
-    <ur-button-arrow-left></ur-button-arrow-left>
+const ButtonArrowLeft = ({
+    disabled = false
+}) => html`
+    <ur-button-arrow-left disabled=${disabled}></ur-button-arrow-left>
 `;
 
-const ButtonArrowRight = () => html`
-    <ur-button-arrow-right></ur-button-arrow-right>
+const ButtonArrowRight = ({
+    disabled = false
+}) => html`
+    <ur-button-arrow-right disabled=${disabled}></ur-button-arrow-right>
 `;
 
 const Button = ({
@@ -39,11 +43,19 @@ export default {
 };
 
 export const ArrowLeft = {
-    render: () => ButtonArrowLeft(),
+    render: () => ButtonArrowLeft({}),
+};
+
+export const DisabledArrowLeft = {
+    render: () => ButtonArrowLeft({ disabled: true }),
 };
 
 export const ArrowRight = {
-    render: () => ButtonArrowRight(),
+    render: () => ButtonArrowRight({}),
+};
+
+export const DisbledArrowRight = {
+    render: () => ButtonArrowRight({ disabled :true }),
 };
 
 export const Basic = {
