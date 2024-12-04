@@ -62,7 +62,7 @@ export const Default = {
 export const TwoRowsGrid = {
     args: {
         novls: NOVLS.map((novl, index) => {
-            if (index === 1 || index === 6) {
+            if (index === 1 || index === 2) {
                 return { ...novl, borderRadius: '0' };
             }
 
