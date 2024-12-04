@@ -64,7 +64,7 @@ export class UrNovl {
                     <div class="title loading">&nbsp;</div>
                     <div class="stats loading"></div>
                     <div class="description loading">&nbsp;</div>
-                    <div class="author">
+                    <div class="author loading">
                         <div class="avatar loading">&nbsp;</div>
                         <div class="name loading">&nbsp;</div>
                     </div>
