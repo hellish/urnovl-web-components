@@ -6,10 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "./models/locale";
-import { Novl } from "./models/novl";
+import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
 export { Locale } from "./models/locale";
-export { Novl } from "./models/novl";
+export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
     interface UrAvatar {
@@ -205,7 +205,7 @@ export namespace Components {
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
         "navigation"?: boolean;
-        "novls": Array<Novl>;
+        "novls": Array<Novl | CustomContent>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
@@ -1017,7 +1017,7 @@ declare namespace LocalJSX {
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
         "navigation"?: boolean;
-        "novls"?: Array<Novl>;
+        "novls"?: Array<Novl | CustomContent>;
         "onIntersectionUpdated"?: (event: UrNovlCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
         "onNextClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
         "onPrevClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
