@@ -166,3 +166,56 @@ export const FullWithArrows = {
         containerBackgroundColor: 'transparent',
     },
 };
+
+export const CustomSlide = {
+    render: args => NovlCarousel(args),
+    args: {
+        novls: NOVLS.map((novl, index) => {
+            if (index === 2) {
+                return {
+                    content: (novlIndex) => {
+                        return `<div>[ custom content goes here for index ${novlIndex} ]</div>`
+                    }
+                };
+            }
+
+            return novl;
+        }),
+        breakpoints: {
+            2075: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1700: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1420: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            1090: {
+                slidesPerView: 'auto',
+                spaceBetween: 8
+            },
+            321: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            },
+            0: {
+                slidesPerView: 'auto',
+                spaceBetween: 4
+            }
+        },
+        grid: {
+            rows: 1,
+            fill: 'row'
+        },
+        //slidesPerView: 'auto',
+        //spaceBetween: 8,
+        navigation: true,
+        // container styles
+        containerWidth: '100%',
+        containerBackgroundColor: 'transparent',
+    },
+};

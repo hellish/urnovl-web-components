@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
-import { Novl } from '../../models/novl';
+import { CustomContent, is_custom_data, Novl } from '../../models/novl';
 import { Breakpoints, Grid } from '../../data/novl-carousel';
 
 @Component({
@@ -15,7 +15,7 @@ export class UrNovlCarousel {
     el: HTMLElement;
 
     @Prop()
-    novls: Array<Novl> = [];
+    novls: Array<Novl | CustomContent> = [];
 
     @Prop()
     breakpoints?: Breakpoints = {
@@ -87,10 +87,16 @@ export class UrNovlCarousel {
                         breakpoints={this.breakpoints}
                         slides-per-view={this.slidesPerView}
                         space-between={this.spaceBetween}>
-                        {this.novls.map(novl => {
-                            return (<swiper-slide>
-                                <ur-novl {...novl}></ur-novl>
-                            </swiper-slide>)
+                        {this.novls.map((novl, index) => {
+                            if (is_custom_data(novl)) {
+                                return (<swiper-slide>
+                                    <div class="custom" innerHTML={novl.content(index)}></div>
+                                </swiper-slide>)
+                            } else {
+                                return (<swiper-slide>
+                                    <ur-novl {...novl}></ur-novl>
+                                </swiper-slide>)
+                            }
                         })}
                     </swiper-container>
                 </div>
