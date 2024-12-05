@@ -39,8 +39,56 @@ export namespace Components {
         "variant": 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
+        /**
+          * Indicates if the checkbox is checked
+         */
         "checked": boolean;
+        /**
+          * Indicates if the checkbox is disabled
+         */
         "disabled": boolean;
+        /**
+          * The name of the checkbox group
+         */
+        "name": string;
+        /**
+          * The value of the checkbox
+         */
+        "value": string;
+    }
+    interface UrCheckboxGroup {
+        /**
+          * Maximum number of selectable options
+         */
+        "maxSelectable": number | null;
+        /**
+          * The name of the checkbox group
+         */
+        "name": string;
+        /**
+          * Whether the group is required
+         */
+        "required": boolean;
+        /**
+          * Reset the checkbox group
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Enable a "Select All" checkbox
+         */
+        "selectAll": boolean;
+        /**
+          * Text for the "Select All" checkbox
+         */
+        "selectAllText": string;
+        /**
+          * Validate the checkbox group
+         */
+        "validate": () => Promise<boolean>;
+        /**
+          * Currently selected values
+         */
+        "values": string[];
     }
     interface UrChip {
         "backColor": string;
@@ -63,7 +111,13 @@ export namespace Components {
         "openDialog": () => Promise<void>;
     }
     interface UrForm {
+        /**
+          * Reset the form fields
+         */
         "resetForm": () => Promise<void>;
+        /**
+          * Submit the form and validate fields
+         */
         "submitForm": () => Promise<void>;
     }
     interface UrHero {
@@ -277,7 +331,30 @@ export namespace Components {
     interface UrRadioButton {
         "checked": boolean;
         "disabled": boolean;
-        "text": string;
+        "name": string;
+        "value": string;
+    }
+    interface UrRadioGroup {
+        /**
+          * Group name for the radio buttons
+         */
+        "name": string;
+        /**
+          * Whether the group is required
+         */
+        "required": boolean;
+        /**
+          * Reset the radio group
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Validate the radio group
+         */
+        "validate": () => Promise<boolean>;
+        /**
+          * The currently selected value
+         */
+        "value": string | null;
     }
     interface UrReadMobileTopAppBar {
         "headerTitle": string;
@@ -420,6 +497,14 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCheckboxElement;
+}
+export interface UrCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCheckboxGroupElement;
+}
 export interface UrFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrFormElement;
@@ -459,6 +544,14 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrRadioButtonElement;
+}
+export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrRadioGroupElement;
 }
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -533,11 +626,40 @@ declare global {
         prototype: HTMLUrButtonIconElement;
         new (): HTMLUrButtonIconElement;
     };
+    interface HTMLUrCheckboxElementEventMap {
+        "valueChanged": { name: string; value: string; checked: boolean };
+    }
     interface HTMLUrCheckboxElement extends Components.UrCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCheckboxElementEventMap>(type: K, listener: (this: HTMLUrCheckboxElement, ev: UrCheckboxCustomEvent<HTMLUrCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCheckboxElementEventMap>(type: K, listener: (this: HTMLUrCheckboxElement, ev: UrCheckboxCustomEvent<HTMLUrCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrCheckboxElement: {
         prototype: HTMLUrCheckboxElement;
         new (): HTMLUrCheckboxElement;
+    };
+    interface HTMLUrCheckboxGroupElementEventMap {
+        "valueChanged": { name: string; values: string[] };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
+    interface HTMLUrCheckboxGroupElement extends Components.UrCheckboxGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCheckboxGroupElementEventMap>(type: K, listener: (this: HTMLUrCheckboxGroupElement, ev: UrCheckboxGroupCustomEvent<HTMLUrCheckboxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCheckboxGroupElementEventMap>(type: K, listener: (this: HTMLUrCheckboxGroupElement, ev: UrCheckboxGroupCustomEvent<HTMLUrCheckboxGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrCheckboxGroupElement: {
+        prototype: HTMLUrCheckboxGroupElement;
+        new (): HTMLUrCheckboxGroupElement;
     };
     interface HTMLUrChipElement extends Components.UrChip, HTMLStencilElement {
     }
@@ -783,11 +905,40 @@ declare global {
         prototype: HTMLUrProfileElement;
         new (): HTMLUrProfileElement;
     };
+    interface HTMLUrRadioButtonElementEventMap {
+        "valueSelected": { value: string };
+    }
     interface HTMLUrRadioButtonElement extends Components.UrRadioButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrRadioButtonElementEventMap>(type: K, listener: (this: HTMLUrRadioButtonElement, ev: UrRadioButtonCustomEvent<HTMLUrRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrRadioButtonElementEventMap>(type: K, listener: (this: HTMLUrRadioButtonElement, ev: UrRadioButtonCustomEvent<HTMLUrRadioButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrRadioButtonElement: {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
+    };
+    interface HTMLUrRadioGroupElementEventMap {
+        "valueChanged": { name: string; value: string };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
+    interface HTMLUrRadioGroupElement extends Components.UrRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrRadioGroupElementEventMap>(type: K, listener: (this: HTMLUrRadioGroupElement, ev: UrRadioGroupCustomEvent<HTMLUrRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrRadioGroupElementEventMap>(type: K, listener: (this: HTMLUrRadioGroupElement, ev: UrRadioGroupCustomEvent<HTMLUrRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrRadioGroupElement: {
+        prototype: HTMLUrRadioGroupElement;
+        new (): HTMLUrRadioGroupElement;
     };
     interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
@@ -915,6 +1066,7 @@ declare global {
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
         "ur-button-icon": HTMLUrButtonIconElement;
         "ur-checkbox": HTMLUrCheckboxElement;
+        "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
@@ -937,6 +1089,7 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-radio-group": HTMLUrRadioGroupElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
@@ -979,8 +1132,60 @@ declare namespace LocalJSX {
         "variant"?: 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
+        /**
+          * Indicates if the checkbox is checked
+         */
         "checked"?: boolean;
+        /**
+          * Indicates if the checkbox is disabled
+         */
         "disabled"?: boolean;
+        /**
+          * The name of the checkbox group
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checkbox value changes
+         */
+        "onValueChanged"?: (event: UrCheckboxCustomEvent<{ name: string; value: string; checked: boolean }>) => void;
+        /**
+          * The value of the checkbox
+         */
+        "value"?: string;
+    }
+    interface UrCheckboxGroup {
+        /**
+          * Maximum number of selectable options
+         */
+        "maxSelectable"?: number | null;
+        /**
+          * The name of the checkbox group
+         */
+        "name"?: string;
+        /**
+          * Event emitted when validation state changes
+         */
+        "onErrorStateChanged"?: (event: UrCheckboxGroupCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        /**
+          * Event emitted when the values change
+         */
+        "onValueChanged"?: (event: UrCheckboxGroupCustomEvent<{ name: string; values: string[] }>) => void;
+        /**
+          * Whether the group is required
+         */
+        "required"?: boolean;
+        /**
+          * Enable a "Select All" checkbox
+         */
+        "selectAll"?: boolean;
+        /**
+          * Text for the "Select All" checkbox
+         */
+        "selectAllText"?: string;
+        /**
+          * Currently selected values
+         */
+        "values"?: string[];
     }
     interface UrChip {
         "backColor"?: string;
@@ -1244,7 +1449,31 @@ declare namespace LocalJSX {
     interface UrRadioButton {
         "checked"?: boolean;
         "disabled"?: boolean;
-        "text"?: string;
+        "name"?: string;
+        "onValueSelected"?: (event: UrRadioButtonCustomEvent<{ value: string }>) => void;
+        "value"?: string;
+    }
+    interface UrRadioGroup {
+        /**
+          * Group name for the radio buttons
+         */
+        "name"?: string;
+        /**
+          * Event emitted when validation state changes
+         */
+        "onErrorStateChanged"?: (event: UrRadioGroupCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        /**
+          * Event emitted when the value changes
+         */
+        "onValueChanged"?: (event: UrRadioGroupCustomEvent<{ name: string; value: string }>) => void;
+        /**
+          * Whether the group is required
+         */
+        "required"?: boolean;
+        /**
+          * The currently selected value
+         */
+        "value"?: string | null;
     }
     interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
@@ -1392,6 +1621,7 @@ declare namespace LocalJSX {
         "ur-button-arrow-right": UrButtonArrowRight;
         "ur-button-icon": UrButtonIcon;
         "ur-checkbox": UrCheckbox;
+        "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
@@ -1414,6 +1644,7 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-radio-group": UrRadioGroup;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
@@ -1436,6 +1667,7 @@ declare module "@stencil/core" {
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
             "ur-button-icon": LocalJSX.UrButtonIcon & JSXBase.HTMLAttributes<HTMLUrButtonIconElement>;
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
+            "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
@@ -1458,6 +1690,7 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
