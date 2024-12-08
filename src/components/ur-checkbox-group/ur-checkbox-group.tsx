@@ -77,45 +77,40 @@ export class UrCheckboxGroup {
     }
 
     /** Handle value changes from checkboxes with debounce */
-    private handleValueChangeDebounce = this.debounce(
-        (event: CustomEvent<{ name: string; value: string; checked: boolean }>) => {
-            if (this.isBulkUpdating) {
-                console.log(`Suppressed event during bulk update: ${event.detail.value}`);
-                return;
-            }
-    
-            const { value, checked } = event.detail;
-    
-            if (value === 'select-all') {
-                console.log('Select All clicked');
-                this.handleSelectAllToggle(checked);
-            } else {
-                if (this.isBulkUpdating === true) return;
-                if (checked) {
-                    if (this.maxSelectable && this.values.length >= this.maxSelectable) {
-                        console.warn(`Max selectable limit reached: ${this.maxSelectable}`);
-                        this.syncSelection();
-                        return;
-                    }
-                    this.values = [...new Set([...this.values, value])];
-                } else {
-                    this.values = this.values.filter(v => v !== value);
-                }
-    
-                const isSelectAll = this.isSelectAllSelected();
-                if (isSelectAll && this.values.length < this.options.length - 1) {
-                    this.values = this.values.filter(v => v !== 'select-all');
-                }
-                console.log('is this called??????????????????');
-                if (this.maxSelectable) {
+    private handleValueChangeDebounce = this.debounce((event: CustomEvent<{ name: string; value: string; checked: boolean }>) => {
+        if (this.isBulkUpdating) {
+            console.log(`Suppressed event during bulk update: ${event.detail.value}`);
+            return;
+        }
+
+        const { value, checked } = event.detail;
+
+        if (value === 'select-all') {
+            this.handleSelectAllToggle(checked);
+        } else {
+            if (this.isBulkUpdating === true) return;
+            if (checked) {
+                if (this.maxSelectable && this.values.length >= this.maxSelectable) {
+                    console.warn(`Max selectable limit reached: ${this.maxSelectable}`);
                     this.syncSelection();
+                    return;
                 }
-                this.emitFormData();
+                this.values = [...new Set([...this.values, value])];
+            } else {
+                this.values = this.values.filter(v => v !== value);
             }
-        },
-        50
-    );
-    
+
+            const isSelectAll = this.isSelectAllSelected();
+            if (isSelectAll && this.values.length < this.options.length - 1) {
+                this.values = this.values.filter(v => v !== 'select-all');
+            }
+            if (this.maxSelectable) {
+                this.syncSelection();
+            }
+            this.emitFormData();
+        }
+    }, 50);
+
     /** Wrapper for handleValueChange */
     private handleValueChange = this.handleValueChangeDebounce.debounced;
     private isBulkUpdating: boolean = false;
@@ -123,10 +118,10 @@ export class UrCheckboxGroup {
     /** Handle "Select All" toggle */
     private handleSelectAllToggle(isChecked: boolean) {
         console.log(`Handle Select All Toggle - Checked: ${isChecked}`);
-    
+
         this.isBulkUpdating = true; // Suppress individual checkbox updates
         this.handleValueChangeDebounce.clear(); // Clear any queued debounce calls
-    
+
         if (isChecked) {
             console.log('select all');
             // Directly select all items
@@ -136,7 +131,7 @@ export class UrCheckboxGroup {
             // Deselect all items
             this.values = [];
         }
-    
+
         this.isBulkUpdating = false; // Release suppression
         this.syncSelection(isChecked); // Only call syncSelection once
         this.emitFormData(); // Emit form data after state is finalized
@@ -144,11 +139,11 @@ export class UrCheckboxGroup {
 
     private syncSelection(disableOptions = false) {
         const disableUnselected = typeof this.maxSelectable === 'number' && this.maxSelectable > 0 && this.values.length >= this.maxSelectable;
-    
+
         console.log('disableOptions:', disableOptions);
         this.options.forEach(option => {
             const isSelected = this.values.includes(option.value);
-    
+
             if (option.value === 'select-all') {
                 const isChecked = this.isSelectAllSelected();
                 if (option.checked !== isChecked) {
@@ -160,7 +155,7 @@ export class UrCheckboxGroup {
                 if (option.checked !== isSelected) {
                     option.checked = isSelected;
                 }
-    
+
                 const shouldDisable = disableOptions || (disableUnselected && !isSelected);
                 if (option.disabled !== shouldDisable) {
                     option.disabled = shouldDisable;
@@ -169,7 +164,6 @@ export class UrCheckboxGroup {
             }
         });
     }
-    
 
     /** Check if "Select All" is selected */
     private isSelectAllSelected(): boolean {
@@ -184,23 +178,22 @@ export class UrCheckboxGroup {
     }
 
     /** Handle slot change to register options */
-private onSlotChange = (event: Event) => {
-    const slot = event.target as HTMLSlotElement;
-    const newOptions = slot.assignedElements().filter(el => el.tagName === 'UR-CHECKBOX') as HTMLUrCheckboxElement[];
+    private onSlotChange = (event: Event) => {
+        const slot = event.target as HTMLSlotElement;
+        const newOptions = slot.assignedElements().filter(el => el.tagName === 'UR-CHECKBOX') as HTMLUrCheckboxElement[];
 
-    if (newOptions.length !== this.options.length) {
-        this.options = newOptions;
+        if (newOptions.length !== this.options.length) {
+            this.options = newOptions;
 
-        this.options.forEach(option => {
-            option.name = this.name; // Propagate the group name
-            option.addEventListener('valueChanged', this.handleValueChange as EventListener);
-        });
+            this.options.forEach(option => {
+                option.name = this.name; // Propagate the group name
+                option.addEventListener('valueChanged', this.handleValueChange as EventListener);
+            });
 
-        this.syncSelection(); // Sync the selection initially
-        this.emitFormData(); // Emit form data after syncing preselected values
-    }
-};
-
+            this.syncSelection(); // Sync the selection initially
+            this.emitFormData(); // Emit form data after syncing preselected values
+        }
+    };
 
     render() {
         const showSelectAll = this.selectAll && this.maxSelectable === null;

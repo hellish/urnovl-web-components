@@ -20,17 +20,8 @@ const CheckboxGroup = ({
     options = ['Option 1', 'Option 2', 'Option 3'],
     preselectedValues = [],
 }: CheckboxGroupArgs) => html`
-    <ur-checkbox-group
-        name=${name}
-        .selectAll=${selectAll && maxSelectable === null}
-        required=${required}
-        .values=${preselectedValues}
-        .maxSelectable=${maxSelectable}
-    >
-        ${options.map(
-            (option, index) =>
-                html`<ur-checkbox value="option${index + 1}"> ${option} </ur-checkbox>`
-        )}
+    <ur-checkbox-group name=${name} .selectAll=${selectAll && maxSelectable === null} required=${required} .values=${preselectedValues} .maxSelectable=${maxSelectable}>
+        ${options.map((option, index) => html`<ur-checkbox value="option${index + 1}"> ${option} </ur-checkbox>`)}
     </ur-checkbox-group>
 `;
 
