@@ -1,0 +1,159 @@
+:host {
+    display: block;
+    padding: 1rem;
+    scroll-behavior: smooth;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
+
+    background-color: rgb(var(--ur-color-background));
+}
+
+.reader-container {
+    max-width: 740px;
+    margin: auto;
+    box-sizing: border-box;
+    color: rgb(var(--ur-color-on-background));
+    overflow-y: auto; /* Ensure vertical scrolling is enabled */
+}
+
+.novl-title {
+    font-size: 45px;
+    margin: 24px auto;
+    word-break: break-word;
+    text-align: left;
+}
+
+.chapter-title {
+    font-size: 27px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.chapter-content {
+    font-size: 16px; /* Desktop size */
+    line-height: 1.6;
+    padding-bottom: 40px;
+    text-align: left;
+    -webkit-user-select: none; /* For Safari and Chrome */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For IE */
+    user-select: none; /* Standard property */
+}
+
+.chapter-info {
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.3;
+}
+
+.chapter-content:first-letter {
+    font-size: 60px;
+    padding: 0 8px;
+    margin: 0 6px 0 0;
+    line-height: 18px;
+}
+
+.chapter-content p {
+    margin-bottom: 1rem;
+}
+
+.chapter-content b {
+    font-weight: bold;
+}
+
+.chapter-content i {
+    font-style: italic;
+}
+
+/* Responsive Adjustments */
+.reader-container.small-container .novl-title {
+    font-size: 36px; /* Smaller title for mobile */
+    margin: 12px 0;
+}
+
+.reader-container.small-container .chapter-title {
+    font-size: 22px; /* Smaller chapter title for mobile */
+    margin-top: 28px;
+}
+
+.reader-container.small-container .chapter-info {
+    margin-bottom: 28px;
+}
+
+.reader-container.small-container .chapter-content {
+    font-size: 14px; /* Smaller base size for content */
+}
+
+.reader-container.small-container .chapter-content:first-letter {
+    font-size: 45px;
+    padding: 0 8px;
+    margin: 0;
+}
+
+/* Loading State Styles */
+/* General Loading Effect */
+.loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
+    border-radius: 4px; /* Optional rounded edges */
+}
+
+/* Loading State for Specific Elements */
+.novl-title.loading {
+    height: 45px; /* Match the actual title height */
+    margin: 24px 0;
+    width: 70%; /* Placeholder width for title */
+}
+
+.chapter-title.loading {
+    height: 27px; /* Match the actual chapter title height */
+    margin-top: 50px;
+    margin-bottom: 8px;
+    width: 50%; /* Placeholder width for chapter title */
+}
+
+.chapter-content.loading {
+    height: 150px; /* Simulate content area */
+    margin-top: 16px;
+    width: 100%; /* Full width for content placeholder */
+}
+
+.chapter-content.loading:before {
+    content: ''; /* Create multiple lines effect */
+    display: block;
+    height: 16px; /* Line height */
+    margin-bottom: 8px;
+    width: 90%; /* Adjust width for the first line */
+    background: inherit;
+    animation: inherit;
+}
+
+.chapter-content.loading:after {
+    content: '';
+    display: block;
+    height: 16px; /* Line height */
+    margin-bottom: 8px;
+    width: 80%; /* Adjust width for the second line */
+    background: inherit;
+    animation: inherit;
+}
+
+/* Keyframe Animation for Placeholder Effect */
+@keyframes placeholderAnimate {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}

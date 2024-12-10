@@ -1,0 +1,58 @@
+.progress-container {
+    --ur-color-primary: var(--mdui-color-primary);
+
+    position: relative;
+    height: 4px;
+    background-color: var(--linear-progress-background, #e0e0e0);
+    overflow: hidden;
+    border-radius: var(--shape-corner, 2px);
+}
+
+.indicator {
+    height: 100%;
+    background-color: var(--linear-progress-color, rgb(var(--ur-color-primary)));
+    transition: width 0.2s ease;
+}
+
+/* Indeterminate animation */
+.indicator.indeterminate {
+    position: absolute; /* Required for animation */
+    width: 0%; /* Start from 0% width */
+    height: 100%;
+    animation: indeterminate-motion 3s infinite ease-in-out, indeterminate-gradient 3s infinite linear;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-primary, 98, 0, 238), 0.1) 0%,
+        rgba(var(--ur-color-primary, 98, 0, 238), 0.3) 25%,
+        rgba(var(--ur-color-primary, 98, 0, 238), 0.6) 50%,
+        rgba(var(--ur-color-primary, 98, 0, 238), 0.3) 75%,
+        rgba(var(--ur-color-primary, 98, 0, 238), 0.1) 100%
+    );
+    background-size: 300% 100%; /* Larger size for smoother animation */
+}
+
+/* Keyframes for width expansion (motion from 0% to 100%) */
+@keyframes indeterminate-motion {
+    0% {
+        width: 0%; /* Start at 0% width */
+    }
+    50% {
+        width: 60%; /* Gradual expansion */
+    }
+    100% {
+        width: 100%; /* Reach full width */
+    }
+}
+
+/* Keyframes for gradient sliding effect */
+@keyframes indeterminate-gradient {
+    0% {
+        background-position: -200% 0; /* Start gradient off-screen */
+    }
+    50% {
+        background-position: 0% 0; /* Centered gradient */
+    }
+    100% {
+        background-position: 200% 0; /* Move gradient off-screen */
+    }
+}

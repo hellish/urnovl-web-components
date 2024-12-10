@@ -132,6 +132,16 @@ export namespace Components {
         "heroTitleColor": string;
         "layout": 'left' | 'right' | 'center';
     }
+    interface UrLinearProgress {
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max": number;
+        /**
+          * The current value of the progress indicator. If null or undefined, the progress is indeterminate.
+         */
+        "value": number | null;
+    }
     interface UrList {
     }
     interface UrListItem {
@@ -361,6 +371,15 @@ export namespace Components {
         "scrollBehavior": 'hide' | 'shrink' | 'elevate';
         "scrollThreshold": number;
         "variant": string;
+    }
+    interface UrReader {
+        "chapterContent": string;
+        "chapterTitle": string;
+        "fontSize": 'small' | 'medium' | 'large';
+        "fontType": 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "loading": boolean;
+        "readingTimePerWord": number;
+        "storyTitle": string;
     }
     interface UrSegmentButton {
         "likeLabel": string;
@@ -709,6 +728,12 @@ declare global {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
     };
+    interface HTMLUrLinearProgressElement extends Components.UrLinearProgress, HTMLStencilElement {
+    }
+    var HTMLUrLinearProgressElement: {
+        prototype: HTMLUrLinearProgressElement;
+        new (): HTMLUrLinearProgressElement;
+    };
     interface HTMLUrListElement extends Components.UrList, HTMLStencilElement {
     }
     var HTMLUrListElement: {
@@ -959,6 +984,12 @@ declare global {
         prototype: HTMLUrReadMobileTopAppBarElement;
         new (): HTMLUrReadMobileTopAppBarElement;
     };
+    interface HTMLUrReaderElement extends Components.UrReader, HTMLStencilElement {
+    }
+    var HTMLUrReaderElement: {
+        prototype: HTMLUrReaderElement;
+        new (): HTMLUrReaderElement;
+    };
     interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
     }
     var HTMLUrSegmentButtonElement: {
@@ -1071,6 +1102,7 @@ declare global {
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
         "ur-list-subheader": HTMLUrListSubheaderElement;
@@ -1091,6 +1123,7 @@ declare global {
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
+        "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
@@ -1231,6 +1264,16 @@ declare namespace LocalJSX {
         "heroTitleColor"?: string;
         "layout"?: 'left' | 'right' | 'center';
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
+    }
+    interface UrLinearProgress {
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max"?: number;
+        /**
+          * The current value of the progress indicator. If null or undefined, the progress is indeterminate.
+         */
+        "value"?: number | null;
     }
     interface UrList {
     }
@@ -1484,6 +1527,15 @@ declare namespace LocalJSX {
         "scrollThreshold"?: number;
         "variant"?: string;
     }
+    interface UrReader {
+        "chapterContent"?: string;
+        "chapterTitle"?: string;
+        "fontSize"?: 'small' | 'medium' | 'large';
+        "fontType"?: 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "loading"?: boolean;
+        "readingTimePerWord"?: number;
+        "storyTitle"?: string;
+    }
     interface UrSegmentButton {
         "likeLabel"?: string;
     }
@@ -1626,6 +1678,7 @@ declare namespace LocalJSX {
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
         "ur-hero": UrHero;
+        "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
         "ur-list-subheader": UrListSubheader;
@@ -1646,6 +1699,7 @@ declare namespace LocalJSX {
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
+        "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
@@ -1672,6 +1726,7 @@ declare module "@stencil/core" {
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
             "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;
@@ -1692,6 +1747,7 @@ declare module "@stencil/core" {
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
+            "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
