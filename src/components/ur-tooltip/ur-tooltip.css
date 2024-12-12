@@ -16,7 +16,7 @@
     border-radius: 4px;
     font-size: 14px;
     line-height: 1.4;
-    pointer-events: none;
+    pointer-events: auto; /* Allow interaction with the tooltip */
     max-width: 300px;
     display: block;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
