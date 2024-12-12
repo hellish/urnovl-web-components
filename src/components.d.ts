@@ -374,12 +374,20 @@ export namespace Components {
     }
     interface UrReader {
         "chapterContent": string;
+        "chapterLocked": boolean;
+        "chapterSequence": number;
         "chapterTitle": string;
         "fontSize": 'small' | 'medium' | 'large';
         "fontType": 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "hasNextChapter": boolean;
+        "hasPreviousChapter": boolean;
         "loading": boolean;
+        "lockedMessage": string;
+        "minutesText": string;
+        "readingDurationText": string;
         "readingTimePerWord": number;
         "storyTitle": string;
+        "unlockButtonLabel": string;
     }
     interface UrSegmentButton {
         "likeLabel": string;
@@ -434,6 +442,33 @@ export namespace Components {
         "type": string;
         "value": string;
         "variant": 'filled' | 'outlined';
+    }
+    interface UrTooltip {
+        "actionText": string;
+        "closeDelay": number;
+        "content": string;
+        "disabled": boolean;
+        "headline": string;
+        "openDelay": number;
+        "placement": 'auto' | 
+        'top-left' | 
+        'top-start' | 
+        'top' | 
+        'top-end' | 
+        'top-right' | 
+        'bottom-left' | 
+        'bottom-start' | 
+        'bottom' | 
+        'bottom-end' | 
+        'bottom-right' | 
+        'left-start' | 
+        'left' | 
+        'left-end' | 
+        'right-start' | 
+        'right' | 
+        'right-end';
+        "trigger": 'hover' | 'click' | 'focus';
+        "variant": 'plain' | 'rich';
     }
     interface UrTopAppBar {
         "headerTitle": string;
@@ -575,6 +610,10 @@ export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadMobileTopAppBarElement;
+}
+export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReaderElement;
 }
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -984,7 +1023,20 @@ declare global {
         prototype: HTMLUrReadMobileTopAppBarElement;
         new (): HTMLUrReadMobileTopAppBarElement;
     };
+    interface HTMLUrReaderElementEventMap {
+        "chapterUnlocked": void;
+        "nextChapter": void;
+        "previousChapter": void;
+    }
     interface HTMLUrReaderElement extends Components.UrReader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReaderElementEventMap>(type: K, listener: (this: HTMLUrReaderElement, ev: UrReaderCustomEvent<HTMLUrReaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReaderElementEventMap>(type: K, listener: (this: HTMLUrReaderElement, ev: UrReaderCustomEvent<HTMLUrReaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrReaderElement: {
         prototype: HTMLUrReaderElement;
@@ -1042,6 +1094,12 @@ declare global {
     var HTMLUrTextFieldElement: {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
+    };
+    interface HTMLUrTooltipElement extends Components.UrTooltip, HTMLStencilElement {
+    }
+    var HTMLUrTooltipElement: {
+        prototype: HTMLUrTooltipElement;
+        new (): HTMLUrTooltipElement;
     };
     interface HTMLUrTopAppBarElement extends Components.UrTopAppBar, HTMLStencilElement {
     }
@@ -1129,6 +1187,7 @@ declare global {
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-tooltip": HTMLUrTooltipElement;
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
@@ -1529,12 +1588,23 @@ declare namespace LocalJSX {
     }
     interface UrReader {
         "chapterContent"?: string;
+        "chapterLocked"?: boolean;
+        "chapterSequence"?: number;
         "chapterTitle"?: string;
         "fontSize"?: 'small' | 'medium' | 'large';
         "fontType"?: 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "hasNextChapter"?: boolean;
+        "hasPreviousChapter"?: boolean;
         "loading"?: boolean;
+        "lockedMessage"?: string;
+        "minutesText"?: string;
+        "onChapterUnlocked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onNextChapter"?: (event: UrReaderCustomEvent<void>) => void;
+        "onPreviousChapter"?: (event: UrReaderCustomEvent<void>) => void;
+        "readingDurationText"?: string;
         "readingTimePerWord"?: number;
         "storyTitle"?: string;
+        "unlockButtonLabel"?: string;
     }
     interface UrSegmentButton {
         "likeLabel"?: string;
@@ -1592,6 +1662,33 @@ declare namespace LocalJSX {
         "type"?: string;
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
+    }
+    interface UrTooltip {
+        "actionText"?: string;
+        "closeDelay"?: number;
+        "content"?: string;
+        "disabled"?: boolean;
+        "headline"?: string;
+        "openDelay"?: number;
+        "placement"?: 'auto' | 
+        'top-left' | 
+        'top-start' | 
+        'top' | 
+        'top-end' | 
+        'top-right' | 
+        'bottom-left' | 
+        'bottom-start' | 
+        'bottom' | 
+        'bottom-end' | 
+        'bottom-right' | 
+        'left-start' | 
+        'left' | 
+        'left-end' | 
+        'right-start' | 
+        'right' | 
+        'right-end';
+        "trigger"?: 'hover' | 'click' | 'focus';
+        "variant"?: 'plain' | 'rich';
     }
     interface UrTopAppBar {
         "headerTitle"?: string;
@@ -1705,6 +1802,7 @@ declare namespace LocalJSX {
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-tooltip": UrTooltip;
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
@@ -1753,6 +1851,7 @@ declare module "@stencil/core" {
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-tooltip": LocalJSX.UrTooltip & JSXBase.HTMLAttributes<HTMLUrTooltipElement>;
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;

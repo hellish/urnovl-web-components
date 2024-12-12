@@ -1,0 +1,21 @@
+:host .mdui-tooltip {
+    background: red;
+    position: relative;
+}
+
+.popup {
+    background:red;
+}
+
+:host {
+    position: relative; 
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+    margin-left: 50px;
+    background: red;
+}
+
+.tooltip-class {
+    background: blue;
+}

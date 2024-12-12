@@ -1,4 +1,4 @@
-import { Component, Prop, State, Watch, Host, h, Element } from '@stencil/core';
+import { Component, Prop, State, Watch, Host, h, Element, Event, EventEmitter } from '@stencil/core';
 
 @Component({
     tag: 'ur-reader',
@@ -8,6 +8,9 @@ import { Component, Prop, State, Watch, Host, h, Element } from '@stencil/core';
 export class UrReader {
     @Prop()
     loading = false; // Prop to indicate loading state
+
+    @Prop()
+    chapterLocked = false; // Prop to indicate loading state
 
     @Prop()
     storyTitle: string = 'Default Story Title';
@@ -22,7 +25,16 @@ export class UrReader {
     fontSize: 'small' | 'medium' | 'large' = 'medium';
 
     @Prop()
+    chapterSequence: number = 1; // Default sequence is 1 (first chapter)
+
+    @Prop()
     fontType: 'serif' | 'sans-serif' | 'monospace' | 'system' = 'sans-serif';
+
+    @Prop()
+    readingDurationText: string = 'Reading Duration'; // Default text for reading duration
+
+    @Prop()
+    minutesText: string = 'Minutes'; // Default text for reading duration
 
     @Prop()
     readingTimePerWord: number = 0.3; // Average time (seconds) per word
@@ -30,13 +42,43 @@ export class UrReader {
     @State()
     isSmallContainer: boolean = false;
 
+    @Prop()
+    hasPreviousChapter: boolean = true;
+
+    @Prop()
+    hasNextChapter: boolean = true;
+
     @State()
     baseFontSize: number = 18; // Default for desktop
+
+    @Prop()
+    lockedMessage: string = 'This chapter is locked. Buy story to read chapter.';
+
+    @Prop()
+    unlockButtonLabel: string = 'Buy and Unlock';
 
     @State()
     fontStyles: { fontFamily: string; fontSize: string } = { fontFamily: '', fontSize: '' };
 
-    @Element() el: HTMLElement;
+    @Event()
+    chapterUnlocked: EventEmitter<void>; // Define the custom event
+
+    @Event()
+    nextChapter: EventEmitter<void>;
+
+    @Event()
+    previousChapter: EventEmitter<void>;
+
+    private goToNextChapter() {
+        this.nextChapter.emit();
+    }
+
+    private goToPreviousChapter() {
+        this.previousChapter.emit();
+    }
+
+    @Element()
+    el: HTMLElement;
 
     private resizeObserver: ResizeObserver;
 
@@ -104,7 +146,7 @@ export class UrReader {
         const textContent = this.extractText(this.chapterContent);
         const wordCount = textContent.split(/\s+/).length; // Count words
         const readingTimeInMinutes = Math.ceil((wordCount * this.readingTimePerWord) / 60); // Convert to minutes
-        return `Reading duration ${readingTimeInMinutes} min`;
+        return `${this.readingDurationText} ${readingTimeInMinutes} ${this.minutesText}`;
     }
 
     private extractText(html: string): string {
@@ -148,10 +190,72 @@ export class UrReader {
                         'small-container': this.isSmallContainer, // Match the small-container class logic
                     }}
                 >
-                    <h2 class="novl-title loading">&nbsp;</h2>
+                    {this.chapterSequence === 1 && (
+                        <h2
+                            class="novl-title loading"
+                            style={{
+                                fontFamily: this.fontStyles.fontFamily,
+                            }}
+                        >
+                            {this.storyTitle}
+                        </h2>
+                    )}
                     <h3 class="chapter-title loading">&nbsp;</h3>
-                    <div class="chapter-info">Reading Duration</div>
+                    <div class="chapter-info">{this.readingDurationText}</div>
                     <div class="chapter-content loading">&nbsp;</div>
+                </section>
+            </Host>
+        );
+    }
+
+    private handleUnlockChapter() {
+        // Logic to handle unlocking the chapter
+        console.log('Chapter unlock button clicked');
+        this.chapterUnlocked.emit(); // Emit the custom event
+    }
+
+    private renderLocked() {
+        return (
+            <Host>
+                <section
+                    class={{
+                        'reader-container': true,
+                        'small-container': this.isSmallContainer, // Match the small-container class logic
+                    }}
+                >
+                    {this.chapterSequence === 1 && (
+                        <h2
+                            class="novl-title"
+                            style={{
+                                fontFamily: this.fontStyles.fontFamily,
+                            }}
+                        >
+                            {this.storyTitle}
+                        </h2>
+                    )}
+                    <h3
+                        class="chapter-title"
+                        style={{
+                            fontFamily: this.fontStyles.fontFamily,
+                        }}
+                    >
+                        {this.chapterTitle}
+                    </h3>
+                    <div class="chapter-info">{this.readingDurationText}</div>
+                    <div class="chapter-content locked-content">
+                        <p
+                            class="locked-message"
+                            style={{
+                                fontFamily: this.fontStyles.fontFamily,
+                                fontSize: this.fontStyles.fontSize,
+                            }}
+                        >
+                            {this.lockedMessage}
+                        </p>
+                        <ur-button variant="filled" fullWidth={true} onClick={() => this.handleUnlockChapter()}>
+                            {this.unlockButtonLabel}
+                        </ur-button>
+                    </div>
                 </section>
             </Host>
         );
@@ -162,6 +266,10 @@ export class UrReader {
             return this.renderLoading();
         }
 
+        if (this.chapterLocked) {
+            return this.renderLocked();
+        }
+
         return (
             <Host>
                 <section
@@ -170,14 +278,16 @@ export class UrReader {
                         'small-container': this.isSmallContainer, // Apply small-container class if width <= 480px
                     }}
                 >
-                    <h2
-                        class="novl-title"
-                        style={{
-                            fontFamily: this.fontStyles.fontFamily,
-                        }}
-                    >
-                        {this.storyTitle}
-                    </h2>
+                    {this.chapterSequence === 1 && (
+                        <h2
+                            class="novl-title"
+                            style={{
+                                fontFamily: this.fontStyles.fontFamily,
+                            }}
+                        >
+                            {this.storyTitle}
+                        </h2>
+                    )}
                     <h3
                         class="chapter-title"
                         style={{
@@ -197,6 +307,11 @@ export class UrReader {
                         }}
                         innerHTML={this.chapterContent} // Safely render the HTML content
                     ></div>
+                    <div class="navigation-buttons">
+                        {this.hasPreviousChapter && <ur-button-icon icon="arrow_back" variant="tonal" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>}
+                        <span class="mid-flex"></span>
+                        {this.hasNextChapter && <ur-button-icon icon="arrow_forward" variant="tonal" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>}
+                    </div>
                 </section>
             </Host>
         );
