@@ -91,7 +91,7 @@ export const PlainTooltip = {
         variant: 'plain',
         trigger: 'hover',
         openDelay: 0,
-        closeDelay: 1000,
+        closeDelay: 150,
         disabled: false,
     },
 };
@@ -103,7 +103,7 @@ export const RichTooltip = {
         actionText: 'Action',
         placement: 'bottom',
         variant: 'rich',
-        trigger: 'hover',
+        trigger: 'hover', 
         openDelay: 150,
         closeDelay: 150,
         disabled: false,

@@ -1,6 +1,4 @@
-import { Component, Prop, h, Host } from '@stencil/core';
-
-import 'mdui/components/tooltip.js';
+import { Component, Prop, State, h, Host, Element } from '@stencil/core';
 
 @Component({
     tag: 'ur-tooltip',
@@ -12,33 +10,26 @@ export class UrTooltip {
     content: string = 'Tooltip text'; // Tooltip content
 
     @Prop()
-    headline: string = ''; // Headline for rich text tooltip
-
-    @Prop()
-    actionText: string = ''; // Action button text for rich tooltip
-
-    @Prop()
     variant: 'plain' | 'rich' = 'plain'; // Tooltip type
 
-    @Prop()
-    placement: 
-        'auto' | 
-        'top-left' | 
-        'top-start' | 
-        'top' | 
-        'top-end' | 
-        'top-right' | 
-        'bottom-left' | 
-        'bottom-start' | 
-        'bottom' | 
-        'bottom-end' | 
-        'bottom-right' | 
-        'left-start' | 
-        'left' | 
-        'left-end' | 
-        'right-start' | 
-        'right' | 
-        'right-end' = 'top'; // Tooltip position
+    @Prop() placement:
+        | 'auto'
+        | 'top-left'
+        | 'top-start'
+        | 'top'
+        | 'top-end'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-start'
+        | 'bottom'
+        | 'bottom-end'
+        | 'bottom-right'
+        | 'left-start'
+        | 'left'
+        | 'left-end'
+        | 'right-start'
+        | 'right'
+        | 'right-end' = 'top'; // Tooltip position
 
     @Prop()
     openDelay: number = 0; // Open delay in ms
@@ -52,28 +43,73 @@ export class UrTooltip {
     @Prop()
     disabled: boolean = false; // Disabled state
 
-    render() {
+    @State()
+    isVisible: boolean = false; // Tooltip visibility state
+
+    @Element()
+    hostElement!: HTMLElement; // Reference to the host element
+
+    private timeoutId: number | null = null; // Timeout ID for delays
+
+    private handleMouseEnter = (event: MouseEvent) => {
+        if (this.disabled || !this.isChildElement(event.target)) return;
+        clearTimeout(this.timeoutId);
+        this.timeoutId = window.setTimeout(() => {
+            this.isVisible = true;
+        }, this.openDelay);
+    };
+
+    private handleMouseLeave = (event: MouseEvent) => {
+        if (this.disabled || !this.isChildElement(event.target)) return;
+        clearTimeout(this.timeoutId);
+        this.timeoutId = window.setTimeout(() => {
+            this.isVisible = false;
+        }, this.closeDelay);
+    };
+
+    private handleClick = (event: MouseEvent) => {
+        if (this.disabled || !this.isChildElement(event.target)) return;
+        this.isVisible = !this.isVisible;
+    };
+
+    private isChildElement(target: EventTarget | null): boolean {
+        const slot = this.hostElement.shadowRoot?.querySelector('slot');
+        const assignedNodes = slot ? (slot as HTMLSlotElement).assignedElements() : [];
+        const slotContainsTarget = assignedNodes.some(node => node.contains(target as Node));
+        const hostContainsTarget = this.hostElement.contains(target as Node);
+        return slotContainsTarget || hostContainsTarget;
+    }
+
+    renderTooltipContent() {
         return (
-            <Host>
-                <mdui-tooltip
-                    variant={this.variant}
-                    placement={this.placement}
-                    open-delay={this.openDelay}
-                    close-delay={this.closeDelay}
-                    trigger={this.trigger}
-                    disabled={this.disabled}
-                    content={this.variant === 'plain' ? this.content : undefined}
-                    class="tooltip-class"
-                >
+            <div class="tooltip-content">
+                {this.variant === 'plain' && this.content}
+                {this.variant === 'rich' && <slot name="rich-content"></slot>}
+            </div>
+        );
+    }
+
+    render() {
+        const tooltipStyles = {
+            visibility: this.isVisible ? 'visible' : 'hidden',
+            opacity: this.isVisible ? '1' : '0',
+            transition: 'opacity 0.2s, visibility 0.2s',
+        };
+
+        const tooltipContainerClass = `tooltip-container tooltip-${this.placement}`;
+
+        return (
+            <Host
+                onMouseEnter={this.trigger === 'hover' ? this.handleMouseEnter : undefined}
+                onMouseLeave={this.trigger === 'hover' ? this.handleMouseLeave : undefined}
+                onClick={this.trigger === 'click' ? this.handleClick : undefined}
+            >
+                <div class="tooltip-wrapper">
                     <slot></slot>
-                    {this.variant === 'rich' && this.headline && <div slot="headline">{this.headline}</div>}
-                    {this.variant === 'rich' && this.content && <div slot="content">{this.content}</div>}
-                    {this.variant === 'rich' && this.actionText && (
-                        <mdui-button slot="action" variant="text">
-                            {this.actionText}
-                        </mdui-button>
-                    )}
-                </mdui-tooltip>
+                    <div class={tooltipContainerClass} style={tooltipStyles}>
+                        {this.renderTooltipContent()}
+                    </div>
+                </div>
             </Host>
         );
     }

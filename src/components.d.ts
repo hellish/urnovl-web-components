@@ -110,16 +110,6 @@ export namespace Components {
         "open": boolean;
         "openDialog": () => Promise<void>;
     }
-    interface UrForm {
-        /**
-          * Reset the form fields
-         */
-        "resetForm": () => Promise<void>;
-        /**
-          * Submit the form and validate fields
-         */
-        "submitForm": () => Promise<void>;
-    }
     interface UrHero {
         "backgroundAlignment": 'left' | 'center' | 'right';
         "backgroundColor": string;
@@ -444,29 +434,27 @@ export namespace Components {
         "variant": 'filled' | 'outlined';
     }
     interface UrTooltip {
-        "actionText": string;
         "closeDelay": number;
         "content": string;
         "disabled": boolean;
-        "headline": string;
         "openDelay": number;
-        "placement": 'auto' | 
-        'top-left' | 
-        'top-start' | 
-        'top' | 
-        'top-end' | 
-        'top-right' | 
-        'bottom-left' | 
-        'bottom-start' | 
-        'bottom' | 
-        'bottom-end' | 
-        'bottom-right' | 
-        'left-start' | 
-        'left' | 
-        'left-end' | 
-        'right-start' | 
-        'right' | 
-        'right-end';
+        "placement": | 'auto'
+        | 'top-left'
+        | 'top-start'
+        | 'top'
+        | 'top-end'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-start'
+        | 'bottom'
+        | 'bottom-end'
+        | 'bottom-right'
+        | 'left-start'
+        | 'left'
+        | 'left-end'
+        | 'right-start'
+        | 'right'
+        | 'right-end';
         "trigger": 'hover' | 'click' | 'focus';
         "variant": 'plain' | 'rich';
     }
@@ -488,60 +476,6 @@ export namespace Components {
     }
     interface UrUserProfile {
     }
-    interface UrWizardStep {
-        /**
-          * Custom CSS class for the component
-         */
-        "customClass": string;
-        /**
-          * Determines if the step can be skipped
-         */
-        "isSkippable": boolean;
-        /**
-          * Validation state of the step
-         */
-        "isValid": boolean;
-        /**
-          * Title of the "Next" button
-         */
-        "nextButtonTitle": string;
-        /**
-          * Title of the "Previous" button
-         */
-        "previousButtonTitle": string;
-        /**
-          * Reset the form within the step
-         */
-        "resetStepForm": () => Promise<void>;
-        /**
-          * Determines if the "Next" button is visible
-         */
-        "showNext": boolean;
-        /**
-          * Determines if the "Previous" button is visible
-         */
-        "showPrevious": boolean;
-        /**
-          * Step number of the wizard
-         */
-        "step": number;
-        /**
-          * Title of the wizard step
-         */
-        "stepTitle": string;
-        /**
-          * Trigger form submission programmatically
-         */
-        "submitStepForm": () => Promise<void>;
-        /**
-          * Subtitle or instructions for the step
-         */
-        "subtitle": string;
-        /**
-          * Custom validation message
-         */
-        "validationMessage": string;
-    }
 }
 export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -558,10 +492,6 @@ export interface UrCheckboxCustomEvent<T> extends CustomEvent<T> {
 export interface UrCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrCheckboxGroupElement;
-}
-export interface UrFormCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrFormElement;
 }
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -626,10 +556,6 @@ export interface UrTextFieldCustomEvent<T> extends CustomEvent<T> {
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserElement;
-}
-export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrWizardStepElement;
 }
 declare global {
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
@@ -730,25 +656,6 @@ declare global {
     var HTMLUrDialogElement: {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
-    };
-    interface HTMLUrFormElementEventMap {
-        "formValid": void;
-        "formInvalid": { errors: { [key: string]: string } };
-        "formDataChanged": { [key: string]: any };
-    }
-    interface HTMLUrFormElement extends Components.UrForm, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrFormElement: {
-        prototype: HTMLUrFormElement;
-        new (): HTMLUrFormElement;
     };
     interface HTMLUrHeroElementEventMap {
         "ctaClicked": void;
@@ -1130,24 +1037,6 @@ declare global {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
     };
-    interface HTMLUrWizardStepElementEventMap {
-        "stepCompleted": { step: number; formData: { [key: string]: any } };
-        "stepBack": number;
-    }
-    interface HTMLUrWizardStepElement extends Components.UrWizardStep, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrWizardStepElement: {
-        prototype: HTMLUrWizardStepElement;
-        new (): HTMLUrWizardStepElement;
-    };
     interface HTMLElementTagNameMap {
         "ur-avatar": HTMLUrAvatarElement;
         "ur-button": HTMLUrButtonElement;
@@ -1158,7 +1047,6 @@ declare global {
         "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
-        "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
         "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
@@ -1191,7 +1079,6 @@ declare global {
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
-        "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
 declare namespace LocalJSX {
@@ -1296,20 +1183,6 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
-    }
-    interface UrForm {
-        /**
-          * Event emitted whenever the form data changes
-         */
-        "onFormDataChanged"?: (event: UrFormCustomEvent<{ [key: string]: any }>) => void;
-        /**
-          * Event emitted when the form is invalid
-         */
-        "onFormInvalid"?: (event: UrFormCustomEvent<{ errors: { [key: string]: string } }>) => void;
-        /**
-          * Event emitted when the form is valid
-         */
-        "onFormValid"?: (event: UrFormCustomEvent<void>) => void;
     }
     interface UrHero {
         "backgroundAlignment"?: 'left' | 'center' | 'right';
@@ -1664,29 +1537,27 @@ declare namespace LocalJSX {
         "variant"?: 'filled' | 'outlined';
     }
     interface UrTooltip {
-        "actionText"?: string;
         "closeDelay"?: number;
         "content"?: string;
         "disabled"?: boolean;
-        "headline"?: string;
         "openDelay"?: number;
-        "placement"?: 'auto' | 
-        'top-left' | 
-        'top-start' | 
-        'top' | 
-        'top-end' | 
-        'top-right' | 
-        'bottom-left' | 
-        'bottom-start' | 
-        'bottom' | 
-        'bottom-end' | 
-        'bottom-right' | 
-        'left-start' | 
-        'left' | 
-        'left-end' | 
-        'right-start' | 
-        'right' | 
-        'right-end';
+        "placement"?: | 'auto'
+        | 'top-left'
+        | 'top-start'
+        | 'top'
+        | 'top-end'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-start'
+        | 'bottom'
+        | 'bottom-end'
+        | 'bottom-right'
+        | 'left-start'
+        | 'left'
+        | 'left-end'
+        | 'right-start'
+        | 'right'
+        | 'right-end';
         "trigger"?: 'hover' | 'click' | 'focus';
         "variant"?: 'plain' | 'rich';
     }
@@ -1709,60 +1580,6 @@ declare namespace LocalJSX {
     }
     interface UrUserProfile {
     }
-    interface UrWizardStep {
-        /**
-          * Custom CSS class for the component
-         */
-        "customClass"?: string;
-        /**
-          * Determines if the step can be skipped
-         */
-        "isSkippable"?: boolean;
-        /**
-          * Validation state of the step
-         */
-        "isValid"?: boolean;
-        /**
-          * Title of the "Next" button
-         */
-        "nextButtonTitle"?: string;
-        /**
-          * Event emitted when navigating back
-         */
-        "onStepBack"?: (event: UrWizardStepCustomEvent<number>) => void;
-        /**
-          * Event emitted when the step is completed
-         */
-        "onStepCompleted"?: (event: UrWizardStepCustomEvent<{ step: number; formData: { [key: string]: any } }>) => void;
-        /**
-          * Title of the "Previous" button
-         */
-        "previousButtonTitle"?: string;
-        /**
-          * Determines if the "Next" button is visible
-         */
-        "showNext"?: boolean;
-        /**
-          * Determines if the "Previous" button is visible
-         */
-        "showPrevious"?: boolean;
-        /**
-          * Step number of the wizard
-         */
-        "step"?: number;
-        /**
-          * Title of the wizard step
-         */
-        "stepTitle"?: string;
-        /**
-          * Subtitle or instructions for the step
-         */
-        "subtitle"?: string;
-        /**
-          * Custom validation message
-         */
-        "validationMessage"?: string;
-    }
     interface IntrinsicElements {
         "ur-avatar": UrAvatar;
         "ur-button": UrButton;
@@ -1773,7 +1590,6 @@ declare namespace LocalJSX {
         "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
-        "ur-form": UrForm;
         "ur-hero": UrHero;
         "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
@@ -1806,7 +1622,6 @@ declare namespace LocalJSX {
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
-        "ur-wizard-step": UrWizardStep;
     }
 }
 export { LocalJSX as JSX };
@@ -1822,7 +1637,6 @@ declare module "@stencil/core" {
             "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
-            "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
@@ -1855,7 +1669,6 @@ declare module "@stencil/core" {
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
-            "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
     }
 }

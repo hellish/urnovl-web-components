@@ -308,9 +308,17 @@ export class UrReader {
                         innerHTML={this.chapterContent} // Safely render the HTML content
                     ></div>
                     <div class="navigation-buttons">
-                        {this.hasPreviousChapter && <ur-button-icon icon="arrow_back" variant="tonal" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>}
+                        {this.hasPreviousChapter && (
+                            <ur-tooltip content="Previous Chapter" placement="right" trigger="hover">
+                                <ur-button-icon icon="arrow_back" variant="tonal" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>
+                            </ur-tooltip>
+                        )}
                         <span class="mid-flex"></span>
-                        {this.hasNextChapter && <ur-button-icon icon="arrow_forward" variant="tonal" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>}
+                        {this.hasNextChapter && (
+                            <ur-tooltip content="Next Chapter" placement="left" trigger="hover">
+                                <ur-button-icon icon="arrow_forward" variant="tonal" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>
+                            </ur-tooltip>
+                        )}
                     </div>
                 </section>
             </Host>
