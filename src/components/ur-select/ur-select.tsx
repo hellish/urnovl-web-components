@@ -1,7 +1,8 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Watch, Host } from '@stencil/core';
 
-import '../ur-menu-item/ur-menu-item';
-import 'mdui/components/select';
+import 'mdui/components/select.js';
+import 'mdui/components/menu-item.js';
+import 'mdui/components/icon';
 
 @Component({
     tag: 'ur-select',
@@ -9,120 +10,117 @@ import 'mdui/components/select';
     shadow: true,
 })
 export class UrSelect {
+    @Prop()
+    value: string | string[] = ''; // Selected value(s)
 
     @Prop()
-    label: string = "Text Field"
+    name: string = ''; // Name of the select
 
     @Prop()
-    name: string = '';
+    label: string = ''; // Label text
 
     @Prop()
-    value: string | string[] = '';
+    placeholder: string = ''; // Placeholder text
 
     @Prop()
-    placeholder: string = null;
+    helper: string = ''; // Helper text
 
     @Prop()
-    helper: string = null;
+    variant: 'filled' | 'outlined' = 'filled'; // Variant of the select
 
     @Prop()
-    readonly: boolean = false;
+    multiple: boolean = false; // Enable multi-select
 
     @Prop()
-    disabled: boolean = false;
+    clearable: boolean = false; // Enable clear button
 
     @Prop()
-    clearable: boolean = false;
+    disabled: boolean = false; // Disable the select
 
     @Prop()
-    multiple: boolean = false;
+    required: boolean = false; // Mark as required
 
     @Prop()
-    endAligned: boolean = false;
+    readonly: boolean = false; // Make the select read-only
 
     @Prop()
-    variant: 'filled' | 'outlined' = 'filled';
+    placement: 'bottom' | 'top' = 'bottom'; // Dropdown position
 
     @Prop()
-    placement: 'auto' | 'bottom' | 'top' = 'auto';
+    icon: string = ''; // Left icon
 
     @Prop()
-    icon: string = null;
+    endIcon: string = ''; // Right icon
 
     @Prop()
-    endIcon: string = null;
+    suffix: string = ''; // Suffix text or icon
 
     @Prop()
-    form: string = null;
+    clearIcon: string = 'close'; // Icon for the clear button
 
-    @Prop()
-    items: Array<[label: string, value: string, disabled: boolean]> = [];
-
-    @State()
-    selectedValue: string | string[] = this.multiple ? [] : '';
-
-    @Event()
-    itemClicked: EventEmitter<string | string[]>;
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
+    valueChanged: EventEmitter<{ value: string | string[] }>;
 
     @Watch('value')
-    valueChanged(newValue: string | string[]) {
-        this.selectedValue = newValue;
+    handleValueChange(newValue: string | string[]) {
+        this.valueChanged.emit({ value: newValue });
     }
 
-    handleItemClicked(event: CustomEvent<string>) {
-        const value = event.detail;
+    componentDidLoad() {
+        console.log('Preselected value(s) on load:', this.value);
+    }
 
-        if (this.multiple) {
-            const currentValue = Array.isArray(this.selectedValue) ? [...this.selectedValue] : [];
-            const valueIndex = currentValue.indexOf(value);
-
-            if (valueIndex > -1) {
-                currentValue.splice(valueIndex, 1);
-            } else {
-                currentValue.push(value);
-            }
-
-            this.selectedValue = currentValue;
-        } else {
-            this.selectedValue = value;
+    private handleChange = (event: Event) => {
+        const target = event.target as HTMLElement & { value?: string | string[] };
+        
+        // Attempt to access the value property
+        if (target?.value) {
+            this.value = target.value;
+            console.log('Selected value from property:', this.value);
+        } 
+        // Fallback: Use getAttribute if value is not accessible
+        else if (target.hasAttribute('value')) {
+            this.value = target.getAttribute('value') || '';
+            console.log('Selected value from attribute:', this.value);
+        } 
+        // Handle cases where value is not accessible
+        else {
+            console.warn('Unable to retrieve value from event target.');
         }
-
-        this.itemClicked.emit(this.selectedValue);
-    }
-
-    componentWillLoad() {
-        this.selectedValue = this.value;
-    }
+    };
 
     render() {
         return (
             <Host>
                 <mdui-select
-                    label={this.label}
                     name={this.name}
-                    value={this.selectedValue}
-                    placeholder={this.placeholder}
-                    helper={this.helper}
-                    readonly={this.readonly}
-                    disabled={this.disabled}
-                    clearable={this.clearable}
-                    multiple={this.multiple}
-                    end-aligned={this.endAligned}
+                    value={this.value}
                     variant={this.variant}
+                    multiple={this.multiple}
+                    clearable={this.clearable}
+                    disabled={this.disabled}
+                    required={this.required}
+                    readonly={this.readonly}
                     placement={this.placement}
-                    icon={this.icon}
-                    end-icon={this.endIcon}
-                    form={this.form}
+                    placeholder={this.placeholder}
+                    onChange={this.handleChange}
                 >
-                    {this.items.map(([label, value, disabled]) => (
-                        <ur-menu-item
-                            value={value}
-                            label={label}
-                            disabled={disabled}
-                            selected={this.multiple ? this.selectedValue.includes(value) : this.selectedValue === value}
-                            onItemClicked={(event) => this.handleItemClicked(event)}
-                        ></ur-menu-item>
-                    ))}
+                    {this.icon && (
+                        <span slot="icon" class="material-icons">
+                            {this.icon}
+                        </span>
+                    )}
+                    {this.endIcon && (
+                        <span slot="end-icon" class="material-icons">
+                            {this.endIcon}
+                        </span>
+                    )}
+                    {this.suffix && <span slot="suffix">{this.suffix}</span>}
+                    <slot></slot>
+                    {this.helper && <span slot="helper">{this.helper}</span>}
                 </mdui-select>
             </Host>
         );

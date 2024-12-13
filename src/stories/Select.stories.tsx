@@ -1,151 +1,252 @@
 import { html } from 'lit';
-import '../components/ur-select/ur-select';
 
-const ITEMS = [
-    ['English', 'English', false],
-    ['German', 'German', false],
-    ['Greek', 'Greek', false]
-];
+import '../components/ur-select/ur-select'; // Adjust the path as necessary
 
-const Select = ({
-    label = 'Select Language',
-    name = 'language',
+const SelectTemplate = ({
+    name = 'example-select',
     value = '',
+    options = ['Option 1', 'Option 2', 'Option 3'],
+    multiple = false,
+    label = '',
     placeholder = '',
     helper = '',
-    readonly = false,
     disabled = false,
     clearable = false,
-    multiple = false,
-    endAligned = false,
-    variant = 'outlined',
-    placement = 'auto',
-    icon = null,
-    endIcon = null,
-    form = null,
-    items = [],
+    variant = 'filled',
+    readonly = false,
+    placement = 'bottom',
+    icon = '',
+    endIcon = '',
+    clearIcon = 'close',
+    suffix = '',
 }) => html`
     <ur-select
-        label=${label}
         name=${name}
-        value=${value}
-        placeholder=${placeholder}
-        helper=${helper}
-        readonly=${readonly}
-        disabled=${disabled}
-        clearable=${clearable}
-        multiple=${multiple}
-        end-aligned=${endAligned}
+        .value=${value}
+        ?multiple=${multiple}
+        ?disabled=${disabled}
+        ?clearable=${clearable}
+        ?readonly=${readonly}
         variant=${variant}
         placement=${placement}
-        icon=${icon}
-        end-icon=${endIcon}
-        form=${form}
-        .items=${items}
-        @itemClicked=${(e) => console.log('Selected item value:', e.detail)}
-    ></ur-select>
+        label=${label}
+        placeholder=${placeholder}
+        helper=${helper}
+        suffix=${suffix}
+    >
+        ${icon ? html`<span slot="icon" class="material-icons">${icon}</span>` : ''}
+        ${endIcon ? html`<span slot="end-icon" class="material-icons">${endIcon}</span>` : ''}
+        ${clearable && clearIcon ? html`<span slot="clear-icon" class="material-icons">${clearIcon}</span>` : ''}
+        ${options.map((option, index) => html`<mdui-menu-item value="option${index + 1}">${option}</mdui-menu-item>`)}
+    </ur-select>
 `;
 
 export default {
     title: 'Core/Select',
-    render: args => Select(args),
+    render: args => SelectTemplate(args),
     argTypes: {
+        name: { control: 'text' },
+        value: { control: 'text' },
+        options: { control: 'array' },
+        multiple: { control: 'boolean' },
+        label: { control: 'text' },
+        placeholder: { control: 'text' },
+        helper: { control: 'text' },
+        disabled: { control: 'boolean' },
+        clearable: { control: 'boolean' },
         variant: {
-            control: 'select',
-            options: ['filled', 'outlined']
+            control: { type: 'select', options: ['filled', 'outlined'] },
         },
+        placement: {
+            control: { type: 'select', options: ['bottom', 'top'] },
+        },
+        readonly: { control: 'boolean' },
+        icon: { control: 'text' },
+        endIcon: { control: 'text' },
+        clearIcon: { control: 'text' },
+        suffix: { control: 'text' }, // Keep suffix if it exists in your component
     },
 };
 
 export const Default = {
     args: {
-        label: 'Select Language',
-        items: ITEMS,
+        name: 'default-select',
+        value: '',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Select an Option',
+        placeholder: 'Choose...',
+        helper: 'Select one of the options',
+        multiple: false,
+        disabled: false,
+        clearable: false,
+        readonly: false,
+        variant: 'outlined', // Valid value
+        placement: 'bottom', // Valid value
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
+        suffix: '',
+    },
+};
+
+
+export const Preselected = {
+    args: {
+        name: 'preselected-select',
+        value: 'option2',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Select an Option',
+        placeholder: 'Choose...',
+        helper: 'This select has a preselected value',
+        multiple: false,
+        disabled: false,
+        clearable: true,
+        readonly: false,
+        variant: 'filled',
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
+    },
+};
+
+export const MultipleSelection = {
+    args: {
+        name: 'multi-select',
+        value: '',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Select Multiple Options',
+        placeholder: 'Choose...',
+        helper: 'You can select multiple options',
+        multiple: true,
+        disabled: false,
+        clearable: true,
+        readonly: false,
+        variant: 'outlined',
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
     },
 };
 
 export const Disabled = {
     args: {
+        name: 'disabled-select',
+        value: '',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Disabled Select',
+        placeholder: 'Cannot choose...',
+        helper: 'This select is disabled',
+        multiple: false,
         disabled: true,
-        items: ITEMS
-    },
-};
-
-export const WithPreSetValue = {
-    args: {
-        label: 'Select Language',
-        value: 'English',
-        items: ITEMS,
-    },
-};
-
-export const WithFilledVariant = {
-    args: {
+        clearable: false,
+        readonly: false,
         variant: 'filled',
-        items: ITEMS
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
     },
 };
 
-export const WithMultipleSelection = {
+export const ReadOnly = {
     args: {
-        label: 'Select Languages',
-        multiple: true,
-        items: ITEMS,
-    },
-};
-
-export const WithPlaceholder = {
-    args: {
-        placeholder: 'Choose a language',
-        items: ITEMS
-    },
-};
-
-export const WithHelper = {
-    args: {
-        helper: 'Select your preferred language',
-        items: ITEMS
-    },
-};
-
-export const WithIcon = {
-    args: {
-        icon: 'keyboard_arrow_down',
-        items: ITEMS
-    },
-};
-
-export const WithEndIcon = {
-    args: {
-        endIcon: 'keyboard_arrow_down',
-        items: ITEMS
-    },
-};
-
-export const Full = {
-    args: {
-        variant: 'outlined',
-        placeholder: 'Choose a language',
-        helper: 'Select your preferred language',
-        endIcon: 'keyboard_arrow_down',
+        name: 'readonly-select',
+        value: 'option2',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Read-Only Select',
+        placeholder: 'Cannot change...',
+        helper: 'This select is read-only',
+        multiple: false,
         disabled: false,
-        multiple: true,
-        items: ITEMS
+        clearable: false,
+        readonly: true,
+        variant: 'filled',
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
     },
 };
 
-export const FullWithDisabledItems = {
+export const CustomPlacement = {
     args: {
-        variant: 'outlined',
-        placeholder: 'Choose a language',
-        helper: 'Select your preferred language',
-        endIcon: 'keyboard_arrow_down',
+        name: 'custom-placement',
+        value: '',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Custom Dropdown Placement',
+        placeholder: 'Choose...',
+        helper: 'This select has a custom dropdown placement',
+        multiple: false,
         disabled: false,
+        clearable: false,
+        readonly: false,
+        variant: 'filled',
+        placement: 'top',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
+    },
+};
+
+export const MultiSelectWithPreselected = {
+    args: {
+        name: 'multi-select-preselected',
+        value: ['option2', 'option3'],
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Multi Select with Preselected',
+        placeholder: 'Choose...',
+        helper: 'This select has preselected options and allows multiple selection',
         multiple: true,
-        items: [
-            ['English', 'English', true],
-            ['German', 'German', true],
-            ['Greek', 'Greek', false]
-        ]
+        disabled: false,
+        clearable: true,
+        readonly: false,
+        variant: 'filled',
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
+    },
+};
+
+export const DisabledWithPreselected = {
+    args: {
+        name: 'disabled-preselect',
+        value: 'option2',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Disabled with Preselected',
+        placeholder: 'Cannot change...',
+        helper: 'This select is disabled but has a preselected value',
+        multiple: false,
+        disabled: true,
+        clearable: false,
+        readonly: false,
+        variant: 'filled',
+        placement: 'bottom',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
+    },
+};
+
+export const WithPrefixAndSuffix = {
+    args: {
+        name: 'prefix-suffix-select',
+        value: '',
+        options: ['Option 1', 'Option 2', 'Option 3'],
+        label: 'Select with Prefix and Suffix',
+        placeholder: 'Choose...',
+        helper: 'This select has prefix and suffix',
+        multiple: false,
+        disabled: false,
+        clearable: true,
+        readonly: false,
+        variant: 'filled',
+        placement: 'bottom',
+        suffix: '/100',
+        icon: '',
+        endIcon: '',
+        clearIcon: 'close',
     },
 };

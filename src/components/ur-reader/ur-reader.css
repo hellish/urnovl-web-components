@@ -207,3 +207,43 @@
         background-position: 1000px 0;
     }
 }
+
+
+
+
+
+
+
+
+/* Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.scrollable-content::-webkit-scrollbar {
+    width: 12px; /* Width of the vertical scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Background of the track */
+    border-radius: 6px; /* Rounded corners for the track */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c757d, #343a40); /* Thumb color with gradient */
+    border-radius: 6px; /* Rounded corners for the thumb */
+    border: 2px solid #f0f0f0; /* Add space around thumb */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #495057; /* Darker thumb on hover */
+}
+
+/* For Firefox */
+.scrollable-content {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #343a40 #f0f0f0; /* Thumb color and track color */
+}
+
+/* For styling other browsers */
+.scrollable-content {
+    overflow-y: scroll; /* Ensure vertical scrollbar is visible */
+    scrollbar-gutter: stable; /* Avoid layout shift */
+}

@@ -16,10 +16,10 @@
     border-radius: 4px;
     font-size: 14px;
     line-height: 1.4;
-    pointer-events: auto; /* Allow interaction with the tooltip */
+    pointer-events: none;
     max-width: 300px;
     display: block;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(var(--ur-color-secondary-container-variant), 1);
     transform-origin: center;
     background: rgb(var(--ur-color-on-secondary-container-variant));
     color: rgb(var(--ur-color-secondary-container-variant));

@@ -383,20 +383,20 @@ export namespace Components {
         "likeLabel": string;
     }
     interface UrSelect {
+        "clearIcon": string;
         "clearable": boolean;
         "disabled": boolean;
-        "endAligned": boolean;
         "endIcon": string;
-        "form": string;
         "helper": string;
         "icon": string;
-        "items": Array<[label: string, value: string, disabled: boolean]>;
         "label": string;
         "multiple": boolean;
         "name": string;
         "placeholder": string;
-        "placement": 'auto' | 'bottom' | 'top';
+        "placement": 'bottom' | 'top';
         "readonly": boolean;
+        "required": boolean;
+        "suffix": string;
         "value": string | string[];
         "variant": 'filled' | 'outlined';
     }
@@ -956,7 +956,7 @@ declare global {
         new (): HTMLUrSegmentButtonElement;
     };
     interface HTMLUrSelectElementEventMap {
-        "itemClicked": string | string[];
+        "valueChanged": { value: string | string[] };
     }
     interface HTMLUrSelectElement extends Components.UrSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrSelectElementEventMap>(type: K, listener: (this: HTMLUrSelectElement, ev: UrSelectCustomEvent<HTMLUrSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1483,21 +1483,21 @@ declare namespace LocalJSX {
         "likeLabel"?: string;
     }
     interface UrSelect {
+        "clearIcon"?: string;
         "clearable"?: boolean;
         "disabled"?: boolean;
-        "endAligned"?: boolean;
         "endIcon"?: string;
-        "form"?: string;
         "helper"?: string;
         "icon"?: string;
-        "items"?: Array<[label: string, value: string, disabled: boolean]>;
         "label"?: string;
         "multiple"?: boolean;
         "name"?: string;
-        "onItemClicked"?: (event: UrSelectCustomEvent<string | string[]>) => void;
+        "onValueChanged"?: (event: UrSelectCustomEvent<{ value: string | string[] }>) => void;
         "placeholder"?: string;
-        "placement"?: 'auto' | 'bottom' | 'top';
+        "placement"?: 'bottom' | 'top';
         "readonly"?: boolean;
+        "required"?: boolean;
+        "suffix"?: string;
         "value"?: string | string[];
         "variant"?: 'filled' | 'outlined';
     }
