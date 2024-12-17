@@ -230,7 +230,7 @@ export const DisabledWithPreselected = {
     },
 };
 
-export const WithPrefixAndSuffix = {
+export const WithSuffix = {
     args: {
         name: 'prefix-suffix-select',
         value: '',
@@ -242,7 +242,7 @@ export const WithPrefixAndSuffix = {
         disabled: false,
         clearable: true,
         readonly: false,
-        variant: 'filled',
+        variant: 'outlined',
         placement: 'bottom',
         suffix: '/100',
         icon: '',

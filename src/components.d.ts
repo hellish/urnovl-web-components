@@ -356,6 +356,24 @@ export namespace Components {
          */
         "value": string | null;
     }
+    interface UrReadDesktopTopAppBar {
+        /**
+          * Title of the novel
+         */
+        "novelTitle": string;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold": number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant": 'small' | 'medium' | 'large';
+    }
     interface UrReadMobileTopAppBar {
         "headerTitle": string;
         "scrollBehavior": 'hide' | 'shrink' | 'elevate';
@@ -387,6 +405,7 @@ export namespace Components {
         "clearable": boolean;
         "disabled": boolean;
         "endIcon": string;
+        "flex": boolean;
         "helper": string;
         "icon": string;
         "label": string;
@@ -396,7 +415,9 @@ export namespace Components {
         "placement": 'bottom' | 'top';
         "readonly": boolean;
         "required": boolean;
+        "size": 'normal' | 'big' | 'small';
         "suffix": string;
+        "usage": 'topBar' | 'standard';
         "value": string | string[];
         "variant": 'filled' | 'outlined';
     }
@@ -536,6 +557,10 @@ export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
 export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrRadioGroupElement;
+}
+export interface UrReadDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadDesktopTopAppBarElement;
 }
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -911,6 +936,23 @@ declare global {
         prototype: HTMLUrRadioGroupElement;
         new (): HTMLUrRadioGroupElement;
     };
+    interface HTMLUrReadDesktopTopAppBarElementEventMap {
+        "readingSettingsClick": void;
+    }
+    interface HTMLUrReadDesktopTopAppBarElement extends Components.UrReadDesktopTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadDesktopTopAppBarElement: {
+        prototype: HTMLUrReadDesktopTopAppBarElement;
+        new (): HTMLUrReadDesktopTopAppBarElement;
+    };
     interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
         "chaptersClick": void;
@@ -1068,6 +1110,7 @@ declare global {
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
+        "ur-read-desktop-top-app-bar": HTMLUrReadDesktopTopAppBarElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
@@ -1450,6 +1493,25 @@ declare namespace LocalJSX {
          */
         "value"?: string | null;
     }
+    interface UrReadDesktopTopAppBar {
+        /**
+          * Title of the novel
+         */
+        "novelTitle"?: string;
+        "onReadingSettingsClick"?: (event: UrReadDesktopTopAppBarCustomEvent<void>) => void;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant"?: 'small' | 'medium' | 'large';
+    }
     interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
         "onBackClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
@@ -1487,6 +1549,7 @@ declare namespace LocalJSX {
         "clearable"?: boolean;
         "disabled"?: boolean;
         "endIcon"?: string;
+        "flex"?: boolean;
         "helper"?: string;
         "icon"?: string;
         "label"?: string;
@@ -1497,7 +1560,9 @@ declare namespace LocalJSX {
         "placement"?: 'bottom' | 'top';
         "readonly"?: boolean;
         "required"?: boolean;
+        "size"?: 'normal' | 'big' | 'small';
         "suffix"?: string;
+        "usage"?: 'topBar' | 'standard';
         "value"?: string | string[];
         "variant"?: 'filled' | 'outlined';
     }
@@ -1611,6 +1676,7 @@ declare namespace LocalJSX {
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
+        "ur-read-desktop-top-app-bar": UrReadDesktopTopAppBar;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
@@ -1658,6 +1724,7 @@ declare module "@stencil/core" {
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
+            "ur-read-desktop-top-app-bar": LocalJSX.UrReadDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadDesktopTopAppBarElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
