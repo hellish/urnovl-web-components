@@ -1,9 +1,11 @@
 .progress-container {
     --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-surface-variant: var(--mdui-color-surface-variant);
 
     position: relative;
     height: 4px;
-    background-color: var(--linear-progress-background, #e0e0e0);
+    background-color: rgb(var(--ur-color-surface-variant));
     overflow: hidden;
     border-radius: var(--shape-corner, 2px);
 }

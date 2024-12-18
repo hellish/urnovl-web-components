@@ -456,6 +456,7 @@ export namespace Components {
     }
     interface UrTooltip {
         "closeDelay": number;
+        "colorScheme": 'dark' | 'light';
         "content": string;
         "disabled": boolean;
         "openDelay": number;
@@ -1603,6 +1604,7 @@ declare namespace LocalJSX {
     }
     interface UrTooltip {
         "closeDelay"?: number;
+        "colorScheme"?: 'dark' | 'light';
         "content"?: string;
         "disabled"?: boolean;
         "openDelay"?: number;

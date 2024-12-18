@@ -3,6 +3,8 @@
     display: inline-block;
     --ur-color-secondary-container-variant: var(--mdui-color-surface);
     --ur-color-on-secondary-container-variant: var(--mdui-color-on-surface);
+
+    --ur-color-surface-container-lowest: var(--mdui-color-surface-container-lowest);
     padding: 0;
     margin: 0;
     width: fit-content;
@@ -16,13 +18,22 @@
     border-radius: 4px;
     font-size: 14px;
     line-height: 1.4;
-    pointer-events: none;
+    pointer-events: all;
     max-width: 300px;
     display: block;
     box-shadow: 0 2px 4px rgba(var(--ur-color-secondary-container-variant), 1);
     transform-origin: center;
     background: rgb(var(--ur-color-on-secondary-container-variant));
     color: rgb(var(--ur-color-secondary-container-variant));
+}
+
+:host .tooltip-container.light {
+    background: rgb(var(--ur-color-surface-container-lowest));
+    color: rgb(var(--ur-color-on-secondary-container-variant));
+}
+
+:host .tooltip-container.visible {
+    pointer-events: auto; /* Allow interaction when visible */
 }
 
 :host .tooltip-container .tooltip-content {

@@ -1,31 +1,33 @@
 :host {
     position: relative;
+    width: 100%;
     display: block;
-    padding: 1rem;
     scroll-behavior: smooth;
     --ur-color-on-background: var(--mdui-color-on-background);
     --ur-color-background: var(--mdui-color-background);
     --ur-color-outline: var(--mdui-color-outline);
+    --ur-color-surface-container-lowest: var(--mdui-color-surface-container-lowest);
 
     background-color: rgb(var(--ur-color-background));
 }
 
-.reader-container {
+:host .reader-container {
+    margin: 0 auto;
     max-width: 740px;
-    margin: auto;
     box-sizing: border-box;
     color: rgb(var(--ur-color-on-background));
     overflow-y: auto; /* Ensure vertical scrolling is enabled */
+    position: relative;
 }
 
-.novl-title {
+:host .novl-title {
     font-size: 45px;
     margin: 24px auto;
     word-break: break-word;
     text-align: left;
 }
 
-.chapter-title {
+:host .chapter-title {
     font-size: 27px;
     margin-top: 50px;
     margin-bottom: 8px;
@@ -33,7 +35,7 @@
     text-align: left;
 }
 
-.chapter-content {
+:host .chapter-content {
     font-size: 16px; /* Desktop size */
     line-height: 1.6;
     padding-bottom: 40px;
@@ -44,7 +46,7 @@
     user-select: none; /* Standard property */
 }
 
-.chapter-info {
+:host .chapter-info {
     margin-bottom: 50px;
     font-weight: 700;
     font-size: 12px;
@@ -52,51 +54,110 @@
     opacity: 0.3;
 }
 
-.chapter-content:first-letter {
+:host .chapter-content:first-letter {
     font-size: 60px;
     padding: 0 8px;
     margin: 0 6px 0 0;
     line-height: 18px;
 }
 
-.chapter-content p {
+:host .chapter-content p {
     margin-bottom: 1rem;
 }
 
-.chapter-content b {
+:host .chapter-content b {
     font-weight: bold;
 }
 
-.chapter-content i {
+:host .chapter-content i {
     font-style: italic;
 }
 
 /* Responsive Adjustments */
-.reader-container.small-container .novl-title {
+:host .reader-container.small-container .novl-title {
     font-size: 36px; /* Smaller title for mobile */
     margin: 12px 0;
 }
 
-.reader-container.small-container .chapter-title {
+:host .reader-container.small-container .chapter-title {
     font-size: 22px; /* Smaller chapter title for mobile */
     margin-top: 28px;
 }
 
-.reader-container.small-container .chapter-info {
+:host .reader-container.small-container .chapter-info {
     margin-bottom: 28px;
 }
 
-.reader-container.small-container .chapter-content {
+:host .reader-container.small-container .chapter-content {
     font-size: 14px; /* Smaller base size for content */
 }
 
-.reader-container.small-container .chapter-content:first-letter {
+:host .reader-container.small-container .chapter-content:first-letter {
     font-size: 45px;
     padding: 0 8px;
     margin: 0;
 }
 
-.reader-container .navigation-buttons {
+:host .ur-read-rail-holder {
+    top: 0;
+    left: 50%;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    max-width: 740px;
+    pointer-events: none;
+    transform: translate(-50%, 0);
+}
+
+/* Default state */
+:host .ur-read-rail {
+    width: fit-content;
+    padding: 16px 8px;
+    position: sticky;
+    display: flex;
+    margin-top: 125px;
+    align-items: center;
+    pointer-events: all;
+    flex-direction: column;
+    transform: translate(calc(-100% - 24px), 0);
+}
+
+/* Small host: Stick to bottom-right */
+:host(.host-small) .ur-read-rail {
+    position: fixed; /* Fix it relative to the viewport */
+    bottom: 66px; /* Stick to bottom */
+    right: 16px; /* Stick to right */
+    transform: none; /* Remove translation */
+    margin-top: initial;
+}
+
+:host(.host-small) .action-label {
+    font-size: 11px;
+}
+
+:host .actions-holder {
+    gap: 16px;
+    width: 100%;
+    padding: 12px 0 16px 0;
+    margin-top: 8px;
+    align-items: center;
+    display: flex;
+    border-radius: 50px;
+    color: rgb(var(--mdui-color-on-surface));
+    background-color: rgb(var(--mdui-color-surface));
+    flex-direction: column;
+}
+
+:host .action {
+    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+:host .reader-container .navigation-buttons {
     position: fixed; /* Anchor to the viewport */
     top: 50%; /* Center vertically */
     left: 50%; /* Center horizontally */
@@ -110,50 +171,55 @@
     padding: 0 4px;
 }
 
-.reader-container .navigation-buttons .navigation-button {
+:host .reader-container .navigation-buttons .navigation-button {
     position: relative; /* Ensure tooltip positions itself relative to the button */
     display: inline-block; /* Maintain proper alignment for the button */
+    background: red;
 }
 
-.reader-container .navigation-buttons .mid-flex {
+:host .reader-container .navigation-buttons .mid-flex {
     flex: 1;
 }
 
 /* Loading State Styles */
 /* General Loading Effect */
-.reader-container .loading {
+:host .reader-container .loading {
     animation-duration: 1.7s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
     border-radius: 4px; /* Optional rounded edges */
 }
 
 /* Loading State for Specific Elements */
-.reader-container .novl-title.loading {
+:host .reader-container .novl-title.loading {
     height: 45px; /* Match the actual title height */
     margin: 24px 0;
     width: 70%; /* Placeholder width for title */
 }
 
-.reader-container .chapter-title.loading {
+:host .reader-container .chapter-title.loading {
     height: 27px; /* Match the actual chapter title height */
     margin-top: 50px;
     margin-bottom: 8px;
     width: 50%; /* Placeholder width for chapter title */
 }
 
-.reader-container .chapter-content.loading {
+:host .reader-container .chapter-content.loading {
     height: 150px; /* Simulate content area */
     margin-top: 16px;
     width: 100%; /* Full width for content placeholder */
 }
 
-.reader-container .chapter-content.loading:before {
+:host .reader-container .chapter-content.loading:before {
     content: ''; /* Create multiple lines effect */
     display: block;
     height: 16px; /* Line height */
@@ -163,7 +229,7 @@
     animation: inherit;
 }
 
-.reader-container .chapter-content.loading:after {
+:host .reader-container .chapter-content.loading:after {
     content: '';
     display: block;
     height: 16px; /* Line height */
@@ -174,7 +240,7 @@
 }
 
 /* Style for the locked chapter message */
-.reader-container .locked-content {
+:host .reader-container .locked-content {
     text-align: center;
     padding: 20px;
     border: 1px solid rgb(var(--ur-color-outline));
@@ -182,16 +248,16 @@
     margin: 20px 0;
 }
 
-.reader-container .locked-message {
+:host .reader-container .locked-message {
     margin-bottom: 20px;
 }
 
-.reader-container .locked-content .locked-message::first-letter {
+:host .reader-container .locked-content .locked-message::first-letter {
     all: unset; /* Reset all styles applied to the first letter */
 }
 
 /* Wrapper for the button to center it */
-.reader-container .unlock-button-wrapper {
+:host .reader-container .unlock-button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -207,13 +273,6 @@
         background-position: 1000px 0;
     }
 }
-
-
-
-
-
-
-
 
 /* Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
 .scrollable-content::-webkit-scrollbar {

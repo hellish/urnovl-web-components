@@ -41,6 +41,9 @@ export class UrTooltip {
     trigger: 'hover' | 'click' | 'focus' = 'hover'; // Trigger method
 
     @Prop()
+    colorScheme: 'dark' | 'light' = 'light';
+
+    @Prop()
     disabled: boolean = false; // Disabled state
 
     @State()
@@ -141,7 +144,7 @@ export class UrTooltip {
             transition: 'opacity 0.2s, visibility 0.2s',
         };
 
-        const tooltipContainerClass = `tooltip-container tooltip-${this.placement}`;
+        const tooltipContainerClass = `tooltip-container tooltip-${this.placement} ${this.colorScheme}`;
 
         return (
             <Host

@@ -121,3 +121,16 @@ export const DisabledTooltip = {
         disabled: true,
     },
 };
+
+export const LightTooltip = {
+    args: {
+        content: 'This is a tooltip with a light color scheme.',
+        placement: 'bottom',
+        variant: 'plain',
+        trigger: 'hover',
+        openDelay: 0,
+        closeDelay: 150,
+        colorScheme: 'light', // Set the color scheme to light
+        disabled: false,
+    },
+};

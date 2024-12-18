@@ -69,6 +69,9 @@ export class UrReader {
     @Event()
     previousChapter: EventEmitter<void>;
 
+    @State()
+    isHostSmall: boolean = false; // Flag to track if the host width is <= 930px
+
     private goToNextChapter() {
         this.nextChapter.emit();
     }
@@ -88,29 +91,46 @@ export class UrReader {
     }
 
     componentDidLoad() {
+        const hostElement = this.el; // Host element (ur-reader)
         const container = this.el.shadowRoot.querySelector('.reader-container');
-        if (container) {
-            let resizeTimeout: NodeJS.Timeout; // Timeout for throttling
+
+        if (hostElement && container) {
+            let resizeTimeout: NodeJS.Timeout; // Throttling timeout
 
             this.resizeObserver = new ResizeObserver(entries => {
-                for (const entry of entries) {
-                    clearTimeout(resizeTimeout); // Clear any previously scheduled update
-                    resizeTimeout = setTimeout(() => {
-                        // Schedule a new update
-                        const width = entry.contentRect.width;
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    entries.forEach(entry => {
+                        const width = entry.target.getBoundingClientRect().width;
 
-                        if (width <= 480) {
-                            this.isSmallContainer = true;
-                            this.baseFontSize = 14; // Smaller base font size for smaller containers
-                        } else {
-                            this.isSmallContainer = false;
-                            this.baseFontSize = 18; // Default base font size for larger containers
+                        // Update base font size for child container
+                        if (entry.target === container) {
+                            if (width <= 480) {
+                                this.isSmallContainer = true;
+                                this.baseFontSize = 14;
+                            } else {
+                                this.isSmallContainer = false;
+                                this.baseFontSize = 18;
+                            }
+                            this.updateFontStyles();
                         }
-                        this.updateFontStyles(); // Update styles dynamically based on size
-                    }, 100); // Throttle to update every 100ms
-                }
+
+                        // Add or remove class for host width <= 900px
+                        if (entry.target === hostElement) {
+                            if (width <= 930) {
+                                this.el.classList.add('host-small');
+                                this.isHostSmall = true; // Update the flag
+                            } else {
+                                this.el.classList.remove('host-small');
+                                this.isHostSmall = false; // Update the flag
+                            }
+                        }
+                    });
+                }, 100);
             });
 
+            // Observe both host element and container
+            this.resizeObserver.observe(hostElement);
             this.resizeObserver.observe(container);
         }
     }
@@ -183,7 +203,7 @@ export class UrReader {
 
     private renderLoading() {
         return (
-            <Host>
+            <Host class="reader-holder">
                 <section
                     class={{
                         'reader-container': true,
@@ -272,6 +292,34 @@ export class UrReader {
 
         return (
             <Host>
+                <div class="ur-read-rail-holder">
+                    {/* Left Rail */}
+                    <div class="ur-read-rail">
+                        <ur-avatar src="https://i.pravatar.cc/150?img=3" size="56px" name="Jane Doe"></ur-avatar>
+                        <div class="actions-holder">
+                            <div class="action">
+                                <ur-button-icon icon="thumb_up--outlined" variant="standard"></ur-button-icon>
+                                <span class="action-label">150k</span>
+                            </div>
+                            <div class="action">
+                                <ur-button-icon icon="thumb_down--outlined" variant="standard"></ur-button-icon>
+                                <span class="action-label">Dislike</span>
+                            </div>
+                            <div class="action">
+                                <ur-button-icon icon="comment--outlined" variant="standard"></ur-button-icon>
+                                <span class="action-label">15</span>
+                            </div>
+                            <div class="action">
+                                <ur-button-icon icon="volunteer_activism--outlined" variant="standard"></ur-button-icon>
+                                <span class="action-label">Donate</span>
+                            </div>
+                            <div class="action">
+                                <ur-button-icon icon="share--outlined" variant="standard"></ur-button-icon>
+                                <span class="action-label">Share</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <section
                     class={{
                         'reader-container': true,
@@ -308,15 +356,15 @@ export class UrReader {
                         innerHTML={this.chapterContent} // Safely render the HTML content
                     ></div>
                     <div class="navigation-buttons">
-                        {this.hasPreviousChapter && (
+                        {!this.isHostSmall && this.hasPreviousChapter && this.chapterSequence !== 1 && (
                             <ur-tooltip content="Previous Chapter" placement="right" trigger="hover">
-                                <ur-button-icon icon="arrow_back" variant="tonal" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>
+                                <ur-button-icon class="arrow-button" icon="arrow_back" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>
                             </ur-tooltip>
                         )}
                         <span class="mid-flex"></span>
-                        {this.hasNextChapter && (
+                        {!this.isHostSmall && this.hasNextChapter && (
                             <ur-tooltip content="Next Chapter" placement="left" trigger="hover">
-                                <ur-button-icon icon="arrow_forward" variant="tonal" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>
+                                <ur-button-icon class="arrow-button" icon="arrow_forward" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>
                             </ur-tooltip>
                         )}
                     </div>

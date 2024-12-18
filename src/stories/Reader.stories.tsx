@@ -2,19 +2,22 @@ import { html } from 'lit';
 import '../components/ur-reader/ur-reader'; // Adjust the path as necessary
 
 const Template = args => html`
-    <ur-reader
-        story-title="${args.storyTitle}"
-        chapter-title="${args.chapterTitle}"
-        chapter-content="${args.chapterContent}"
-        font-size="${args.fontSize}"
-        font-type="${args.fontType}"
-        loading="${args.loading}"
-        chapter-locked="${args.chapterLocked}"
-        chapter-sequence="${args.chapterSequence}"
-        has-previous-chapter="${args.hasPreviousChapter}"
-        has-next-chapter="${args.hasNextChapter}"
-    ></ur-reader>
+    <div class="total-page-holder" style="display: flex; justify-content: center;">
+        <ur-reader
+            story-title="${args.storyTitle}"
+            chapter-title="${args.chapterTitle}"
+            chapter-content="${args.chapterContent}"
+            font-size="${args.fontSize}"
+            font-type="${args.fontType}"
+            ?loading="${args.loading}"
+            ?chapter-locked="${args.chapterLocked}"
+            chapter-sequence="${args.chapterSequence}"
+            ?has-previous-chapter="${args.hasPreviousChapter}"
+            ?has-next-chapter="${args.hasNextChapter}"
+        ></ur-reader>
+    </div>
 `;
+
 
 export default {
     title: 'urnovl/Business/Reader',

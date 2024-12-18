@@ -1,7 +1,9 @@
 :host {
+    --ur-color-background: var(--mdui-color-background);
+
     img {
         display: block;
-        border-color: #ececec;
+        border-color: rgb(var(--ur-color-background));
         border-style: solid;
         background: #fff;
     }
