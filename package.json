@@ -35,7 +35,7 @@
     },
     "devDependencies": {
         "@chromatic-com/storybook": "^3.2.2",
-        "@stencil/core": "^4.22.3",
+        "@stencil/core": "^4.23.0",
         "@stencil/sass": "^3.0.12",
         "@storybook/addon-actions": "^8.4.6",
         "@storybook/addon-essentials": "^8.4.6",

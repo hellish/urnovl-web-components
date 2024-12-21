@@ -19,27 +19,46 @@
 
 ## Events
 
-| Event                 | Description | Type                                       |
-| --------------------- | ----------- | ------------------------------------------ |
-| `intersectionUpdated` |             | `CustomEvent<IntersectionObserverEntry[]>` |
-| `nextClicked`         |             | `CustomEvent<void>`                        |
-| `prevClicked`         |             | `CustomEvent<void>`                        |
+| Event             | Description | Type                            |
+| ----------------- | ----------- | ------------------------------- |
+| `nextClicked`     |             | `CustomEvent<void>`             |
+| `prevClicked`     |             | `CustomEvent<void>`             |
+| `progressUpdated` |             | `CustomEvent<[number, number]>` |
+
+
+## Methods
+
+### `addNovls(novls: Array<Novl | CustomContent>) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name    | Type                        | Description |
+| ------- | --------------------------- | ----------- |
+| `novls` | `(CustomContent \| Novl)[]` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ## Dependencies
 
 ### Depends on
 
+- [ur-novl](../ur-novl)
 - [ur-button-arrow-left](../ur-button-arrow-left)
 - [ur-button-arrow-right](../ur-button-arrow-right)
-- [ur-novl](../ur-novl)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-novl-carousel --> ur-novl
   ur-novl-carousel --> ur-button-arrow-left
   ur-novl-carousel --> ur-button-arrow-right
-  ur-novl-carousel --> ur-novl
   style ur-novl-carousel fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

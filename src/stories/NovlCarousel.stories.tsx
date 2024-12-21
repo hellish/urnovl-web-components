@@ -18,11 +18,55 @@ const NovlCarousel = ({
     containerBackgroundColor = '#efefef',
 }) => html`
     <script>
-        for (const item of document.getElementsByClassName('novls-carousel')) {
-            item.addEventListener('novlClicked', (event) => {
-                alert('novl clicked with id ' + event.detail);
-            })
+        let _novls_ = ${JSON.stringify(NOVLS)};
+
+        function uniq(arr, n) {
+            if (n > arr.length) {
+                throw new Error("The number of elements to select cannot exceed the array length.");
+            }
+
+            // Shuffle the array using the Fisher-Yates shuffle algorithm
+            let shuffled = arr.slice(); // Create a copy of the array
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1)); // Random index from 0 to i
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]; // Swap elements
+            }
+
+            // Return the first n elements from the shuffled array
+            return shuffled.slice(0, n);
         }
+
+        for (const item of document.getElementsByClassName('novls-carousel')) {
+            item.once = false;
+
+            item.addEventListener('progressUpdated', (event) => {
+                if (item.once) {
+                    return;
+                }
+
+                const [progress, slides] = event.detail;
+                console.log('progress:updated', progress, slides);
+                if (progress > 80) {
+                    const newNovls = uniq(_novls_, slides).map(_novl_ => {
+                        let uuid = crypto.randomUUID();
+                        return { ..._novl_, novlId: uuid };
+                    });
+                    item.addNovls( newNovls );
+                    item.once = true;
+                }
+            })
+
+            item.addEventListener('snapIndexChange', (event) => {
+                // console.log('snapIndexChange', event);
+            })
+
+            item.addEventListener('slideChange', (event) => {
+                // const [beg, end, viewportNovlCount] = event.detail;
+                // console.log('slideChange', beg, end, viewportNovlCount, uniq(_novls_, viewportNovlCount));
+            })
+
+        }
+
     </script>
     <style>
         ur-novl-carousel {
@@ -127,7 +171,8 @@ export const SneakPeek = {
 export const FullWithArrows = {
     render: args => NovlCarousel(args),
     args: {
-        novls: NOVLS,
+        navigation: true,
+        novls: NOVLS.slice(0, 7),
         breakpoints: {
             2075: {
                 slidesPerView: 'auto',
@@ -160,7 +205,6 @@ export const FullWithArrows = {
         },
         //slidesPerView: 'auto',
         //spaceBetween: 8,
-        navigation: true,
         // container styles
         containerWidth: '100%',
         containerBackgroundColor: 'transparent',

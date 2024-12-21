@@ -205,8 +205,10 @@ export namespace Components {
         "views": number;
     }
     interface UrNovlCarousel {
+        "addNovls": (novls: Array<Novl | CustomContent>) => Promise<void>;
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
+        "loading": boolean;
         "navigation"?: boolean;
         "novls": Array<Novl | CustomContent>;
         "slidesPerView"?: number | 'auto';
@@ -620,9 +622,9 @@ declare global {
         new (): HTMLUrNovlElement;
     };
     interface HTMLUrNovlCarouselElementEventMap {
-        "intersectionUpdated": Array<IntersectionObserverEntry>;
         "prevClicked": void;
         "nextClicked": void;
+        "progressUpdated": [ number, number ];
     }
     interface HTMLUrNovlCarouselElement extends Components.UrNovlCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlCarouselElementEventMap>(type: K, listener: (this: HTMLUrNovlCarouselElement, ev: UrNovlCarouselCustomEvent<HTMLUrNovlCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1022,11 +1024,12 @@ declare namespace LocalJSX {
     interface UrNovlCarousel {
         "breakpoints"?: Breakpoints;
         "grid"?: Grid;
+        "loading"?: boolean;
         "navigation"?: boolean;
         "novls"?: Array<Novl | CustomContent>;
-        "onIntersectionUpdated"?: (event: UrNovlCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
         "onNextClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
         "onPrevClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
+        "onProgressUpdated"?: (event: UrNovlCarouselCustomEvent<[ number, number ]>) => void;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
