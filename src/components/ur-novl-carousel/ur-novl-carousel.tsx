@@ -90,6 +90,9 @@ export class UrNovlCarousel {
         forceUpdate(this);
     }
 
+    @Prop()
+    destroyListeners = true;
+
     private onSlideChange = () => {
         this.disabledPrev = this.swiperContainer?.swiper?.isBeginning;
         this.disabledNext = this.swiperContainer?.swiper?.isEnd;
@@ -162,9 +165,11 @@ export class UrNovlCarousel {
     }
 
     disconnectedCallback() {
-        this.leftArrow?.removeEventListener('click', this.onLeftClick);
-        this.rightArrow?.removeEventListener('click', this.onRightClick);
-        this.swiperContainer?.swiper.destroy(true, true);
+        if (this.destroyListeners) {
+            this.leftArrow?.removeEventListener('click', this.onLeftClick);
+            this.rightArrow?.removeEventListener('click', this.onRightClick);
+            this.swiperContainer?.swiper.destroy(true, true);
+        }
     }
 
     renderNovl(novl: Novl | CustomContent, index: number) {
