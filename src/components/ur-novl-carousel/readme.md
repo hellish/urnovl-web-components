@@ -11,6 +11,7 @@
 | --------------- | ----------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
 | `breakpoints`   | --                |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
 | `grid`          | --                |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
+| `loading`       | `loading`         |             | `boolean`                                         | `false`                                        |
 | `navigation`    | `navigation`      |             | `boolean`                                         | `false`                                        |
 | `novls`         | --                |             | `(CustomContent \| Novl)[]`                       | `[]`                                           |
 | `slidesPerView` | `slides-per-view` |             | `"auto" \| number`                                | `'auto'`                                       |
@@ -37,6 +38,39 @@
 | Name    | Type                        | Description |
 | ------- | --------------------------- | ----------- |
 | `novls` | `(CustomContent \| Novl)[]` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `updateNovl(newIdx: number, newNovl: Novl | CustomContent) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name      | Type                    | Description |
+| --------- | ----------------------- | ----------- |
+| `newIdx`  | `number`                |             |
+| `newNovl` | `CustomContent \| Novl` |             |
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+### `updateNovls(updates: Map<number, Novl | CustomContent>) => Promise<void>`
+
+
+
+#### Parameters
+
+| Name      | Type                                 | Description |
+| --------- | ------------------------------------ | ----------- |
+| `updates` | `Map<number, CustomContent \| Novl>` |             |
 
 #### Returns
 

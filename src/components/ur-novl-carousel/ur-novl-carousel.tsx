@@ -17,6 +17,7 @@ export class UrNovlCarousel {
     el: HTMLElement;
 
     @Prop()
+    @State()
     novls: Array<Novl | CustomContent> = [];
 
     @Prop()
@@ -67,9 +68,34 @@ export class UrNovlCarousel {
 
     @Method()
     async addNovls(novls: Array<Novl | CustomContent>) {
+        console.log('>> add novls', novls);
+
         this.swiperContainer?.swiper.appendSlide(novls.map((novl, index) => {
            return this.renderNovl(novl, index);
         }));
+    }
+
+    @Method()
+    async updateNovl(newIdx: number, newNovl: Novl | CustomContent) {
+        console.log('>> update novl', newIdx, newNovl);
+
+        this.updateNovls( new Map([
+            [ newIdx, newNovl ]
+        ]));
+    }
+
+    @Method()
+    async updateNovls(updates: Map<number, Novl | CustomContent>) {
+        console.log('>> update novls', updates);
+
+        this.novls = this.novls.map((oldNovl, oldIdx) => {
+            if (updates.has(oldIdx)) {
+                const newNovl = updates.get(oldIdx);
+                return newNovl;
+            }
+
+            return oldNovl;
+        });
     }
 
     private onSlideChange = () => {

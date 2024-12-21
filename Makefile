@@ -20,3 +20,7 @@ serve:
 .PHONY: test
 test:
 	npm run test
+
+PHONY: pack
+pack:
+	npm pack

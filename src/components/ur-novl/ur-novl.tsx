@@ -68,7 +68,7 @@ export class UrNovl {
 
     renderLoading() {
         return <Host>
-            <div class="novl loading">
+            <div class="novl loading" onClick={() => this.novlClicked.emit(this.novlId)}>
                 <section class="cover loading"></section>
                 <section class="info">
                     <div class="title loading">&nbsp;</div>

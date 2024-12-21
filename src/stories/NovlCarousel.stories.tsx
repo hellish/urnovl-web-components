@@ -65,6 +65,22 @@ const NovlCarousel = ({
                 // console.log('slideChange', beg, end, viewportNovlCount, uniq(_novls_, viewportNovlCount));
             })
 
+            item.addEventListener('novlClicked', (event) => {
+                console.log('novl clicked', event.detail);
+                const _novl_index_ = _novls_.findIndex(_novl_ => _novl_.novlId === event.detail);
+                const _novl_ = _novls_[_novl_index_];
+                if (_novl_.loading) {
+                    while(true) {
+                        let _new_novl_ = uniq(_novls_, 1).pop();
+                        if (!_new_novl_.loading) {
+                            item.updateNovl( _novl_index_, _new_novl_ );
+                            _novls_[_novl_index_] = _new_novl_;
+                            break;
+                        }
+                    }
+                }
+            })
+
         }
 
     </script>
