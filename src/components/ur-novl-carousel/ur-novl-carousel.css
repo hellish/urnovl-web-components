@@ -16,7 +16,7 @@
     position: relative;
 }
 
-:host .carousel .numnum {
+:host .carousel .index {
     position: absolute;
     top: 0;
     left: 0;

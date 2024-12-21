@@ -124,9 +124,17 @@ export class UrNovlCarousel {
             this.swiperContainer?.swiper.on('slideChange', this.onSlideChange);
         }
 
-        this.swiperContainer?.swiper.on('progress', (ss, num) => {
-            const progress = parseInt(Math.round(num * 100).toFixed(0), 10)
-            const visibleElements = ss.slidesEl.getElementsByClassName('swiper-slide-visible').length;
+        this.swiperContainer?.swiper.on('reachBeginning', () => {
+            this.disabledPrev = true;
+        });
+
+        this.swiperContainer?.swiper.on('reachEnd', () => {
+            this.disabledNext = true;
+        });
+
+        this.swiperContainer?.swiper.on('progress', (event, value) => {
+            const progress = parseInt(Math.round(value * 100).toFixed(0), 10)
+            const visibleElements = event.slidesEl.getElementsByClassName('swiper-slide-visible').length;
             this.progressUpdated.emit([ progress, visibleElements ]);
         });
 
@@ -162,13 +170,13 @@ export class UrNovlCarousel {
     renderNovl(novl: Novl | CustomContent, index: number) {
         if (is_custom_data(novl)) {
             return (<swiper-slide>
-                <span class="numnum">{index + 1}</span>
+                <span class="index">{index + 1}</span>
                 <div class="custom" innerHTML={novl.content(index)}></div>
             </swiper-slide>)
         }
 
         return (<swiper-slide>
-            <span class="numnum">{index + 1}</span>
+            <span class="index">{index + 1}</span>
             <ur-novl {...novl}></ur-novl>
         </swiper-slide>)
     }
