@@ -45,14 +45,17 @@ const NovlCarousel = ({
                 }
 
                 const [progress, slides] = event.detail;
+
                 console.log('progress:updated', progress, slides);
+
                 if (progress > 80) {
+                    item.once = true;
                     const newNovls = uniq(_novls_, slides).map(_novl_ => {
                         let uuid = crypto.randomUUID();
                         return { ..._novl_, novlId: uuid };
                     });
                     item.addNovls( newNovls );
-                    item.once = true;
+                    console.log('new novls added', newNovls);
                 }
             })
 
@@ -73,7 +76,7 @@ const NovlCarousel = ({
                     while(true) {
                         let _new_novl_ = uniq(_novls_, 1).pop();
                         if (!_new_novl_.loading) {
-                            item.updateNovl( _novl_index_, _new_novl_ );
+                            item.updateNovlsByIndex( new Map( [ [_novl_index_, _new_novl_] ] ) );
                             _novls_[_novl_index_] = _new_novl_;
                             break;
                         }

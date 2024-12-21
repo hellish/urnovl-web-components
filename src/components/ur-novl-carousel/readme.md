@@ -45,24 +45,7 @@ Type: `Promise<void>`
 
 
 
-### `updateNovl(newIdx: number, newNovl: Novl | CustomContent) => Promise<void>`
-
-
-
-#### Parameters
-
-| Name      | Type                    | Description |
-| --------- | ----------------------- | ----------- |
-| `newIdx`  | `number`                |             |
-| `newNovl` | `CustomContent \| Novl` |             |
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `updateNovls(updates: Map<number, Novl | CustomContent>) => Promise<void>`
+### `updateNovlsByIndex(updates: Map<number, Novl | CustomContent>) => Promise<void>`
 
 
 

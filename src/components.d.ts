@@ -213,8 +213,7 @@ export namespace Components {
         "novls": Array<Novl | CustomContent>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
-        "updateNovl": (newIdx: number, newNovl: Novl | CustomContent) => Promise<void>;
-        "updateNovls": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
+        "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
     interface UrPage {
         "followers": number;

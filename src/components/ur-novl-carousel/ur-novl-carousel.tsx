@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Host, Method, Prop, State, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, Method, Prop, State, forceUpdate, h } from '@stencil/core';
 import { CustomContent, is_custom_data, Novl } from '../../models/novl';
 import { Breakpoints, Grid } from '../../data/novl-carousel';
 
@@ -17,7 +17,6 @@ export class UrNovlCarousel {
     el: HTMLElement;
 
     @Prop()
-    @State()
     novls: Array<Novl | CustomContent> = [];
 
     @Prop()
@@ -70,22 +69,13 @@ export class UrNovlCarousel {
     async addNovls(novls: Array<Novl | CustomContent>) {
         console.log('>> add novls', novls);
 
-        this.swiperContainer?.swiper.appendSlide(novls.map((novl, index) => {
-           return this.renderNovl(novl, index);
-        }));
+        this.novls = this.novls.concat(...novls);
+
+        forceUpdate(this)
     }
 
     @Method()
-    async updateNovl(newIdx: number, newNovl: Novl | CustomContent) {
-        console.log('>> update novl', newIdx, newNovl);
-
-        this.updateNovls( new Map([
-            [ newIdx, newNovl ]
-        ]));
-    }
-
-    @Method()
-    async updateNovls(updates: Map<number, Novl | CustomContent>) {
+    async updateNovlsByIndex(updates: Map<number, Novl | CustomContent>) {
         console.log('>> update novls', updates);
 
         this.novls = this.novls.map((oldNovl, oldIdx) => {
@@ -96,6 +86,8 @@ export class UrNovlCarousel {
 
             return oldNovl;
         });
+
+        forceUpdate(this);
     }
 
     private onSlideChange = () => {
