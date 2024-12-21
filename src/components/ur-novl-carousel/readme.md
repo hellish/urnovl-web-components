@@ -7,15 +7,16 @@
 
 ## Properties
 
-| Property        | Attribute         | Description | Type                                              | Default                                        |
-| --------------- | ----------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
-| `breakpoints`   | --                |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
-| `grid`          | --                |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
-| `loading`       | `loading`         |             | `boolean`                                         | `false`                                        |
-| `navigation`    | `navigation`      |             | `boolean`                                         | `false`                                        |
-| `novls`         | --                |             | `(CustomContent \| Novl)[]`                       | `[]`                                           |
-| `slidesPerView` | `slides-per-view` |             | `"auto" \| number`                                | `'auto'`                                       |
-| `spaceBetween`  | `space-between`   |             | `number \| string`                                | `'0'`                                          |
+| Property           | Attribute           | Description | Type                                              | Default                                        |
+| ------------------ | ------------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
+| `breakpoints`      | --                  |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
+| `destroyListeners` | `destroy-listeners` |             | `boolean`                                         | `true`                                         |
+| `grid`             | --                  |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
+| `loading`          | `loading`           |             | `boolean`                                         | `false`                                        |
+| `navigation`       | `navigation`        |             | `boolean`                                         | `false`                                        |
+| `novls`            | --                  |             | `(CustomContent \| Novl)[]`                       | `[]`                                           |
+| `slidesPerView`    | `slides-per-view`   |             | `"auto" \| number`                                | `'auto'`                                       |
+| `spaceBetween`     | `space-between`     |             | `number \| string`                                | `'0'`                                          |
 
 
 ## Events
