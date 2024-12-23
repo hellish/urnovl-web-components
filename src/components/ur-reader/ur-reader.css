@@ -5,6 +5,7 @@
     scroll-behavior: smooth;
     --ur-color-on-background: var(--mdui-color-on-background);
     --ur-color-background: var(--mdui-color-background);
+    --ur-color-primary: var(--mdui-color-primary);
     --ur-color-outline: var(--mdui-color-outline);
     --ur-color-surface-container-lowest: var(--mdui-color-surface-container-lowest);
 
@@ -98,10 +99,12 @@
     margin: 0;
 }
 
+
+/* READ RAIL START */
 :host .ur-read-rail-holder {
     top: 0;
     left: 50%;
-    z-index: 1;
+    z-index: 10;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -110,75 +113,73 @@
     transform: translate(-50%, 0);
 }
 
-/* Default state */
-:host .ur-read-rail {
-    width: fit-content;
-    padding: 16px 8px;
-    position: sticky;
-    display: flex;
-    margin-top: 125px;
-    align-items: center;
-    pointer-events: all;
-    flex-direction: column;
-    transform: translate(calc(-100% - 24px), 0);
+:host .ur-read-rail-holder slot {
+    z-index: 1;
+    display: block; /* Ensure the slot behaves like a block element if necessary */
+}
+:host .ur-read-rail-holder ::slotted(ur-read-rail-desktop) {
+    /* Styles for the slotted component */
+    top: 120px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    transform: translate(calc(-100% - 8px),0);
 }
 
-/* Small host: Stick to bottom-right */
-:host(.host-small) .ur-read-rail {
-    position: fixed; /* Fix it relative to the viewport */
-    bottom: 66px; /* Stick to bottom */
-    right: 16px; /* Stick to right */
-    transform: none; /* Remove translation */
-    margin-top: initial;
+:host(.host-small) .ur-read-rail-holder ::slotted(ur-read-rail-desktop) {
+    right: 0;
+    top: initial;
+    bottom: 48px;
+    left: initial;
+    transform: translate(0 , 0);
 }
 
-:host(.host-small) .action-label {
-    font-size: 11px;
-}
-
-:host .actions-holder {
-    gap: 16px;
-    width: 100%;
-    padding: 12px 0 16px 0;
-    margin-top: 8px;
-    align-items: center;
-    display: flex;
-    border-radius: 50px;
-    color: rgb(var(--mdui-color-on-surface));
-    background-color: rgb(var(--mdui-color-surface));
-    flex-direction: column;
-}
-
-:host .action {
-    gap: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 12px;
-}
+/* READ RAIL END */
 
 :host .reader-container .navigation-buttons {
-    position: fixed; /* Anchor to the viewport */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for the button container's own dimensions */
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    transform: translate(-50%, 0);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: calc(100% - 8px); /* Adjust width for spacing between buttons */
+    width: calc(100% - 8px);
     max-width: 1100px;
-    z-index: 10; /* Ensure buttons appear above other content */
+    z-index: 0;
     padding: 0 4px;
+    gap: 8px;
 }
 
 :host .reader-container .navigation-buttons .navigation-button {
-    position: relative; /* Ensure tooltip positions itself relative to the button */
-    display: inline-block; /* Maintain proper alignment for the button */
-    background: red;
+    pointer-events: auto;
+    position: relative;
+    display: inline-block;
 }
 
 :host .reader-container .navigation-buttons .mid-flex {
-    flex: 1;
+    flex: 0 1 auto;
+    pointer-events: none;
+}
+
+:host(.host-small) .reader-container .navigation-buttons {
+    bottom: 0;
+    top: initial;
+    max-width: 740px;
+    padding-bottom: 4px;
+    transition: transform 0.3s ease;
+    transform: translate(-50%, 0);
+}
+
+:host(.host-small) .reader-container .navigation-buttons.hidden {
+    transform: translate(-50%, 100%);
+}
+
+:host(.host-small) .reader-container .navigation-buttons .nav-button {
+    max-width: 50%;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: rgb(var(--mdui-color-surface));
 }
 
 /* Loading State Styles */

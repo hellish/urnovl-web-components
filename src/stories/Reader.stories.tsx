@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import '../components/ur-reader/ur-reader'; // Adjust the path as necessary
+import '../components/ur-read-rail-desktop/ur-read-rail-desktop'; // Adjust path for rail
 
 const Template = args => html`
     <div class="total-page-holder" style="display: flex; justify-content: center;">
@@ -14,10 +15,29 @@ const Template = args => html`
             chapter-sequence="${args.chapterSequence}"
             ?has-previous-chapter="${args.hasPreviousChapter}"
             ?has-next-chapter="${args.hasNextChapter}"
-        ></ur-reader>
+            ?is-visible="${args.isVisible}"
+        >
+            <ur-read-rail-desktop
+                slot="ur-read-rail-slot"
+                avatar-src="${args.avatarSrc}"
+                avatar-name="${args.avatarName}"
+                likes="${args.likes}"
+                dislike="${args.dislike}"
+                comments="${args.comments}"
+                donate="${args.donate}"
+                share="${args.share}"
+                ?is-visible="${args.isVisible}"
+                @likeClicked="${args.onLikeClicked}"
+                @dislikeClicked="${args.onDislikeClicked}"
+                @commentClicked="${args.onCommentClicked}"
+                @donateClicked="${args.onDonateClicked}"
+                @shareClicked="${args.onShareClicked}"
+                @followClicked="${args.onFollowClicked}"
+                @viewProfileClicked="${args.onViewProfileClicked}"
+            ></ur-read-rail-desktop>
+        </ur-reader>
     </div>
 `;
-
 
 export default {
     title: 'urnovl/Business/Reader',
@@ -57,12 +77,80 @@ export default {
             control: 'number',
             description: 'Sequence number of the chapter to determine if story title is shown',
         },
+        avatarSrc: {
+            control: 'text',
+            description: 'Avatar image source',
+            defaultValue: 'https://i.pravatar.cc/150?img=3',
+        },
+        avatarName: {
+            control: 'text',
+            description: 'Avatar name',
+            defaultValue: 'Jane Doe',
+        },
+        likes: {
+            control: 'text',
+            description: 'Number of likes',
+            defaultValue: '1.5k',
+        },
+        dislike: {
+            control: 'text',
+            description: 'Dislike text',
+            defaultValue: 'Dislike',
+        },
+        comments: {
+            control: 'number',
+            description: 'Number of comments',
+            defaultValue: 15,
+        },
+        donate: {
+            control: 'text',
+            description: 'Donate text',
+            defaultValue: 'Donate',
+        },
+        share: {
+            control: 'text',
+            description: 'Share text',
+            defaultValue: 'Share',
+        },
+        isVisible: { 
+            control: 'boolean', 
+            description: 'Controls the visibility of the read rail', 
+            defaultValue: true 
+        },
+        onLikeClicked: {
+            action: 'likeClicked',
+            description: 'Triggered when the "Like" button is clicked',
+        },
+        onDislikeClicked: {
+            action: 'dislikeClicked',
+            description: 'Triggered when the "Dislike" button is clicked',
+        },
+        onCommentClicked: {
+            action: 'commentClicked',
+            description: 'Triggered when the "Comment" button is clicked',
+        },
+        onDonateClicked: {
+            action: 'donateClicked',
+            description: 'Triggered when the "Donate" button is clicked',
+        },
+        onShareClicked: {
+            action: 'shareClicked',
+            description: 'Triggered when the "Share" button is clicked',
+        },
+        onFollowClicked: {
+            action: 'followClicked',
+            description: 'Triggered when the "Follow" button is clicked',
+        },
+        onViewProfileClicked: {
+            action: 'viewProfileClicked',
+            description: 'Triggered when the profile avatar is clicked',
+        },
     },
 };
 
 export const Default = {
     args: {
-        storyTitle: 'The Great Adventure',
+        storyTitle: 'The Great Adventurer',
         chapterTitle: 'Chapter 1: The Beginning',
         chapterContent: `
           <p>Λίγο πριν φτάσει στην είσοδο της πολυκατοικίας βλέπει να μπαίνει ένας άντρας, ξένος σίγουρα. Μελαμψός, φοράει ρούχα δουλειάς, βρόμικος, ύποπτη φάτσα. Ήταν ανάγκη;</p>
@@ -79,6 +167,14 @@ export const Default = {
         chapterSequence: 1,
         hasPreviousChapter: false,
         hasNextChapter: true,
+        avatarSrc: 'https://i.pravatar.cc/150?img=3',
+        avatarName: 'Jane Doe',
+        likes: '1.5k',
+        dislike: 'Dislike',
+        comments: 15,
+        donate: 'Donate',
+        share: 'Share',
+        isVisible: true,
     },
 };
 
@@ -101,6 +197,13 @@ export const SubsequentChapter = {
         chapterSequence: 2, // Sequence is not the first chapter
         hasPreviousChapter: true,
         hasNextChapter: true,
+        avatarSrc: 'https://i.pravatar.cc/150?img=3',
+        avatarName: 'Jane Doe',
+        likes: '1.5k',
+        dislike: 'Dislike',
+        comments: 15,
+        donate: 'Donate',
+        share: 'Share',
     },
 };
 

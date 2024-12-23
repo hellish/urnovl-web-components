@@ -25,9 +25,12 @@ export class UrButton {
     fullWidth: boolean;
 
     render() {
+        const buttonClass = this.fullWidth ? 'full-width' : '';
+
         return (
-            <Host>
+            <Host full-width={this.fullWidth ? 'true' : null}>
                 <mdui-button
+                    class={buttonClass} // Dynamically assign the class
                     icon={!!this.icon ? this.icon : false}
                     end-icon={!!this.endIcon ? this.endIcon : false}
                     variant={this.variant}

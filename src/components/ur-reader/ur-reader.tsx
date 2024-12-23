@@ -7,6 +7,12 @@ import { Component, Prop, State, Watch, Host, h, Element, Event, EventEmitter } 
 })
 export class UrReader {
     @Prop()
+    avatarSrc: string = 'https://i.pravatar.cc/150?img=3'; // Default avatar image
+
+    @Prop()
+    avatarName: string = 'Jane Doe'; // Default avatar name
+
+    @Prop()
     loading = false; // Prop to indicate loading state
 
     @Prop()
@@ -37,6 +43,24 @@ export class UrReader {
     minutesText: string = 'Minutes'; // Default text for reading duration
 
     @Prop()
+    likes: string = '1.5k'; // Default text for reading duration
+
+    @Prop()
+    comments: number = 15; // Default number of comments
+
+    @Prop()
+    dislike: string = 'Dislike'; // Default text for reading duration
+
+    @Prop()
+    donate: string = 'Donate'; // Default text for reading duration
+
+    @Prop()
+    share: string = 'Share'; // Default text for reading duration
+
+    @Prop()
+    isVisible: boolean = true; // Default visibility state
+
+    @Prop()
     readingTimePerWord: number = 0.3; // Average time (seconds) per word
 
     @State()
@@ -55,6 +79,12 @@ export class UrReader {
     lockedMessage: string = 'This chapter is locked. Buy story to read chapter.';
 
     @Prop()
+    nextChapterText: string = 'Next Chapter';
+
+    @Prop()
+    previousChapterText: string = 'Previous Chapter';
+
+    @Prop()
     unlockButtonLabel: string = 'Buy and Unlock';
 
     @State()
@@ -64,20 +94,43 @@ export class UrReader {
     chapterUnlocked: EventEmitter<void>; // Define the custom event
 
     @Event()
-    nextChapter: EventEmitter<void>;
+    likeClicked: EventEmitter<void>;
 
     @Event()
-    previousChapter: EventEmitter<void>;
+    dislikeClicked: EventEmitter<void>;
+
+    @Event()
+    commentClicked: EventEmitter<void>;
+
+    @Event()
+    donateClicked: EventEmitter<void>;
+
+    @Event()
+    shareClicked: EventEmitter<void>;
+
+    @Event()
+    nextChapterClicked: EventEmitter<void>;
+
+    @Event()
+    previousChapterClicked: EventEmitter<void>;
+
+    @Event()
+    followAuthorClicked: EventEmitter<void>;
+
+    @Event()
+    viewAuthorProfileClicked: EventEmitter<void>;
 
     @State()
     isHostSmall: boolean = false; // Flag to track if the host width is <= 930px
 
-    private goToNextChapter() {
-        this.nextChapter.emit();
+    private handleNextChapter() {
+        console.log('Next Chapter button clicked');
+        this.nextChapterClicked.emit(); // Emit the updated event
     }
 
-    private goToPreviousChapter() {
-        this.previousChapter.emit();
+    private handlePreviousChapter() {
+        console.log('Previous Chapter button clicked');
+        this.previousChapterClicked.emit(); // Emit the updated event
     }
 
     @Element()
@@ -151,6 +204,12 @@ export class UrReader {
             fontFamily: this.getFontFamily(this.fontType),
             fontSize: `${calculatedFontSize}px`,
         };
+    }
+
+    @Watch('isVisible')
+    handleVisibilityChange(newValue: boolean) {
+        console.log('Visibility changed to:', newValue);
+        // Perform additional actions if needed
     }
 
     private setBaseFontSize() {
@@ -293,32 +352,7 @@ export class UrReader {
         return (
             <Host>
                 <div class="ur-read-rail-holder">
-                    {/* Left Rail */}
-                    <div class="ur-read-rail">
-                        <ur-avatar src="https://i.pravatar.cc/150?img=3" size="56px" name="Jane Doe"></ur-avatar>
-                        <div class="actions-holder">
-                            <div class="action">
-                                <ur-button-icon icon="thumb_up--outlined" variant="standard"></ur-button-icon>
-                                <span class="action-label">150k</span>
-                            </div>
-                            <div class="action">
-                                <ur-button-icon icon="thumb_down--outlined" variant="standard"></ur-button-icon>
-                                <span class="action-label">Dislike</span>
-                            </div>
-                            <div class="action">
-                                <ur-button-icon icon="comment--outlined" variant="standard"></ur-button-icon>
-                                <span class="action-label">15</span>
-                            </div>
-                            <div class="action">
-                                <ur-button-icon icon="volunteer_activism--outlined" variant="standard"></ur-button-icon>
-                                <span class="action-label">Donate</span>
-                            </div>
-                            <div class="action">
-                                <ur-button-icon icon="share--outlined" variant="standard"></ur-button-icon>
-                                <span class="action-label">Share</span>
-                            </div>
-                        </div>
-                    </div>
+                    <slot name="ur-read-rail-slot"></slot>
                 </div>
                 <section
                     class={{
@@ -355,17 +389,42 @@ export class UrReader {
                         }}
                         innerHTML={this.chapterContent} // Safely render the HTML content
                     ></div>
-                    <div class="navigation-buttons">
+                    <div
+                        class={{
+                            'navigation-buttons': true,
+                            'hidden': !this.isVisible,
+                        }}
+                    >
+                        {this.isHostSmall && this.hasPreviousChapter && this.chapterSequence !== 1 && (
+                            <ur-button variant="text" class="nav-button" fullWidth icon="arrow_back" disabled={false} onClick={() => this.handlePreviousChapter()}>
+                                {this.previousChapterText}
+                            </ur-button>
+                        )}
                         {!this.isHostSmall && this.hasPreviousChapter && this.chapterSequence !== 1 && (
-                            <ur-tooltip content="Previous Chapter" placement="right" trigger="hover">
-                                <ur-button-icon class="arrow-button" icon="arrow_back" disabled={false} onClick={() => this.goToPreviousChapter()}></ur-button-icon>
+                            <ur-tooltip
+                                content={this.previousChapterText} // Tooltip text from prop
+                                placement="right"
+                                trigger="hover"
+                                colorScheme="dark"
+                            >
+                                <ur-button-icon class="arrow-button" icon="arrow_back" disabled={false} onClick={() => this.handlePreviousChapter()}></ur-button-icon>
                             </ur-tooltip>
                         )}
                         <span class="mid-flex"></span>
                         {!this.isHostSmall && this.hasNextChapter && (
-                            <ur-tooltip content="Next Chapter" placement="left" trigger="hover">
-                                <ur-button-icon class="arrow-button" icon="arrow_forward" disabled={false} onClick={() => this.goToNextChapter()}></ur-button-icon>
+                            <ur-tooltip
+                                content={this.nextChapterText} // Tooltip text from prop
+                                placement="left"
+                                trigger="hover"
+                                colorScheme="dark"
+                            >
+                                <ur-button-icon class="arrow-button" icon="arrow_forward" disabled={false} onClick={() => this.handleNextChapter()}></ur-button-icon>
                             </ur-tooltip>
+                        )}
+                        {this.isHostSmall && this.hasNextChapter && (
+                            <ur-button variant="text" class="nav-button" fullWidth end-icon="arrow_forward" disabled={false} onClick={() => this.handleNextChapter()}>
+                                {this.nextChapterText}
+                            </ur-button>
                         )}
                     </div>
                 </section>

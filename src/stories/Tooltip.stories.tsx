@@ -14,6 +14,7 @@ const TooltipTemplate = args => html`
             open-delay="${args.openDelay}"
             close-delay="${args.closeDelay}"
             ?disabled="${args.disabled}"
+            color-scheme="${args.colorScheme || 'dark'}"
         >
             <ur-button variant="filled">Hover over me</ur-button>
         </ur-tooltip>
@@ -77,6 +78,11 @@ export default {
             control: 'number',
             description: 'Delay in milliseconds before the tooltip disappears',
         },
+        colorScheme: {
+            control: 'select',
+            options: ['dark', 'light'],
+            description: 'Color scheme for the tooltip (dark or light)',
+        },
         disabled: {
             control: 'boolean',
             description: 'Whether the tooltip is disabled',
@@ -87,7 +93,7 @@ export default {
 export const PlainTooltip = {
     args: {
         content: 'This is a plain tooltip.',
-        placement: 'bottom-right',
+        placement: 'bottom',
         variant: 'plain',
         trigger: 'hover',
         openDelay: 0,
@@ -103,7 +109,7 @@ export const RichTooltip = {
         actionText: 'Action',
         placement: 'bottom',
         variant: 'rich',
-        trigger: 'hover', 
+        trigger: 'hover',
         openDelay: 150,
         closeDelay: 150,
         disabled: false,
@@ -130,7 +136,7 @@ export const LightTooltip = {
         trigger: 'hover',
         openDelay: 0,
         closeDelay: 150,
-        colorScheme: 'light', // Set the color scheme to light
+        colorScheme: 'light',
         disabled: false,
     },
 };
