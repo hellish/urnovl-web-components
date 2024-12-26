@@ -24,6 +24,7 @@
  - [ur-main-left-menu](../ur-main-left-menu)
  - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
+ - [ur-reader](../ur-reader)
  - [ur-user](../ur-user)
 
 ### Graph
@@ -33,6 +34,7 @@ graph TD;
   ur-main-left-menu --> ur-button
   ur-page --> ur-button
   ur-page-profile --> ur-button
+  ur-reader --> ur-button
   ur-user --> ur-button
   style ur-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

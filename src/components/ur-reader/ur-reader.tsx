@@ -1,4 +1,5 @@
 import { Component, Prop, State, Watch, Host, h, Element, Event, EventEmitter } from '@stencil/core';
+import DOMPurify from 'dompurify';
 
 @Component({
     tag: 'ur-reader',
@@ -123,6 +124,34 @@ export class UrReader {
     @State()
     isHostSmall: boolean = false; // Flag to track if the host width is <= 930px
 
+    private sanitizeContent(content: string): string {
+        return DOMPurify.sanitize(content, {
+            ALLOWED_TAGS: [
+                // Text structure
+                'p', 'div', 'span', 
+                // Text styling
+                'b', 'i', 'em', 'strong', 'u',
+                // Headers
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                // Lists
+                'ul', 'ol', 'li', 
+                // Other elements
+                'a', 'br', 'blockquote', 'img', 'hr'
+            ],
+            ALLOWED_ATTR: [
+                // Link attributes
+                'href', 'target', 'rel',
+                // Image attributes
+                'src', 'alt',
+                // Styling attributes
+                'style', 'class', 'id',
+                // Allow specific style properties
+                'data-text-align'  // We'll use a data attribute approach
+            ],
+            ADD_ATTR: ['style']  // Explicitly add style attribute
+        });
+    }
+
     private handleNextChapter() {
         console.log('Next Chapter button clicked');
         this.nextChapterClicked.emit(); // Emit the updated event
@@ -194,22 +223,21 @@ export class UrReader {
         }
     }
 
+    @Watch('storyTitle')
+    @Watch('chapterTitle')
+    @Watch('chapterContent')
     @Watch('fontSize')
     @Watch('fontType')
-    updateFontStyles() {
-        const fontSizeMultiplier = this.getFontSizeMultiplier(this.fontSize);
-        const calculatedFontSize = this.baseFontSize * fontSizeMultiplier;
-
-        this.fontStyles = {
-            fontFamily: this.getFontFamily(this.fontType),
-            fontSize: `${calculatedFontSize}px`,
-        };
-    }
-
+    @Watch('loading')
+    @Watch('chapterLocked')
+    @Watch('chapterSequence')
+    @Watch('hasPreviousChapter')
+    @Watch('hasNextChapter')
     @Watch('isVisible')
-    handleVisibilityChange(newValue: boolean) {
-        console.log('Visibility changed to:', newValue);
-        // Perform additional actions if needed
+    handlePropChange() {
+        console.log('Properties changed, re-rendering...');
+        this.updateFontStyles();
+        this.render(); // Trigger re-render when observed properties change
     }
 
     private setBaseFontSize() {
@@ -221,6 +249,16 @@ export class UrReader {
         });
     }
 
+    private updateFontStyles() {
+        const fontSizeMultiplier = this.getFontSizeMultiplier(this.fontSize);
+        const calculatedFontSize = this.baseFontSize * fontSizeMultiplier;
+
+        this.fontStyles = {
+            fontFamily: this.getFontFamily(this.fontType),
+            fontSize: `${calculatedFontSize}px`,
+        };
+    }
+
     private calculateReadingTime(): string {
         const textContent = this.extractText(this.chapterContent);
         const wordCount = textContent.split(/\s+/).length; // Count words
@@ -228,9 +266,10 @@ export class UrReader {
         return `${this.readingDurationText} ${readingTimeInMinutes} ${this.minutesText}`;
     }
 
+    // And update your extractText method:
     private extractText(html: string): string {
         const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
+        tempDiv.innerHTML = this.sanitizeContent(html);
         return tempDiv.textContent || tempDiv.innerText || '';
     }
 
@@ -387,7 +426,7 @@ export class UrReader {
                             fontFamily: this.fontStyles.fontFamily,
                             fontSize: this.fontStyles.fontSize,
                         }}
-                        innerHTML={this.chapterContent} // Safely render the HTML content
+                        innerHTML={this.sanitizeContent(this.chapterContent)} // Change this line
                     ></div>
                     <div
                         class={{
