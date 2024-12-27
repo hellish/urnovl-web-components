@@ -136,6 +136,13 @@
 
 /* READ RAIL END */
 
+:host .navigation-buttons-non-floating {
+    gap: 16px;
+    display: flex;
+    padding: 16px 0;
+    flex-direction: column;
+}
+
 :host .reader-container .navigation-buttons {
     top: 50%;
     left: 50%;

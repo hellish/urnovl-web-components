@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element } from '@stencil/core';
+import { Component, Host, h, Prop, Event, EventEmitter, Watch, Element, State } from '@stencil/core';
 
 @Component({
     tag: 'ur-read-rail-desktop',
@@ -34,12 +34,45 @@ export class UrReadRail {
     @Prop()
     isFollowed: boolean = false; // Follow state (initial state)
 
+    @Prop()
+    isOwnChapter: boolean = false;
+
+    @Prop()
+    isChapterPurchased: boolean = false;
+
+    @Prop()
+    isNovlDeleted: boolean = false;
+
+    @Prop()
+    isAuthorFollowed: boolean = false;
+
+    @Prop()
+    isPaidChapter: boolean = false;
+
+    @Prop()
+    isAuthorPro: boolean = false;
+
+    @Prop()
+    isDonationsEnabled: boolean = false;
+
+    @Prop()
+    isHostSmall: boolean = false; // Default value
+
+    @State()
+    isLiked: boolean = false; // Track if the item is liked
+
+    @State()
+    isDisliked: boolean = false; // Track if the item is disliked
+
+    @Prop()
+    isVisible: boolean = true; // Visibility state (default visible)
+
     // Events
     @Event({ bubbles: true, composed: true })
-    likeClicked: EventEmitter<void>; // Triggered when the "Like" button is clicked
+    likeClicked: EventEmitter<boolean>; // Accepts a boolean argument
 
     @Event({ bubbles: true, composed: true })
-    dislikeClicked: EventEmitter<void>; // Triggered when the "Dislike" button is clicked
+    dislikeClicked: EventEmitter<boolean>; // Accepts a boolean argument
 
     @Event({ bubbles: true, composed: true })
     commentClicked: EventEmitter<void>; // Triggered when the "Comment" button is clicked
@@ -59,21 +92,43 @@ export class UrReadRail {
     @Event({ bubbles: true, composed: true })
     visibilityToggled: EventEmitter<boolean>; // Emit when visibility is toggled
 
-    @Prop()
-    isVisible: boolean = true; // Visibility state (default visible)
+    // Event emitters for social media actions with bubbles
+    @Event({ bubbles: true, composed: true })
+    facebookShareClicked: EventEmitter<void>;
 
-    // Watch for changes to `isFollowed`
-    @Watch('isFollowed')
-    handleIsFollowedChange(newValue: boolean) {
-        console.log('isFollowed changed to:', newValue);
-        // You can add additional logic here if needed
+    @Event({ bubbles: true, composed: true })
+    twitterShareClicked: EventEmitter<void>;
+
+    @Event({ bubbles: true, composed: true })
+    linkedinShareClicked: EventEmitter<void>;
+
+    @Watch('avatarSrc')
+    @Watch('avatarName')
+    @Watch('likes')
+    @Watch('dislike')
+    @Watch('comments')
+    @Watch('donate')
+    @Watch('share')
+    @Watch('isVisible')
+    @Watch('isPaidChapter')
+    @Watch('isOwnChapter')
+    @Watch('isHostSmall')
+    @Watch('isChapterPurchased')
+    @Watch('isNovlDeleted')
+    @Watch('isAuthorFollowed')
+    @Watch('isAuthorPro')
+    @Watch('isDonationsEnabled')
+    handlePropChange() {
+        console.log('Properties changed, re-rendering...');
+        if (this.isVisible !== undefined) {
+            this.updateVisibility();
+        }
+        this.render(); // Trigger re-render when observed properties change
     }
 
-    // Watchers
-    @Watch('isVisible')
-    handleVisibilityChange(newValue: boolean) {
-        console.log('Visibility changed to:', newValue);
-        this.updateVisibility();
+    @Watch('isHostSmall')
+    handleHostSmallChange(newValue: boolean, oldValue: boolean) {
+        console.log('isHostSmall changed in child:', newValue);
     }
 
     private updateVisibility() {
@@ -84,15 +139,21 @@ export class UrReadRail {
             hostElement.classList.add('hidden');
         }
     }
-    // Handlers
+
     private handleLike() {
-        console.log('Like button clicked');
-        this.likeClicked.emit();
+        this.isLiked = !this.isLiked;
+        if (this.isLiked) {
+            this.isDisliked = false;
+        }
+        this.likeClicked.emit(this.isLiked); // Emit the updated like state
     }
 
     private handleDislike() {
-        console.log('Dislike button clicked');
-        this.dislikeClicked.emit();
+        this.isDisliked = !this.isDisliked;
+        if (this.isDisliked) {
+            this.isLiked = false;
+        }
+        this.dislikeClicked.emit(this.isDisliked); // Emit the updated dislike state
     }
 
     private handleComment() {
@@ -105,11 +166,6 @@ export class UrReadRail {
         this.donateClicked.emit();
     }
 
-    private handleShare() {
-        console.log('Share button clicked');
-        this.shareClicked.emit();
-    }
-
     private handleFollow() {
         console.log('Follow button clicked');
         this.followClicked.emit();
@@ -119,6 +175,21 @@ export class UrReadRail {
     private handleViewProfile() {
         console.log('View profile clicked');
         this.viewProfileClicked.emit();
+    }
+
+    private handleFacebookClick() {
+        console.log('facebook share clicked');
+        this.facebookShareClicked.emit(); // Emit event when Facebook button is clicked
+    }
+
+    private handleTwitterClick() {
+        console.log('twitter share clicked');
+        this.twitterShareClicked.emit(); // Emit event when Twitter button is clicked
+    }
+
+    private handleLinkedinClick() {
+        console.log('linkedin share clicked');
+        this.linkedinShareClicked.emit(); // Emit event when LinkedIn button is clicked
     }
 
     componentWillLoad() {
@@ -136,29 +207,50 @@ export class UrReadRail {
                 {/* Profile Section */}
                 <div class="profile-holder">
                     <ur-avatar class="avatar-button" src={this.avatarSrc} border="4px" size="56px" name={this.avatarName} onClick={() => this.handleViewProfile()}></ur-avatar>
-                    {!this.isFollowed && <ur-button-icon class="follow-btn" icon="add" variant="filled" onClick={() => this.handleFollow()}></ur-button-icon>}
+
+                    {/* Show follow button if not following and chapter is not owned */}
+                    {!this.isFollowed && !this.isOwnChapter && <ur-button-icon class="follow-btn" icon="add" variant="filled" onClick={() => this.handleFollow()}></ur-button-icon>}
                 </div>
 
                 {/* Action Buttons Section */}
                 <div class="actions-holder">
                     <div class="action">
-                        <ur-button-icon icon="thumb_up--outlined" variant="standard" onClick={() => this.handleLike()}></ur-button-icon>
+                        <ur-button-icon
+                            icon={this.isLiked ? 'thumb_up' : 'thumb_up--outlined'}
+                            selectedIcon="thumb_up"
+                            selected={this.isLiked}
+                            onClick={() => this.handleLike()}
+                        ></ur-button-icon>
                         <span class="action-label">{this.likes}</span>
                     </div>
                     <div class="action">
-                        <ur-button-icon icon="thumb_down--outlined" variant="standard" onClick={() => this.handleDislike()}></ur-button-icon>
+                        <ur-button-icon
+                            icon={this.isDisliked ? 'thumb_down' : 'thumb_down--outlined'}
+                            selectedIcon="thumb_down"
+                            selected={this.isDisliked}
+                            onClick={() => this.handleDislike()}
+                        ></ur-button-icon>
                         <span class="action-label">{this.dislike}</span>
                     </div>
-                    <div class="action">
-                        <ur-button-icon icon="comment--outlined" variant="standard" onClick={() => this.handleComment()}></ur-button-icon>
-                        <span class="action-label">{this.comments}</span>
-                    </div>
+                    {!this.isPaidChapter && !this.isOwnChapter && this.isAuthorPro && (
+                        <div class="action">
+                            <ur-button-icon icon="volunteer_activism--outlined" variant="standard" onClick={() => this.handleDonate()}></ur-button-icon>
+                            <span class="action-label">{this.donate}</span>
+                        </div>
+                    )}
                     <div class="action">
                         <ur-button-icon icon="volunteer_activism--outlined" variant="standard" onClick={() => this.handleDonate()}></ur-button-icon>
                         <span class="action-label">{this.donate}</span>
                     </div>
                     <div class="action">
-                        <ur-button-icon icon="share--outlined" variant="standard" onClick={() => this.handleShare()}></ur-button-icon>
+                        <ur-tooltip variant="rich" placement={this.isHostSmall ? 'left' : 'right'} trigger="click" color-scheme="light">
+                            <ur-button-icon icon="share--outlined" variant="standard"></ur-button-icon>
+                            <div slot="rich-content" class="share-options">
+                                <ur-button-icon icon="/assets/images/facebook.svg" variant="standard" onClick={() => this.handleFacebookClick()}></ur-button-icon>
+                                <ur-button-icon icon="/assets/images/twitter.svg" variant="standard" onClick={() => this.handleTwitterClick()}></ur-button-icon>
+                                <ur-button-icon icon="/assets/images/linkedin.svg" variant="standard" onClick={() => this.handleLinkedinClick()}></ur-button-icon>
+                            </div>
+                        </ur-tooltip>
                         <span class="action-label">{this.share}</span>
                     </div>
                 </div>

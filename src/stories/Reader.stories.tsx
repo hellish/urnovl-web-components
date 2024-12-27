@@ -18,7 +18,7 @@ const Template = args => html`
             ?is-visible="${args.isVisible}"
         >
             <ur-read-rail-desktop
-                slot="ur-read-rail-slot"
+                slot="ur-read-rail-slot" 
                 avatar-src="${args.avatarSrc}"
                 avatar-name="${args.avatarName}"
                 likes="${args.likes}"
@@ -27,6 +27,7 @@ const Template = args => html`
                 donate="${args.donate}"
                 share="${args.share}"
                 ?is-visible="${args.isVisible}"
+                ?is-host-small="${args.isHostSmall}"
                 @likeClicked="${args.onLikeClicked}"
                 @dislikeClicked="${args.onDislikeClicked}"
                 @commentClicked="${args.onCommentClicked}"
@@ -116,6 +117,10 @@ export default {
             control: 'boolean', 
             description: 'Controls the visibility of the read rail', 
             defaultValue: true 
+        },
+        isHostSmall: {
+            control: 'boolean',
+            description: 'Indicates whether the host element is small',
         },
         onLikeClicked: {
             action: 'likeClicked',

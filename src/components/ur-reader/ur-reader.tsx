@@ -64,6 +64,24 @@ export class UrReader {
     @Prop()
     readingTimePerWord: number = 0.3; // Average time (seconds) per word
 
+    @Prop() 
+    isOwnChapter: boolean = false;
+    
+    @Prop() 
+    isChapterPurchased: boolean = false;
+    
+    @Prop() 
+    isNovlDeleted: boolean = false;
+    
+    @Prop() 
+    isAuthorFollowed: boolean = false;
+    
+    @Prop() 
+    isAuthorPro: boolean = false;
+    
+    @Prop() 
+    isDonationsEnabled: boolean = false;
+
     @State()
     isSmallContainer: boolean = false;
 
@@ -128,27 +146,49 @@ export class UrReader {
         return DOMPurify.sanitize(content, {
             ALLOWED_TAGS: [
                 // Text structure
-                'p', 'div', 'span', 
+                'p',
+                'div',
+                'span',
                 // Text styling
-                'b', 'i', 'em', 'strong', 'u',
+                'b',
+                'i',
+                'em',
+                'strong',
+                'u',
                 // Headers
-                'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                'h1',
+                'h2',
+                'h3',
+                'h4',
+                'h5',
+                'h6',
                 // Lists
-                'ul', 'ol', 'li', 
+                'ul',
+                'ol',
+                'li',
                 // Other elements
-                'a', 'br', 'blockquote', 'img', 'hr'
+                'a',
+                'br',
+                'blockquote',
+                'img',
+                'hr',
             ],
             ALLOWED_ATTR: [
                 // Link attributes
-                'href', 'target', 'rel',
+                'href',
+                'target',
+                'rel',
                 // Image attributes
-                'src', 'alt',
+                'src',
+                'alt',
                 // Styling attributes
-                'style', 'class', 'id',
+                'style',
+                'class',
+                'id',
                 // Allow specific style properties
-                'data-text-align'  // We'll use a data attribute approach
+                'data-text-align', // We'll use a data attribute approach
             ],
-            ADD_ATTR: ['style']  // Explicitly add style attribute
+            ADD_ATTR: ['style'], // Explicitly add style attribute
         });
     }
 
@@ -199,7 +239,7 @@ export class UrReader {
 
                         // Add or remove class for host width <= 900px
                         if (entry.target === hostElement) {
-                            if (width <= 930) {
+                            if (width <= 970) {
                                 this.el.classList.add('host-small');
                                 this.isHostSmall = true; // Update the flag
                             } else {
@@ -223,6 +263,8 @@ export class UrReader {
         }
     }
 
+    @Watch('avatarSrc')
+    @Watch('avatarName')
     @Watch('storyTitle')
     @Watch('chapterTitle')
     @Watch('chapterContent')
@@ -234,6 +276,12 @@ export class UrReader {
     @Watch('hasPreviousChapter')
     @Watch('hasNextChapter')
     @Watch('isVisible')
+    @Watch('isOwnChapter')
+    @Watch('isChapterPurchased')
+    @Watch('isNovlDeleted')
+    @Watch('isAuthorFollowed')
+    @Watch('isAuthorPro')
+    @Watch('isDonationsEnabled')
     handlePropChange() {
         console.log('Properties changed, re-rendering...');
         this.updateFontStyles();
@@ -315,7 +363,7 @@ export class UrReader {
                                 fontFamily: this.fontStyles.fontFamily,
                             }}
                         >
-                            {this.storyTitle}
+                            &nbsp;
                         </h2>
                     )}
                     <h3 class="chapter-title loading">&nbsp;</h3>
@@ -428,6 +476,20 @@ export class UrReader {
                         }}
                         innerHTML={this.sanitizeContent(this.chapterContent)} // Change this line
                     ></div>
+
+                    <div class="navigation-buttons-non-floating">
+                        {!this.isHostSmall && this.hasNextChapter && (
+                            <ur-button variant="filled" class="nav-button" fullWidth end-icon="arrow_forward" disabled={false} onClick={() => this.handleNextChapter()}>
+                                {this.nextChapterText}
+                            </ur-button>
+                        )}
+                        {!this.isHostSmall && this.hasPreviousChapter && this.chapterSequence !== 1 && (
+                            <ur-button variant="text" class="nav-button" fullWidth icon="arrow_back" disabled={false} onClick={() => this.handlePreviousChapter()}>
+                                {this.previousChapterText}
+                            </ur-button>
+                        )}
+                    </div>
+
                     <div
                         class={{
                             'navigation-buttons': true,

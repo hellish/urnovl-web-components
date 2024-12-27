@@ -28,17 +28,26 @@ export class UrButtonIcon {
     selected = false;
 
     render() {
+        // Check if the icon is an SVG file (ends with .svg)
+        const isSvg = this.icon && this.icon.endsWith('.svg');
+    
         return (
             <Host>
                 <mdui-button-icon
-                    icon={this.icon}
                     variant={this.variant}
                     loading={this.loading}
                     disabled={this.disabled}
-                    selected={this.selected}>
-                        <mdui-icon slot="selected-icon" name={this.selectedIcon}></mdui-icon>
+                    selected={this.selected}
+                >
+                    {/* If it's an SVG path, render it as an image */}
+                    {isSvg ? (
+                        <img src={this.icon} alt="Custom Icon" class="custom-icon" />
+                    ) : (
+                        <mdui-icon name={this.icon} />
+                    )}
                 </mdui-button-icon>
             </Host>
-        )
+        );
     }
+    
 }

@@ -3,7 +3,7 @@ import '../components/ur-read-rail-mobile/ur-read-rail-mobile'; // Adjust the pa
 
 const Template = args => html`
   <div style="display: flex; justify-content: center;">
-    <ur-read-rail-mobile
+    <ur-read-rail-desktop
       avatar-src="${args.avatarSrc}"
       avatar-name="${args.avatarName}"
       likes="${args.likes}"
@@ -12,6 +12,7 @@ const Template = args => html`
       donate="${args.donate}"
       share="${args.share}"
       ?is-followed="${args.isFollowed}"
+      is-host-small="${args.isHostSmall}"
     ></ur-read-rail-mobile>
   </div>
 `;

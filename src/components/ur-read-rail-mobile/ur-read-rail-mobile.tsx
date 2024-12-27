@@ -37,6 +37,24 @@ export class UrReadRailMobile {
     @Prop()
     isVisible: boolean = true; // Visibility state (default visible)
 
+    @Prop() 
+    isOwnChapter: boolean = false;
+    
+    @Prop() 
+    isChapterPurchased: boolean = false;
+    
+    @Prop() 
+    isNovlDeleted: boolean = false;
+    
+    @Prop() 
+    isAuthorFollowed: boolean = false;
+    
+    @Prop() 
+    isAuthorPro: boolean = false;
+    
+    @Prop() 
+    isDonationsEnabled: boolean = false;
+
     // Events
     @Event({ bubbles: true, composed: true })
     likeClicked: EventEmitter<void>; // Triggered when the "Like" button is clicked
@@ -62,17 +80,26 @@ export class UrReadRailMobile {
     @Event({ bubbles: true, composed: true })
     visibilityToggled: EventEmitter<boolean>; // Emit when visibility is toggled
 
-    // Watch for changes to `isFollowed`
-    @Watch('isFollowed')
-    handleIsFollowedChange(newValue: boolean) {
-        console.log('isFollowed changed to:', newValue);
-        // Additional logic can be added if needed
-    }
-
+    @Watch('avatarSrc')
+    @Watch('avatarName')
+    @Watch('likes')
+    @Watch('dislike')
+    @Watch('comments')
+    @Watch('donate')
+    @Watch('share')
     @Watch('isVisible')
-    handleVisibilityChange(newValue: boolean) {
-        console.log('isVisible changed to:', newValue);
-        this.updateVisibility();
+    @Watch('isOwnChapter')
+    @Watch('isChapterPurchased')
+    @Watch('isNovlDeleted')
+    @Watch('isAuthorFollowed')
+    @Watch('isAuthorPro')
+    @Watch('isDonationsEnabled')
+    handlePropChange() {
+        console.log('Properties changed, re-rendering...');
+        if (this.isVisible !== undefined) {
+            this.updateVisibility();
+        }
+        this.render(); // Trigger re-render when observed properties change
     }
 
     private updateVisibility() {
