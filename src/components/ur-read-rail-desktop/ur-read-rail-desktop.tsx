@@ -11,10 +11,10 @@ export class UrReadRail {
 
     // Props
     @Prop()
-    avatarSrc: string = 'https://i.pravatar.cc/150?img=3'; // Avatar image source
+    avatarSrc: string;
 
     @Prop()
-    avatarName: string = 'Jane Doe'; // Avatar name
+    avatarName: string;
 
     @Prop()
     likes: string = '1.5k'; // Number of likes
@@ -50,10 +50,10 @@ export class UrReadRail {
     isPaidChapter: boolean = false;
 
     @Prop()
-    isAuthorPro: boolean = false;
+    isAuthorPro: boolean = true;
 
     @Prop()
-    isDonationsEnabled: boolean = false;
+    isDonationsEnabled: boolean = true;
 
     @Prop()
     isHostSmall: boolean = false; // Default value
@@ -127,7 +127,7 @@ export class UrReadRail {
     }
 
     @Watch('isHostSmall')
-    handleHostSmallChange(newValue: boolean, oldValue: boolean) {
+    handleHostSmallChange(newValue: boolean) {
         console.log('isHostSmall changed in child:', newValue);
     }
 
@@ -232,16 +232,16 @@ export class UrReadRail {
                         ></ur-button-icon>
                         <span class="action-label">{this.dislike}</span>
                     </div>
+                    <div class="action">
+                        <ur-button-icon icon="comment--outlined" variant="standard" onClick={() => this.handleComment()}></ur-button-icon>
+                        <span class="action-label">{this.comments}</span>
+                    </div>
                     {!this.isPaidChapter && !this.isOwnChapter && this.isAuthorPro && (
                         <div class="action">
                             <ur-button-icon icon="volunteer_activism--outlined" variant="standard" onClick={() => this.handleDonate()}></ur-button-icon>
                             <span class="action-label">{this.donate}</span>
                         </div>
                     )}
-                    <div class="action">
-                        <ur-button-icon icon="volunteer_activism--outlined" variant="standard" onClick={() => this.handleDonate()}></ur-button-icon>
-                        <span class="action-label">{this.donate}</span>
-                    </div>
                     <div class="action">
                         <ur-tooltip variant="rich" placement={this.isHostSmall ? 'left' : 'right'} trigger="click" color-scheme="light">
                             <ur-button-icon icon="share--outlined" variant="standard"></ur-button-icon>

@@ -22,6 +22,12 @@
 | `fontType`            | `font-type`             |             | `"monospace" \| "sans-serif" \| "serif" \| "system"` | `'sans-serif'`                                         |
 | `hasNextChapter`      | `has-next-chapter`      |             | `boolean`                                            | `true`                                                 |
 | `hasPreviousChapter`  | `has-previous-chapter`  |             | `boolean`                                            | `true`                                                 |
+| `isAuthorFollowed`    | `is-author-followed`    |             | `boolean`                                            | `false`                                                |
+| `isAuthorPro`         | `is-author-pro`         |             | `boolean`                                            | `false`                                                |
+| `isChapterPurchased`  | `is-chapter-purchased`  |             | `boolean`                                            | `false`                                                |
+| `isDonationsEnabled`  | `is-donations-enabled`  |             | `boolean`                                            | `false`                                                |
+| `isNovlDeleted`       | `is-novl-deleted`       |             | `boolean`                                            | `false`                                                |
+| `isOwnChapter`        | `is-own-chapter`        |             | `boolean`                                            | `false`                                                |
 | `isVisible`           | `is-visible`            |             | `boolean`                                            | `true`                                                 |
 | `likes`               | `likes`                 |             | `string`                                             | `'1.5k'`                                               |
 | `loading`             | `loading`               |             | `boolean`                                            | `false`                                                |
