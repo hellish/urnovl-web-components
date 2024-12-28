@@ -21,7 +21,7 @@ const Template = args => html`
                 slot="ur-read-rail-slot" 
                 avatar-src="${args.avatarSrc}"
                 avatar-name="${args.avatarName}"
-                likes="${args.likes}"
+                .likes="${args.likes}"
                 dislike="${args.dislike}"
                 comments="${args.comments}"
                 donate="${args.donate}"
@@ -89,9 +89,9 @@ export default {
             defaultValue: 'Jane Doe',
         },
         likes: {
-            control: 'text',
+            control: 'number',  // Changed from 'text'
             description: 'Number of likes',
-            defaultValue: '1.5k',
+            defaultValue: 1500, // Changed from '1.5k'
         },
         dislike: {
             control: 'text',
@@ -174,7 +174,7 @@ export const Default = {
         hasNextChapter: true,
         avatarSrc: 'https://i.pravatar.cc/150?img=3',
         avatarName: 'Jane Doe',
-        likes: '1.5k',
+        likes: 1500,  // Changed from '1.5k'
         dislike: 'Dislike',
         comments: 15,
         donate: 'Donate',
@@ -204,7 +204,7 @@ export const SubsequentChapter = {
         hasNextChapter: true,
         avatarSrc: 'https://i.pravatar.cc/150?img=3',
         avatarName: 'Jane Doe',
-        likes: '1.5k',
+        likes: 1500,  // Changed from '1.5k'
         dislike: 'Dislike',
         comments: 15,
         donate: 'Donate',

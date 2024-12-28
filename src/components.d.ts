@@ -396,7 +396,7 @@ export namespace Components {
         "isOwnChapter": boolean;
         "isPaidChapter": boolean;
         "isVisible": boolean;
-        "likes": string;
+        "likes": number;
         "share": string;
     }
     interface UrReadRailMobile {
@@ -1658,7 +1658,7 @@ declare namespace LocalJSX {
         "isOwnChapter"?: boolean;
         "isPaidChapter"?: boolean;
         "isVisible"?: boolean;
-        "likes"?: string;
+        "likes"?: number;
         "onCommentClicked"?: (event: UrReadRailDesktopCustomEvent<void>) => void;
         "onDislikeClicked"?: (event: UrReadRailDesktopCustomEvent<boolean>) => void;
         "onDonateClicked"?: (event: UrReadRailDesktopCustomEvent<void>) => void;

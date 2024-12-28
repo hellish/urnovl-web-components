@@ -7,25 +7,25 @@
 
 ## Properties
 
-| Property             | Attribute              | Description | Type      | Default                             |
-| -------------------- | ---------------------- | ----------- | --------- | ----------------------------------- |
-| `avatarName`         | `avatar-name`          |             | `string`  | `'Jane Doe'`                        |
-| `avatarSrc`          | `avatar-src`           |             | `string`  | `'https://i.pravatar.cc/150?img=3'` |
-| `comments`           | `comments`             |             | `number`  | `15`                                |
-| `dislike`            | `dislike`              |             | `string`  | `'Dislike'`                         |
-| `donate`             | `donate`               |             | `string`  | `'Donate'`                          |
-| `isAuthorFollowed`   | `is-author-followed`   |             | `boolean` | `false`                             |
-| `isAuthorPro`        | `is-author-pro`        |             | `boolean` | `false`                             |
-| `isChapterPurchased` | `is-chapter-purchased` |             | `boolean` | `false`                             |
-| `isDonationsEnabled` | `is-donations-enabled` |             | `boolean` | `false`                             |
-| `isFollowed`         | `is-followed`          |             | `boolean` | `false`                             |
-| `isHostSmall`        | `is-host-small`        |             | `boolean` | `false`                             |
-| `isNovlDeleted`      | `is-novl-deleted`      |             | `boolean` | `false`                             |
-| `isOwnChapter`       | `is-own-chapter`       |             | `boolean` | `false`                             |
-| `isPaidChapter`      | `is-paid-chapter`      |             | `boolean` | `false`                             |
-| `isVisible`          | `is-visible`           |             | `boolean` | `true`                              |
-| `likes`              | `likes`                |             | `string`  | `'1.5k'`                            |
-| `share`              | `share`                |             | `string`  | `'Share'`                           |
+| Property             | Attribute              | Description | Type      | Default     |
+| -------------------- | ---------------------- | ----------- | --------- | ----------- |
+| `avatarName`         | `avatar-name`          |             | `string`  | `undefined` |
+| `avatarSrc`          | `avatar-src`           |             | `string`  | `undefined` |
+| `comments`           | `comments`             |             | `number`  | `15`        |
+| `dislike`            | `dislike`              |             | `string`  | `'Dislike'` |
+| `donate`             | `donate`               |             | `string`  | `'Donate'`  |
+| `isAuthorFollowed`   | `is-author-followed`   |             | `boolean` | `false`     |
+| `isAuthorPro`        | `is-author-pro`        |             | `boolean` | `true`      |
+| `isChapterPurchased` | `is-chapter-purchased` |             | `boolean` | `false`     |
+| `isDonationsEnabled` | `is-donations-enabled` |             | `boolean` | `true`      |
+| `isFollowed`         | `is-followed`          |             | `boolean` | `false`     |
+| `isHostSmall`        | `is-host-small`        |             | `boolean` | `false`     |
+| `isNovlDeleted`      | `is-novl-deleted`      |             | `boolean` | `false`     |
+| `isOwnChapter`       | `is-own-chapter`       |             | `boolean` | `false`     |
+| `isPaidChapter`      | `is-paid-chapter`      |             | `boolean` | `false`     |
+| `isVisible`          | `is-visible`           |             | `boolean` | `true`      |
+| `likes`              | `likes`                |             | `string`  | `'1.5k'`    |
+| `share`              | `share`                |             | `string`  | `'Share'`   |
 
 
 ## Events

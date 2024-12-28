@@ -17,13 +17,13 @@ export class UrReadRail {
     avatarName: string;
 
     @Prop()
-    likes: string = '1.5k'; // Number of likes
+    likes: number; // Number of likes
 
     @Prop()
     dislike: string = 'Dislike'; // Dislike text
 
     @Prop()
-    comments: number = 15; // Number of comments
+    comments: number; // Number of comments
 
     @Prop()
     donate: string = 'Donate'; // Donate text
@@ -50,7 +50,7 @@ export class UrReadRail {
     isPaidChapter: boolean = false;
 
     @Prop()
-    isAuthorPro: boolean = true;
+    isAuthorPro: boolean = false;
 
     @Prop()
     isDonationsEnabled: boolean = true;
@@ -236,7 +236,7 @@ export class UrReadRail {
                         <ur-button-icon icon="comment--outlined" variant="standard" onClick={() => this.handleComment()}></ur-button-icon>
                         <span class="action-label">{this.comments}</span>
                     </div>
-                    {!this.isPaidChapter && !this.isOwnChapter && this.isAuthorPro && (
+                    {this.isDonationsEnabled && !this.isPaidChapter && !this.isOwnChapter && this.isAuthorPro && (
                         <div class="action">
                             <ur-button-icon icon="volunteer_activism--outlined" variant="standard" onClick={() => this.handleDonate()}></ur-button-icon>
                             <span class="action-label">{this.donate}</span>

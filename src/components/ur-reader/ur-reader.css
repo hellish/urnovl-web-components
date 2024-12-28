@@ -153,7 +153,7 @@
     justify-content: space-between;
     width: calc(100% - 8px);
     max-width: 1100px;
-    z-index: 0;
+    z-index: 10;
     padding: 0 4px;
     gap: 8px;
 }
