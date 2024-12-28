@@ -117,16 +117,16 @@
     z-index: 1;
     display: block; /* Ensure the slot behaves like a block element if necessary */
 }
-:host .ur-read-rail-holder ::slotted(ur-read-rail-desktop) {
+:host .ur-read-rail-holder ::slotted(ur-read-rail) {
     /* Styles for the slotted component */
-    top: 120px;
+    top: 200px;
     left: 0;
     margin: 0;
     position: absolute;
     transform: translate(calc(-100% - 8px),0);
 }
 
-:host(.host-small) .ur-read-rail-holder ::slotted(ur-read-rail-desktop) {
+:host(.host-small) .ur-read-rail-holder ::slotted(ur-read-rail) {
     right: 0;
     top: initial;
     bottom: 48px;
@@ -172,6 +172,7 @@
 
 :host(.host-small) .reader-container .navigation-buttons {
     bottom: 0;
+    height: 40px;
     top: initial;
     max-width: 740px;
     padding: 4px;

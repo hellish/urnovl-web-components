@@ -25,7 +25,7 @@
  - [ur-main-left-menu](../ur-main-left-menu)
  - [ur-read-desktop-top-app-bar](../ur-read-desktop-top-app-bar)
  - [ur-read-mobile-top-app-bar](../ur-read-mobile-top-app-bar)
- - [ur-read-rail-desktop](../ur-read-rail-desktop)
+ - [ur-read-rail](../ur-read-rail)
  - [ur-read-rail-mobile](../ur-read-rail-mobile)
  - [ur-reader](../ur-reader)
 
@@ -36,7 +36,7 @@ graph TD;
   ur-main-left-menu --> ur-button-icon
   ur-read-desktop-top-app-bar --> ur-button-icon
   ur-read-mobile-top-app-bar --> ur-button-icon
-  ur-read-rail-desktop --> ur-button-icon
+  ur-read-rail --> ur-button-icon
   ur-read-rail-mobile --> ur-button-icon
   ur-reader --> ur-button-icon
   style ur-button-icon fill:#f9f,stroke:#333,stroke-width:4px

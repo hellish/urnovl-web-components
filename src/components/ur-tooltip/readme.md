@@ -23,13 +23,13 @@
 
 ### Used by
 
- - [ur-read-rail-desktop](../ur-read-rail-desktop)
+ - [ur-read-rail](../ur-read-rail)
  - [ur-reader](../ur-reader)
 
 ### Graph
 ```mermaid
 graph TD;
-  ur-read-rail-desktop --> ur-tooltip
+  ur-read-rail --> ur-tooltip
   ur-reader --> ur-tooltip
   style ur-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
