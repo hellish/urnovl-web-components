@@ -56,7 +56,7 @@ export class UrReadRail {
     isDonationsEnabled: boolean = true;
 
     @Prop()
-    isHostSmall: boolean = false; // Default value
+    isHostSmall: boolean; // Default value
 
     @State()
     isLiked: boolean = false; // Track if the item is liked

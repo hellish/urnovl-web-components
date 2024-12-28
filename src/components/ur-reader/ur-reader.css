@@ -144,8 +144,12 @@
 }
 
 :host .reader-container .navigation-buttons {
+    gap: 8px;
     top: 50%;
     left: 50%;
+    height: 1px;
+    z-index: 10;
+    padding: 0 4px;
     position: fixed;
     transform: translate(-50%, 0);
     display: flex;
@@ -153,9 +157,6 @@
     justify-content: space-between;
     width: calc(100% - 8px);
     max-width: 1100px;
-    z-index: 10;
-    padding: 0 4px;
-    gap: 8px;
 }
 
 :host .reader-container .navigation-buttons .navigation-button {

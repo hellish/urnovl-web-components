@@ -1095,6 +1095,7 @@ declare global {
         "previousChapterClicked": void;
         "followAuthorClicked": void;
         "viewAuthorProfileClicked": void;
+        "hostSizeChanged": boolean;
     }
     interface HTMLUrReaderElement extends Components.UrReader, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrReaderElementEventMap>(type: K, listener: (this: HTMLUrReaderElement, ev: UrReaderCustomEvent<HTMLUrReaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1728,6 +1729,7 @@ declare namespace LocalJSX {
         "onDislikeClicked"?: (event: UrReaderCustomEvent<void>) => void;
         "onDonateClicked"?: (event: UrReaderCustomEvent<void>) => void;
         "onFollowAuthorClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onHostSizeChanged"?: (event: UrReaderCustomEvent<boolean>) => void;
         "onLikeClicked"?: (event: UrReaderCustomEvent<void>) => void;
         "onNextChapterClicked"?: (event: UrReaderCustomEvent<void>) => void;
         "onPreviousChapterClicked"?: (event: UrReaderCustomEvent<void>) => void;
