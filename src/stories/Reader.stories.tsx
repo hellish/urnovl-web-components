@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import '../components/ur-reader/ur-reader'; // Adjust the path as necessary
-import '../components/ur-read-rail-desktop/ur-read-rail-desktop'; // Adjust path for rail
+import '../components/ur-read-rail/ur-read-rail'; // Adjust path for rail
 
 const Template = args => html`
     <div class="total-page-holder" style="display: flex; justify-content: center;">
@@ -17,7 +17,7 @@ const Template = args => html`
             ?has-next-chapter="${args.hasNextChapter}"
             ?is-visible="${args.isVisible}"
         >
-            <ur-read-rail-desktop
+            <ur-read-rail
                 slot="ur-read-rail-slot" 
                 avatar-src="${args.avatarSrc}"
                 avatar-name="${args.avatarName}"
@@ -35,7 +35,7 @@ const Template = args => html`
                 @shareClicked="${args.onShareClicked}"
                 @followClicked="${args.onFollowClicked}"
                 @viewProfileClicked="${args.onViewProfileClicked}"
-            ></ur-read-rail-desktop>
+            ></ur-read-rail>
         </ur-reader>
     </div>
 `;

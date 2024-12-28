@@ -1,14 +1,15 @@
 import { html } from 'lit';
-import '../components/ur-read-rail-desktop/ur-read-rail-desktop';
+import '../components/ur-read-rail/ur-read-rail';
 
 const Template = args => html`
   <div style="display: flex; justify-content: center;">
-    <ur-read-rail-desktop
+    <ur-read-rail
       avatar-src="${args.avatarSrc}"
       avatar-name="${args.avatarName}"
       likes="${args.likes}"
       dislike="${args.dislike}"
       comments="${args.comments}"
+      mode="${args.mode}"
       donate="${args.donate}"
       share="${args.share}"
       ?is-followed="${args.isFollowed}"
@@ -20,11 +21,11 @@ const Template = args => html`
       ?is-author-pro="${args.isAuthorPro}"
       ?is-donations-enabled="${args.isDonationsEnabled}"
       ?is-host-small="${args.isHostSmall}"
-    ></ur-read-rail-desktop>
+    ></ur-read-rail>
   </div>
 `;
 export default {
-  title: 'urnovl/Basic/Read Rail/Desktop',
+  title: 'urnovl/Basic/Read Rail',
   render: Template,
   argTypes: {
     avatarSrc: {
@@ -91,6 +92,12 @@ export default {
       control: 'boolean',
       description: 'Indicates if the host container is small',
     },
+    mode: {
+      control: 'radio',
+      options: ['desktop', 'ionic'],
+      description: 'Display mode (desktop or ionic native share)',
+      defaultValue: 'desktop'
+    },
   },
 };
 
@@ -101,6 +108,7 @@ export const Default = {
     likes: 1500,  // Changed from '1.5k'
     dislike: 'Dislike',
     comments: 15,
+    mode: 'desktop',
     donate: 'Donate',
     share: 'Share',
     isFollowed: false
@@ -114,6 +122,7 @@ export const HighEngagement = {
     likes: 10000,  // Changed from '10k'
     dislike: 'Dislike',
     comments: 150,
+    mode: 'desktop',
     donate: 'Donate',
     share: 'Share',
     isFollowed: false
@@ -126,6 +135,7 @@ export const MinimalInteraction = {
     avatarName: 'Anonymous',
     likes: 0,  // Changed from '0'
     dislike: 'Dislike',
+    mode: 'desktop',
     comments: 0,
     donate: 'Donate',
     share: 'Share',
@@ -140,6 +150,7 @@ export const NoAvatar = {
     likes: 500,  // Changed from '500'
     dislike: 'Dislike',
     comments: 10,
+    mode: 'desktop',
     donate: 'Donate',
     share: 'Share',
     isFollowed: false
@@ -154,6 +165,7 @@ export const AlreadyFollowed = {
     dislike: 'Dislike',
     comments: 50,
     donate: 'Donate',
+    mode: 'desktop',
     share: 'Share',
     isFollowed: true
   },
@@ -166,6 +178,7 @@ export const ProAuthorWithDonations = {
     likes: 5000,  // Changed from '5k'
     dislike: 'Dislike',
     comments: 75,
+    mode: 'desktop',
     donate: 'Donate',
     share: 'Share',
     isFollowed: false,
@@ -184,6 +197,7 @@ export const PaidChapter = {
     dislike: 'Dislike',
     comments: 45,
     donate: 'Donate',
+    mode: 'desktop',
     share: 'Share',
     isFollowed: false,
     isPaidChapter: true,
@@ -199,6 +213,7 @@ export const OwnChapter = {
     avatarName: 'You',
     likes: 120,  // Was already a number
     dislike: 'Dislike',
+    mode: 'desktop',
     comments: 8,
     donate: 'Donate',
     share: 'Share',
@@ -214,6 +229,7 @@ export const SmallHostContainer = {
     likes: 1200,  // Changed from '1.2k'
     dislike: 'Dislike',
     comments: 25,
+    mode: 'desktop',
     donate: 'Donate',
     share: 'Share',
     isHostSmall: true,
@@ -226,6 +242,7 @@ export const NonProAuthor = {
   args: {
     avatarSrc: 'https://i.pravatar.cc/150?img=13',
     avatarName: 'Regular Author',
+    mode: 'desktop',
     likes: 800,  // Was already a number
     dislike: 'Dislike',
     comments: 15,
@@ -239,6 +256,7 @@ export const NonProAuthor = {
 export const DonationsDisabled = {
   args: {
     avatarSrc: 'https://i.pravatar.cc/150?img=14',
+    mode: 'desktop',
     avatarName: 'No Donations',
     likes: 4500,  // Changed from '4.5k'
     dislike: 'Dislike',
@@ -248,4 +266,20 @@ export const DonationsDisabled = {
     isAuthorPro: true,
     isDonationsEnabled: false
   },
+};
+
+export const IonicNativeShare = {
+  args: {
+    mode: 'ionic',
+    avatarSrc: 'https://i.pravatar.cc/150?img=15',
+    avatarName: 'Mobile User',
+    likes: 2300,
+    dislike: 'Dislike',
+    comments: 42,
+    donate: 'Donate',
+    share: 'Share',
+    isAuthorPro: true,
+    isDonationsEnabled: true,
+    isHostSmall: true  // Usually true for mobile
+  }
 };

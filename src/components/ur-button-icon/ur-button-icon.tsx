@@ -8,7 +8,6 @@ import 'mdui/components/button-icon';
     shadow: true,
 })
 export class UrButtonIcon {
-
     @Prop()
     disabled = false;
 
@@ -19,18 +18,26 @@ export class UrButtonIcon {
     variant: 'standard' | 'filled' | 'tonal' | 'outlined' = 'standard';
 
     @Prop()
-    icon = 'favorite_border';
+    icon: string = 'favorite_border';
 
     @Prop()
-    selectedIcon = 'favorite';
+    selectedIcon?: string;
 
     @Prop()
     selected = false;
 
+    private renderIcon() {
+        // If there's content in the slot, it will override this
+        if (this.icon.includes('<svg')) {
+            // If icon contains SVG markup
+            return <span innerHTML={this.icon}></span>;
+        } else {
+            // Default MDUI icon behavior
+            return <mdui-icon name={this.selected && this.selectedIcon ? this.selectedIcon : this.icon} />;
+        }
+    }
+
     render() {
-        // Check if the icon is an SVG file (ends with .svg)
-        const isSvg = this.icon && this.icon.endsWith('.svg');
-    
         return (
             <Host>
                 <mdui-button-icon
@@ -39,15 +46,11 @@ export class UrButtonIcon {
                     disabled={this.disabled}
                     selected={this.selected}
                 >
-                    {/* If it's an SVG path, render it as an image */}
-                    {isSvg ? (
-                        <img src={this.icon} alt="Custom Icon" class="custom-icon" />
-                    ) : (
-                        <mdui-icon name={this.icon} />
-                    )}
+                    <slot>
+                        {this.renderIcon()}
+                    </slot>
                 </mdui-button-icon>
             </Host>
         );
     }
-    
 }

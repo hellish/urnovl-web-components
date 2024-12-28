@@ -14,3 +14,9 @@
     height: 40px;
     border-radius: var(--ur-shape-corner-small);
 }
+
+:host ::slotted(svg) {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}

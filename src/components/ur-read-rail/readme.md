@@ -19,7 +19,7 @@
 | `isChapterPurchased` | `is-chapter-purchased` |             | `boolean` | `false`     |
 | `isDonationsEnabled` | `is-donations-enabled` |             | `boolean` | `true`      |
 | `isFollowed`         | `is-followed`          |             | `boolean` | `false`     |
-| `isHostSmall`        | `is-host-small`        |             | `boolean` | `false`     |
+| `isHostSmall`        | `is-host-small`        |             | `boolean` | `undefined` |
 | `isNovlDeleted`      | `is-novl-deleted`      |             | `boolean` | `false`     |
 | `isOwnChapter`       | `is-own-chapter`       |             | `boolean` | `false`     |
 | `isPaidChapter`      | `is-paid-chapter`      |             | `boolean` | `false`     |

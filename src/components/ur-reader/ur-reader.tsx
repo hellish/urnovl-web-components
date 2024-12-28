@@ -64,22 +64,22 @@ export class UrReader {
     @Prop()
     readingTimePerWord: number = 0.3; // Average time (seconds) per word
 
-    @Prop()
+    @Prop() 
     isOwnChapter: boolean = false;
-
-    @Prop()
+    
+    @Prop() 
     isChapterPurchased: boolean = false;
-
-    @Prop()
+    
+    @Prop() 
     isNovlDeleted: boolean = false;
-
-    @Prop()
+    
+    @Prop() 
     isAuthorFollowed: boolean = false;
-
-    @Prop()
+    
+    @Prop() 
     isAuthorPro: boolean = false;
-
-    @Prop()
+    
+    @Prop() 
     isDonationsEnabled: boolean = false;
 
     @State()
@@ -141,9 +141,6 @@ export class UrReader {
 
     @State()
     isHostSmall: boolean = false;
-
-    @Event()
-    hostSizeChanged: EventEmitter<boolean>;
 
     private sanitizeContent(content: string): string {
         return DOMPurify.sanitize(content, {
@@ -245,11 +242,9 @@ export class UrReader {
                             if (width <= 970) {
                                 this.el.classList.add('host-small');
                                 this.isHostSmall = true; // Update the flag
-                                this.hostSizeChanged.emit(true);
                             } else {
                                 this.el.classList.remove('host-small');
                                 this.isHostSmall = false; // Update the flag
-                                this.hostSizeChanged.emit(false);
                             }
                         }
                     });

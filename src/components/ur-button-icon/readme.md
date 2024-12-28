@@ -13,7 +13,7 @@
 | `icon`         | `icon`          |             | `string`                                          | `'favorite_border'` |
 | `loading`      | `loading`       |             | `boolean`                                         | `false`             |
 | `selected`     | `selected`      |             | `boolean`                                         | `false`             |
-| `selectedIcon` | `selected-icon` |             | `string`                                          | `'favorite'`        |
+| `selectedIcon` | `selected-icon` |             | `string`                                          | `undefined`         |
 | `variant`      | `variant`       |             | `"filled" \| "outlined" \| "standard" \| "tonal"` | `'standard'`        |
 
 
