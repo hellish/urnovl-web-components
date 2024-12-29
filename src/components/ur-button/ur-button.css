@@ -12,3 +12,15 @@
 mdui-button::part(icon) {
     font-size: 24px;
 }
+
+:host .full-width {
+    flex: 1;
+    width: 100%;
+    display: flex; /* Ensure proper flexbox behavior */
+}
+
+:host([full-width='true']) {
+    flex: 1;
+    width: 100%;
+    display: flex; /* Ensure proper flexbox behavior */
+}

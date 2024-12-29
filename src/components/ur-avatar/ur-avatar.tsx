@@ -11,7 +11,7 @@ export class UrAvatar {
     size = '32px'
 
     @Prop()
-    src: string;
+    src: string; // Avatar source URL
 
     @Prop()
     name?: string;
@@ -22,10 +22,21 @@ export class UrAvatar {
     @Prop()
     radius = '50%'
 
+    // Default avatar image path
+    private defaultAvatar = '/assets/img/user/account.png';
+
     render() {
+        // Use default avatar if src is not provided or is empty
+        const avatarSrc = this.src || this.defaultAvatar;
+
         return (
             <Host>
-                <img class="avatar" src={this.src} style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }} alt={this.name} />
+                <img 
+                    class="avatar" 
+                    src={avatarSrc} 
+                    style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }} 
+                    alt={this.name || 'User Avatar'} 
+                />
             </Host>
         );
     }

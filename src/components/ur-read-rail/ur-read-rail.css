@@ -1,0 +1,70 @@
+/* READ RAIL START */
+:host {
+    opacity: 1;
+    display: flex;
+    max-width: 62px;
+    width: fit-content;
+    padding: 16px 4px;
+    align-items: center;
+    pointer-events: all;
+    visibility: visible;
+    flex-direction: column;
+    transition: opacity 0.2s ease, visibility 0s 0s;
+
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-surface: var(--mdui-color-surface);
+}
+
+:host(.hidden) {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0s 0.2s;
+}
+
+:host .actions-holder {
+    gap: 16px;
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
+    align-items: center;
+    border-radius: 50px;
+    padding: 12px 0 16px 0;
+    flex-direction: column;
+    color: rgb(var(--ur-color-on-surface));
+    background-color: rgb(var(--ur-color-surface));
+}
+
+:host .action {
+    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+:host .profile-holder {
+    display: flex;
+    position: relative;
+}
+
+:host .avatar-button {
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+:host .avatar-button:hover {
+    filter: brightness(0.8); /* Darkens the avatar by 20% */
+    transition: all 0.2s ease; /* Smooth transition for border */
+}
+
+:host .profile-holder .follow-btn {
+    bottom: 0;
+    left: 50%;
+    border: 4px solid rgb(var(--ur-color-background));
+    position: absolute;
+    transform: translate(-50%, 50%) scale(0.5); /* Reduce size by 50% */
+}
+
+/* READ RAIL END */

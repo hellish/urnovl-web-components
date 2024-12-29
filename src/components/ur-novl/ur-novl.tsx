@@ -131,7 +131,7 @@ export class UrNovl {
                         )}
                         <div class="description">{this.novlDescription}</div>
                         <div class="author">
-                            <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar})` }}></div>
+                            <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar || 'assets/img/user/account.png'})` }}></div>
                             <div class="name">{this.authorName}</div>
                         </div>
                     </section>

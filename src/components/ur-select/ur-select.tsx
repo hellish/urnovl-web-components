@@ -1,7 +1,8 @@
-import { Component, Host, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+import { Component, Prop, h, Event, EventEmitter, Watch, Host } from '@stencil/core';
 
-import '../ur-menu-item/ur-menu-item';
-import 'mdui/components/select';
+import 'mdui/components/select.js';
+import 'mdui/components/menu-item.js';
+import 'mdui/components/icon';
 
 @Component({
     tag: 'ur-select',
@@ -9,122 +10,182 @@ import 'mdui/components/select';
     shadow: true,
 })
 export class UrSelect {
+    @Prop()
+    value: string | string[] = ''; // Selected value(s)
 
     @Prop()
-    label: string = "Text Field"
+    name: string = ''; // Name of the select
 
     @Prop()
-    name: string = '';
+    label: string = ''; // Label text
 
     @Prop()
-    value: string | string[] = '';
+    placeholder: string = ''; // Placeholder text
 
     @Prop()
-    placeholder: string = null;
+    helper: string = ''; // Helper text
 
     @Prop()
-    helper: string = null;
+    variant: 'filled' | 'outlined' = 'filled'; // Variant of the select
 
     @Prop()
-    readonly: boolean = false;
+    usage: 'topBar' | 'standard' = 'standard'
 
     @Prop()
-    disabled: boolean = false;
+    multiple: boolean = false; // Enable multi-select
 
     @Prop()
-    clearable: boolean = false;
+    clearable: boolean = false; // Enable clear button
 
     @Prop()
-    multiple: boolean = false;
+    disabled: boolean = false; // Disable the select
 
     @Prop()
-    endAligned: boolean = false;
+    required: boolean = false; // Mark as required
 
     @Prop()
-    variant: 'filled' | 'outlined' = 'filled';
+    readonly: boolean = false; // Make the select read-only
 
     @Prop()
-    placement: 'auto' | 'bottom' | 'top' = 'auto';
+    size: 'normal' | 'big' | 'small' = 'normal';
 
     @Prop()
-    icon: string = null;
+    placement: 'bottom' | 'top' = 'bottom'; // Dropdown position
 
     @Prop()
-    endIcon: string = null;
+    icon: string = ''; // Left icon
+
+    @Prop() endIcon: string = ''; // Right icon
+
+    @Prop() 
+    flex: boolean = true; // New fullWidth prop
 
     @Prop()
-    form: string = null;
+    suffix: string = ''; // Suffix text or icon
 
     @Prop()
-    items: Array<[label: string, value: string, disabled: boolean]> = [];
+    clearIcon: string = 'close'; // Icon for the clear button
 
-    @State()
-    selectedValue: string | string[] = this.multiple ? [] : '';
-
-    @Event()
-    itemClicked: EventEmitter<string | string[]>;
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
+    valueChanged: EventEmitter<{ value: string | string[] }>;
 
     @Watch('value')
-    valueChanged(newValue: string | string[]) {
-        this.selectedValue = newValue;
+    handleValueChange(newValue: string | string[]) {
+        this.valueChanged.emit({ value: newValue });
     }
 
-    handleItemClicked(event: CustomEvent<string>) {
-        const value = event.detail;
+    componentDidLoad() {
+        console.log('Preselected value(s) on load:', this.value);
+    
+        // Access the shadow root
+        const shadowRoot = this.host.shadowRoot;
+    
+        if (shadowRoot) {
+            // Select the mdui-select element
+            const mduiSelect = shadowRoot.querySelector('mdui-select');
+            const menuItems = shadowRoot.querySelectorAll('mdui-menu-item');
+            const mduiTextField = shadowRoot.querySelector('mdui-text-field');
 
-        if (this.multiple) {
-            const currentValue = Array.isArray(this.selectedValue) ? [...this.selectedValue] : [];
-            const valueIndex = currentValue.indexOf(value);
-
-            if (valueIndex > -1) {
-                currentValue.splice(valueIndex, 1);
-            } else {
-                currentValue.push(value);
+            if (mduiTextField) {
+                mduiTextField.style.border = '5px';
+                console.log('GOT IT', mduiTextField.outerHTML); // Log the full element
             }
+    
+            // Style and log the mdui-select container
+            if (mduiSelect) {
+                mduiSelect.style.height = '44px';
+                mduiSelect.style.display = 'flex';
+                mduiSelect.style.borderRadius = '0';
+                mduiSelect.style.flex = '1'; // Example styling
 
-            this.selectedValue = currentValue;
-        } else {
-            this.selectedValue = value;
+                console.log('Styled mdui-select:', mduiSelect.outerHTML); // Log the full element
+            }
+    
+            // Style and log each menu item
+            menuItems.forEach((item, index) => {
+                item.style.backgroundColor = index % 2 === 0 ? 'lightgreen' : 'lightcoral'; // Alternate colors
+                item.style.fontSize = '9px'; // Example font size
+                console.log('Styled menu item:', item.outerHTML); // Log each menu item
+            });
+
+            // Fetch and style the <input> element
+            const inputElement = shadowRoot.querySelector('input') as HTMLInputElement;
+            if (inputElement) {
+                inputElement.style.backgroundColor = 'red'; // Style the input
+                inputElement.style.color = 'white'; // Adjust text color for contrast
+            }
         }
-
-        this.itemClicked.emit(this.selectedValue);
     }
 
-    componentWillLoad() {
-        this.selectedValue = this.value;
-    }
+    private handleChange = (event: Event) => {
+        const target = event.target as HTMLElement & { value?: string | string[] };
+
+        // Attempt to access the value property
+        if (target?.value) {
+            this.value = target.value;
+            console.log('Selected value from property:', this.value);
+        }
+        // Fallback: Use getAttribute if value is not accessible
+        else if (target.hasAttribute('value')) {
+            this.value = target.getAttribute('value') || '';
+            console.log('Selected value from attribute:', this.value);
+        }
+        // Handle cases where value is not accessible
+        else {
+            console.warn('Unable to retrieve value from event target.');
+        }
+    };
 
     render() {
+
+        const selectStyles = {
+            flex: this.flex ? '1' : '0 1 auto',
+            maxWidth: this.usage === 'topBar' ? '350px' : 'initial',
+            fontSize: '10px',
+        };
+
         return (
-            <Host>
+            <Host style={selectStyles}>
                 <mdui-select
-                    label={this.label}
                     name={this.name}
-                    value={this.selectedValue}
-                    placeholder={this.placeholder}
-                    helper={this.helper}
-                    readonly={this.readonly}
-                    disabled={this.disabled}
-                    clearable={this.clearable}
-                    multiple={this.multiple}
-                    end-aligned={this.endAligned}
+                    value={this.value}
                     variant={this.variant}
+                    usage={this.usage}
+                    multiple={this.multiple}
+                    class={!this.multiple ? 'single-select' : ''}
+                    flex={this.flex}
+                    clearable={this.clearable}
+                    disabled={this.disabled}
+                    required={this.required}
+                    readonly={this.readonly}
                     placement={this.placement}
-                    icon={this.icon}
+                    placeholder={this.placeholder}
                     end-icon={this.endIcon}
-                    form={this.form}
+                    onChange={this.handleChange}
+                    style={selectStyles} // Apply the dynamic styles
                 >
-                    {this.items.map(([label, value, disabled]) => (
-                        <ur-menu-item
-                            value={value}
-                            label={label}
-                            disabled={disabled}
-                            selected={this.multiple ? this.selectedValue.includes(value) : this.selectedValue === value}
-                            onItemClicked={(event) => this.handleItemClicked(event)}
-                        ></ur-menu-item>
-                    ))}
+                    {this.icon && (
+                        <span slot="icon">
+                            {this.icon}
+                        </span>
+                    )}
+                    {this.endIcon && (
+                        <span slot="end-icon">
+                            {this.endIcon}
+                        </span>
+                    )}
+                    {this.suffix && <span slot="suffix">{this.suffix}</span>}
+                    <slot></slot>
+                    {this.helper && <span slot="helper">{this.helper}</span>}
                 </mdui-select>
             </Host>
         );
+    }
+
+    private get host(): HTMLElement {
+        return this as unknown as HTMLElement; // Casting this component instance as an HTMLElement
     }
 }

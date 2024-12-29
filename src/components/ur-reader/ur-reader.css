@@ -1,0 +1,319 @@
+:host {
+    position: relative;
+    width: 100%;
+    display: block;
+    scroll-behavior: smooth;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-outline: var(--mdui-color-outline);
+    --ur-color-surface-container-lowest: var(--mdui-color-surface-container-lowest);
+
+    background-color: rgb(var(--ur-color-background));
+}
+
+:host .reader-container {
+    margin: 0 auto;
+    max-width: 740px;
+    box-sizing: border-box;
+    color: rgb(var(--ur-color-on-background));
+    overflow-y: auto; /* Ensure vertical scrolling is enabled */
+    position: relative;
+}
+
+:host .novl-title {
+    font-size: 45px;
+    margin: 24px auto;
+    word-break: break-word;
+    text-align: left;
+}
+
+:host .chapter-title {
+    font-size: 27px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+:host .chapter-content {
+    font-size: 16px; /* Desktop size */
+    line-height: 1.6;
+    padding-bottom: 40px;
+    text-align: left;
+    -webkit-user-select: none; /* For Safari and Chrome */
+    -moz-user-select: none; /* For Firefox */
+    -ms-user-select: none; /* For IE */
+    user-select: none; /* Standard property */
+}
+
+:host .chapter-info {
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    opacity: 0.3;
+}
+
+:host .chapter-content:first-letter {
+    font-size: 60px;
+    padding: 0 8px;
+    margin: 0 6px 0 0;
+    line-height: 18px;
+}
+
+:host .chapter-content p {
+    margin-bottom: 1rem;
+}
+
+:host .chapter-content b {
+    font-weight: bold;
+}
+
+:host .chapter-content i {
+    font-style: italic;
+}
+
+/* Responsive Adjustments */
+:host .reader-container.small-container .novl-title {
+    font-size: 36px; /* Smaller title for mobile */
+    margin: 12px 0;
+}
+
+:host .reader-container.small-container .chapter-title {
+    font-size: 22px; /* Smaller chapter title for mobile */
+    margin-top: 28px;
+}
+
+:host .reader-container.small-container .chapter-info {
+    margin-bottom: 28px;
+}
+
+:host .reader-container.small-container .chapter-content {
+    font-size: 14px; /* Smaller base size for content */
+}
+
+:host .reader-container.small-container .chapter-content:first-letter {
+    font-size: 45px;
+    padding: 0 8px;
+    margin: 0;
+}
+
+
+/* READ RAIL START */
+:host .ur-read-rail-holder {
+    top: 0;
+    left: 50%;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    max-width: 740px;
+    pointer-events: none;
+    transform: translate(-50%, 0);
+}
+
+:host .ur-read-rail-holder slot {
+    z-index: 1;
+    display: block; /* Ensure the slot behaves like a block element if necessary */
+}
+:host .ur-read-rail-holder ::slotted(ur-read-rail) {
+    /* Styles for the slotted component */
+    top: 200px;
+    left: 0;
+    margin: 0;
+    position: absolute;
+    transform: translate(calc(-100% - 8px),0);
+}
+
+:host(.host-small) .ur-read-rail-holder ::slotted(ur-read-rail) {
+    right: 0;
+    top: initial;
+    bottom: 48px;
+    left: initial;
+    transform: translate(0 , 0);
+}
+
+/* READ RAIL END */
+
+:host .navigation-buttons-non-floating {
+    gap: 16px;
+    display: flex;
+    padding: 16px 0;
+    flex-direction: column;
+}
+
+:host .reader-container .navigation-buttons {
+    gap: 8px;
+    top: 50%;
+    left: 50%;
+    height: 1px;
+    z-index: 10;
+    padding: 0 4px;
+    position: fixed;
+    transform: translate(calc(-50% + 35px), 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 78px);
+    max-width: 1100px;
+}
+
+:host .reader-container .navigation-buttons .navigation-button {
+    pointer-events: auto;
+    position: relative;
+    display: inline-block;
+}
+
+:host .reader-container .navigation-buttons .mid-flex {
+    flex: 0 1 auto;
+    pointer-events: none;
+}
+
+:host(.host-small) .reader-container .navigation-buttons {
+    bottom: 0;
+    height: 40px;
+    top: initial;
+    max-width: 740px;
+    padding: 4px;
+    width: calc(100% - 8px);
+    transition: transform 0.3s ease;
+    transform: translate(-50%, 0);
+}
+
+:host(.host-small) .reader-container .navigation-buttons.hidden {
+    transform: translate(-50%, 100%);
+}
+
+:host(.host-small) .reader-container .navigation-buttons .nav-button {
+    max-width: 50%;
+    overflow: hidden;
+    border-radius: 50px;
+    background-color: rgb(var(--mdui-color-surface));
+}
+
+/* Loading State Styles */
+/* General Loading Effect */
+:host .reader-container .loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
+    background-size: 1000px;
+    border-radius: 4px; /* Optional rounded edges */
+}
+
+/* Loading State for Specific Elements */
+:host .reader-container .novl-title.loading {
+    height: 45px; /* Match the actual title height */
+    margin: 24px 0;
+    width: 70%; /* Placeholder width for title */
+}
+
+:host .reader-container .chapter-title.loading {
+    height: 27px; /* Match the actual chapter title height */
+    margin-top: 50px;
+    margin-bottom: 8px;
+    width: 50%; /* Placeholder width for chapter title */
+}
+
+:host .reader-container .chapter-content.loading {
+    height: 150px; /* Simulate content area */
+    margin-top: 16px;
+    width: 100%; /* Full width for content placeholder */
+}
+
+:host .reader-container .chapter-content.loading:before {
+    content: ''; /* Create multiple lines effect */
+    display: block;
+    height: 16px; /* Line height */
+    margin-bottom: 8px;
+    width: 90%; /* Adjust width for the first line */
+    background: inherit;
+    animation: inherit;
+}
+
+:host .reader-container .chapter-content.loading:after {
+    content: '';
+    display: block;
+    height: 16px; /* Line height */
+    margin-bottom: 8px;
+    width: 80%; /* Adjust width for the second line */
+    background: inherit;
+    animation: inherit;
+}
+
+/* Style for the locked chapter message */
+:host .reader-container .locked-content {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid rgb(var(--ur-color-outline));
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+:host .reader-container .locked-message {
+    margin-bottom: 20px;
+}
+
+:host .reader-container .locked-content .locked-message::first-letter {
+    all: unset; /* Reset all styles applied to the first letter */
+}
+
+/* Wrapper for the button to center it */
+:host .reader-container .unlock-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Keyframe Animation for Placeholder Effect */
+@keyframes placeholderAnimate {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.scrollable-content::-webkit-scrollbar {
+    width: 12px; /* Width of the vertical scrollbar */
+    height: 12px; /* Height of the horizontal scrollbar */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background: #f0f0f0; /* Background of the track */
+    border-radius: 6px; /* Rounded corners for the track */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6c757d, #343a40); /* Thumb color with gradient */
+    border-radius: 6px; /* Rounded corners for the thumb */
+    border: 2px solid #f0f0f0; /* Add space around thumb */
+}
+
+.scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: #495057; /* Darker thumb on hover */
+}
+
+/* For Firefox */
+.scrollable-content {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: #343a40 #f0f0f0; /* Thumb color and track color */
+}
+
+/* For styling other browsers */
+.scrollable-content {
+    overflow-y: scroll; /* Ensure vertical scrollbar is visible */
+    scrollbar-gutter: stable; /* Avoid layout shift */
+}

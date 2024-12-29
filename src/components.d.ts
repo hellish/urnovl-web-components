@@ -37,12 +37,60 @@ export namespace Components {
         "icon": string;
         "loading": boolean;
         "selected": boolean;
-        "selectedIcon": string;
+        "selectedIcon"?: string;
         "variant": 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
+        /**
+          * Indicates if the checkbox is checked
+         */
         "checked": boolean;
+        /**
+          * Indicates if the checkbox is disabled
+         */
         "disabled": boolean;
+        /**
+          * The name of the checkbox group
+         */
+        "name": string;
+        /**
+          * The value of the checkbox
+         */
+        "value": string;
+    }
+    interface UrCheckboxGroup {
+        /**
+          * Maximum number of selectable options
+         */
+        "maxSelectable": number | null;
+        /**
+          * The name of the checkbox group
+         */
+        "name": string;
+        /**
+          * Whether the group is required
+         */
+        "required": boolean;
+        /**
+          * Reset the checkbox group
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Enable a "Select All" checkbox
+         */
+        "selectAll": boolean;
+        /**
+          * Text for the "Select All" checkbox
+         */
+        "selectAllText": string;
+        /**
+          * Validate the checkbox group
+         */
+        "validate": () => Promise<boolean>;
+        /**
+          * Currently selected values
+         */
+        "values": string[];
     }
     interface UrChip {
         "backColor": string;
@@ -75,6 +123,16 @@ export namespace Components {
         "heroTitle": string;
         "heroTitleColor": string;
         "layout": 'left' | 'right' | 'center';
+    }
+    interface UrLinearProgress {
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max": number;
+        /**
+          * The current value of the progress indicator. If null or undefined, the progress is indeterminate.
+         */
+        "value": number | null;
     }
     interface UrList {
     }
@@ -280,7 +338,48 @@ export namespace Components {
     interface UrRadioButton {
         "checked": boolean;
         "disabled": boolean;
-        "text": string;
+        "name": string;
+        "value": string;
+    }
+    interface UrRadioGroup {
+        /**
+          * Group name for the radio buttons
+         */
+        "name": string;
+        /**
+          * Whether the group is required
+         */
+        "required": boolean;
+        /**
+          * Reset the radio group
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Validate the radio group
+         */
+        "validate": () => Promise<boolean>;
+        /**
+          * The currently selected value
+         */
+        "value": string | null;
+    }
+    interface UrReadDesktopTopAppBar {
+        /**
+          * Title of the novel
+         */
+        "novelTitle": string;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold": number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant": 'small' | 'medium' | 'large';
     }
     interface UrReadMobileTopAppBar {
         "headerTitle": string;
@@ -288,24 +387,97 @@ export namespace Components {
         "scrollThreshold": number;
         "variant": string;
     }
+    interface UrReadRail {
+        "avatarName": string;
+        "avatarSrc": string;
+        "comments": number;
+        "dislike": string;
+        "donate": string;
+        "isAuthorFollowed": boolean;
+        "isAuthorPro": boolean;
+        "isChapterPurchased": boolean;
+        "isDonationsEnabled": boolean;
+        "isFollowed": boolean;
+        "isHostSmall": boolean;
+        "isNovlDeleted": boolean;
+        "isOwnChapter": boolean;
+        "isPaidChapter": boolean;
+        "isVisible": boolean;
+        "likes": number;
+        "mode": 'desktop' | 'ionic';
+        "share": string;
+    }
+    interface UrReadRailMobile {
+        "avatarName": string;
+        "avatarSrc": string;
+        "comments": number;
+        "dislike": string;
+        "donate": string;
+        "isAuthorFollowed": boolean;
+        "isAuthorPro": boolean;
+        "isChapterPurchased": boolean;
+        "isDonationsEnabled": boolean;
+        "isFollowed": boolean;
+        "isNovlDeleted": boolean;
+        "isOwnChapter": boolean;
+        "isVisible": boolean;
+        "likes": string;
+        "share": string;
+    }
+    interface UrReader {
+        "avatarName": string;
+        "avatarSrc": string;
+        "chapterContent": string;
+        "chapterLocked": boolean;
+        "chapterSequence": number;
+        "chapterTitle": string;
+        "comments": number;
+        "dislike": string;
+        "donate": string;
+        "fontSize": 'small' | 'medium' | 'large';
+        "fontType": 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "hasNextChapter": boolean;
+        "hasPreviousChapter": boolean;
+        "isAuthorFollowed": boolean;
+        "isAuthorPro": boolean;
+        "isChapterPurchased": boolean;
+        "isDonationsEnabled": boolean;
+        "isNovlDeleted": boolean;
+        "isOwnChapter": boolean;
+        "isVisible": boolean;
+        "likes": string;
+        "loading": boolean;
+        "lockedMessage": string;
+        "minutesText": string;
+        "nextChapterText": string;
+        "previousChapterText": string;
+        "readingDurationText": string;
+        "readingTimePerWord": number;
+        "share": string;
+        "storyTitle": string;
+        "unlockButtonLabel": string;
+    }
     interface UrSegmentButton {
         "likeLabel": string;
     }
     interface UrSelect {
+        "clearIcon": string;
         "clearable": boolean;
         "disabled": boolean;
-        "endAligned": boolean;
         "endIcon": string;
-        "form": string;
+        "flex": boolean;
         "helper": string;
         "icon": string;
-        "items": Array<[label: string, value: string, disabled: boolean]>;
         "label": string;
         "multiple": boolean;
         "name": string;
         "placeholder": string;
-        "placement": 'auto' | 'bottom' | 'top';
+        "placement": 'bottom' | 'top';
         "readonly": boolean;
+        "required": boolean;
+        "size": 'normal' | 'big' | 'small';
+        "suffix": string;
+        "usage": 'topBar' | 'standard';
         "value": string | string[];
         "variant": 'filled' | 'outlined';
     }
@@ -318,13 +490,55 @@ export namespace Components {
         "tabs": { label: string, value: string }[];
     }
     interface UrTextField {
+        "autosize": boolean;
+        "counter": boolean;
         "disabled": boolean;
-        "endIcon": any;
+        "endIcon": string | null;
+        "error": boolean;
+        "errorMessage": string | null;
         "helper": string | null;
         "label": string;
+        "max": number | string | null;
+        "maxRows": number | null;
+        "maxlength": number | null;
+        "min": number | string | null;
+        "minRows": number | null;
+        "minlength": number | null;
+        "name": string;
+        "pattern": string | null;
         "placeholder": string | null;
+        "required": boolean;
+        "rows": number | null;
+        "step": number | string | null;
+        "type": string;
         "value": string;
         "variant": 'filled' | 'outlined';
+    }
+    interface UrTooltip {
+        "closeDelay": number;
+        "colorScheme": 'dark' | 'light';
+        "content": string;
+        "disabled": boolean;
+        "openDelay": number;
+        "placement": | 'auto'
+        | 'top-left'
+        | 'top-start'
+        | 'top'
+        | 'top-end'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-start'
+        | 'bottom'
+        | 'bottom-end'
+        | 'bottom-right'
+        | 'left-start'
+        | 'left'
+        | 'left-end'
+        | 'right-start'
+        | 'right'
+        | 'right-end';
+        "trigger": 'hover' | 'click' | 'focus';
+        "variant": 'plain' | 'rich';
     }
     interface UrTopAppBar {
         "headerTitle": string;
@@ -352,6 +566,14 @@ export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
 export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
+}
+export interface UrCheckboxCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCheckboxElement;
+}
+export interface UrCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCheckboxGroupElement;
 }
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -389,13 +611,41 @@ export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
 }
+export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrRadioButtonElement;
+}
+export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrRadioGroupElement;
+}
+export interface UrReadDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadDesktopTopAppBarElement;
+}
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadMobileTopAppBarElement;
 }
+export interface UrReadRailCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadRailElement;
+}
+export interface UrReadRailMobileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadRailMobileElement;
+}
+export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReaderElement;
+}
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSelectElement;
+}
+export interface UrTextFieldCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrTextFieldElement;
 }
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -454,11 +704,40 @@ declare global {
         prototype: HTMLUrButtonIconElement;
         new (): HTMLUrButtonIconElement;
     };
+    interface HTMLUrCheckboxElementEventMap {
+        "valueChanged": { name: string; value: string; checked: boolean };
+    }
     interface HTMLUrCheckboxElement extends Components.UrCheckbox, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCheckboxElementEventMap>(type: K, listener: (this: HTMLUrCheckboxElement, ev: UrCheckboxCustomEvent<HTMLUrCheckboxElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCheckboxElementEventMap>(type: K, listener: (this: HTMLUrCheckboxElement, ev: UrCheckboxCustomEvent<HTMLUrCheckboxElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrCheckboxElement: {
         prototype: HTMLUrCheckboxElement;
         new (): HTMLUrCheckboxElement;
+    };
+    interface HTMLUrCheckboxGroupElementEventMap {
+        "valueChanged": { name: string; values: string[] };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
+    interface HTMLUrCheckboxGroupElement extends Components.UrCheckboxGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCheckboxGroupElementEventMap>(type: K, listener: (this: HTMLUrCheckboxGroupElement, ev: UrCheckboxGroupCustomEvent<HTMLUrCheckboxGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCheckboxGroupElementEventMap>(type: K, listener: (this: HTMLUrCheckboxGroupElement, ev: UrCheckboxGroupCustomEvent<HTMLUrCheckboxGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrCheckboxGroupElement: {
+        prototype: HTMLUrCheckboxGroupElement;
+        new (): HTMLUrCheckboxGroupElement;
     };
     interface HTMLUrChipElement extends Components.UrChip, HTMLStencilElement {
     }
@@ -488,6 +767,12 @@ declare global {
     var HTMLUrHeroElement: {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
+    };
+    interface HTMLUrLinearProgressElement extends Components.UrLinearProgress, HTMLStencilElement {
+    }
+    var HTMLUrLinearProgressElement: {
+        prototype: HTMLUrLinearProgressElement;
+        new (): HTMLUrLinearProgressElement;
     };
     interface HTMLUrListElement extends Components.UrList, HTMLStencilElement {
     }
@@ -685,11 +970,57 @@ declare global {
         prototype: HTMLUrProfileElement;
         new (): HTMLUrProfileElement;
     };
+    interface HTMLUrRadioButtonElementEventMap {
+        "valueSelected": { value: string };
+    }
     interface HTMLUrRadioButtonElement extends Components.UrRadioButton, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrRadioButtonElementEventMap>(type: K, listener: (this: HTMLUrRadioButtonElement, ev: UrRadioButtonCustomEvent<HTMLUrRadioButtonElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrRadioButtonElementEventMap>(type: K, listener: (this: HTMLUrRadioButtonElement, ev: UrRadioButtonCustomEvent<HTMLUrRadioButtonElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrRadioButtonElement: {
         prototype: HTMLUrRadioButtonElement;
         new (): HTMLUrRadioButtonElement;
+    };
+    interface HTMLUrRadioGroupElementEventMap {
+        "valueChanged": { name: string; value: string };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
+    interface HTMLUrRadioGroupElement extends Components.UrRadioGroup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrRadioGroupElementEventMap>(type: K, listener: (this: HTMLUrRadioGroupElement, ev: UrRadioGroupCustomEvent<HTMLUrRadioGroupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrRadioGroupElementEventMap>(type: K, listener: (this: HTMLUrRadioGroupElement, ev: UrRadioGroupCustomEvent<HTMLUrRadioGroupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrRadioGroupElement: {
+        prototype: HTMLUrRadioGroupElement;
+        new (): HTMLUrRadioGroupElement;
+    };
+    interface HTMLUrReadDesktopTopAppBarElementEventMap {
+        "readingSettingsClick": void;
+    }
+    interface HTMLUrReadDesktopTopAppBarElement extends Components.UrReadDesktopTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadDesktopTopAppBarElement: {
+        prototype: HTMLUrReadDesktopTopAppBarElement;
+        new (): HTMLUrReadDesktopTopAppBarElement;
     };
     interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
@@ -710,6 +1041,84 @@ declare global {
         prototype: HTMLUrReadMobileTopAppBarElement;
         new (): HTMLUrReadMobileTopAppBarElement;
     };
+    interface HTMLUrReadRailElementEventMap {
+        "likeClicked": boolean;
+        "dislikeClicked": boolean;
+        "commentClicked": void;
+        "donateClicked": void;
+        "shareClicked": void;
+        "followClicked": void;
+        "viewProfileClicked": void;
+        "visibilityToggled": boolean;
+        "facebookShareClicked": void;
+        "twitterShareClicked": void;
+        "linkedinShareClicked": void;
+        "nativeShareClicked": void;
+    }
+    interface HTMLUrReadRailElement extends Components.UrReadRail, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadRailElementEventMap>(type: K, listener: (this: HTMLUrReadRailElement, ev: UrReadRailCustomEvent<HTMLUrReadRailElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadRailElementEventMap>(type: K, listener: (this: HTMLUrReadRailElement, ev: UrReadRailCustomEvent<HTMLUrReadRailElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadRailElement: {
+        prototype: HTMLUrReadRailElement;
+        new (): HTMLUrReadRailElement;
+    };
+    interface HTMLUrReadRailMobileElementEventMap {
+        "likeClicked": void;
+        "dislikeClicked": void;
+        "commentClicked": void;
+        "donateClicked": void;
+        "shareClicked": void;
+        "followClicked": void;
+        "viewProfileClicked": void;
+        "visibilityToggled": boolean;
+    }
+    interface HTMLUrReadRailMobileElement extends Components.UrReadRailMobile, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadRailMobileElementEventMap>(type: K, listener: (this: HTMLUrReadRailMobileElement, ev: UrReadRailMobileCustomEvent<HTMLUrReadRailMobileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadRailMobileElementEventMap>(type: K, listener: (this: HTMLUrReadRailMobileElement, ev: UrReadRailMobileCustomEvent<HTMLUrReadRailMobileElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadRailMobileElement: {
+        prototype: HTMLUrReadRailMobileElement;
+        new (): HTMLUrReadRailMobileElement;
+    };
+    interface HTMLUrReaderElementEventMap {
+        "chapterUnlocked": void;
+        "likeClicked": void;
+        "dislikeClicked": void;
+        "commentClicked": void;
+        "donateClicked": void;
+        "shareClicked": void;
+        "nextChapterClicked": void;
+        "previousChapterClicked": void;
+        "followAuthorClicked": void;
+        "viewAuthorProfileClicked": void;
+    }
+    interface HTMLUrReaderElement extends Components.UrReader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReaderElementEventMap>(type: K, listener: (this: HTMLUrReaderElement, ev: UrReaderCustomEvent<HTMLUrReaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReaderElementEventMap>(type: K, listener: (this: HTMLUrReaderElement, ev: UrReaderCustomEvent<HTMLUrReaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReaderElement: {
+        prototype: HTMLUrReaderElement;
+        new (): HTMLUrReaderElement;
+    };
     interface HTMLUrSegmentButtonElement extends Components.UrSegmentButton, HTMLStencilElement {
     }
     var HTMLUrSegmentButtonElement: {
@@ -717,7 +1126,7 @@ declare global {
         new (): HTMLUrSegmentButtonElement;
     };
     interface HTMLUrSelectElementEventMap {
-        "itemClicked": string | string[];
+        "valueChanged": { value: string | string[] };
     }
     interface HTMLUrSelectElement extends Components.UrSelect, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrSelectElementEventMap>(type: K, listener: (this: HTMLUrSelectElement, ev: UrSelectCustomEvent<HTMLUrSelectElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -745,11 +1154,29 @@ declare global {
         prototype: HTMLUrTabsElement;
         new (): HTMLUrTabsElement;
     };
+    interface HTMLUrTextFieldElementEventMap {
+        "valueChanged": { name: string; value: string };
+        "errorStateChanged": { name: string; error: boolean; message?: string };
+    }
     interface HTMLUrTextFieldElement extends Components.UrTextField, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrTextFieldElementEventMap>(type: K, listener: (this: HTMLUrTextFieldElement, ev: UrTextFieldCustomEvent<HTMLUrTextFieldElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrTextFieldElementEventMap>(type: K, listener: (this: HTMLUrTextFieldElement, ev: UrTextFieldCustomEvent<HTMLUrTextFieldElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrTextFieldElement: {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
+    };
+    interface HTMLUrTooltipElement extends Components.UrTooltip, HTMLStencilElement {
+    }
+    var HTMLUrTooltipElement: {
+        prototype: HTMLUrTooltipElement;
+        new (): HTMLUrTooltipElement;
     };
     interface HTMLUrTopAppBarElement extends Components.UrTopAppBar, HTMLStencilElement {
     }
@@ -787,9 +1214,11 @@ declare global {
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
         "ur-button-icon": HTMLUrButtonIconElement;
         "ur-checkbox": HTMLUrCheckboxElement;
+        "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
         "ur-list-subheader": HTMLUrListSubheaderElement;
@@ -808,12 +1237,18 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
+        "ur-radio-group": HTMLUrRadioGroupElement;
+        "ur-read-desktop-top-app-bar": HTMLUrReadDesktopTopAppBarElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
+        "ur-read-rail": HTMLUrReadRailElement;
+        "ur-read-rail-mobile": HTMLUrReadRailMobileElement;
+        "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-tooltip": HTMLUrTooltipElement;
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
@@ -851,8 +1286,60 @@ declare namespace LocalJSX {
         "variant"?: 'standard' | 'filled' | 'tonal' | 'outlined';
     }
     interface UrCheckbox {
+        /**
+          * Indicates if the checkbox is checked
+         */
         "checked"?: boolean;
+        /**
+          * Indicates if the checkbox is disabled
+         */
         "disabled"?: boolean;
+        /**
+          * The name of the checkbox group
+         */
+        "name"?: string;
+        /**
+          * Event emitted when the checkbox value changes
+         */
+        "onValueChanged"?: (event: UrCheckboxCustomEvent<{ name: string; value: string; checked: boolean }>) => void;
+        /**
+          * The value of the checkbox
+         */
+        "value"?: string;
+    }
+    interface UrCheckboxGroup {
+        /**
+          * Maximum number of selectable options
+         */
+        "maxSelectable"?: number | null;
+        /**
+          * The name of the checkbox group
+         */
+        "name"?: string;
+        /**
+          * Event emitted when validation state changes
+         */
+        "onErrorStateChanged"?: (event: UrCheckboxGroupCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        /**
+          * Event emitted when the values change
+         */
+        "onValueChanged"?: (event: UrCheckboxGroupCustomEvent<{ name: string; values: string[] }>) => void;
+        /**
+          * Whether the group is required
+         */
+        "required"?: boolean;
+        /**
+          * Enable a "Select All" checkbox
+         */
+        "selectAll"?: boolean;
+        /**
+          * Text for the "Select All" checkbox
+         */
+        "selectAllText"?: string;
+        /**
+          * Currently selected values
+         */
+        "values"?: string[];
     }
     interface UrChip {
         "backColor"?: string;
@@ -884,6 +1371,16 @@ declare namespace LocalJSX {
         "heroTitleColor"?: string;
         "layout"?: 'left' | 'right' | 'center';
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
+    }
+    interface UrLinearProgress {
+        /**
+          * The maximum value of the progress indicator.
+         */
+        "max"?: number;
+        /**
+          * The current value of the progress indicator. If null or undefined, the progress is indeterminate.
+         */
+        "value"?: number | null;
     }
     interface UrList {
     }
@@ -1105,7 +1602,50 @@ declare namespace LocalJSX {
     interface UrRadioButton {
         "checked"?: boolean;
         "disabled"?: boolean;
-        "text"?: string;
+        "name"?: string;
+        "onValueSelected"?: (event: UrRadioButtonCustomEvent<{ value: string }>) => void;
+        "value"?: string;
+    }
+    interface UrRadioGroup {
+        /**
+          * Group name for the radio buttons
+         */
+        "name"?: string;
+        /**
+          * Event emitted when validation state changes
+         */
+        "onErrorStateChanged"?: (event: UrRadioGroupCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        /**
+          * Event emitted when the value changes
+         */
+        "onValueChanged"?: (event: UrRadioGroupCustomEvent<{ name: string; value: string }>) => void;
+        /**
+          * Whether the group is required
+         */
+        "required"?: boolean;
+        /**
+          * The currently selected value
+         */
+        "value"?: string | null;
+    }
+    interface UrReadDesktopTopAppBar {
+        /**
+          * Title of the novel
+         */
+        "novelTitle"?: string;
+        "onReadingSettingsClick"?: (event: UrReadDesktopTopAppBarCustomEvent<void>) => void;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant"?: 'small' | 'medium' | 'large';
     }
     interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
@@ -1116,25 +1656,128 @@ declare namespace LocalJSX {
         "scrollThreshold"?: number;
         "variant"?: string;
     }
+    interface UrReadRail {
+        "avatarName"?: string;
+        "avatarSrc"?: string;
+        "comments"?: number;
+        "dislike"?: string;
+        "donate"?: string;
+        "isAuthorFollowed"?: boolean;
+        "isAuthorPro"?: boolean;
+        "isChapterPurchased"?: boolean;
+        "isDonationsEnabled"?: boolean;
+        "isFollowed"?: boolean;
+        "isHostSmall"?: boolean;
+        "isNovlDeleted"?: boolean;
+        "isOwnChapter"?: boolean;
+        "isPaidChapter"?: boolean;
+        "isVisible"?: boolean;
+        "likes"?: number;
+        "mode"?: 'desktop' | 'ionic';
+        "onCommentClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onDislikeClicked"?: (event: UrReadRailCustomEvent<boolean>) => void;
+        "onDonateClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onFacebookShareClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onFollowClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onLikeClicked"?: (event: UrReadRailCustomEvent<boolean>) => void;
+        "onLinkedinShareClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onNativeShareClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onShareClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onTwitterShareClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onViewProfileClicked"?: (event: UrReadRailCustomEvent<void>) => void;
+        "onVisibilityToggled"?: (event: UrReadRailCustomEvent<boolean>) => void;
+        "share"?: string;
+    }
+    interface UrReadRailMobile {
+        "avatarName"?: string;
+        "avatarSrc"?: string;
+        "comments"?: number;
+        "dislike"?: string;
+        "donate"?: string;
+        "isAuthorFollowed"?: boolean;
+        "isAuthorPro"?: boolean;
+        "isChapterPurchased"?: boolean;
+        "isDonationsEnabled"?: boolean;
+        "isFollowed"?: boolean;
+        "isNovlDeleted"?: boolean;
+        "isOwnChapter"?: boolean;
+        "isVisible"?: boolean;
+        "likes"?: string;
+        "onCommentClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onDislikeClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onDonateClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onFollowClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onLikeClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onShareClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onViewProfileClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
+        "onVisibilityToggled"?: (event: UrReadRailMobileCustomEvent<boolean>) => void;
+        "share"?: string;
+    }
+    interface UrReader {
+        "avatarName"?: string;
+        "avatarSrc"?: string;
+        "chapterContent"?: string;
+        "chapterLocked"?: boolean;
+        "chapterSequence"?: number;
+        "chapterTitle"?: string;
+        "comments"?: number;
+        "dislike"?: string;
+        "donate"?: string;
+        "fontSize"?: 'small' | 'medium' | 'large';
+        "fontType"?: 'serif' | 'sans-serif' | 'monospace' | 'system';
+        "hasNextChapter"?: boolean;
+        "hasPreviousChapter"?: boolean;
+        "isAuthorFollowed"?: boolean;
+        "isAuthorPro"?: boolean;
+        "isChapterPurchased"?: boolean;
+        "isDonationsEnabled"?: boolean;
+        "isNovlDeleted"?: boolean;
+        "isOwnChapter"?: boolean;
+        "isVisible"?: boolean;
+        "likes"?: string;
+        "loading"?: boolean;
+        "lockedMessage"?: string;
+        "minutesText"?: string;
+        "nextChapterText"?: string;
+        "onChapterUnlocked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onCommentClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onDislikeClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onDonateClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onFollowAuthorClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onLikeClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onNextChapterClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onPreviousChapterClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onShareClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "onViewAuthorProfileClicked"?: (event: UrReaderCustomEvent<void>) => void;
+        "previousChapterText"?: string;
+        "readingDurationText"?: string;
+        "readingTimePerWord"?: number;
+        "share"?: string;
+        "storyTitle"?: string;
+        "unlockButtonLabel"?: string;
+    }
     interface UrSegmentButton {
         "likeLabel"?: string;
     }
     interface UrSelect {
+        "clearIcon"?: string;
         "clearable"?: boolean;
         "disabled"?: boolean;
-        "endAligned"?: boolean;
         "endIcon"?: string;
-        "form"?: string;
+        "flex"?: boolean;
         "helper"?: string;
         "icon"?: string;
-        "items"?: Array<[label: string, value: string, disabled: boolean]>;
         "label"?: string;
         "multiple"?: boolean;
         "name"?: string;
-        "onItemClicked"?: (event: UrSelectCustomEvent<string | string[]>) => void;
+        "onValueChanged"?: (event: UrSelectCustomEvent<{ value: string | string[] }>) => void;
         "placeholder"?: string;
-        "placement"?: 'auto' | 'bottom' | 'top';
+        "placement"?: 'bottom' | 'top';
         "readonly"?: boolean;
+        "required"?: boolean;
+        "size"?: 'normal' | 'big' | 'small';
+        "suffix"?: string;
+        "usage"?: 'topBar' | 'standard';
         "value"?: string | string[];
         "variant"?: 'filled' | 'outlined';
     }
@@ -1147,13 +1790,57 @@ declare namespace LocalJSX {
         "tabs"?: { label: string, value: string }[];
     }
     interface UrTextField {
+        "autosize"?: boolean;
+        "counter"?: boolean;
         "disabled"?: boolean;
-        "endIcon"?: any;
+        "endIcon"?: string | null;
+        "error"?: boolean;
+        "errorMessage"?: string | null;
         "helper"?: string | null;
         "label"?: string;
+        "max"?: number | string | null;
+        "maxRows"?: number | null;
+        "maxlength"?: number | null;
+        "min"?: number | string | null;
+        "minRows"?: number | null;
+        "minlength"?: number | null;
+        "name"?: string;
+        "onErrorStateChanged"?: (event: UrTextFieldCustomEvent<{ name: string; error: boolean; message?: string }>) => void;
+        "onValueChanged"?: (event: UrTextFieldCustomEvent<{ name: string; value: string }>) => void;
+        "pattern"?: string | null;
         "placeholder"?: string | null;
+        "required"?: boolean;
+        "rows"?: number | null;
+        "step"?: number | string | null;
+        "type"?: string;
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
+    }
+    interface UrTooltip {
+        "closeDelay"?: number;
+        "colorScheme"?: 'dark' | 'light';
+        "content"?: string;
+        "disabled"?: boolean;
+        "openDelay"?: number;
+        "placement"?: | 'auto'
+        | 'top-left'
+        | 'top-start'
+        | 'top'
+        | 'top-end'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-start'
+        | 'bottom'
+        | 'bottom-end'
+        | 'bottom-right'
+        | 'left-start'
+        | 'left'
+        | 'left-end'
+        | 'right-start'
+        | 'right'
+        | 'right-end';
+        "trigger"?: 'hover' | 'click' | 'focus';
+        "variant"?: 'plain' | 'rich';
     }
     interface UrTopAppBar {
         "headerTitle"?: string;
@@ -1181,9 +1868,11 @@ declare namespace LocalJSX {
         "ur-button-arrow-right": UrButtonArrowRight;
         "ur-button-icon": UrButtonIcon;
         "ur-checkbox": UrCheckbox;
+        "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
         "ur-dialog": UrDialog;
         "ur-hero": UrHero;
+        "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
         "ur-list-subheader": UrListSubheader;
@@ -1202,12 +1891,18 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
+        "ur-radio-group": UrRadioGroup;
+        "ur-read-desktop-top-app-bar": UrReadDesktopTopAppBar;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
+        "ur-read-rail": UrReadRail;
+        "ur-read-rail-mobile": UrReadRailMobile;
+        "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-tooltip": UrTooltip;
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
@@ -1223,9 +1918,11 @@ declare module "@stencil/core" {
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
             "ur-button-icon": LocalJSX.UrButtonIcon & JSXBase.HTMLAttributes<HTMLUrButtonIconElement>;
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
+            "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
             "ur-list-subheader": LocalJSX.UrListSubheader & JSXBase.HTMLAttributes<HTMLUrListSubheaderElement>;
@@ -1244,12 +1941,18 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
+            "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
+            "ur-read-desktop-top-app-bar": LocalJSX.UrReadDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadDesktopTopAppBarElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
+            "ur-read-rail": LocalJSX.UrReadRail & JSXBase.HTMLAttributes<HTMLUrReadRailElement>;
+            "ur-read-rail-mobile": LocalJSX.UrReadRailMobile & JSXBase.HTMLAttributes<HTMLUrReadRailMobileElement>;
+            "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-tooltip": LocalJSX.UrTooltip & JSXBase.HTMLAttributes<HTMLUrTooltipElement>;
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;

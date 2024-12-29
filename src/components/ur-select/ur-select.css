@@ -1,3 +1,47 @@
 :host {
     display: block;
 }
+
+/*WORKS DON'T REMOVE*/
+:host mdui-select {
+    font-size: 12px; /* Adjust font size if needed */
+    border: 0;
+}
+
+/*WORKS DON'T REMOVE*/
+/* Target the part="text-field" */
+:host mdui-select::part(text-field) {
+    font-size: 14px;
+    background: transparent;
+}
+
+/*WORKS DON'T REMOVE*/
+:host mdui-select::part(text-field__container) {
+    background: transparent;
+}
+
+/*WORKS DON'T REMOVE*/
+:host mdui-select::part(text-field__input) {
+    font-size: 14px;
+    background: transparent;
+    min-height: 44px;
+}
+
+/*WORKS DON'T REMOVE*/
+:host mdui-select::part(chips) {
+    margin: -0.875rem -0.25rem;
+}
+
+/*WORKS DON'T REMOVE*/
+/* Target the part="menu" */
+:host mdui-select::part(menu) {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+/* Target elements slotted into the shadow DOM */
+:host mdui-select::slotted(mdui-dropdown) {
+    margin: 0;
+    padding: 0;
+}
