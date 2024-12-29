@@ -25,7 +25,7 @@ const Template = args => html`
   </div>
 `;
 export default {
-  title: 'urnovl/Basic/Read Rail',
+  title: 'urnovl/Business/Read Rail',
   render: Template,
   argTypes: {
     avatarSrc: {
