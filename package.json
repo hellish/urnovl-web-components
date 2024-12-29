@@ -1,6 +1,6 @@
 {
     "name": "urnovl-web-components",
-    "version": "0.0.155-j",
+    "version": "0.0.170",
     "description": "Web components for Urnovl",
     "main": "dist/index.cjs.js",
     "module": "dist/index.js",
@@ -46,7 +46,6 @@
         "@storybook/test": "^8.4.6",
         "@storybook/web-components": "^8.4.6",
         "@storybook/web-components-vite": "^8.4.6",
-        "@types/dompurify": "^3.0.5",
         "@types/jest": "^29.5.14",
         "@types/node": "^20",
         "http-server": "^14.1.1",
