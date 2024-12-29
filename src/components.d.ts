@@ -6,10 +6,10 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "./models/locale";
-import { Novl } from "./models/novl";
+import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
 export { Locale } from "./models/locale";
-export { Novl } from "./models/novl";
+export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export namespace Components {
     interface UrAvatar {
@@ -27,8 +27,10 @@ export namespace Components {
         "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
+        "disabled": boolean;
     }
     interface UrButtonArrowRight {
+        "disabled": boolean;
     }
     interface UrButtonIcon {
         "disabled": boolean;
@@ -245,6 +247,7 @@ export namespace Components {
     interface UrNovl {
         "authorAvatar": any;
         "authorName": any;
+        "borderRadius": string;
         "likes": number;
         "loading": boolean;
         "novlCover": any;
@@ -260,12 +263,16 @@ export namespace Components {
         "views": number;
     }
     interface UrNovlCarousel {
+        "addNovls": (novls: Array<Novl | CustomContent>) => Promise<void>;
         "breakpoints"?: Breakpoints;
+        "destroyListeners": boolean;
         "grid"?: Grid;
+        "loading": boolean;
         "navigation"?: boolean;
-        "novls": Array<Novl>;
+        "novls": Array<Novl | CustomContent>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
+        "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
     interface UrPage {
         "followers": number;
@@ -902,9 +909,9 @@ declare global {
         new (): HTMLUrNovlElement;
     };
     interface HTMLUrNovlCarouselElementEventMap {
-        "intersectionUpdated": Array<IntersectionObserverEntry>;
         "prevClicked": void;
         "nextClicked": void;
+        "progressUpdated": [ number, number ];
     }
     interface HTMLUrNovlCarouselElement extends Components.UrNovlCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlCarouselElementEventMap>(type: K, listener: (this: HTMLUrNovlCarouselElement, ev: UrNovlCarouselCustomEvent<HTMLUrNovlCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1263,9 +1270,11 @@ declare namespace LocalJSX {
         "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
+        "disabled"?: boolean;
         "onLeftClicked"?: (event: UrButtonArrowLeftCustomEvent<any>) => void;
     }
     interface UrButtonArrowRight {
+        "disabled"?: boolean;
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
     }
     interface UrButtonIcon {
@@ -1495,6 +1504,7 @@ declare namespace LocalJSX {
     interface UrNovl {
         "authorAvatar"?: any;
         "authorName"?: any;
+        "borderRadius"?: string;
         "likes"?: number;
         "loading"?: boolean;
         "novlCover"?: any;
@@ -1512,12 +1522,14 @@ declare namespace LocalJSX {
     }
     interface UrNovlCarousel {
         "breakpoints"?: Breakpoints;
+        "destroyListeners"?: boolean;
         "grid"?: Grid;
+        "loading"?: boolean;
         "navigation"?: boolean;
-        "novls"?: Array<Novl>;
-        "onIntersectionUpdated"?: (event: UrNovlCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
+        "novls"?: Array<Novl | CustomContent>;
         "onNextClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
         "onPrevClicked"?: (event: UrNovlCarouselCustomEvent<void>) => void;
+        "onProgressUpdated"?: (event: UrNovlCarouselCustomEvent<[ number, number ]>) => void;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }

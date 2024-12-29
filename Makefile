@@ -20,3 +20,11 @@ serve:
 .PHONY: test
 test:
 	npm run test
+
+PHONY: pack
+pack:
+	npm --no-git-tag-version version prerelease
+	npm install
+	npm run build
+	npm run build-storybook
+	npm pack

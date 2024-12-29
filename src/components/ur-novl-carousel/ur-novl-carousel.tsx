@@ -1,5 +1,5 @@
-import { Component, Element, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
-import { Novl } from '../../models/novl';
+import { Component, Element, Event, EventEmitter, Host, Method, Prop, State, forceUpdate, h } from '@stencil/core';
+import { CustomContent, is_custom_data, Novl } from '../../models/novl';
 import { Breakpoints, Grid } from '../../data/novl-carousel';
 
 @Component({
@@ -9,13 +9,25 @@ import { Breakpoints, Grid } from '../../data/novl-carousel';
 })
 export class UrNovlCarousel {
 
-    private observer: IntersectionObserver;
+    private swiperContainer!: any;
+    private leftArrow?: HTMLElement;
+    private rightArrow?: HTMLElement;
 
     @Element()
     el: HTMLElement;
 
     @Prop()
-    novls: Array<Novl> = [];
+    novls: Array<Novl | CustomContent> = [];
+
+    @Prop()
+    @State()
+    loading = false;
+
+    @State()
+    disabledPrev = true;
+
+    @State()
+    disabledNext = false;
 
     @Prop()
     breakpoints?: Breakpoints = {
@@ -35,10 +47,7 @@ export class UrNovlCarousel {
     spaceBetween?: number | string = '0';
 
     @Prop()
-    navigation?: boolean = false;
-
-    @Event()
-    intersectionUpdated: EventEmitter<Array<IntersectionObserverEntry>>;
+    navigation? = false;
 
     @Event()
     prevClicked: EventEmitter<void>;
@@ -46,29 +55,135 @@ export class UrNovlCarousel {
     @Event()
     nextClicked: EventEmitter<void>;
 
-    private onIntersection = async (entries: Array<IntersectionObserverEntry>) => {
-        this.intersectionUpdated.emit(entries);
+    /*
+    @Event()
+    slideChange: EventEmitter<[boolean, boolean, number]>;
+
+    @Event()
+    snapIndexChange: EventEmitter<Swiper>;*/
+
+    @Event()
+    progressUpdated: EventEmitter<[ number, number ]>;
+
+    @Method()
+    async addNovls(novls: Array<Novl | CustomContent>) {
+        console.log('>> add novls', novls);
+
+        this.novls = this.novls.concat(...novls);
+
+        forceUpdate(this)
+    }
+
+    @Method()
+    async updateNovlsByIndex(updates: Map<number, Novl | CustomContent>) {
+        console.log('>> update novls', updates);
+
+        this.novls = this.novls.map((oldNovl, oldIdx) => {
+            if (updates.has(oldIdx)) {
+                const newNovl = updates.get(oldIdx);
+                return newNovl;
+            }
+
+            return oldNovl;
+        });
+
+        forceUpdate(this);
+    }
+
+    @Prop()
+    destroyListeners = true;
+
+    private onSlideChange = () => {
+        this.disabledPrev = this.swiperContainer?.swiper?.isBeginning;
+        this.disabledNext = this.swiperContainer?.swiper?.isEnd;
+    };
+
+    private onLeftClick = () => {
+        if (this.disabledPrev) {
+            return;
+        }
+
+        this.swiperContainer?.swiper?.slidePrev();
+        this.prevClicked.emit();
+    };
+
+    private onRightClick = () => {
+        if (this.disabledNext) {
+            return;
+        }
+
+        this.swiperContainer?.swiper?.slideNext();
+        this.nextClicked.emit();
     };
 
     componentDidLoad() {
-        const container: any = this.el.shadowRoot.querySelector('swiper-container');
+        this.swiperContainer = this.el.shadowRoot.querySelector('swiper-container');
 
         if (this.navigation) {
-            this.el.shadowRoot.querySelector('ur-button-arrow-left').addEventListener('click', () => {
-                container?.swiper?.slidePrev();
-                this.prevClicked.emit();
-            });
-            this.el.shadowRoot.querySelector('ur-button-arrow-right').addEventListener('click', () => {
-                container?.swiper?.slideNext();
-                this.nextClicked.emit();
-            });
+            this.leftArrow = this.el.shadowRoot.querySelector('ur-button-arrow-left');
+            this.rightArrow = this.el.shadowRoot.querySelector('ur-button-arrow-right');
+            this.leftArrow.addEventListener('click', this.onLeftClick);
+            this.rightArrow.addEventListener('click', this.onRightClick);
+            this.swiperContainer?.swiper.on('slideChange', this.onSlideChange);
         }
 
-        const novls = this.el.shadowRoot.querySelectorAll('ur-novl');
-        this.observer = new IntersectionObserver(this.onIntersection);
-        novls.forEach(novl => {
-            this.observer.observe(novl);
-        })
+        this.swiperContainer?.swiper.on('reachBeginning', () => {
+            this.disabledPrev = true;
+        });
+
+        this.swiperContainer?.swiper.on('reachEnd', () => {
+            this.disabledNext = true;
+        });
+
+        this.swiperContainer?.swiper.on('progress', (event, value) => {
+            const progress = parseInt(Math.round(value * 100).toFixed(0), 10)
+            const visibleElements = event.slidesEl.getElementsByClassName('swiper-slide-visible').length;
+            this.progressUpdated.emit([ progress, visibleElements ]);
+        });
+
+        /*
+        this.swiperContainer?.swiper.on('fromEdge', (ss) => {
+            // console.log('fromEdge', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesGridLengthChange', (ss) => {
+            // console.log('slidesGridLengthChange', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesLengthChange', (ss) => {
+            // console.log('slidesLengthChange', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesUpdated', (ss) => {
+            // console.log('slidesUpdated', ss);
+        });
+
+        this.swiperContainer?.swiper.on('snapIndexChange', (swiper) => {
+            // this.snapIndexChange.emit(swiper);
+        });
+        */
+    }
+
+    disconnectedCallback() {
+        if (this.destroyListeners) {
+            this.leftArrow?.removeEventListener('click', this.onLeftClick);
+            this.rightArrow?.removeEventListener('click', this.onRightClick);
+            this.swiperContainer?.swiper.destroy(true, true);
+        }
+    }
+
+    renderNovl(novl: Novl | CustomContent, index: number) {
+        if (is_custom_data(novl)) {
+            return (<swiper-slide>
+                <span class="index">{index + 1}</span>
+                <div class="custom" innerHTML={novl.content(index)}></div>
+            </swiper-slide>)
+        }
+
+        return (<swiper-slide>
+            <span class="index">{index + 1}</span>
+            <ur-novl {...novl}></ur-novl>
+        </swiper-slide>)
     }
 
     render() {
@@ -76,22 +191,23 @@ export class UrNovlCarousel {
             <Host>
                 <div class="carousel">
                     {this.navigation && (
-                        <ur-button-arrow-left />
+                        <ur-button-arrow-left disabled={this.disabledPrev} />
                     )}
                     {this.navigation && (
-                        <ur-button-arrow-right />
+                        <ur-button-arrow-right disabled={this.loading || this.disabledNext} />
                     )}
                     <swiper-container
+                        init
+                        observer
+                        observe-slide-children
+                        slides-per-group-auto
+                        watch-slides-progress
                         breakpoint-base="container"
                         grid={this.grid}
                         breakpoints={this.breakpoints}
                         slides-per-view={this.slidesPerView}
                         space-between={this.spaceBetween}>
-                        {this.novls.map(novl => {
-                            return (<swiper-slide>
-                                <ur-novl {...novl}></ur-novl>
-                            </swiper-slide>)
-                        })}
+                        {this.novls.map((novl, index) => this.renderNovl(novl, index))}
                     </swiper-container>
                 </div>
             </Host>

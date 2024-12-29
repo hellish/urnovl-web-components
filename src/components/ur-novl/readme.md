@@ -11,6 +11,7 @@
 | ------------------- | --------------------- | ----------- | --------- | --------------------- |
 | `authorAvatar`      | `author-avatar`       |             | `any`     | `undefined`           |
 | `authorName`        | `author-name`         |             | `any`     | `undefined`           |
+| `borderRadius`      | `border-radius`       |             | `string`  | `'8px'`               |
 | `likes`             | `likes`               |             | `number`  | `0`                   |
 | `loading`           | `loading`             |             | `boolean` | `false`               |
 | `novlCover`         | `novl-cover`          |             | `any`     | `undefined`           |
