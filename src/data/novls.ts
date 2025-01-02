@@ -44,6 +44,10 @@ export const NOVLS: Array<Novl> = [
         published: false,
     },
     {
+        novlId: '3333',
+        loading: true,
+    },
+    {
         novlId: '4',
         novlTitle: 'Welcome to my nightmare',
         novlCover: 'https://s3-eu-west-1.amazonaws.com/urnovl-irl-1/covers/fe469e2a-8e19-48a2-a89d-55e8a201156c-grid.jpg',

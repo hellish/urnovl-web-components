@@ -1,4 +1,4 @@
-import { Event, Component, Host, Prop, h, EventEmitter } from '@stencil/core';
+import { Event, Component, Host, Prop, h, EventEmitter, Element } from '@stencil/core';
 import { NOVL_COVER_FALLBACK } from '../../data/novls';
 
 @Component({
@@ -7,6 +7,9 @@ import { NOVL_COVER_FALLBACK } from '../../data/novls';
     shadow: true,
 })
 export class UrNovl {
+
+    @Element()
+    el: HTMLElement;
 
     @Prop({ reflect: true })
     novlId;
@@ -53,18 +56,25 @@ export class UrNovl {
     @Prop()
     publisherName: string | null = null;
 
+    @Prop()
+    borderRadius = '8px';
+
     @Event()
     novlClicked: EventEmitter<string>;
 
+    componentDidLoad() {
+        this.el.style.setProperty("--novl-border-radius", this.borderRadius);
+    }
+
     renderLoading() {
         return <Host>
-            <div class="novl loading">
+            <div class="novl loading" onClick={() => this.novlClicked.emit(this.novlId)}>
                 <section class="cover loading"></section>
                 <section class="info">
                     <div class="title loading">&nbsp;</div>
                     <div class="stats loading"></div>
                     <div class="description loading">&nbsp;</div>
-                    <div class="author">
+                    <div class="author loading">
                         <div class="avatar loading">&nbsp;</div>
                         <div class="name loading">&nbsp;</div>
                     </div>
@@ -121,7 +131,7 @@ export class UrNovl {
                         )}
                         <div class="description">{this.novlDescription}</div>
                         <div class="author">
-                            <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar})` }}></div>
+                            <div class="avatar" style={{ backgroundImage: `url(${this.authorAvatar || 'assets/img/user/account.png'})` }}></div>
                             <div class="name">{this.authorName}</div>
                         </div>
                     </section>

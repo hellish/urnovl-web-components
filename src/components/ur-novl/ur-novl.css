@@ -307,4 +307,20 @@
         row-gap: 4px;
         padding: 4px;
     }
+
+    :host .info .title.loading {
+        margin: 0 4px;
+    }
+
+    :host .info .stats.loading {
+        margin: 0 4px;
+    }
+
+    :host .info .description.loading {
+        margin: 0 4px;
+    }
+
+    :host .info .author.loading {
+        margin: 0 4px;
+    }
 }

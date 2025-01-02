@@ -19,4 +19,12 @@
     mdui-button-icon svg {
         height: 21px;
     }
+
+    mdui-button-icon[disabled] {
+        opacity: 0.5;
+    }
+
+    mdui-button-icon[disabled] svg {
+        opacity: 0.5;
+    }
 }
