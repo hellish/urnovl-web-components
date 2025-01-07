@@ -4,17 +4,24 @@ import 'mdui/components/top-app-bar';
 import 'mdui/components/icon';
 
 @Component({
-    tag: 'ur-read-desktop-top-app-bar',
-    styleUrl: 'ur-read-desktop-top-app-bar.css',
+    tag: 'ur-read-top-app-bar',
+    styleUrl: 'ur-read-top-app-bar.css',
     shadow: true,
 })
-export class UrReadDesktopTopAppBar {
+export class UrReadTopAppBar {
     /** Variant of the top app bar (e.g., 'small', 'medium', etc.) */
     @Prop() variant: 'small' | 'medium' | 'large' = 'small';
 
     /** Title of the novel */
     @Prop()
     novelTitle: string;
+
+    /** Whether the current user is the chapter owner */
+    @Prop()
+    isChapterOwner: boolean = false; // Default to false
+
+    @Prop()
+    deviceVariant: 'desktop' | 'mobile' = 'desktop'; // Default to desktop
 
     /** Behavior of the top app bar on scroll */
     @Prop()
@@ -33,10 +40,32 @@ export class UrReadDesktopTopAppBar {
     @Event()
     readingSettingsClick: EventEmitter<void>; // Event for reading settings button click
 
+    @Event()
+    storySummaryClick: EventEmitter<void>; // Event for story summary button click
+
+    @Event()
+    editChapterClick: EventEmitter<void>; // Event for edit chapter button click
+
     private mutationObserver: MutationObserver; // Observer for detecting changes
 
     private handleReadingSettingsClick = () => {
+        console.log('Handle read settings');
         this.readingSettingsClick.emit(); // Emit the readingSettingsClick event when the button is clicked
+    };
+
+    private handleStorySummaryClick = () => {
+        console.log('Story summary click');
+        this.storySummaryClick.emit();
+    };
+
+    private handleEditChapterClick = () => {
+        console.log('Edit clicked');
+        this.editChapterClick.emit();
+    };
+
+    private handleChapterButtonClick = () => {
+        console.log('Chapter button clicked');
+        this.editChapterClick.emit();
     };
 
     /**
@@ -110,8 +139,24 @@ export class UrReadDesktopTopAppBar {
                     {/* Title */}
                     <mdui-top-app-bar-title>{this.novelTitle}</mdui-top-app-bar-title>
 
+                    {/* Edit button - only shown if showEdit is true */}
+                    {this.isChapterOwner && <ur-button-icon icon="edit" variant="standard" aria-label="Edit Chapter" onClick={this.handleEditChapterClick}></ur-button-icon>}
+
                     {/* Slot for additional chapter selection functionality */}
-                    <slot name="chapter-select"></slot>
+                    {this.deviceVariant === 'desktop' && <slot name="chapter-select"></slot>}
+
+                    {/* Chapter button for smaller screens */}
+                    {this.deviceVariant === 'mobile' && (
+                        <ur-button-icon
+                            icon="list"
+                            variant="standard"
+                            aria-label="Select Chapter"
+                            onClick={this.handleChapterButtonClick} // Handle click event
+                        ></ur-button-icon>
+                    )}
+
+                    {/* Buttons for story summary and reading settings */}
+                    <ur-button-icon icon="info_outline" variant="standard" aria-label="Story Summary" onClick={this.handleStorySummaryClick}></ur-button-icon>
 
                     {/* Button for reading settings */}
                     <ur-button-icon icon="text_format--outlined" variant="standard" aria-label="Reading Settings" onClick={this.handleReadingSettingsClick}></ur-button-icon>

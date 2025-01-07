@@ -24,6 +24,9 @@ export class UrButton {
     @Prop()
     fullWidth: boolean;
 
+    @Prop()
+    loading = false;
+
     render() {
         const buttonClass = this.fullWidth ? 'full-width' : '';
 
@@ -35,7 +38,7 @@ export class UrButton {
                     end-icon={!!this.endIcon ? this.endIcon : false}
                     variant={this.variant}
                     full-width={this.fullWidth}
-                    disabled={this.disabled}><slot></slot></mdui-button>
+                    disabled={this.disabled || this.loading}><slot></slot></mdui-button>
             </Host>
         );
     }

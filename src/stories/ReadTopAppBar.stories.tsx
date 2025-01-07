@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import '../components/ur-read-desktop-top-app-bar/ur-read-desktop-top-app-bar'; // Adjust path as necessary
+import '../components/ur-read-top-app-bar/ur-read-top-app-bar'; // Adjust path as necessary
 import '../components/ur-select/ur-select'; // Import ur-select component
 import '../components/ur-linear-progress/ur-linear-progress'; // Import ur-select component
 import 'mdui/components/icon.js';
@@ -25,19 +25,30 @@ const Template = args => {
     ];
 
     return html`
-        <ur-read-desktop-top-app-bar novel-title="${args.novelTitle}">
+        <ur-read-top-app-bar
+            novel-title="${args.novelTitle}"
+            variant="${args.variant}"
+            device-variant="${args.deviceVariant}"
+            is-chapter-owner="${args.isChapterOwner}"
+            .scroll-behavior="${args.scrollBehavior || 'hide'}"
+            .scroll-threshold="${args.scrollThreshold || 50}"
+        >
             <!-- Chapter Select Dropdown -->
-            <ur-select slot="chapter-select" name="chapters-select" value="6" variant="outlined" flex="true" usage="${args.usage}" suffix="&#9660;">
-                ${chapters.map((chapter, index) =>
-                    args.usage === 'topBar'
-                        ? html`<mdui-menu-item value="${chapter.id}">${index + 1}. ${chapter.title}</mdui-menu-item>`
-                        : html`<mdui-menu-item value="${chapter.id}">${chapter.title}</mdui-menu-item>`,
-                )}
-            </ur-select>
+            ${args.deviceVariant === 'desktop'
+                ? html`
+                      <ur-select slot="chapter-select" name="chapters-select" value="6" variant="outlined" flex="true" usage="${args.usage}" suffix="&#9660;">
+                          ${chapters.map((chapter, index) =>
+                              args.usage === 'topBar'
+                                  ? html`<mdui-menu-item value="${chapter.id}"> ${index + 1}. ${chapter.title} </mdui-menu-item>`
+                                  : html`<mdui-menu-item value="${chapter.id}"> ${chapter.title} </mdui-menu-item>`,
+                          )}
+                      </ur-select>
+                  `
+                : ''}
 
             <!-- Linear Progress Bar -->
             <ur-linear-progress slot="read-progress" id="progress-bar" value="0" max="1"></ur-linear-progress>
-        </ur-read-desktop-top-app-bar>
+        </ur-read-top-app-bar>
 
         <!-- Scrollable Container -->
         <div class="example-read-page example-scroll-target" style="background: #F0F0F0; height: 250px; overflow: auto;" onscroll="updateProgress()">
@@ -69,7 +80,7 @@ const Template = args => {
 };
 
 export default {
-    title: 'urnovl/Business/TopAppBars/Reading Desktop TopAppBar',
+    title: 'urnovl/Business/TopAppBars/Reading TopAppBar',
     render: Template,
     argTypes: {
         novelTitle: {
@@ -82,6 +93,20 @@ export default {
             description: 'Usage prop passed to ur-select component',
             defaultValue: 'topBar',
         },
+        isChapterOwner: {
+            control: 'boolean',
+            defaultValue: false,
+        },
+        deviceVariant: {
+            control: 'radio',
+            options: ['desktop', 'mobile'],
+            defaultValue: 'desktop',
+        },
+        variant: {
+            control: 'select',
+            options: ['small', 'medium', 'large'],
+            defaultValue: 'small',
+        },
     },
 };
 
@@ -89,5 +114,23 @@ export const Default = {
     args: {
         novelTitle: 'War and Peace', // Default title for the top app bar
         usage: 'topBar', // Default usage
+    },
+};
+
+// Owner on Desktop
+export const OwnerDesktop = {
+    args: {
+        ...Default.args,
+        isChapterOwner: true,
+        deviceVariant: 'desktop',
+    },
+};
+
+// Owner on Mobile
+export const OwnerMobile = {
+    args: {
+        ...Default.args,
+        isChapterOwner: true,
+        deviceVariant: 'mobile',
     },
 };

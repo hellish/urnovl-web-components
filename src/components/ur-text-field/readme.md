@@ -42,6 +42,19 @@
 | `valueChanged`      |             | `CustomEvent<{ name: string; value: string; }>`                    |
 
 
+## Dependencies
+
+### Used by
+
+ - [ur-comment-form](../ur-comment-form)
+
+### Graph
+```mermaid
+graph TD;
+  ur-comment-form --> ur-text-field
+  style ur-text-field fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

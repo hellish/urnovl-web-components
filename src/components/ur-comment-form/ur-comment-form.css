@@ -1,0 +1,76 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+:host .form-content {
+    display: flex;
+    gap: 8px;
+}
+
+:host .form-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+:host .input-container {
+    width: 100%;
+    position: relative;
+}
+
+:host .button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+:host .mobile-form ur-text-field {
+    margin-right: 4px;
+    flex: 1; /* Make the text field take up the remaining space */
+}
+
+:host .mobile-form ur-button-icon {
+    flex-shrink: 0;
+    width: 56px; /* Original width */
+    height: 56px; /* Original height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.4); /* Scale the button to make it 56px */
+}
+
+:host .mobile-form {
+    gap: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+/* Styles for the mobile variant */
+:host([variant="mobile"]) .form-content {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+:host([variant="mobile"]) .form-main {
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+}
+
+:host([variant="mobile"]) .input-container {
+    flex: 1;
+}
+
+:host([variant="mobile"]) ur-text-field {
+    --ur-text-field-padding: 4px;
+    --ur-text-field-font-size: 14px;
+}
+
+:host([variant="mobile"]) .button-container {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+}

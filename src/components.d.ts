@@ -24,6 +24,7 @@ export namespace Components {
         "endIcon": any;
         "fullWidth": boolean;
         "icon": any;
+        "loading": boolean;
         "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
@@ -101,6 +102,15 @@ export namespace Components {
         "loading": boolean;
         "radius": string;
         "size": string;
+    }
+    interface UrCommentForm {
+        "disabled": boolean;
+        "isServer": boolean;
+        "maxLength": number;
+        "minLength": number;
+        "placeholder": string;
+        "user": { displayName: string; avatar: string };
+        "variant": 'desktop' | 'mobile';
     }
     interface UrDialog {
         "borderRadius": string | null;
@@ -367,24 +377,6 @@ export namespace Components {
          */
         "value": string | null;
     }
-    interface UrReadDesktopTopAppBar {
-        /**
-          * Title of the novel
-         */
-        "novelTitle": string;
-        /**
-          * Behavior of the top app bar on scroll
-         */
-        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
-        /**
-          * Scroll threshold in pixels (default: 50)
-         */
-        "scrollThreshold": number;
-        /**
-          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
-         */
-        "variant": 'small' | 'medium' | 'large';
-    }
     interface UrReadMobileTopAppBar {
         "headerTitle": string;
         "scrollBehavior": 'hide' | 'shrink' | 'elevate';
@@ -427,6 +419,29 @@ export namespace Components {
         "isVisible": boolean;
         "likes": string;
         "share": string;
+    }
+    interface UrReadTopAppBar {
+        "deviceVariant": 'desktop' | 'mobile';
+        /**
+          * Whether the current user is the chapter owner
+         */
+        "isChapterOwner": boolean;
+        /**
+          * Title of the novel
+         */
+        "novelTitle": string;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold": number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant": 'small' | 'medium' | 'large';
     }
     interface UrReader {
         "avatarName": string;
@@ -639,6 +654,10 @@ export interface UrCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrCheckboxGroupElement;
 }
+export interface UrCommentFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCommentFormElement;
+}
 export interface UrFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrFormElement;
@@ -687,10 +706,6 @@ export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrRadioGroupElement;
 }
-export interface UrReadDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrReadDesktopTopAppBarElement;
-}
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadMobileTopAppBarElement;
@@ -702,6 +717,10 @@ export interface UrReadRailCustomEvent<T> extends CustomEvent<T> {
 export interface UrReadRailMobileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadRailMobileElement;
+}
+export interface UrReadTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadTopAppBarElement;
 }
 export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -820,6 +839,25 @@ declare global {
     var HTMLUrChipElement: {
         prototype: HTMLUrChipElement;
         new (): HTMLUrChipElement;
+    };
+    interface HTMLUrCommentFormElementEventMap {
+        "commentSubmit": { text: string };
+        "inputFocus": FocusEvent;
+        "inputBlur": FocusEvent;
+    }
+    interface HTMLUrCommentFormElement extends Components.UrCommentForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCommentFormElementEventMap>(type: K, listener: (this: HTMLUrCommentFormElement, ev: UrCommentFormCustomEvent<HTMLUrCommentFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCommentFormElementEventMap>(type: K, listener: (this: HTMLUrCommentFormElement, ev: UrCommentFormCustomEvent<HTMLUrCommentFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrCommentFormElement: {
+        prototype: HTMLUrCommentFormElement;
+        new (): HTMLUrCommentFormElement;
     };
     interface HTMLUrDialogElement extends Components.UrDialog, HTMLStencilElement {
     }
@@ -1100,23 +1138,6 @@ declare global {
         prototype: HTMLUrRadioGroupElement;
         new (): HTMLUrRadioGroupElement;
     };
-    interface HTMLUrReadDesktopTopAppBarElementEventMap {
-        "readingSettingsClick": void;
-    }
-    interface HTMLUrReadDesktopTopAppBarElement extends Components.UrReadDesktopTopAppBar, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrReadDesktopTopAppBarElement: {
-        prototype: HTMLUrReadDesktopTopAppBarElement;
-        new (): HTMLUrReadDesktopTopAppBarElement;
-    };
     interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
         "chaptersClick": void;
@@ -1187,6 +1208,25 @@ declare global {
     var HTMLUrReadRailMobileElement: {
         prototype: HTMLUrReadRailMobileElement;
         new (): HTMLUrReadRailMobileElement;
+    };
+    interface HTMLUrReadTopAppBarElementEventMap {
+        "readingSettingsClick": void;
+        "storySummaryClick": void;
+        "editChapterClick": void;
+    }
+    interface HTMLUrReadTopAppBarElement extends Components.UrReadTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadTopAppBarElement, ev: UrReadTopAppBarCustomEvent<HTMLUrReadTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadTopAppBarElement, ev: UrReadTopAppBarCustomEvent<HTMLUrReadTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadTopAppBarElement: {
+        prototype: HTMLUrReadTopAppBarElement;
+        new (): HTMLUrReadTopAppBarElement;
     };
     interface HTMLUrReaderElementEventMap {
         "chapterUnlocked": void;
@@ -1347,6 +1387,7 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
+        "ur-comment-form": HTMLUrCommentFormElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
@@ -1370,10 +1411,10 @@ declare global {
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
-        "ur-read-desktop-top-app-bar": HTMLUrReadDesktopTopAppBarElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-read-rail": HTMLUrReadRailElement;
         "ur-read-rail-mobile": HTMLUrReadRailMobileElement;
+        "ur-read-top-app-bar": HTMLUrReadTopAppBarElement;
         "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
@@ -1401,6 +1442,7 @@ declare namespace LocalJSX {
         "endIcon"?: any;
         "fullWidth"?: boolean;
         "icon"?: any;
+        "loading"?: boolean;
         "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
@@ -1484,6 +1526,18 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         "radius"?: string;
         "size"?: string;
+    }
+    interface UrCommentForm {
+        "disabled"?: boolean;
+        "isServer"?: boolean;
+        "maxLength"?: number;
+        "minLength"?: number;
+        "onCommentSubmit"?: (event: UrCommentFormCustomEvent<{ text: string }>) => void;
+        "onInputBlur"?: (event: UrCommentFormCustomEvent<FocusEvent>) => void;
+        "onInputFocus"?: (event: UrCommentFormCustomEvent<FocusEvent>) => void;
+        "placeholder"?: string;
+        "user"?: { displayName: string; avatar: string };
+        "variant"?: 'desktop' | 'mobile';
     }
     interface UrDialog {
         "borderRadius"?: string | null;
@@ -1776,25 +1830,6 @@ declare namespace LocalJSX {
          */
         "value"?: string | null;
     }
-    interface UrReadDesktopTopAppBar {
-        /**
-          * Title of the novel
-         */
-        "novelTitle"?: string;
-        "onReadingSettingsClick"?: (event: UrReadDesktopTopAppBarCustomEvent<void>) => void;
-        /**
-          * Behavior of the top app bar on scroll
-         */
-        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
-        /**
-          * Scroll threshold in pixels (default: 50)
-         */
-        "scrollThreshold"?: number;
-        /**
-          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
-         */
-        "variant"?: 'small' | 'medium' | 'large';
-    }
     interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
         "onBackClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
@@ -1860,6 +1895,32 @@ declare namespace LocalJSX {
         "onViewProfileClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
         "onVisibilityToggled"?: (event: UrReadRailMobileCustomEvent<boolean>) => void;
         "share"?: string;
+    }
+    interface UrReadTopAppBar {
+        "deviceVariant"?: 'desktop' | 'mobile';
+        /**
+          * Whether the current user is the chapter owner
+         */
+        "isChapterOwner"?: boolean;
+        /**
+          * Title of the novel
+         */
+        "novelTitle"?: string;
+        "onEditChapterClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        "onReadingSettingsClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        "onStorySummaryClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant"?: 'small' | 'medium' | 'large';
     }
     interface UrReader {
         "avatarName"?: string;
@@ -2080,6 +2141,7 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
+        "ur-comment-form": UrCommentForm;
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
         "ur-hero": UrHero;
@@ -2103,10 +2165,10 @@ declare namespace LocalJSX {
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
-        "ur-read-desktop-top-app-bar": UrReadDesktopTopAppBar;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-read-rail": UrReadRail;
         "ur-read-rail-mobile": UrReadRailMobile;
+        "ur-read-top-app-bar": UrReadTopAppBar;
         "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
@@ -2133,6 +2195,7 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
+            "ur-comment-form": LocalJSX.UrCommentForm & JSXBase.HTMLAttributes<HTMLUrCommentFormElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
@@ -2156,10 +2219,10 @@ declare module "@stencil/core" {
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
-            "ur-read-desktop-top-app-bar": LocalJSX.UrReadDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadDesktopTopAppBarElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-read-rail": LocalJSX.UrReadRail & JSXBase.HTMLAttributes<HTMLUrReadRailElement>;
             "ur-read-rail-mobile": LocalJSX.UrReadRailMobile & JSXBase.HTMLAttributes<HTMLUrReadRailMobileElement>;
+            "ur-read-top-app-bar": LocalJSX.UrReadTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadTopAppBarElement>;
             "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;

@@ -13,6 +13,7 @@
 | `endIcon`   | `end-icon`   |             | `any`                                                       | `null`      |
 | `fullWidth` | `full-width` |             | `boolean`                                                   | `undefined` |
 | `icon`      | `icon`       |             | `any`                                                       | `null`      |
+| `loading`   | `loading`    |             | `boolean`                                                   | `false`     |
 | `variant`   | `variant`    |             | `"elevated" \| "filled" \| "outlined" \| "text" \| "tonal"` | `'filled'`  |
 
 
@@ -20,22 +21,26 @@
 
 ### Used by
 
+ - [ur-comment-form](../ur-comment-form)
  - [ur-hero](../ur-hero)
  - [ur-main-left-menu](../ur-main-left-menu)
  - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
  - [ur-reader](../ur-reader)
  - [ur-user](../ur-user)
+ - [ur-wizard-step](../ur-wizard-step)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-comment-form --> ur-button
   ur-hero --> ur-button
   ur-main-left-menu --> ur-button
   ur-page --> ur-button
   ur-page-profile --> ur-button
   ur-reader --> ur-button
   ur-user --> ur-button
+  ur-wizard-step --> ur-button
   style ur-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
