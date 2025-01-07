@@ -46,6 +46,9 @@ export class UrReadTopAppBar {
     @Event()
     editChapterClick: EventEmitter<void>; // Event for edit chapter button click
 
+    @Event()
+    chapterButtonClick: EventEmitter<void>; // Event for edit chapter button click
+
     private mutationObserver: MutationObserver; // Observer for detecting changes
 
     private handleReadingSettingsClick = () => {
@@ -65,7 +68,8 @@ export class UrReadTopAppBar {
 
     private handleChapterButtonClick = () => {
         console.log('Chapter button clicked');
-        this.editChapterClick.emit();
+        // Emit a different event or implement logic for chapter selection
+        this.chapterButtonClick.emit(); // Emit a new custom event for chapter button click
     };
 
     /**

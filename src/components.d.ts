@@ -1213,6 +1213,7 @@ declare global {
         "readingSettingsClick": void;
         "storySummaryClick": void;
         "editChapterClick": void;
+        "chapterButtonClick": void;
     }
     interface HTMLUrReadTopAppBarElement extends Components.UrReadTopAppBar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrReadTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadTopAppBarElement, ev: UrReadTopAppBarCustomEvent<HTMLUrReadTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1906,6 +1907,7 @@ declare namespace LocalJSX {
           * Title of the novel
          */
         "novelTitle"?: string;
+        "onChapterButtonClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
         "onEditChapterClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
         "onReadingSettingsClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
         "onStorySummaryClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;

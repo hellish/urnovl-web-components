@@ -33,18 +33,30 @@ const Template = args => {
             .scroll-behavior="${args.scrollBehavior || 'hide'}"
             .scroll-threshold="${args.scrollThreshold || 50}"
         >
-            <!-- Chapter Select Dropdown -->
-            ${args.deviceVariant === 'desktop'
-                ? html`
-                      <ur-select slot="chapter-select" name="chapters-select" value="6" variant="outlined" flex="true" usage="${args.usage}" suffix="&#9660;">
-                          ${chapters.map((chapter, index) =>
-                              args.usage === 'topBar'
-                                  ? html`<mdui-menu-item value="${chapter.id}"> ${index + 1}. ${chapter.title} </mdui-menu-item>`
-                                  : html`<mdui-menu-item value="${chapter.id}"> ${chapter.title} </mdui-menu-item>`,
-                          )}
-                      </ur-select>
-                  `
-                : ''}
+        <!-- Chapter Select Dropdown -->
+        ${args.deviceVariant === 'desktop'
+            ? html`
+                <ur-select
+                    slot="chapter-select"
+                    name="chapters-select"
+                    value="6"
+                    variant="outlined"
+                    flex="true"
+                    usage="${args.usage}"
+                    suffix="&#9660;"
+                >
+                    ${chapters.map((chapter, index) =>
+                        args.usage === 'topBar'
+                            ? html`<mdui-menu-item value="${chapter.id}">
+                                  ${index + 1}. ${chapter.title}
+                              </mdui-menu-item>`
+                            : html`<mdui-menu-item value="${chapter.id}">
+                                  ${chapter.title}
+                              </mdui-menu-item>`
+                    )}
+                </ur-select>
+            `
+            : ''}
 
             <!-- Linear Progress Bar -->
             <ur-linear-progress slot="read-progress" id="progress-bar" value="0" max="1"></ur-linear-progress>
