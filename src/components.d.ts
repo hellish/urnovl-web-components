@@ -19,6 +19,13 @@ export namespace Components {
         "size": string;
         "src": string;
     }
+    interface UrBottomSheet {
+        "backdropDismiss": boolean;
+        "hideSheet": () => Promise<void>;
+        "open": boolean;
+        "selectedDetent": 'large' | 'medium' | 'small';
+        "showSheet": () => Promise<void>;
+    }
     interface UrButton {
         "disabled": boolean;
         "endIcon": any;
@@ -225,8 +232,13 @@ export namespace Components {
     }
     interface UrMenuItem {
         "disabled": boolean;
+        "fullWidth": boolean;
+        "heightNumber"?: number;
         "label": string;
+        "leftAligned": boolean;
         "selected": boolean;
+        "selectedIcon": string;
+        "size": 'small' | 'medium' | 'large';
         "value": string;
     }
     interface UrMenuProfile {
@@ -248,6 +260,26 @@ export namespace Components {
           * Contains the drawer within its parent element
          */
         "contained": boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open": boolean;
+        "openDrawer": () => Promise<void>;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement": 'left' | 'right';
+    }
+    interface UrNavigationDrawerGlobal {
+        "closeDrawer": () => Promise<void>;
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc": boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick": boolean;
         /**
           * Determines if the drawer is open
          */
@@ -638,6 +670,10 @@ export namespace Components {
         "validationMessage": string;
     }
 }
+export interface UrBottomSheetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrBottomSheetElement;
+}
 export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowLeftElement;
@@ -677,10 +713,6 @@ export interface UrMainDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
 export interface UrMainLeftMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrMainLeftMenuElement;
-}
-export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrMenuItemElement;
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -752,6 +784,24 @@ declare global {
     var HTMLUrAvatarElement: {
         prototype: HTMLUrAvatarElement;
         new (): HTMLUrAvatarElement;
+    };
+    interface HTMLUrBottomSheetElementEventMap {
+        "dismiss": void;
+        "detentChange": string;
+    }
+    interface HTMLUrBottomSheetElement extends Components.UrBottomSheet, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrBottomSheetElementEventMap>(type: K, listener: (this: HTMLUrBottomSheetElement, ev: UrBottomSheetCustomEvent<HTMLUrBottomSheetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrBottomSheetElementEventMap>(type: K, listener: (this: HTMLUrBottomSheetElement, ev: UrBottomSheetCustomEvent<HTMLUrBottomSheetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrBottomSheetElement: {
+        prototype: HTMLUrBottomSheetElement;
+        new (): HTMLUrBottomSheetElement;
     };
     interface HTMLUrButtonElement extends Components.UrButton, HTMLStencilElement {
     }
@@ -995,18 +1045,7 @@ declare global {
         prototype: HTMLUrMainLeftMenuElement;
         new (): HTMLUrMainLeftMenuElement;
     };
-    interface HTMLUrMenuItemElementEventMap {
-        "itemClicked": string;
-    }
     interface HTMLUrMenuItemElement extends Components.UrMenuItem, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrMenuItemElement: {
         prototype: HTMLUrMenuItemElement;
@@ -1023,6 +1062,12 @@ declare global {
     var HTMLUrNavigationDrawerElement: {
         prototype: HTMLUrNavigationDrawerElement;
         new (): HTMLUrNavigationDrawerElement;
+    };
+    interface HTMLUrNavigationDrawerGlobalElement extends Components.UrNavigationDrawerGlobal, HTMLStencilElement {
+    }
+    var HTMLUrNavigationDrawerGlobalElement: {
+        prototype: HTMLUrNavigationDrawerGlobalElement;
+        new (): HTMLUrNavigationDrawerGlobalElement;
     };
     interface HTMLUrNovlElementEventMap {
         "novlClicked": string;
@@ -1381,6 +1426,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ur-avatar": HTMLUrAvatarElement;
+        "ur-bottom-sheet": HTMLUrBottomSheetElement;
         "ur-button": HTMLUrButtonElement;
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
@@ -1405,6 +1451,7 @@ declare global {
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menu-profile": HTMLUrMenuProfileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
+        "ur-navigation-drawer-global": HTMLUrNavigationDrawerGlobalElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
@@ -1437,6 +1484,13 @@ declare namespace LocalJSX {
         "radius"?: string;
         "size"?: string;
         "src"?: string;
+    }
+    interface UrBottomSheet {
+        "backdropDismiss"?: boolean;
+        "onDetentChange"?: (event: UrBottomSheetCustomEvent<string>) => void;
+        "onDismiss"?: (event: UrBottomSheetCustomEvent<void>) => void;
+        "open"?: boolean;
+        "selectedDetent"?: 'large' | 'medium' | 'small';
     }
     interface UrButton {
         "disabled"?: boolean;
@@ -1672,9 +1726,13 @@ declare namespace LocalJSX {
     }
     interface UrMenuItem {
         "disabled"?: boolean;
+        "fullWidth"?: boolean;
+        "heightNumber"?: number;
         "label"?: string;
-        "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
+        "leftAligned"?: boolean;
         "selected"?: boolean;
+        "selectedIcon"?: string;
+        "size"?: 'small' | 'medium' | 'large';
         "value"?: string;
     }
     interface UrMenuProfile {
@@ -1695,6 +1753,24 @@ declare namespace LocalJSX {
           * Contains the drawer within its parent element
          */
         "contained"?: boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open"?: boolean;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement"?: 'left' | 'right';
+    }
+    interface UrNavigationDrawerGlobal {
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc"?: boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick"?: boolean;
         /**
           * Determines if the drawer is open
          */
@@ -2136,6 +2212,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ur-avatar": UrAvatar;
+        "ur-bottom-sheet": UrBottomSheet;
         "ur-button": UrButton;
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
@@ -2160,6 +2237,7 @@ declare namespace LocalJSX {
         "ur-menu-item": UrMenuItem;
         "ur-menu-profile": UrMenuProfile;
         "ur-navigation-drawer": UrNavigationDrawer;
+        "ur-navigation-drawer-global": UrNavigationDrawerGlobal;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
@@ -2190,6 +2268,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
+            "ur-bottom-sheet": LocalJSX.UrBottomSheet & JSXBase.HTMLAttributes<HTMLUrBottomSheetElement>;
             "ur-button": LocalJSX.UrButton & JSXBase.HTMLAttributes<HTMLUrButtonElement>;
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
@@ -2214,6 +2293,7 @@ declare module "@stencil/core" {
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
+            "ur-navigation-drawer-global": LocalJSX.UrNavigationDrawerGlobal & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerGlobalElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;

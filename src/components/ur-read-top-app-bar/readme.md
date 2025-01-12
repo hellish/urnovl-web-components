@@ -21,6 +21,7 @@
 
 | Event                  | Description | Type                |
 | ---------------------- | ----------- | ------------------- |
+| `chapterButtonClick`   |             | `CustomEvent<void>` |
 | `editChapterClick`     |             | `CustomEvent<void>` |
 | `readingSettingsClick` |             | `CustomEvent<void>` |
 | `storySummaryClick`    |             | `CustomEvent<void>` |
