@@ -491,6 +491,7 @@ export class UrReader {
                     </div>
 
                     <div
+                        part="chapter-navigation-buttons"
                         class={{
                             'navigation-buttons': true,
                             'hidden': !this.isVisible,

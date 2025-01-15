@@ -62,7 +62,7 @@ export class UrNavigationDrawerGlobal {
     private updateContentHeight() {
         const headerHeight = this.headerElement.offsetHeight;
         const footerHeight = this.footerElement.offsetHeight;
-        this.contentHeight = headerHeight + footerHeight;
+        this.contentHeight = headerHeight + footerHeight + 16;
     }
 
     @Method()

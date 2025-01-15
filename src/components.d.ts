@@ -1013,6 +1013,7 @@ declare global {
     };
     interface HTMLUrMainDesktopTopAppBarElementEventMap {
         "searchLinkClicked": void;
+        "themeToggle": void;
     }
     interface HTMLUrMainDesktopTopAppBarElement extends Components.UrMainDesktopTopAppBar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1713,6 +1714,7 @@ declare namespace LocalJSX {
         "logoOpacity"?: number;
         "logoRotation"?: number;
         "onSearchLinkClicked"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
+        "onThemeToggle"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
         "searchText"?: string;
         "variant"?: string;
     }

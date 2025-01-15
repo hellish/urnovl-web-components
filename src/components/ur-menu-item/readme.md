@@ -7,19 +7,17 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type      | Default |
-| ---------- | ---------- | ----------- | --------- | ------- |
-| `disabled` | `disabled` |             | `boolean` | `false` |
-| `label`    | `label`    |             | `string`  | `''`    |
-| `selected` | `selected` |             | `boolean` | `false` |
-| `value`    | `value`    |             | `string`  | `''`    |
-
-
-## Events
-
-| Event         | Description | Type                  |
-| ------------- | ----------- | --------------------- |
-| `itemClicked` |             | `CustomEvent<string>` |
+| Property       | Attribute       | Description | Type                             | Default    |
+| -------------- | --------------- | ----------- | -------------------------------- | ---------- |
+| `disabled`     | `disabled`      |             | `boolean`                        | `false`    |
+| `fullWidth`    | `full-width`    |             | `boolean`                        | `false`    |
+| `heightNumber` | `height-number` |             | `number`                         | `30`       |
+| `label`        | `label`         |             | `string`                         | `''`       |
+| `leftAligned`  | `left-aligned`  |             | `boolean`                        | `true`     |
+| `selected`     | `selected`      |             | `boolean`                        | `false`    |
+| `selectedIcon` | `selected-icon` |             | `string`                         | `'check'`  |
+| `size`         | `size`          |             | `"large" \| "medium" \| "small"` | `'medium'` |
+| `value`        | `value`         |             | `string`                         | `''`       |
 
 
 ----------------------------------------------

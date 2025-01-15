@@ -74,7 +74,7 @@ const NavigationDrawer = ({ open = false, placement = 'right', closeOnEsc = true
                 line-height: 28px;
                 text-align: center;
                 letter-spacing: 0px;
-                color: rgb(var(--ur-color-on-background));
+                color: inherit;
             }
         </style>
     `;
