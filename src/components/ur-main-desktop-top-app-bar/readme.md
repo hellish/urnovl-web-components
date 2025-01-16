@@ -20,6 +20,7 @@
 | Event               | Description | Type                |
 | ------------------- | ----------- | ------------------- |
 | `searchLinkClicked` |             | `CustomEvent<void>` |
+| `themeToggle`       |             | `CustomEvent<void>` |
 
 
 ## Dependencies
@@ -27,11 +28,13 @@
 ### Depends on
 
 - [ur-logo](../ur-logo)
+- [ur-button-icon](../ur-button-icon)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-main-desktop-top-app-bar --> ur-logo
+  ur-main-desktop-top-app-bar --> ur-button-icon
   style ur-main-desktop-top-app-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

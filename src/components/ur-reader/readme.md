@@ -58,6 +58,13 @@
 | `viewAuthorProfileClicked` |             | `CustomEvent<void>` |
 
 
+## Shadow Parts
+
+| Part                           | Description |
+| ------------------------------ | ----------- |
+| `"chapter-navigation-buttons"` |             |
+
+
 ## Dependencies
 
 ### Depends on
