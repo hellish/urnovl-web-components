@@ -123,11 +123,6 @@
     margin-right: 12px;
 }
 
-:host .ur-list-item mdui-icon {
-    font-size: 22px;
-    color: rgb(var(--ur-color-on-surface));
-}
-
 :host mdui-list-item::part(headline) {
     font-size: 14px;
 }
