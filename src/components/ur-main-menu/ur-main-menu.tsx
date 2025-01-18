@@ -440,6 +440,7 @@ export class UrMainMenu {
                 <ur-button
                     variant="text"
                     borderRadius="0"
+                    buttonHeight="48px"
                     class="toggle-button"
                     onClick={() => {
                         this.toggleMenu();
