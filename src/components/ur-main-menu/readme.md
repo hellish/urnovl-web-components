@@ -7,20 +7,51 @@
 
 ## Properties
 
-| Property     | Attribute     | Description | Type      | Default     |
-| ------------ | ------------- | ----------- | --------- | ----------- |
-| `loggedIn`   | `logged-in`   |             | `boolean` | `undefined` |
-| `opened`     | `opened`      |             | `boolean` | `false`     |
-| `userAvatar` | `user-avatar` |             | `string`  | `undefined` |
-| `userName`   | `user-name`   |             | `string`  | `undefined` |
-| `userRole`   | `user-role`   |             | `string`  | `undefined` |
+| Property            | Attribute             | Description | Type      | Default                          |
+| ------------------- | --------------------- | ----------- | --------- | -------------------------------- |
+| `acceptableUseText` | `acceptable-use-text` |             | `string`  | `'Quills Acceptable Use Policy'` |
+| `badgeCount`        | `badge-count`         |             | `number`  | `10`                             |
+| `competitionsText`  | `competitions-text`   |             | `string`  | `'Competitions'`                 |
+| `contactUsText`     | `contact-us-text`     |             | `string`  | `'Contact us'`                   |
+| `discordText`       | `discord-text`        |             | `string`  | `'Our Discord'`                  |
+| `facebookText`      | `facebook-text`       |             | `string`  | `'Our Facebook'`                 |
+| `homeText`          | `home-text`           |             | `string`  | `'Home'`                         |
+| `loggedIn`          | `logged-in`           |             | `boolean` | `undefined`                      |
+| `notificationText`  | `notification-text`   |             | `string`  | `'Notifications'`                |
+| `opened`            | `opened`              |             | `boolean` | `false`                          |
+| `pagesText`         | `pages-text`          |             | `string`  | `'Pages'`                        |
+| `partnershipText`   | `partnership-text`    |             | `string`  | `'Partnership Program'`          |
+| `paymentText`       | `payment-text`        |             | `string`  | `'Payment Terms'`                |
+| `premiumText`       | `premium-text`        |             | `string`  | `'Go Premium'`                   |
+| `privacyText`       | `privacy-text`        |             | `string`  | `'Privacy Policy'`               |
+| `rulesText`         | `rules-text`          |             | `string`  | `'House Rules'`                  |
+| `signUpText`        | `sign-up-text`        |             | `string`  | `'Sign Up/In'`                   |
+| `storiesText`       | `stories-text`        |             | `string`  | `'Stories'`                      |
+| `termsText`         | `terms-text`          |             | `string`  | `'Terms of Service'`             |
+| `userAvatar`        | `user-avatar`         |             | `string`  | `undefined`                      |
+| `userName`          | `user-name`           |             | `string`  | `undefined`                      |
+| `userRole`          | `user-role`           |             | `string`  | `undefined`                      |
+| `xText`             | `x-text`              |             | `string`  | `'Our X'`                        |
 
 
 ## Events
 
-| Event          | Description | Type                   |
-| -------------- | ----------- | ---------------------- |
-| `toggleExpand` |             | `CustomEvent<boolean>` |
+| Event                     | Description | Type                   |
+| ------------------------- | ----------- | ---------------------- |
+| `acceptableUseClick`      |             | `CustomEvent<void>`    |
+| `competitionsClick`       |             | `CustomEvent<void>`    |
+| `contactUsClick`          |             | `CustomEvent<void>`    |
+| `homeClick`               |             | `CustomEvent<void>`    |
+| `notificationCenterClick` |             | `CustomEvent<void>`    |
+| `pagesClick`              |             | `CustomEvent<void>`    |
+| `partnershipClick`        |             | `CustomEvent<void>`    |
+| `paymentClick`            |             | `CustomEvent<void>`    |
+| `premiumClick`            |             | `CustomEvent<void>`    |
+| `privacyClick`            |             | `CustomEvent<void>`    |
+| `rulesClick`              |             | `CustomEvent<void>`    |
+| `storiesClick`            |             | `CustomEvent<void>`    |
+| `termsClick`              |             | `CustomEvent<void>`    |
+| `toggleExpand`            |             | `CustomEvent<boolean>` |
 
 
 ## Dependencies
@@ -29,22 +60,24 @@
 
 - [ur-list](../ur-list)
 - [ur-list-item](../ur-list)
+- [ur-tooltip](../ur-tooltip)
+- [ur-button-icon](../ur-button-icon)
 - [ur-logo](../ur-logo)
 - [ur-button](../ur-button)
-- [ur-button-icon](../ur-button-icon)
 - [ur-menu-profile](../ur-menu-profile)
 
 ### Graph
 ```mermaid
 graph TD;
-  ur-main-left-menu --> ur-list
-  ur-main-left-menu --> ur-list-item
-  ur-main-left-menu --> ur-logo
-  ur-main-left-menu --> ur-button
-  ur-main-left-menu --> ur-button-icon
-  ur-main-left-menu --> ur-menu-profile
+  ur-main-menu --> ur-list
+  ur-main-menu --> ur-list-item
+  ur-main-menu --> ur-tooltip
+  ur-main-menu --> ur-button-icon
+  ur-main-menu --> ur-logo
+  ur-main-menu --> ur-button
+  ur-main-menu --> ur-menu-profile
   ur-menu-profile --> ur-avatar
-  style ur-main-left-menu fill:#f9f,stroke:#333,stroke-width:4px
+  style ur-main-menu fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

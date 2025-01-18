@@ -100,6 +100,11 @@ export class UrMainMenu {
     toggleExpand: EventEmitter<boolean>;
 
     @Event()
+    signUpClick: EventEmitter<void>;
+
+    @Event()
+    viewProfileClick: EventEmitter<void>;
+    @Event()
     homeClick: EventEmitter<void>;
 
     @Event()
@@ -281,7 +286,7 @@ export class UrMainMenu {
         return (
             <div class="menu logged-out">
                 <div class="welcome">
-                    <ur-button class="menu-button" icon="login" variant="filled" full-width>
+                    <ur-button class="menu-button" icon="login" variant="filled" full-width onClick={() => this.signUpClick.emit()}>
                         {this.signUpText}
                     </ur-button>
                 </div>
@@ -293,7 +298,7 @@ export class UrMainMenu {
         return (
             <div class="menu logged-out">
                 <div class="welcome">
-                    <ur-button-icon class="menu-button-icon" icon="login" variant="filled"></ur-button-icon>
+                    <ur-button-icon class="menu-button-icon" icon="login" variant="filled" onClick={() => this.signUpClick.emit()}></ur-button-icon>
                 </div>
             </div>
         );
@@ -302,7 +307,7 @@ export class UrMainMenu {
     renderPremiumExpanded() {
         return (
             <div class="premium expanded">
-                <ur-button class="menu-button" icon="workspace_premium--outlined" variant="filled" full-width>
+                <ur-button class="menu-button" icon="workspace_premium--outlined" variant="filled" full-width onClick={() => this.premiumClick.emit()}>
                     {this.premiumText}
                 </ur-button>
             </div>
@@ -384,6 +389,7 @@ export class UrMainMenu {
                         user-avatar={this.userAvatar}
                         user-name={this.userName}
                         user-role={this.userRole}
+                        on-click={() => this.viewProfileClick.emit()}
                         class={this.expanded ? 'expanded' : 'collapsed'}
                     ></ur-menu-profile>
                 )}

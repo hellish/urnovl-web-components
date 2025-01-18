@@ -1062,6 +1062,8 @@ declare global {
         "contactUsClick": void;
         "premiumClick": void;
         "toggleExpand": boolean;
+        "signUpClick": void;
+        "viewProfileClick": void;
         "homeClick": void;
         "storiesClick": void;
         "pagesClick": void;
@@ -1790,9 +1792,11 @@ declare namespace LocalJSX {
         "onPremiumClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onPrivacyClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onRulesClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onSignUpClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onStoriesClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onTermsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onToggleExpand"?: (event: UrMainMenuCustomEvent<boolean>) => void;
+        "onViewProfileClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "opened"?: boolean;
         "pagesText"?: string;
         "partnershipText"?: string;
