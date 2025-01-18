@@ -49,9 +49,11 @@
 | `premiumClick`            |             | `CustomEvent<void>`    |
 | `privacyClick`            |             | `CustomEvent<void>`    |
 | `rulesClick`              |             | `CustomEvent<void>`    |
+| `signUpClick`             |             | `CustomEvent<void>`    |
 | `storiesClick`            |             | `CustomEvent<void>`    |
 | `termsClick`              |             | `CustomEvent<void>`    |
 | `toggleExpand`            |             | `CustomEvent<boolean>` |
+| `viewProfileClick`        |             | `CustomEvent<void>`    |
 
 
 ## Dependencies

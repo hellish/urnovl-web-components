@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Event, EventEmitter, Watch, Host } from '@stencil/core';
+import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } from '@stencil/core';
 
 @Component({
     tag: 'ur-main-menu',
@@ -6,6 +6,9 @@ import { Component, h, State, Prop, Event, EventEmitter, Watch, Host } from '@st
     shadow: true,
 })
 export class UrMainMenu {
+    @Element() 
+    el!: HTMLUrMainMenuElement;
+
     @State()
     expanded = false;
 
@@ -19,6 +22,7 @@ export class UrMainMenu {
     watchOpenedHandler(newVal: boolean) {
         this.expanded = newVal;
     }
+    
     private resizeObserver: ResizeObserver;
 
     @Prop()
@@ -134,11 +138,72 @@ export class UrMainMenu {
     @Event()
     partnershipClick: EventEmitter<void>;
 
+    @State()
+    private updateCounter = 0;
+
+    @Watch('userName')
+    watchUserNameHandler(newVal: string, oldVal: string) {
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
+    }
+
+    @Watch('userRole') 
+    watchUserRoleHandler(newVal: string, oldVal: string) {
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
+    }
+
+    @Watch('userAvatar')
+    watchUserAvatarHandler(newVal: string, oldVal: string) {
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
+    }
+
+    @Watch('badgeCount')
+    watchBadgeCountHandler(newVal: number, oldVal: number) {
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
+    }
+
+    private triggerUpdate() {
+        // Increment the counter to trigger a re-render
+        this.updateCounter++;
+    }
+
+    private mutationObserver: MutationObserver;
+
     componentDidLoad() {
         this.expanded = this.opened;
+        
+        // Set up mutation observer to watch for class changes
+        this.mutationObserver = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const hostElement = mutation.target as HTMLElement;
+                    const isExpanded = hostElement.classList.contains('expanded');
+                    if (this.expanded !== isExpanded) {
+                        this.expanded = isExpanded;
+                        this.toggleExpand.emit(this.expanded);
+                    }
+                }
+            });
+        });
+
+        // Start observing the host element
+        this.mutationObserver.observe(this.el.shadowRoot.host, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
     }
 
     disconnectedCallback() {
+        if (this.mutationObserver) {
+            this.mutationObserver.disconnect();
+        }
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
         }
@@ -175,7 +240,7 @@ export class UrMainMenu {
             <div class="notifications-holder">
                 <ur-list-item icon="notifications--outlined" content={this.notificationText} onClick={() => this.handleNotificationClick()}>
                     <div slot="notification-badge" class="notification-badge">
-                        {this.badgeCount}
+                        {this.badgeCount > 0 && this.badgeCount}
                     </div>
                 </ur-list-item>
             </div>
