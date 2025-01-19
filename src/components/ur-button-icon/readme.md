@@ -10,6 +10,8 @@
 | Property       | Attribute       | Description | Type                                              | Default             |
 | -------------- | --------------- | ----------- | ------------------------------------------------- | ------------------- |
 | `borderRadius` | `border-radius` |             | `string`                                          | `'8px'`             |
+| `buttonHeight` | `button-height` |             | `string`                                          | `'40px'`            |
+| `buttonWidth`  | `button-width`  |             | `string`                                          | `'40px'`            |
 | `disabled`     | `disabled`      |             | `boolean`                                         | `false`             |
 | `fontColor`    | `font-color`    |             | `string`                                          | `undefined`         |
 | `icon`         | `icon`          |             | `string`                                          | `'favorite_border'` |
