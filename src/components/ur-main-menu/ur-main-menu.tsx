@@ -343,6 +343,7 @@ export class UrMainMenu {
                         <ur-button-icon class="navigation-button-icon" icon="hub--outlined" title="Pages" onClick={() => this.pagesClick.emit()}></ur-button-icon>
                     </ur-tooltip>
 
+                    {/*
                     <ur-tooltip content={this.competitionsText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
                         <ur-button-icon
                             class="navigation-button-icon"
@@ -351,6 +352,7 @@ export class UrMainMenu {
                             onClick={() => this.competitionsClick.emit()}
                         ></ur-button-icon>
                     </ur-tooltip>
+                    */}
                 </div>
             </div>
         );
