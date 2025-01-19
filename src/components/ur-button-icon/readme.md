@@ -28,11 +28,7 @@
  - [ur-comment-form](../ur-comment-form)
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
-<<<<<<< HEAD
  - [ur-main-menu](../ur-main-menu)
-=======
- - [ur-main-left-menu](../ur-main-left-menu)
->>>>>>> origin/master
  - [ur-read-mobile-top-app-bar](../ur-read-mobile-top-app-bar)
  - [ur-read-rail](../ur-read-rail)
  - [ur-read-rail-mobile](../ur-read-rail-mobile)
@@ -46,11 +42,7 @@ graph TD;
   ur-comment-form --> ur-button-icon
   ur-locale-filter-panel --> ur-button-icon
   ur-main-desktop-top-app-bar --> ur-button-icon
-<<<<<<< HEAD
   ur-main-menu --> ur-button-icon
-=======
-  ur-main-left-menu --> ur-button-icon
->>>>>>> origin/master
   ur-read-mobile-top-app-bar --> ur-button-icon
   ur-read-rail --> ur-button-icon
   ur-read-rail-mobile --> ur-button-icon
