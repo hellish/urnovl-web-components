@@ -64,6 +64,13 @@
 | `xClick`                  |             | `CustomEvent<void>`    |
 
 
+## Shadow Parts
+
+| Part             | Description |
+| ---------------- | ----------- |
+| `"menu-profile"` |             |
+
+
 ## Dependencies
 
 ### Depends on
