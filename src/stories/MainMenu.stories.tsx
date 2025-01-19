@@ -5,11 +5,11 @@ import '../components/ur-list/ur-list';
 
 // Create a wrapper function to handle state
 const MenuWithControls = (args) => {
-    // Use closures to maintain state
+    // State variables
     let isOpened = args.opened;
     let badgeCount = args.badgeCount || 0;
 
-    // Create a function to update the DOM
+    // Update the menu's attributes dynamically
     const updateMenu = (element) => {
         const menu = element.querySelector('ur-main-menu');
         const toggleButton = element.querySelector('.toggle-button');
@@ -27,31 +27,32 @@ const MenuWithControls = (args) => {
         }
     };
 
-    // Handle toggle button click
+    // External button toggle handler
     const handleToggle = (e) => {
         isOpened = !isOpened;
         updateMenu(e.target.closest('.menu-controls-wrapper'));
     };
 
-    // Handle badge increment
+    // Badge count increment handler
     const handleIncrementBadge = (e) => {
         badgeCount += 1;
         updateMenu(e.target.closest('.menu-controls-wrapper'));
     };
 
-    // Handle badge decrement
+    // Badge count decrement handler
     const handleDecrementBadge = (e) => {
         badgeCount = Math.max(0, badgeCount - 1); // Prevent negative values
         updateMenu(e.target.closest('.menu-controls-wrapper'));
     };
 
-    // Handle menu's native toggle
-    const handleMenuToggle = (e) => {
-        isOpened = e.detail;
-        updateMenu(e.target.parentElement);
-        console.log('toggleExpand event payload:', e.detail);
+    // Internal menu toggle event handler
+    const handleMenuToggleClick = (e) => {
+        isOpened = !isOpened; // Update the state
+        updateMenu(e.target.parentElement); // Update the DOM
+        console.log('Internal menu button clicked. New state:', isOpened);
     };
 
+    // Styling for control buttons
     const buttonStyle = `
         padding: 8px 16px;
         margin: 0 4px;
@@ -65,6 +66,7 @@ const MenuWithControls = (args) => {
     return html`
         <div class="menu-controls-wrapper" style="padding: 20px;">
             <div style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
+                <!-- External Toggle Button -->
                 <button
                     @click=${handleToggle}
                     class="toggle-button"
@@ -92,14 +94,16 @@ const MenuWithControls = (args) => {
                 </span>
             </div>
 
+            <!-- Menu Component -->
             <ur-main-menu
+                #mainMenu
                 .opened=${isOpened}
                 .loggedIn=${args.loggedIn}
                 .userName=${args.userName}
                 .userAvatar=${args.userAvatar}
                 .userRole=${args.userRole}
                 .badgeCount=${badgeCount}
-                @toggleExpand=${handleMenuToggle}
+                @menuToggleClick=${handleMenuToggleClick}
             >
                 ${args.loggedIn
                     ? html`
@@ -147,7 +151,7 @@ export default {
     },
     parameters: {
         actions: {
-            handles: ['toggleExpand'],
+            handles: ['menuToggleClick'],
         },
     },
 };

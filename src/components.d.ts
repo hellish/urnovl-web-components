@@ -1074,6 +1074,10 @@ declare global {
         "paymentClick": void;
         "acceptableUseClick": void;
         "partnershipClick": void;
+        "menuToggleClick": boolean;
+        "facebookClick": void;
+        "xClick": void;
+        "discordClick": void;
     }
     interface HTMLUrMainMenuElement extends Components.UrMainMenu, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrMainMenuElementEventMap>(type: K, listener: (this: HTMLUrMainMenuElement, ev: UrMainMenuCustomEvent<HTMLUrMainMenuElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1784,7 +1788,10 @@ declare namespace LocalJSX {
         "onAcceptableUseClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onCompetitionsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onContactUsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onDiscordClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onFacebookClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onHomeClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onMenuToggleClick"?: (event: UrMainMenuCustomEvent<boolean>) => void;
         "onNotificationCenterClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onPagesClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onPartnershipClick"?: (event: UrMainMenuCustomEvent<void>) => void;
@@ -1797,6 +1804,7 @@ declare namespace LocalJSX {
         "onTermsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onToggleExpand"?: (event: UrMainMenuCustomEvent<boolean>) => void;
         "onViewProfileClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onXClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "opened"?: boolean;
         "pagesText"?: string;
         "partnershipText"?: string;

@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     width: var(--collapsed-width, 56px);
-    border-right: 1px solid rgb(var(--ur-color-outline-variant));
 
     --ur-color-background: var(--mdui-color-background);
     --ur-color-primary: var(--mdui-color-primary);
@@ -15,6 +14,10 @@
     --ur-color-on-secondary: var(--mdui-color-on-secondary);
     --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
     --ur-state-layers-outline-variant-opacity-16: var(--mdui-state-layers-outline-variant-opacity-16);
+
+    background: rgb(var(--ur-color-background));
+    color: rgb(var(--ur-color-on-background));
+    border-right: 1px solid rgb(var(--ur-color-outline-variant));
 
     --ur-color-error: var(--mdui-color-error);
 
@@ -211,6 +214,7 @@
     justify-content: center;
     text-decoration: none;
     color: rgb(var(--ur-color-on-background));
+    cursor: pointer;
 }
 
 :host .social.x {
@@ -221,12 +225,14 @@
     text-decoration: none; /* Removes underline */
     color: inherit;        /* Inherits color from parent */
     display: inline-block; /* Ensures proper alignment */
+    cursor: pointer;
 }
 
 :host .horizontal-logo a {
     text-decoration: none; /* Removes underline */
     color: inherit;        /* Inherits color from parent */
     display: inline-block; /* Ensures proper alignment */
+    cursor: pointer;
 }
 
 :host .social:hover {
@@ -327,7 +333,6 @@
 
 :host .notification-badge-collapsed {
     background-color: rgb(var(--ur-color-error));
-    color: white;
     border-radius: 12px;
     padding: 2px;
     font-size: 11px;
@@ -344,11 +349,13 @@
 }
 
 :host .notification-badge {
+    color: rgb(var(--ur-color-background));
     pointer-events: none;
 }
 
 :host .notification-badge-collapsed {
     pointer-events: none;
+    color: rgb(var(--ur-color-background));
 }
 
 :host .notification-badge:empty {

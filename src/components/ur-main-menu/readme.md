@@ -41,7 +41,10 @@
 | `acceptableUseClick`      |             | `CustomEvent<void>`    |
 | `competitionsClick`       |             | `CustomEvent<void>`    |
 | `contactUsClick`          |             | `CustomEvent<void>`    |
+| `discordClick`            |             | `CustomEvent<void>`    |
+| `facebookClick`           |             | `CustomEvent<void>`    |
 | `homeClick`               |             | `CustomEvent<void>`    |
+| `menuToggleClick`         |             | `CustomEvent<boolean>` |
 | `notificationCenterClick` |             | `CustomEvent<void>`    |
 | `pagesClick`              |             | `CustomEvent<void>`    |
 | `partnershipClick`        |             | `CustomEvent<void>`    |
@@ -54,6 +57,7 @@
 | `termsClick`              |             | `CustomEvent<void>`    |
 | `toggleExpand`            |             | `CustomEvent<boolean>` |
 | `viewProfileClick`        |             | `CustomEvent<void>`    |
+| `xClick`                  |             | `CustomEvent<void>`    |
 
 
 ## Dependencies
