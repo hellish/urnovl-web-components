@@ -20,6 +20,7 @@
 
 ### Used by
 
+ - [ur-comment-form](../ur-comment-form)
  - [ur-menu-profile](../ur-menu-profile)
  - [ur-page-profile](../ur-page-profile)
  - [ur-read-rail](../ur-read-rail)
@@ -28,6 +29,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ur-comment-form --> ur-avatar
   ur-menu-profile --> ur-avatar
   ur-page-profile --> ur-avatar
   ur-read-rail --> ur-avatar

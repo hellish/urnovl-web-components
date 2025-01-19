@@ -1,13 +1,82 @@
 :host {
-    --ur-color-on-background: var(--mdui-color-on-container-lite-dark);
+    display: flex;
+    font-size: 12px;
+    gap: 8px;
+    --ur-color-primary: var(--mdui-color-primary);
 }
 
-:host .check-icon {
-    margin-right: 6px;
+:host(.selected) {
+    background-color: rgba(var(--ur-color-primary), 0.12);
+}
+
+:host(.disabled), 
+:host(.disabled) mdui-menu-item {
+    color: #aaa;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Make sure the disabled state is enforced at all levels */
+:host(.disabled) * {
+    pointer-events: none !important;
+}
+
+:host mdui-menu-item {
+    width: 100%;
+    display: flex;
+    height: 44px;
+    align-items: center;
+}
+
+:host mdui-menu-item::part(label) {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* For elements with fullwidth attribute */
+:host([fullwidth]) {
+    width: 100%;
+}
+
+:host([fullwidth]) mdui-menu-item {
+    width: 100%;
+}
+
+:host([fullwidth]) mdui-menu-item::part(container) {
+    width: 100%;
+}
+
+:host([leftaligned]) mdui-menu-item::part(label) {
+    justify-content: left;
+}
+
+:host([height-number]) {
+    height: var(--menu-item-height);
+}
+
+:host([height-number]) mdui-menu-item {
+    height: var(--menu-item-height);
+    min-height: var(--menu-item-height);
+}
+
+:host([height-number]) mdui-menu-item::part(container) {
+    height: var(--menu-item-height);
+}
+
+:host([height-number]) mdui-menu-item::part(label) {
+    height: var(--menu-item-height);
+}
+
+/* Hide icon by default */
+mdui-icon {
+    display: none;
     visibility: hidden;
-    color: var(--ur-color-on-background);
 }
 
-:host .check-icon.selected {
+/* Only show icon when parent is selected */
+:host(.selected) mdui-icon {
+    display: inline-flex;
     visibility: visible;
 }

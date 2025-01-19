@@ -1,0 +1,44 @@
+/* ur-navigation-drawer-global.css */
+:host {
+    display: block;
+    position: relative;
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-surface: var(--mdui-color-surface);
+
+    color: rgb(var(--ur-color-on-surface));
+}
+
+:host ::slotted([slot='header']) {
+    top: 0;
+    left: 0;
+    padding: 8px 12px;
+    display: flex;
+    font-weight: bold;
+    position: sticky;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(var(--ur-color-on-surface));
+    background: rgb(var(--ur-color-surface));
+    z-index: 1;
+}
+
+:host .drawer-content {
+    overflow-y: auto;
+    padding: 8px 24px;
+    min-height: 0;
+    position: relative;
+    color: rgb(var(--ur-color-on-surface));
+    background: rgb(var(--ur-color-surface));
+}
+
+:host ::slotted([slot='footer']) {
+    bottom: 0;
+    position: sticky;
+    padding: 8px 12px;
+    color: rgb(var(--ur-color-on-surface));
+    background: rgb(var(--ur-color-surface));
+    display: flex;
+    gap: 8px;
+    z-index: 1;
+}

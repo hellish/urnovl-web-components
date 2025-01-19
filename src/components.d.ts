@@ -19,11 +19,19 @@ export namespace Components {
         "size": string;
         "src": string;
     }
+    interface UrBottomSheet {
+        "backdropDismiss": boolean;
+        "hideSheet": () => Promise<void>;
+        "open": boolean;
+        "selectedDetent": 'large' | 'medium' | 'small';
+        "showSheet": () => Promise<void>;
+    }
     interface UrButton {
         "disabled": boolean;
         "endIcon": any;
         "fullWidth": boolean;
         "icon": any;
+        "loading": boolean;
         "variant": 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
@@ -102,6 +110,15 @@ export namespace Components {
         "radius": string;
         "size": string;
     }
+    interface UrCommentForm {
+        "disabled": boolean;
+        "isServer": boolean;
+        "maxLength": number;
+        "minLength": number;
+        "placeholder": string;
+        "user": { displayName: string; avatar: string };
+        "variant": 'desktop' | 'mobile';
+    }
     interface UrDialog {
         "borderRadius": string | null;
         "closeDialog": () => Promise<void>;
@@ -111,6 +128,10 @@ export namespace Components {
         "fullscreen": boolean;
         "open": boolean;
         "openDialog": () => Promise<void>;
+    }
+    interface UrForm {
+        "resetForm": () => Promise<void>;
+        "submitForm": () => Promise<void>;
     }
     interface UrHero {
         "backgroundAlignment": 'left' | 'center' | 'right';
@@ -211,8 +232,13 @@ export namespace Components {
     }
     interface UrMenuItem {
         "disabled": boolean;
+        "fullWidth": boolean;
+        "heightNumber"?: number;
         "label": string;
+        "leftAligned": boolean;
         "selected": boolean;
+        "selectedIcon": string;
+        "size": 'small' | 'medium' | 'large';
         "value": string;
     }
     interface UrMenuProfile {
@@ -234,6 +260,26 @@ export namespace Components {
           * Contains the drawer within its parent element
          */
         "contained": boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open": boolean;
+        "openDrawer": () => Promise<void>;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement": 'left' | 'right';
+    }
+    interface UrNavigationDrawerGlobal {
+        "closeDrawer": () => Promise<void>;
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc": boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick": boolean;
         /**
           * Determines if the drawer is open
          */
@@ -363,24 +409,6 @@ export namespace Components {
          */
         "value": string | null;
     }
-    interface UrReadDesktopTopAppBar {
-        /**
-          * Title of the novel
-         */
-        "novelTitle": string;
-        /**
-          * Behavior of the top app bar on scroll
-         */
-        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
-        /**
-          * Scroll threshold in pixels (default: 50)
-         */
-        "scrollThreshold": number;
-        /**
-          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
-         */
-        "variant": 'small' | 'medium' | 'large';
-    }
     interface UrReadMobileTopAppBar {
         "headerTitle": string;
         "scrollBehavior": 'hide' | 'shrink' | 'elevate';
@@ -423,6 +451,29 @@ export namespace Components {
         "isVisible": boolean;
         "likes": string;
         "share": string;
+    }
+    interface UrReadTopAppBar {
+        "deviceVariant": 'desktop' | 'mobile';
+        /**
+          * Whether the current user is the chapter owner
+         */
+        "isChapterOwner": boolean;
+        /**
+          * Title of the novel
+         */
+        "novelTitle": string;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior": 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold": number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant": 'small' | 'medium' | 'large';
     }
     interface UrReader {
         "avatarName": string;
@@ -514,6 +565,12 @@ export namespace Components {
         "value": string;
         "variant": 'filled' | 'outlined';
     }
+    interface UrThumbsRating {
+        "dislikeText": string;
+        "isDisliked": boolean;
+        "isLiked": boolean;
+        "likesCount": number;
+    }
     interface UrTooltip {
         "closeDelay": number;
         "colorScheme": 'dark' | 'light';
@@ -558,6 +615,64 @@ export namespace Components {
     }
     interface UrUserProfile {
     }
+    interface UrWizardStep {
+        /**
+          * Custom CSS class for the component
+         */
+        "customClass": string;
+        /**
+          * Determines if the step can be skipped
+         */
+        "isSkippable": boolean;
+        /**
+          * Validation state of the step
+         */
+        "isValid": boolean;
+        /**
+          * Title of the "Next" button
+         */
+        "nextButtonTitle": string;
+        /**
+          * Title of the "Previous" button
+         */
+        "previousButtonTitle": string;
+        /**
+          * Reset the form within the step
+         */
+        "resetStepForm": () => Promise<void>;
+        /**
+          * Determines if the "Next" button is visible
+         */
+        "showNext": boolean;
+        /**
+          * Determines if the "Previous" button is visible
+         */
+        "showPrevious": boolean;
+        /**
+          * Step number of the wizard
+         */
+        "step": number;
+        /**
+          * Title of the wizard step
+         */
+        "stepTitle": string;
+        /**
+          * Trigger form submission programmatically
+         */
+        "submitStepForm": () => Promise<void>;
+        /**
+          * Subtitle or instructions for the step
+         */
+        "subtitle": string;
+        /**
+          * Custom validation message
+         */
+        "validationMessage": string;
+    }
+}
+export interface UrBottomSheetCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrBottomSheetElement;
 }
 export interface UrButtonArrowLeftCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -575,6 +690,14 @@ export interface UrCheckboxGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrCheckboxGroupElement;
 }
+export interface UrCommentFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrCommentFormElement;
+}
+export interface UrFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrFormElement;
+}
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
@@ -590,10 +713,6 @@ export interface UrMainDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
 export interface UrMainLeftMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrMainLeftMenuElement;
-}
-export interface UrMenuItemCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrMenuItemElement;
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -619,10 +738,6 @@ export interface UrRadioGroupCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrRadioGroupElement;
 }
-export interface UrReadDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrReadDesktopTopAppBarElement;
-}
 export interface UrReadMobileTopAppBarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadMobileTopAppBarElement;
@@ -634,6 +749,10 @@ export interface UrReadRailCustomEvent<T> extends CustomEvent<T> {
 export interface UrReadRailMobileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrReadRailMobileElement;
+}
+export interface UrReadTopAppBarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrReadTopAppBarElement;
 }
 export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -647,9 +766,17 @@ export interface UrTextFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrTextFieldElement;
 }
+export interface UrThumbsRatingCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrThumbsRatingElement;
+}
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserElement;
+}
+export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrWizardStepElement;
 }
 declare global {
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
@@ -657,6 +784,24 @@ declare global {
     var HTMLUrAvatarElement: {
         prototype: HTMLUrAvatarElement;
         new (): HTMLUrAvatarElement;
+    };
+    interface HTMLUrBottomSheetElementEventMap {
+        "dismiss": void;
+        "detentChange": string;
+    }
+    interface HTMLUrBottomSheetElement extends Components.UrBottomSheet, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrBottomSheetElementEventMap>(type: K, listener: (this: HTMLUrBottomSheetElement, ev: UrBottomSheetCustomEvent<HTMLUrBottomSheetElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrBottomSheetElementEventMap>(type: K, listener: (this: HTMLUrBottomSheetElement, ev: UrBottomSheetCustomEvent<HTMLUrBottomSheetElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrBottomSheetElement: {
+        prototype: HTMLUrBottomSheetElement;
+        new (): HTMLUrBottomSheetElement;
     };
     interface HTMLUrButtonElement extends Components.UrButton, HTMLStencilElement {
     }
@@ -745,11 +890,49 @@ declare global {
         prototype: HTMLUrChipElement;
         new (): HTMLUrChipElement;
     };
+    interface HTMLUrCommentFormElementEventMap {
+        "commentSubmit": { text: string };
+        "inputFocus": FocusEvent;
+        "inputBlur": FocusEvent;
+    }
+    interface HTMLUrCommentFormElement extends Components.UrCommentForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrCommentFormElementEventMap>(type: K, listener: (this: HTMLUrCommentFormElement, ev: UrCommentFormCustomEvent<HTMLUrCommentFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrCommentFormElementEventMap>(type: K, listener: (this: HTMLUrCommentFormElement, ev: UrCommentFormCustomEvent<HTMLUrCommentFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrCommentFormElement: {
+        prototype: HTMLUrCommentFormElement;
+        new (): HTMLUrCommentFormElement;
+    };
     interface HTMLUrDialogElement extends Components.UrDialog, HTMLStencilElement {
     }
     var HTMLUrDialogElement: {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
+    };
+    interface HTMLUrFormElementEventMap {
+        "formValid": void;
+        "formInvalid": { errors: { [key: string]: string } };
+        "formDataChanged": { [key: string]: any };
+    }
+    interface HTMLUrFormElement extends Components.UrForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrFormElementEventMap>(type: K, listener: (this: HTMLUrFormElement, ev: UrFormCustomEvent<HTMLUrFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrFormElement: {
+        prototype: HTMLUrFormElement;
+        new (): HTMLUrFormElement;
     };
     interface HTMLUrHeroElementEventMap {
         "ctaClicked": void;
@@ -830,6 +1013,7 @@ declare global {
     };
     interface HTMLUrMainDesktopTopAppBarElementEventMap {
         "searchLinkClicked": void;
+        "themeToggle": void;
     }
     interface HTMLUrMainDesktopTopAppBarElement extends Components.UrMainDesktopTopAppBar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrMainDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrMainDesktopTopAppBarElement, ev: UrMainDesktopTopAppBarCustomEvent<HTMLUrMainDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -862,18 +1046,7 @@ declare global {
         prototype: HTMLUrMainLeftMenuElement;
         new (): HTMLUrMainLeftMenuElement;
     };
-    interface HTMLUrMenuItemElementEventMap {
-        "itemClicked": string;
-    }
     interface HTMLUrMenuItemElement extends Components.UrMenuItem, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrMenuItemElementEventMap>(type: K, listener: (this: HTMLUrMenuItemElement, ev: UrMenuItemCustomEvent<HTMLUrMenuItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrMenuItemElement: {
         prototype: HTMLUrMenuItemElement;
@@ -890,6 +1063,12 @@ declare global {
     var HTMLUrNavigationDrawerElement: {
         prototype: HTMLUrNavigationDrawerElement;
         new (): HTMLUrNavigationDrawerElement;
+    };
+    interface HTMLUrNavigationDrawerGlobalElement extends Components.UrNavigationDrawerGlobal, HTMLStencilElement {
+    }
+    var HTMLUrNavigationDrawerGlobalElement: {
+        prototype: HTMLUrNavigationDrawerGlobalElement;
+        new (): HTMLUrNavigationDrawerGlobalElement;
     };
     interface HTMLUrNovlElementEventMap {
         "novlClicked": string;
@@ -1005,23 +1184,6 @@ declare global {
         prototype: HTMLUrRadioGroupElement;
         new (): HTMLUrRadioGroupElement;
     };
-    interface HTMLUrReadDesktopTopAppBarElementEventMap {
-        "readingSettingsClick": void;
-    }
-    interface HTMLUrReadDesktopTopAppBarElement extends Components.UrReadDesktopTopAppBar, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrReadDesktopTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadDesktopTopAppBarElement, ev: UrReadDesktopTopAppBarCustomEvent<HTMLUrReadDesktopTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrReadDesktopTopAppBarElement: {
-        prototype: HTMLUrReadDesktopTopAppBarElement;
-        new (): HTMLUrReadDesktopTopAppBarElement;
-    };
     interface HTMLUrReadMobileTopAppBarElementEventMap {
         "backClick": void;
         "chaptersClick": void;
@@ -1092,6 +1254,26 @@ declare global {
     var HTMLUrReadRailMobileElement: {
         prototype: HTMLUrReadRailMobileElement;
         new (): HTMLUrReadRailMobileElement;
+    };
+    interface HTMLUrReadTopAppBarElementEventMap {
+        "readingSettingsClick": void;
+        "storySummaryClick": void;
+        "editChapterClick": void;
+        "chapterButtonClick": void;
+    }
+    interface HTMLUrReadTopAppBarElement extends Components.UrReadTopAppBar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrReadTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadTopAppBarElement, ev: UrReadTopAppBarCustomEvent<HTMLUrReadTopAppBarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrReadTopAppBarElementEventMap>(type: K, listener: (this: HTMLUrReadTopAppBarElement, ev: UrReadTopAppBarCustomEvent<HTMLUrReadTopAppBarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrReadTopAppBarElement: {
+        prototype: HTMLUrReadTopAppBarElement;
+        new (): HTMLUrReadTopAppBarElement;
     };
     interface HTMLUrReaderElementEventMap {
         "chapterUnlocked": void;
@@ -1172,6 +1354,24 @@ declare global {
         prototype: HTMLUrTextFieldElement;
         new (): HTMLUrTextFieldElement;
     };
+    interface HTMLUrThumbsRatingElementEventMap {
+        "thumbsUp": void;
+        "thumbsDown": void;
+    }
+    interface HTMLUrThumbsRatingElement extends Components.UrThumbsRating, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrThumbsRatingElementEventMap>(type: K, listener: (this: HTMLUrThumbsRatingElement, ev: UrThumbsRatingCustomEvent<HTMLUrThumbsRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrThumbsRatingElementEventMap>(type: K, listener: (this: HTMLUrThumbsRatingElement, ev: UrThumbsRatingCustomEvent<HTMLUrThumbsRatingElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrThumbsRatingElement: {
+        prototype: HTMLUrThumbsRatingElement;
+        new (): HTMLUrThumbsRatingElement;
+    };
     interface HTMLUrTooltipElement extends Components.UrTooltip, HTMLStencilElement {
     }
     var HTMLUrTooltipElement: {
@@ -1207,8 +1407,27 @@ declare global {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
     };
+    interface HTMLUrWizardStepElementEventMap {
+        "stepCompleted": { step: number; formData: { [key: string]: any } };
+        "stepBack": number;
+    }
+    interface HTMLUrWizardStepElement extends Components.UrWizardStep, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrWizardStepElement: {
+        prototype: HTMLUrWizardStepElement;
+        new (): HTMLUrWizardStepElement;
+    };
     interface HTMLElementTagNameMap {
         "ur-avatar": HTMLUrAvatarElement;
+        "ur-bottom-sheet": HTMLUrBottomSheetElement;
         "ur-button": HTMLUrButtonElement;
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
@@ -1216,7 +1435,9 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
+        "ur-comment-form": HTMLUrCommentFormElement;
         "ur-dialog": HTMLUrDialogElement;
+        "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
         "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
@@ -1231,6 +1452,7 @@ declare global {
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menu-profile": HTMLUrMenuProfileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
+        "ur-navigation-drawer-global": HTMLUrNavigationDrawerGlobalElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
@@ -1238,20 +1460,22 @@ declare global {
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
-        "ur-read-desktop-top-app-bar": HTMLUrReadDesktopTopAppBarElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
         "ur-read-rail": HTMLUrReadRailElement;
         "ur-read-rail-mobile": HTMLUrReadRailMobileElement;
+        "ur-read-top-app-bar": HTMLUrReadTopAppBarElement;
         "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
+        "ur-thumbs-rating": HTMLUrThumbsRatingElement;
         "ur-tooltip": HTMLUrTooltipElement;
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-profile": HTMLUrUserProfileElement;
+        "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
 declare namespace LocalJSX {
@@ -1262,11 +1486,19 @@ declare namespace LocalJSX {
         "size"?: string;
         "src"?: string;
     }
+    interface UrBottomSheet {
+        "backdropDismiss"?: boolean;
+        "onDetentChange"?: (event: UrBottomSheetCustomEvent<string>) => void;
+        "onDismiss"?: (event: UrBottomSheetCustomEvent<void>) => void;
+        "open"?: boolean;
+        "selectedDetent"?: 'large' | 'medium' | 'small';
+    }
     interface UrButton {
         "disabled"?: boolean;
         "endIcon"?: any;
         "fullWidth"?: boolean;
         "icon"?: any;
+        "loading"?: boolean;
         "variant"?: 'elevated' | 'filled' | 'tonal' | 'outlined' | 'text';
     }
     interface UrButtonArrowLeft {
@@ -1351,6 +1583,18 @@ declare namespace LocalJSX {
         "radius"?: string;
         "size"?: string;
     }
+    interface UrCommentForm {
+        "disabled"?: boolean;
+        "isServer"?: boolean;
+        "maxLength"?: number;
+        "minLength"?: number;
+        "onCommentSubmit"?: (event: UrCommentFormCustomEvent<{ text: string }>) => void;
+        "onInputBlur"?: (event: UrCommentFormCustomEvent<FocusEvent>) => void;
+        "onInputFocus"?: (event: UrCommentFormCustomEvent<FocusEvent>) => void;
+        "placeholder"?: string;
+        "user"?: { displayName: string; avatar: string };
+        "variant"?: 'desktop' | 'mobile';
+    }
     interface UrDialog {
         "borderRadius"?: string | null;
         "closeOnEsc"?: boolean;
@@ -1358,6 +1602,20 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
+    }
+    interface UrForm {
+        /**
+          * Event emitted whenever the form data changes
+         */
+        "onFormDataChanged"?: (event: UrFormCustomEvent<{ [key: string]: any }>) => void;
+        /**
+          * Event emitted when the form is invalid
+         */
+        "onFormInvalid"?: (event: UrFormCustomEvent<{ errors: { [key: string]: string } }>) => void;
+        /**
+          * Event emitted when the form is valid
+         */
+        "onFormValid"?: (event: UrFormCustomEvent<void>) => void;
     }
     interface UrHero {
         "backgroundAlignment"?: 'left' | 'center' | 'right';
@@ -1456,6 +1714,7 @@ declare namespace LocalJSX {
         "logoOpacity"?: number;
         "logoRotation"?: number;
         "onSearchLinkClicked"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
+        "onThemeToggle"?: (event: UrMainDesktopTopAppBarCustomEvent<void>) => void;
         "searchText"?: string;
         "variant"?: string;
     }
@@ -1469,9 +1728,13 @@ declare namespace LocalJSX {
     }
     interface UrMenuItem {
         "disabled"?: boolean;
+        "fullWidth"?: boolean;
+        "heightNumber"?: number;
         "label"?: string;
-        "onItemClicked"?: (event: UrMenuItemCustomEvent<string>) => void;
+        "leftAligned"?: boolean;
         "selected"?: boolean;
+        "selectedIcon"?: string;
+        "size"?: 'small' | 'medium' | 'large';
         "value"?: string;
     }
     interface UrMenuProfile {
@@ -1492,6 +1755,24 @@ declare namespace LocalJSX {
           * Contains the drawer within its parent element
          */
         "contained"?: boolean;
+        /**
+          * Determines if the drawer is open
+         */
+        "open"?: boolean;
+        /**
+          * Placement of the drawer: 'left' or 'right'
+         */
+        "placement"?: 'left' | 'right';
+    }
+    interface UrNavigationDrawerGlobal {
+        /**
+          * Closes the drawer when the 'Esc' key is pressed
+         */
+        "closeOnEsc"?: boolean;
+        /**
+          * Closes the drawer when clicking outside of it
+         */
+        "closeOnOverlayClick"?: boolean;
         /**
           * Determines if the drawer is open
          */
@@ -1628,25 +1909,6 @@ declare namespace LocalJSX {
          */
         "value"?: string | null;
     }
-    interface UrReadDesktopTopAppBar {
-        /**
-          * Title of the novel
-         */
-        "novelTitle"?: string;
-        "onReadingSettingsClick"?: (event: UrReadDesktopTopAppBarCustomEvent<void>) => void;
-        /**
-          * Behavior of the top app bar on scroll
-         */
-        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
-        /**
-          * Scroll threshold in pixels (default: 50)
-         */
-        "scrollThreshold"?: number;
-        /**
-          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
-         */
-        "variant"?: 'small' | 'medium' | 'large';
-    }
     interface UrReadMobileTopAppBar {
         "headerTitle"?: string;
         "onBackClick"?: (event: UrReadMobileTopAppBarCustomEvent<void>) => void;
@@ -1712,6 +1974,33 @@ declare namespace LocalJSX {
         "onViewProfileClicked"?: (event: UrReadRailMobileCustomEvent<void>) => void;
         "onVisibilityToggled"?: (event: UrReadRailMobileCustomEvent<boolean>) => void;
         "share"?: string;
+    }
+    interface UrReadTopAppBar {
+        "deviceVariant"?: 'desktop' | 'mobile';
+        /**
+          * Whether the current user is the chapter owner
+         */
+        "isChapterOwner"?: boolean;
+        /**
+          * Title of the novel
+         */
+        "novelTitle"?: string;
+        "onChapterButtonClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        "onEditChapterClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        "onReadingSettingsClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        "onStorySummaryClick"?: (event: UrReadTopAppBarCustomEvent<void>) => void;
+        /**
+          * Behavior of the top app bar on scroll
+         */
+        "scrollBehavior"?: 'hide' | 'shrink' | 'elevate';
+        /**
+          * Scroll threshold in pixels (default: 50)
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Variant of the top app bar (e.g., 'small', 'medium', etc.)
+         */
+        "variant"?: 'small' | 'medium' | 'large';
     }
     interface UrReader {
         "avatarName"?: string;
@@ -1816,6 +2105,14 @@ declare namespace LocalJSX {
         "value"?: string;
         "variant"?: 'filled' | 'outlined';
     }
+    interface UrThumbsRating {
+        "dislikeText"?: string;
+        "isDisliked"?: boolean;
+        "isLiked"?: boolean;
+        "likesCount"?: number;
+        "onThumbsDown"?: (event: UrThumbsRatingCustomEvent<void>) => void;
+        "onThumbsUp"?: (event: UrThumbsRatingCustomEvent<void>) => void;
+    }
     interface UrTooltip {
         "closeDelay"?: number;
         "colorScheme"?: 'dark' | 'light';
@@ -1861,8 +2158,63 @@ declare namespace LocalJSX {
     }
     interface UrUserProfile {
     }
+    interface UrWizardStep {
+        /**
+          * Custom CSS class for the component
+         */
+        "customClass"?: string;
+        /**
+          * Determines if the step can be skipped
+         */
+        "isSkippable"?: boolean;
+        /**
+          * Validation state of the step
+         */
+        "isValid"?: boolean;
+        /**
+          * Title of the "Next" button
+         */
+        "nextButtonTitle"?: string;
+        /**
+          * Event emitted when navigating back
+         */
+        "onStepBack"?: (event: UrWizardStepCustomEvent<number>) => void;
+        /**
+          * Event emitted when the step is completed
+         */
+        "onStepCompleted"?: (event: UrWizardStepCustomEvent<{ step: number; formData: { [key: string]: any } }>) => void;
+        /**
+          * Title of the "Previous" button
+         */
+        "previousButtonTitle"?: string;
+        /**
+          * Determines if the "Next" button is visible
+         */
+        "showNext"?: boolean;
+        /**
+          * Determines if the "Previous" button is visible
+         */
+        "showPrevious"?: boolean;
+        /**
+          * Step number of the wizard
+         */
+        "step"?: number;
+        /**
+          * Title of the wizard step
+         */
+        "stepTitle"?: string;
+        /**
+          * Subtitle or instructions for the step
+         */
+        "subtitle"?: string;
+        /**
+          * Custom validation message
+         */
+        "validationMessage"?: string;
+    }
     interface IntrinsicElements {
         "ur-avatar": UrAvatar;
+        "ur-bottom-sheet": UrBottomSheet;
         "ur-button": UrButton;
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
@@ -1870,7 +2222,9 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
+        "ur-comment-form": UrCommentForm;
         "ur-dialog": UrDialog;
+        "ur-form": UrForm;
         "ur-hero": UrHero;
         "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
@@ -1885,6 +2239,7 @@ declare namespace LocalJSX {
         "ur-menu-item": UrMenuItem;
         "ur-menu-profile": UrMenuProfile;
         "ur-navigation-drawer": UrNavigationDrawer;
+        "ur-navigation-drawer-global": UrNavigationDrawerGlobal;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
@@ -1892,20 +2247,22 @@ declare namespace LocalJSX {
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
-        "ur-read-desktop-top-app-bar": UrReadDesktopTopAppBar;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
         "ur-read-rail": UrReadRail;
         "ur-read-rail-mobile": UrReadRailMobile;
+        "ur-read-top-app-bar": UrReadTopAppBar;
         "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
+        "ur-thumbs-rating": UrThumbsRating;
         "ur-tooltip": UrTooltip;
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-profile": UrUserProfile;
+        "ur-wizard-step": UrWizardStep;
     }
 }
 export { LocalJSX as JSX };
@@ -1913,6 +2270,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
+            "ur-bottom-sheet": LocalJSX.UrBottomSheet & JSXBase.HTMLAttributes<HTMLUrBottomSheetElement>;
             "ur-button": LocalJSX.UrButton & JSXBase.HTMLAttributes<HTMLUrButtonElement>;
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
@@ -1920,7 +2278,9 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
+            "ur-comment-form": LocalJSX.UrCommentForm & JSXBase.HTMLAttributes<HTMLUrCommentFormElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
+            "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
@@ -1935,6 +2295,7 @@ declare module "@stencil/core" {
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
+            "ur-navigation-drawer-global": LocalJSX.UrNavigationDrawerGlobal & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerGlobalElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
@@ -1942,20 +2303,22 @@ declare module "@stencil/core" {
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
-            "ur-read-desktop-top-app-bar": LocalJSX.UrReadDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadDesktopTopAppBarElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;
             "ur-read-rail": LocalJSX.UrReadRail & JSXBase.HTMLAttributes<HTMLUrReadRailElement>;
             "ur-read-rail-mobile": LocalJSX.UrReadRailMobile & JSXBase.HTMLAttributes<HTMLUrReadRailMobileElement>;
+            "ur-read-top-app-bar": LocalJSX.UrReadTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadTopAppBarElement>;
             "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
+            "ur-thumbs-rating": LocalJSX.UrThumbsRating & JSXBase.HTMLAttributes<HTMLUrThumbsRatingElement>;
             "ur-tooltip": LocalJSX.UrTooltip & JSXBase.HTMLAttributes<HTMLUrTooltipElement>;
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
+            "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
     }
 }

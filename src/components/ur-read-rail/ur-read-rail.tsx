@@ -146,22 +146,6 @@ export class UrReadRail {
         }
     }
 
-    private handleLike() {
-        this.isLiked = !this.isLiked;
-        if (this.isLiked) {
-            this.isDisliked = false;
-        }
-        this.likeClicked.emit(this.isLiked); // Emit the updated like state
-    }
-
-    private handleDislike() {
-        this.isDisliked = !this.isDisliked;
-        if (this.isDisliked) {
-            this.isLiked = false;
-        }
-        this.dislikeClicked.emit(this.isDisliked); // Emit the updated dislike state
-    }
-
     private handleComment() {
         console.log('Comment button clicked');
         this.commentClicked.emit();
@@ -201,7 +185,7 @@ export class UrReadRail {
     private handleShare() {
         console.log('native share clicked');
         this.nativeShareClicked.emit(); // Emit event when native share is clicked
-     }
+    }
 
     private renderShareButton() {
         if (this.mode === 'desktop') {
@@ -274,24 +258,7 @@ export class UrReadRail {
 
                 {/* Action Buttons Section */}
                 <div class="actions-holder">
-                    <div class="action">
-                        <ur-button-icon
-                            icon={this.isLiked ? 'thumb_up' : 'thumb_up--outlined'}
-                            selectedIcon="thumb_up"
-                            selected={this.isLiked}
-                            onClick={() => this.handleLike()}
-                        ></ur-button-icon>
-                        <span class="action-label">{this.likes}</span>
-                    </div>
-                    <div class="action">
-                        <ur-button-icon
-                            icon={this.isDisliked ? 'thumb_down' : 'thumb_down--outlined'}
-                            selectedIcon="thumb_down"
-                            selected={this.isDisliked}
-                            onClick={() => this.handleDislike()}
-                        ></ur-button-icon>
-                        <span class="action-label">{this.dislike}</span>
-                    </div>
+                    <slot name="thumbs-rating"></slot>
                     <div class="action">
                         <ur-button-icon icon="comment--outlined" variant="standard" onClick={() => this.handleComment()}></ur-button-icon>
                         <span class="action-label">{this.comments}</span>

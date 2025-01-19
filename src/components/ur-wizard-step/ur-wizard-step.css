@@ -1,0 +1,36 @@
+.step-container {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Better spacing between elements */
+}
+
+.step-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-weight: bold; /* Emphasize the title */
+    color: #333; /* Darker color for better readability */
+}
+
+.step-subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic; /* Optional styling to differentiate the subtitle */
+}
+
+.step-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Consistent spacing between form elements */
+}
+
+.step-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Space between buttons */
+}

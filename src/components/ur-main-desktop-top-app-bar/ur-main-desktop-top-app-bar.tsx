@@ -24,9 +24,17 @@ export class UrMainDesktopTopAppBar {
     @Event()
     searchLinkClicked: EventEmitter<void>; // Event emitter for search link click
 
+    @Event()
+    themeToggle: EventEmitter<void>; // Event emitter for theme toggle
+
     private handleSearchClick = () => {
         this.searchLinkClicked.emit(); // Emit the event
     };
+
+    private handleThemeToggle = () => {
+        this.themeToggle.emit(); // Emit the event
+    };
+
     render() {
         return (
             <Host>
@@ -45,6 +53,13 @@ export class UrMainDesktopTopAppBar {
                         <mdui-icon class="icon" name="search"></mdui-icon>
                         <span class="search-txt">{this.searchText}</span>
                     </div>
+                    <div class="flex-space"></div>
+                    <ur-button-icon
+                        icon="dark_mode" // or "light_mode" depending on current theme
+                        variant="standard"
+                        aria-label="Toggle theme"
+                        onClick={() => this.handleThemeToggle()} // Emit theme toggle event
+                    ></ur-button-icon>
                 </mdui-top-app-bar>
             </Host>
         );
