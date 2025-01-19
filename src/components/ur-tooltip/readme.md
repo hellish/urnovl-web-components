@@ -23,12 +23,14 @@
 
 ### Used by
 
+ - [ur-main-menu](../ur-main-menu)
  - [ur-read-rail](../ur-read-rail)
  - [ur-reader](../ur-reader)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-main-menu --> ur-tooltip
   ur-read-rail --> ur-tooltip
   ur-reader --> ur-tooltip
   style ur-tooltip fill:#f9f,stroke:#333,stroke-width:4px

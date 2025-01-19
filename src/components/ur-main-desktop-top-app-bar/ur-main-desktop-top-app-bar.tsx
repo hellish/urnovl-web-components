@@ -19,6 +19,15 @@ export class UrMainDesktopTopAppBar {
     logoOpacity: number = 1; // Opacity for the logo
 
     @Prop()
+    fontColor: string;
+
+    @Prop()
+    quillText: string = 'Quills';
+
+    @Prop()
+    deviceVariant: 'desktop' | 'mobile' = 'desktop';
+
+    @Prop()
     searchText: string = 'Search for stories, writers & publishers'; // Default text for search link
 
     @Event()
@@ -27,12 +36,22 @@ export class UrMainDesktopTopAppBar {
     @Event()
     themeToggle: EventEmitter<void>; // Event emitter for theme toggle
 
+    @Event()
+    quillClicked: EventEmitter<void>; // Event emitter for quill click
+
+    @Prop()
+    quillCount: number;
+
     private handleSearchClick = () => {
         this.searchLinkClicked.emit(); // Emit the event
     };
 
     private handleThemeToggle = () => {
         this.themeToggle.emit(); // Emit the event
+    };
+
+    private handleQuillClick = () => {
+        this.quillClicked.emit(); // Emit the event
     };
 
     render() {
@@ -49,17 +68,42 @@ export class UrMainDesktopTopAppBar {
                             opacity={this.logoOpacity} // Opacity for the logo
                         ></ur-logo>
                     </div>
-                    <div class="search-lnk" onClick={this.handleSearchClick}>
-                        <mdui-icon class="icon" name="search"></mdui-icon>
-                        <span class="search-txt">{this.searchText}</span>
-                    </div>
+
+                    {this.deviceVariant === 'desktop' && (
+                        <div class="search-lnk" onClick={this.handleSearchClick}>
+                            <mdui-icon class="icon" name="search"></mdui-icon>
+                            <span class="search-txt">{this.searchText}</span>
+                        </div>
+                    )}
+
                     <div class="flex-space"></div>
-                    <ur-button-icon
-                        icon="dark_mode" // or "light_mode" depending on current theme
-                        variant="standard"
-                        aria-label="Toggle theme"
-                        onClick={() => this.handleThemeToggle()} // Emit theme toggle event
-                    ></ur-button-icon>
+                    {this.deviceVariant === 'desktop' && (
+                        <div class="quill-holder">
+                            <ur-button
+                                font-color="white"
+                                border-radius="50px"
+                                button-height="40px"
+                                variant="text"
+                                icon="history_edu--outlined"
+                                onClick={() => this.handleQuillClick()}
+                            >
+                                {this.quillText}
+                                <span class={`quill-count ${this.quillCount > 0 ? 'visible' : ''}`}>{this.quillCount}</span>
+                            </ur-button>
+                        </div>
+                    )}
+
+                    {this.deviceVariant === 'mobile' && (
+                        <div class="quill-holder-mobile">
+                            <ur-button-icon font-color="white" icon="history_edu--outlined" onClick={() => this.handleQuillClick()}></ur-button-icon>
+                        </div>
+                    )}
+
+                    {this.deviceVariant === 'mobile' && <ur-button-icon icon="search" variant="standard" aria-label="Search" onClick={this.handleSearchClick}></ur-button-icon>}
+
+                    {this.deviceVariant === 'desktop' && (
+                        <ur-button-icon icon="dark_mode" variant="standard" aria-label="Toggle theme" onClick={() => this.handleThemeToggle()}></ur-button-icon>
+                    )}
                 </mdui-top-app-bar>
             </Host>
         );

@@ -1,12 +1,10 @@
 :host {
     display: inline-block;
-    --ur-shape-corner-small: var(--mdui-shape-corner-small);
 }
 
 :host mdui-button {
     width: inherit;
     font-size: 14px;
-    border-radius: var(--ur-shape-corner-small);
 }
 
 mdui-button::part(icon) {

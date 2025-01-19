@@ -21,14 +21,14 @@
 ### Used by
 
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
- - [ur-main-left-menu](../ur-main-left-menu)
+ - [ur-main-menu](../ur-main-menu)
  - [ur-top-app-bar](../ur-top-app-bar)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-main-desktop-top-app-bar --> ur-logo
-  ur-main-left-menu --> ur-logo
+  ur-main-menu --> ur-logo
   ur-top-app-bar --> ur-logo
   style ur-logo fill:#f9f,stroke:#333,stroke-width:4px
 ```

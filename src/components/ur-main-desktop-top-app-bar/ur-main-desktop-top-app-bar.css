@@ -53,6 +53,40 @@
     height: 48px;
 }
 
+:host .quill-holder {
+    height: 40px;
+    border-radius: 50px;
+    background: linear-gradient(to right, #000, gold);
+}
+
+:host .quill-holder-mobile {
+    border-radius: 12px;
+    background: linear-gradient(to right, #000, gold);
+}
+
+:host .quill-count {
+    display: none;
+    background: #fff;
+    color: #000;
+    padding: 0 6px;
+    text-align: center;
+    font-size: 11px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50px;
+    margin-left: 6px;
+    font-weight: 700;
+}
+
+:host .quill-count.visible {
+    display: inline;
+}
+
+:host ::part(label) {
+    font-weight: 600;
+    background: red;
+}
+
 :host mdui-top-app-bar-title {
     font-size: 20px;
     color: var(--ur-color-on-background, #000);

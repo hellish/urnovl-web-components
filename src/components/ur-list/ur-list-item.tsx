@@ -83,6 +83,8 @@ export class UrListItem {
                     {/* Custom Slot */}
                     <slot name="custom"></slot>
 
+                    <slot name="notification-badge"></slot>
+
                     {/* Right Icon */}
                     {this.endIcon && <mdui-icon slot="end-icon" name={this.endIcon}></mdui-icon>}
                 </mdui-list-item>

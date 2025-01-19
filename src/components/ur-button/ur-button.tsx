@@ -27,12 +27,22 @@ export class UrButton {
     @Prop()
     loading = false;
 
+    @Prop()
+    fontColor: string;
+
+    @Prop()
+    buttonHeight: string;
+
+    @Prop()
+    borderRadius: string = '8px';
+
     render() {
         const buttonClass = this.fullWidth ? 'full-width' : '';
 
         return (
-            <Host full-width={this.fullWidth ? 'true' : null}>
+            <Host full-width={this.fullWidth ? 'true' : null} style={{ color: this.fontColor, height: this.buttonHeight, borderRadius: this.borderRadius }}>
                 <mdui-button
+                    style={{ color: this.fontColor, height: this.buttonHeight, borderRadius: this.borderRadius }}
                     class={buttonClass} // Dynamically assign the class
                     icon={!!this.icon ? this.icon : false}
                     end-icon={!!this.endIcon ? this.endIcon : false}
