@@ -239,6 +239,7 @@ export namespace Components {
         "contactUsText": string;
         "discordText": string;
         "facebookText": string;
+        "faqsText": string;
         "homeText": string;
         "loggedIn": boolean;
         "notificationText": string;
@@ -255,6 +256,7 @@ export namespace Components {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+        "whatsNewText": string;
         "xText": string;
     }
     interface UrMenuItem {
@@ -1075,6 +1077,8 @@ declare global {
         "acceptableUseClick": void;
         "partnershipClick": void;
         "menuToggleClick": boolean;
+        "whatsNewClick": void;
+        "faqsClick": void;
         "facebookClick": void;
         "xClick": void;
         "discordClick": void;
@@ -1782,6 +1786,7 @@ declare namespace LocalJSX {
         "contactUsText"?: string;
         "discordText"?: string;
         "facebookText"?: string;
+        "faqsText"?: string;
         "homeText"?: string;
         "loggedIn"?: boolean;
         "notificationText"?: string;
@@ -1790,6 +1795,7 @@ declare namespace LocalJSX {
         "onContactUsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onDiscordClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onFacebookClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onFaqsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onHomeClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onMenuToggleClick"?: (event: UrMainMenuCustomEvent<boolean>) => void;
         "onNotificationCenterClick"?: (event: UrMainMenuCustomEvent<void>) => void;
@@ -1804,6 +1810,7 @@ declare namespace LocalJSX {
         "onTermsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onToggleExpand"?: (event: UrMainMenuCustomEvent<boolean>) => void;
         "onViewProfileClick"?: (event: UrMainMenuCustomEvent<void>) => void;
+        "onWhatsNewClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onXClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "opened"?: boolean;
         "pagesText"?: string;
@@ -1818,6 +1825,7 @@ declare namespace LocalJSX {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+        "whatsNewText"?: string;
         "xText"?: string;
     }
     interface UrMenuItem {

@@ -127,6 +127,12 @@ export class UrMainMenu {
     @Prop()
     premiumText: string = 'Go Premium';
 
+    @Prop()
+    whatsNewText: string = 'What\'s new';
+
+    @Prop()
+    faqsText: string = 'FAQs';
+
     @Event()
     notificationCenterClick: EventEmitter<void>;
 
@@ -177,6 +183,12 @@ export class UrMainMenu {
 
     @Event()
     menuToggleClick: EventEmitter<boolean>; // Specify the event emits a boolean
+
+    @Event()
+    whatsNewClick: EventEmitter<void>;
+
+    @Event()
+    faqsClick: EventEmitter<void>;
 
     @Event()
     facebookClick: EventEmitter<void>;
@@ -277,7 +289,9 @@ export class UrMainMenu {
 
                     <ur-list-item icon="hub--outlined" content={this.pagesText} onClick={() => this.pagesClick.emit()}></ur-list-item>
 
+                    {/*
                     <ur-list-item icon="emoji_events--outlined" content={this.competitionsText} onClick={() => this.competitionsClick.emit()}></ur-list-item>
+                    */}
                 </ur-list>
             </div>
         );
@@ -460,6 +474,14 @@ export class UrMainMenu {
                         {this.rulesText}
                     </a>
 
+                    <a class="link" style={{ display: 'block' }} onClick={() => this.whatsNewClick.emit()}>
+                        {this.whatsNewText}
+                    </a>
+
+                    <a class="link" style={{ display: 'block' }} onClick={() => this.faqsClick.emit()}>
+                        {this.faqsText}
+                    </a>
+
                     <a class="link" style={{ display: 'block' }} onClick={() => this.privacyClick.emit()}>
                         {this.privacyText}
                     </a>
@@ -494,9 +516,10 @@ export class UrMainMenu {
                         class={this.expanded ? 'expanded' : 'collapsed'}
                     ></ur-menu-profile>
                 )}
-
-                {this.loggedIn && this.expanded && this.renderPremiumExpanded()}
-                {this.loggedIn && !this.expanded && this.renderPremiumCollapsed()}
+    
+                {/* TODO: Add premium */}
+                {/* {this.loggedIn && this.expanded && this.renderPremiumExpanded()}
+                {this.loggedIn && !this.expanded && this.renderPremiumCollapsed()} */}
 
                 {!this.loggedIn && this.expanded && this.renderLoggedOutExpanded()}
                 {!this.loggedIn && !this.expanded && this.renderLoggedOutCollapsed()}
