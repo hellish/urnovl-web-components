@@ -30,6 +30,12 @@ export class UrButtonIcon {
     borderRadius: string = '8px';
 
     @Prop()
+    buttonWidth: string = '40px';
+
+    @Prop()
+    buttonHeight: string = '40px';
+
+    @Prop()
     fontColor: string;
 
     private renderIcon() {
@@ -45,9 +51,9 @@ export class UrButtonIcon {
 
     render() {
         return (
-            <Host style={{ borderRadius: this.borderRadius, color: this.fontColor }}>
+            <Host style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}>
                 <mdui-button-icon
-                    style={{ borderRadius: this.borderRadius, color: this.fontColor }}
+                    style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}
                     variant={this.variant}
                     loading={this.loading}
                     disabled={this.disabled}

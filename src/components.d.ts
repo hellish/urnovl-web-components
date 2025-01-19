@@ -45,6 +45,8 @@ export namespace Components {
     }
     interface UrButtonIcon {
         "borderRadius": string;
+        "buttonHeight": string;
+        "buttonWidth": string;
         "disabled": boolean;
         "fontColor": string;
         "icon": string;
@@ -1565,6 +1567,8 @@ declare namespace LocalJSX {
     }
     interface UrButtonIcon {
         "borderRadius"?: string;
+        "buttonHeight"?: string;
+        "buttonWidth"?: string;
         "disabled"?: boolean;
         "fontColor"?: string;
         "icon"?: string;

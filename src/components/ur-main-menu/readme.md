@@ -15,6 +15,7 @@
 | `contactUsText`     | `contact-us-text`     |             | `string`  | `'Contact us'`                   |
 | `discordText`       | `discord-text`        |             | `string`  | `'Our Discord'`                  |
 | `facebookText`      | `facebook-text`       |             | `string`  | `'Our Facebook'`                 |
+| `faqsText`          | `faqs-text`           |             | `string`  | `'FAQs'`                         |
 | `homeText`          | `home-text`           |             | `string`  | `'Home'`                         |
 | `loggedIn`          | `logged-in`           |             | `boolean` | `undefined`                      |
 | `notificationText`  | `notification-text`   |             | `string`  | `'Notifications'`                |
@@ -31,6 +32,7 @@
 | `userAvatar`        | `user-avatar`         |             | `string`  | `undefined`                      |
 | `userName`          | `user-name`           |             | `string`  | `undefined`                      |
 | `userRole`          | `user-role`           |             | `string`  | `undefined`                      |
+| `whatsNewText`      | `whats-new-text`      |             | `string`  | `'What\'s new'`                  |
 | `xText`             | `x-text`              |             | `string`  | `'Our X'`                        |
 
 
@@ -43,6 +45,7 @@
 | `contactUsClick`          |             | `CustomEvent<void>`    |
 | `discordClick`            |             | `CustomEvent<void>`    |
 | `facebookClick`           |             | `CustomEvent<void>`    |
+| `faqsClick`               |             | `CustomEvent<void>`    |
 | `homeClick`               |             | `CustomEvent<void>`    |
 | `menuToggleClick`         |             | `CustomEvent<boolean>` |
 | `notificationCenterClick` |             | `CustomEvent<void>`    |
@@ -57,6 +60,7 @@
 | `termsClick`              |             | `CustomEvent<void>`    |
 | `toggleExpand`            |             | `CustomEvent<boolean>` |
 | `viewProfileClick`        |             | `CustomEvent<void>`    |
+| `whatsNewClick`           |             | `CustomEvent<void>`    |
 | `xClick`                  |             | `CustomEvent<void>`    |
 
 
