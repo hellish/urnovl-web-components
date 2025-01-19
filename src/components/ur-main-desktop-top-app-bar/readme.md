@@ -33,14 +33,20 @@
 ### Depends on
 
 - [ur-logo](../ur-logo)
+<<<<<<< HEAD
 - [ur-button](../ur-button)
+=======
+>>>>>>> origin/master
 - [ur-button-icon](../ur-button-icon)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-main-desktop-top-app-bar --> ur-logo
+<<<<<<< HEAD
   ur-main-desktop-top-app-bar --> ur-button
+=======
+>>>>>>> origin/master
   ur-main-desktop-top-app-bar --> ur-button-icon
   style ur-main-desktop-top-app-bar fill:#f9f,stroke:#333,stroke-width:4px
 ```

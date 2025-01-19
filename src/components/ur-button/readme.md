@@ -7,6 +7,7 @@
 
 ## Properties
 
+<<<<<<< HEAD
 | Property       | Attribute       | Description | Type                                                        | Default     |
 | -------------- | --------------- | ----------- | ----------------------------------------------------------- | ----------- |
 | `borderRadius` | `border-radius` |             | `string`                                                    | `'8px'`     |
@@ -18,6 +19,16 @@
 | `icon`         | `icon`          |             | `any`                                                       | `null`      |
 | `loading`      | `loading`       |             | `boolean`                                                   | `false`     |
 | `variant`      | `variant`       |             | `"elevated" \| "filled" \| "outlined" \| "text" \| "tonal"` | `'filled'`  |
+=======
+| Property    | Attribute    | Description | Type                                                        | Default     |
+| ----------- | ------------ | ----------- | ----------------------------------------------------------- | ----------- |
+| `disabled`  | `disabled`   |             | `boolean`                                                   | `false`     |
+| `endIcon`   | `end-icon`   |             | `any`                                                       | `null`      |
+| `fullWidth` | `full-width` |             | `boolean`                                                   | `undefined` |
+| `icon`      | `icon`       |             | `any`                                                       | `null`      |
+| `loading`   | `loading`    |             | `boolean`                                                   | `false`     |
+| `variant`   | `variant`    |             | `"elevated" \| "filled" \| "outlined" \| "text" \| "tonal"` | `'filled'`  |
+>>>>>>> origin/master
 
 
 ## Dependencies
