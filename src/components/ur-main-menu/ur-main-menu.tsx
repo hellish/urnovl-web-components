@@ -509,6 +509,7 @@ export class UrMainMenu {
                 {/* Use ur-menu-profile for both expanded and collapsed states */}
                 {this.loggedIn && (
                     <ur-menu-profile
+                        part="menu-profile"
                         user-avatar={this.userAvatar}
                         user-name={this.userName}
                         user-role={this.userRole}
