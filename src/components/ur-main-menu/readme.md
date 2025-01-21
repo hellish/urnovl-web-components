@@ -13,6 +13,7 @@
 | `badgeCount`        | `badge-count`         |             | `number`  | `10`                             |
 | `competitionsText`  | `competitions-text`   |             | `string`  | `'Competitions'`                 |
 | `contactUsText`     | `contact-us-text`     |             | `string`  | `'Contact us'`                   |
+| `currentRoute`      | `current-route`       |             | `string`  | `undefined`                      |
 | `discordText`       | `discord-text`        |             | `string`  | `'Our Discord'`                  |
 | `facebookText`      | `facebook-text`       |             | `string`  | `'Our Facebook'`                 |
 | `faqsText`          | `faqs-text`           |             | `string`  | `'FAQs'`                         |
@@ -32,7 +33,7 @@
 | `userAvatar`        | `user-avatar`         |             | `string`  | `undefined`                      |
 | `userName`          | `user-name`           |             | `string`  | `undefined`                      |
 | `userRole`          | `user-role`           |             | `string`  | `undefined`                      |
-| `whatsNewText`      | `whats-new-text`      |             | `string`  | `'What\'s new'`                  |
+| `whatsNewText`      | `whats-new-text`      |             | `string`  | `"What's new"`                   |
 | `xText`             | `x-text`              |             | `string`  | `'Our X'`                        |
 
 

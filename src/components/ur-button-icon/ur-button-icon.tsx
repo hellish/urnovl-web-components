@@ -27,6 +27,9 @@ export class UrButtonIcon {
     selected = false;
 
     @Prop()
+    active = false;
+
+    @Prop()
     borderRadius: string = '8px';
 
     @Prop()
@@ -50,18 +53,21 @@ export class UrButtonIcon {
     }
 
     render() {
+        const classes = {
+            'ur-button-icon': true,
+            'ur-button-icon--active': this.active
+        };
         return (
             <Host style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}>
                 <mdui-button-icon
                     style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}
+                    class={classes}
                     variant={this.variant}
                     loading={this.loading}
                     disabled={this.disabled}
                     selected={this.selected}
                 >
-                    <slot>
-                        {this.renderIcon()}
-                    </slot>
+                    <slot>{this.renderIcon()}</slot>
                 </mdui-button-icon>
             </Host>
         );

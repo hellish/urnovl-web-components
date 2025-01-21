@@ -128,7 +128,7 @@ export class UrMainMenu {
     premiumText: string = 'Go Premium';
 
     @Prop()
-    whatsNewText: string = 'What\'s new';
+    whatsNewText: string = "What's new";
 
     @Prop()
     faqsText: string = 'FAQs';
@@ -165,6 +165,12 @@ export class UrMainMenu {
 
     @Event()
     termsClick: EventEmitter<void>;
+
+    @Prop()
+    currentRoute: string;
+
+    @Prop()
+    notificationCenterOpened: boolean;
 
     @Event()
     rulesClick: EventEmitter<void>;
@@ -283,11 +289,11 @@ export class UrMainMenu {
         return (
             <div class="menu-navigation">
                 <ur-list>
-                    <ur-list-item class="material-icons-outlined" icon="home--outlined" content={this.homeText} onClick={() => this.homeClick.emit()}></ur-list-item>
+                    <ur-list-item active icon="home--outlined" content={this.homeText} onClick={() => this.homeClick.emit()}></ur-list-item>
 
-                    <ur-list-item icon="import_contacts--outlined" content={this.storiesText} onClick={() => this.storiesClick.emit()}></ur-list-item>
+                    <ur-list-item active={this.currentRoute === '/stories'} icon="import_contacts--outlined" content={this.storiesText} onClick={() => this.storiesClick.emit()}></ur-list-item>
 
-                    <ur-list-item icon="hub--outlined" content={this.pagesText} onClick={() => this.pagesClick.emit()}></ur-list-item>
+                    <ur-list-item active={this.currentRoute === '/pages'} icon="hub--outlined" content={this.pagesText} onClick={() => this.pagesClick.emit()}></ur-list-item>
 
                     {/*
                     <ur-list-item icon="emoji_events--outlined" content={this.competitionsText} onClick={() => this.competitionsClick.emit()}></ur-list-item>
@@ -300,7 +306,7 @@ export class UrMainMenu {
     renderNotifications() {
         return (
             <div class="notifications-holder">
-                <ur-list-item icon="notifications--outlined" content={this.notificationText} onClick={() => this.handleNotificationClick()}>
+                <ur-list-item active={this.notificationCenterOpened} icon="notifications--outlined" content={this.notificationText} onClick={() => this.handleNotificationClick()}>
                     <div slot="notification-badge" class="notification-badge">
                         {this.badgeCount > 0 && this.badgeCount}
                     </div>
@@ -315,7 +321,9 @@ export class UrMainMenu {
                 <ur-tooltip content={this.notificationText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
                     <div class="notification-button-wrapper">
                         <ur-button-icon
+                            border-radius="0"
                             class="navigation-button-icon"
+                            active={this.notificationCenterOpened}
                             icon="notifications--outlined"
                             title="Notifications"
                             onClick={() => this.handleNotificationClick()}
@@ -332,15 +340,15 @@ export class UrMainMenu {
             <div class="menu-navigation">
                 <div class="menu-items">
                     <ur-tooltip content={this.homeText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon class="navigation-button-icon" icon="home--outlined" title="Home" onClick={() => this.homeClick.emit()}></ur-button-icon>
+                        <ur-button-icon active={this.currentRoute === '/'} border-radius="0" class="navigation-button-icon" icon="home--outlined" title="Home" onClick={() => this.homeClick.emit()}></ur-button-icon>
                     </ur-tooltip>
 
                     <ur-tooltip content={this.storiesText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon class="navigation-button-icon" icon="import_contacts--outlined" title="Stories" onClick={() => this.storiesClick.emit()}></ur-button-icon>
+                        <ur-button-icon active={this.currentRoute === '/stories'} border-radius="0" class="navigation-button-icon" icon="import_contacts--outlined" title="Stories" onClick={() => this.storiesClick.emit()}></ur-button-icon>
                     </ur-tooltip>
 
                     <ur-tooltip content={this.pagesText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon class="navigation-button-icon" icon="hub--outlined" title="Pages" onClick={() => this.pagesClick.emit()}></ur-button-icon>
+                        <ur-button-icon active={this.currentRoute === '/pages'} border-radius="0" class="navigation-button-icon" icon="hub--outlined" title="Pages" onClick={() => this.pagesClick.emit()}></ur-button-icon>
                     </ur-tooltip>
 
                     {/*
@@ -427,7 +435,9 @@ export class UrMainMenu {
         return (
             <div class="menu logged-out">
                 <div class="welcome">
-                    <ur-button-icon class="menu-button-icon" icon="login" variant="filled" onClick={() => this.signUpClick.emit()}></ur-button-icon>
+                    <ur-tooltip content={this.signUpText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
+                        <ur-button-icon class="menu-button-icon" icon="login" variant="filled" onClick={() => this.signUpClick.emit()}></ur-button-icon>
+                    </ur-tooltip>
                 </div>
             </div>
         );
@@ -519,7 +529,7 @@ export class UrMainMenu {
                         class={this.expanded ? 'expanded' : 'collapsed'}
                     ></ur-menu-profile>
                 )}
-    
+
                 {/* TODO: Add premium */}
                 {/* {this.loggedIn && this.expanded && this.renderPremiumExpanded()}
                 {this.loggedIn && !this.expanded && this.renderPremiumCollapsed()} */}

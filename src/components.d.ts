@@ -44,6 +44,7 @@ export namespace Components {
         "disabled": boolean;
     }
     interface UrButtonIcon {
+        "active": boolean;
         "borderRadius": string;
         "buttonHeight": string;
         "buttonWidth": string;
@@ -239,11 +240,13 @@ export namespace Components {
         "badgeCount"?: number;
         "competitionsText": string;
         "contactUsText": string;
+        "currentRoute": string;
         "discordText": string;
         "facebookText": string;
         "faqsText": string;
         "homeText": string;
         "loggedIn": boolean;
+        "notificationCenterOpened": boolean;
         "notificationText": string;
         "opened": boolean;
         "pagesText": string;
@@ -1566,6 +1569,7 @@ declare namespace LocalJSX {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
     }
     interface UrButtonIcon {
+        "active"?: boolean;
         "borderRadius"?: string;
         "buttonHeight"?: string;
         "buttonWidth"?: string;
@@ -1788,11 +1792,13 @@ declare namespace LocalJSX {
         "badgeCount"?: number;
         "competitionsText"?: string;
         "contactUsText"?: string;
+        "currentRoute"?: string;
         "discordText"?: string;
         "facebookText"?: string;
         "faqsText"?: string;
         "homeText"?: string;
         "loggedIn"?: boolean;
+        "notificationCenterOpened"?: boolean;
         "notificationText"?: string;
         "onAcceptableUseClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onCompetitionsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
