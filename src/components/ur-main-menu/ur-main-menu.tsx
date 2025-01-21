@@ -304,7 +304,11 @@ export class UrMainMenu {
         return (
             <div class="menu-navigation">
                 <ur-list>
-                    <ur-list-item active={this.currentRoute === '/'} icon="home--outlined" content={this.homeText} onClick={() => this.homeClick.emit()}></ur-list-item>
+                    <ur-list-item 
+                        active={this.currentRoute === '/'} 
+                        icon="home--outlined" 
+                        content={this.homeText} 
+                        onClick={() => this.homeClick.emit()}></ur-list-item>
 
                     <ur-list-item
                         active={this.currentRoute === '/stories'}
@@ -343,6 +347,7 @@ export class UrMainMenu {
                         <ur-button-icon
                             border-radius="0"
                             class="navigation-button-icon"
+                            button-width="57px"
                             active={this.notificationCenterOpened}
                             icon="notifications--outlined"
                             title="Notifications"
@@ -364,6 +369,7 @@ export class UrMainMenu {
                             active={this.currentRoute === '/'}
                             border-radius="0"
                             class="navigation-button-icon"
+                            button-width="57px"
                             icon="home--outlined"
                             title="Home"
                             onClick={() => this.homeClick.emit()}
@@ -375,6 +381,7 @@ export class UrMainMenu {
                             active={this.currentRoute === '/stories'}
                             border-radius="0"
                             class="navigation-button-icon"
+                            button-width="57px"
                             icon="import_contacts--outlined"
                             title="Stories"
                             onClick={() => this.storiesClick.emit()}
@@ -386,6 +393,7 @@ export class UrMainMenu {
                             active={this.currentRoute === '/pages'}
                             border-radius="0"
                             class="navigation-button-icon"
+                            button-width="57px"
                             icon="hub--outlined"
                             title="Pages"
                             onClick={() => this.pagesClick.emit()}
@@ -567,7 +575,8 @@ export class UrMainMenu {
                         user-name={this.userName}
                         user-role={this.userRole}
                         on-click={() => this.viewProfileClick.emit()}
-                        class={this.expanded ? 'expanded' : 'collapsed'}
+                        class={`${this.expanded ? 'expanded' : 'collapsed'} ${this.currentRoute?.endsWith('/profile') || this.currentRoute?.endsWith('/profile/') ? 'active' : ''}`} 
+
                     ></ur-menu-profile>
                 )}
 
