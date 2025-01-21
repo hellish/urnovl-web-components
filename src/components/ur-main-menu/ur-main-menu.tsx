@@ -236,6 +236,18 @@ export class UrMainMenu {
         }
     }
 
+    @Watch('currentRoute')
+    watchCurrentRouteHandler(newVal: string) {
+        // Force re-render
+        this.triggerUpdate();
+    }
+
+    @Watch('notificationCenterOpened')
+    watchNotificationCenterOpenedHandler(newVal: boolean) {
+        // Force re-render
+        this.triggerUpdate();
+    }
+
     private triggerUpdate() {
         // Increment the counter to trigger a re-render
         this.updateCounter++;
@@ -289,9 +301,14 @@ export class UrMainMenu {
         return (
             <div class="menu-navigation">
                 <ur-list>
-                    <ur-list-item active icon="home--outlined" content={this.homeText} onClick={() => this.homeClick.emit()}></ur-list-item>
+                    <ur-list-item active={this.currentRoute === '/'} icon="home--outlined" content={this.homeText} onClick={() => this.homeClick.emit()}></ur-list-item>
 
-                    <ur-list-item active={this.currentRoute === '/stories'} icon="import_contacts--outlined" content={this.storiesText} onClick={() => this.storiesClick.emit()}></ur-list-item>
+                    <ur-list-item
+                        active={this.currentRoute === '/stories'}
+                        icon="import_contacts--outlined"
+                        content={this.storiesText}
+                        onClick={() => this.storiesClick.emit()}
+                    ></ur-list-item>
 
                     <ur-list-item active={this.currentRoute === '/pages'} icon="hub--outlined" content={this.pagesText} onClick={() => this.pagesClick.emit()}></ur-list-item>
 
@@ -340,15 +357,36 @@ export class UrMainMenu {
             <div class="menu-navigation">
                 <div class="menu-items">
                     <ur-tooltip content={this.homeText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon active={this.currentRoute === '/'} border-radius="0" class="navigation-button-icon" icon="home--outlined" title="Home" onClick={() => this.homeClick.emit()}></ur-button-icon>
+                        <ur-button-icon
+                            active={this.currentRoute === '/'}
+                            border-radius="0"
+                            class="navigation-button-icon"
+                            icon="home--outlined"
+                            title="Home"
+                            onClick={() => this.homeClick.emit()}
+                        ></ur-button-icon>
                     </ur-tooltip>
 
                     <ur-tooltip content={this.storiesText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon active={this.currentRoute === '/stories'} border-radius="0" class="navigation-button-icon" icon="import_contacts--outlined" title="Stories" onClick={() => this.storiesClick.emit()}></ur-button-icon>
+                        <ur-button-icon
+                            active={this.currentRoute === '/stories'}
+                            border-radius="0"
+                            class="navigation-button-icon"
+                            icon="import_contacts--outlined"
+                            title="Stories"
+                            onClick={() => this.storiesClick.emit()}
+                        ></ur-button-icon>
                     </ur-tooltip>
 
                     <ur-tooltip content={this.pagesText} placement="right" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
-                        <ur-button-icon active={this.currentRoute === '/pages'} border-radius="0" class="navigation-button-icon" icon="hub--outlined" title="Pages" onClick={() => this.pagesClick.emit()}></ur-button-icon>
+                        <ur-button-icon
+                            active={this.currentRoute === '/pages'}
+                            border-radius="0"
+                            class="navigation-button-icon"
+                            icon="hub--outlined"
+                            title="Pages"
+                            onClick={() => this.pagesClick.emit()}
+                        ></ur-button-icon>
                     </ur-tooltip>
 
                     {/*
