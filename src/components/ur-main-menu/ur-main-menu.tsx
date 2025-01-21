@@ -237,15 +237,18 @@ export class UrMainMenu {
     }
 
     @Watch('currentRoute')
-    watchCurrentRouteHandler(newVal: string) {
-        // Force re-render
-        this.triggerUpdate();
+    watchCurrentRouteHandler(newVal: string, oldVal: string) {
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
     }
 
     @Watch('notificationCenterOpened')
-    watchNotificationCenterOpenedHandler(newVal: boolean) {
+    watchNotificationCenterOpenedHandler(newVal: boolean, oldVal: boolean) {
         // Force re-render
-        this.triggerUpdate();
+        if (newVal !== oldVal) {
+            this.triggerUpdate();
+        }
     }
 
     private triggerUpdate() {
