@@ -8,7 +8,6 @@ import 'mdui/components/chip';
     shadow: true,
 })
 export class UrChip {
-
     @Prop()
     label: string = 'Chip';
 
@@ -22,10 +21,10 @@ export class UrChip {
     size = '32px'
 
     @Prop()
-    backColor = 'rgb(var(--mdui-color-secondary-container))';
+    backColor = 'rgb(var(--mdui-color-primary-container-light))';
 
     @Prop()
-    fontColor = 'rgb(var(--mdui-color-on-secondary-container))';
+    fontColor = 'rgb(var(--mdui-color-on-primary-container-light))';
 
     @Prop()
     loading = false;
@@ -33,10 +32,26 @@ export class UrChip {
     @Prop()
     disabled = false;
 
+    @Prop()
+    clickable = true;
+
     render() {
         return (
             <Host>
-                <mdui-chip disabled={this.disabled} loading={this.loading} style={{ color: this.fontColor , background: this.backColor, borderRadius: this.radius, height: this.size, borderWidth: this.border }}>{this.label}</mdui-chip>
+                <mdui-chip 
+                    class={!this.clickable ? 'non-clickable' : ''}
+                    disabled={this.disabled}
+                    loading={this.loading}
+                    style={{
+                        color: this.fontColor,
+                        background: this.backColor,
+                        borderRadius: this.radius,
+                        height: this.size,
+                        borderWidth: this.border
+                    }}
+                >
+                    {this.label}
+                </mdui-chip>
             </Host>
         );
     }

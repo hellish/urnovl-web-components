@@ -11,7 +11,8 @@ const PageProfile = ({
     containerWidth = "256px",
     name = "Penguin Publishing",
     avatar = publisher,
-    description = null,
+    platform = 'desktop',
+    about = null,
     location = null,
     facebook_url = null,
     twitter_url = null,
@@ -38,9 +39,10 @@ const PageProfile = ({
     return html`
         <div style="width:${containerWidth};">
             <ur-page-profile
+                platform=${platform}
                 name=${name}
                 avatar=${avatar}
-                description=${description}
+                about=${about}
                 location=${location}
                 facebook_url=${facebook_url}
                 twitter_url=${twitter_url}
@@ -77,217 +79,11 @@ export const Default = {
     })
 };
 
-export const WithDescription = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-    })
-};
-
-export const WithLocation = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-    })
-};
-
-export const WithSocial = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-    })
-};
-
-export const WithWebsite = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co'
-    })
-};
-
-export const WithStats = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17
-    })
-};
-
-export const WithActions = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-    })
-};
-
-export const WithLanguages = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-        languages: [ "Greek", "English", "Bulgarian", "Albanian" ]
-    })
-};
-
-export const WithGenres = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
-        genres: [ "Horror", "Thriller" ]
-    })
-};
-
-export const WithLiteratureTypes = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
-        genres: [ "Horror", "Thriller" ],
-        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
-    })
-};
-
-export const WithPageCreator = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
-        genres: [ "Horror", "Thriller" ],
-        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
-        pageCreatorName: 'Malik Abubakari',
-        pageCreatorImage: creator
-    })
-};
-
-export const WithPageCreationDate = {
-    render: () => PageProfile({
-        location: "London, UK",
-        description: DESCRIPTION,
-        facebook_url: 'https://facebook.com',
-        twitter_url: 'https://twitter.com',
-        linkedin_url: 'https://linkedin.com',
-        phone: '999666333',
-        email: 'urnovl@gmail.com',
-        website: 'https://urnovl.co',
-        stories: 0,
-        views: 350745,
-        following: 1556,
-        followers: 1557,
-        members: 17,
-        showFollow: true,
-        showBecomeAMember: true,
-        showDonate: true,
-        showSendMessage: true,
-        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
-        genres: [ "Horror", "Thriller" ],
-        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
-        pageCreatorName: 'Malik Abubakari',
-        pageCreatorImage: creator,
-        pageCreationDate: 'May 25, 2015'
-    })
-};
-
 export const Wider = {
     render: () => PageProfile({
         containerWidth: '350px',
         location: "London, UK",
-        description: DESCRIPTION,
+        about: DESCRIPTION,
         facebook_url: 'https://facebook.com',
         twitter_url: 'https://twitter.com',
         linkedin_url: 'https://linkedin.com',
@@ -316,7 +112,67 @@ export const FullWidth = {
     render: () => PageProfile({
         containerWidth: '100%',
         location: "London, UK",
-        description: DESCRIPTION,
+        about: DESCRIPTION,
+        facebook_url: 'https://facebook.com',
+        twitter_url: 'https://twitter.com',
+        linkedin_url: 'https://linkedin.com',
+        phone: '999666333',
+        email: 'urnovl@gmail.com',
+        website: 'https://urnovl.co',
+        stories: 0,
+        views: 350745,
+        following: 1556,
+        followers: 1557,
+        members: 17,
+        showFollow: true,
+        showBecomeAMember: true,
+        showDonate: true,
+        showSendMessage: true,
+        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
+        genres: [ "Horror", "Thriller" ],
+        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
+        pageCreatorName: 'Malik Abubakari',
+        pageCreatorImage: creator,
+        pageCreationDate: 'May 25, 2015'
+    })
+};
+
+export const MobileMain = {
+    render: () => PageProfile({
+        platform: 'mobile-main',
+        containerWidth: '100%',
+        location: "London, UK",
+        about: DESCRIPTION,
+        facebook_url: 'https://facebook.com',
+        twitter_url: 'https://twitter.com',
+        linkedin_url: 'https://linkedin.com',
+        phone: '999666333',
+        email: 'urnovl@gmail.com',
+        website: 'https://urnovl.co',
+        stories: 0,
+        views: 350745,
+        following: 1556,
+        followers: 1557,
+        members: 17,
+        showFollow: true,
+        showBecomeAMember: true,
+        showDonate: true,
+        showSendMessage: true,
+        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
+        genres: [ "Horror", "Thriller" ],
+        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
+        pageCreatorName: 'Malik Abubakari',
+        pageCreatorImage: creator,
+        pageCreationDate: 'May 25, 2015'
+    })
+};
+
+export const MobileSecondary = {
+    render: () => PageProfile({
+        platform: 'mobile-secondary',
+        containerWidth: '100%',
+        location: "London, UK",
+        about: DESCRIPTION,
         facebook_url: 'https://facebook.com',
         twitter_url: 'https://twitter.com',
         linkedin_url: 'https://linkedin.com',
@@ -348,13 +204,14 @@ const PageProfileBackground = () => {
                 padding: 0;
             }
         </style>
-        <div style="background: url('https://raw.githubusercontent.com/hellish/urnovl-web-components/refs/heads/master/assets/demo/background.png') no-repeat;width: 100%;height: 215px;">
-            <div style="top: 135px;position: relative;display: flex;">
-                <div style="width: 250px;">
+        <div style="display: flex;flex-direction: column;width: 100%;">
+            <div style="background: url('https://raw.githubusercontent.com/hellish/urnovl-web-components/refs/heads/master/assets/demo/background.png') no-repeat;width: 100%;height: 215px;"></div>
+            <div style="position: relative;display: flex;">
+                <div>
                     ${PageProfile({
-                        containerWidth: '250px',
+                        containerWidth: '256px',
                         location: "London, UK",
-                        description: DESCRIPTION,
+                        about: DESCRIPTION,
                         facebook_url: 'https://facebook.com',
                         twitter_url: 'https://twitter.com',
                         linkedin_url: 'https://linkedin.com',
@@ -378,8 +235,8 @@ const PageProfileBackground = () => {
                         pageCreationDate: 'May 25, 2015'
                     })}
                 </div>
-                <div style="position: relative;">
-                    <div style="border-left: 1px solid #C3C6CF;position: relative;top: 80px;height: calc(100% - 55px);padding: 36px 16px;font-size: 12px;box-sizing:border-box;">
+                <div style="position: relative; border-left: 1px solid #C3C6CF;position: relative;flex: 1 1 100%;padding: 36px 16px;font-size: 12px;box-sizing:border-box;">
+                    <div>
                         [main-content]
                     </div>
                 </div>

@@ -111,6 +111,7 @@ export namespace Components {
     interface UrChip {
         "backColor": string;
         "border": string;
+        "clickable": boolean;
         "disabled": boolean;
         "fontColor": string;
         "label": string;
@@ -365,31 +366,47 @@ export namespace Components {
         "showStats": boolean;
     }
     interface UrPageProfile {
+        "about": any;
         "avatar": any;
-        "description": any;
+        "becomeMemberText": string;
+        "createdByText": string;
+        "donateText": string;
         "email": any;
         "facebook_url": any;
+        "followText": string;
         "followers": number | null;
+        "followersText": string;
         "following": number | null;
+        "followingText": string;
         "genres": string | null;
+        "genresText": string;
         "languages": string | null;
+        "languagesText": string;
         "linkedin_url": any;
         "literatureTypes": string | null;
+        "literatureTypesText": string;
         "location": any;
         "members": number | null;
+        "membersText": string;
         "name": any;
+        "pageCreatedText": string;
         "pageCreationDate": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
         "phone": any;
+        "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "sendMessageText": string;
         "showBecomeMember": boolean;
         "showDonate": boolean;
         "showFollow": boolean;
         "showSendMessage": boolean;
         "stories": number | null;
+        "storiesText": string;
         "twitter_url": any;
         "views": number | null;
+        "viewsText": string;
         "website": any;
+        "websiteText": string;
     }
     interface UrProfile {
         "description": any;
@@ -1186,6 +1203,15 @@ declare global {
         "member": any;
         "donate": any;
         "sendMessage": any;
+        "followingClick": any;
+        "followersClick": any;
+        "membersClick": any;
+        "facebookClick": any;
+        "twitterClick": any;
+        "linkedinClick": any;
+        "emailClick": any;
+        "phoneClick": any;
+        "websiteClick": any;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1642,6 +1668,7 @@ declare namespace LocalJSX {
     interface UrChip {
         "backColor"?: string;
         "border"?: string;
+        "clickable"?: boolean;
         "disabled"?: boolean;
         "fontColor"?: string;
         "label"?: string;
@@ -1940,35 +1967,60 @@ declare namespace LocalJSX {
         "showStats"?: boolean;
     }
     interface UrPageProfile {
+        "about"?: any;
         "avatar"?: any;
-        "description"?: any;
+        "becomeMemberText"?: string;
+        "createdByText"?: string;
+        "donateText"?: string;
         "email"?: any;
         "facebook_url"?: any;
+        "followText"?: string;
         "followers"?: number | null;
+        "followersText"?: string;
         "following"?: number | null;
+        "followingText"?: string;
         "genres"?: string | null;
+        "genresText"?: string;
         "languages"?: string | null;
+        "languagesText"?: string;
         "linkedin_url"?: any;
         "literatureTypes"?: string | null;
+        "literatureTypesText"?: string;
         "location"?: any;
         "members"?: number | null;
+        "membersText"?: string;
         "name"?: any;
         "onDonate"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onEmailClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFollowingClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onWebsiteClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "pageCreatedText"?: string;
         "pageCreationDate"?: any;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
         "phone"?: any;
+        "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "sendMessageText"?: string;
         "showBecomeMember"?: boolean;
         "showDonate"?: boolean;
         "showFollow"?: boolean;
         "showSendMessage"?: boolean;
         "stories"?: number | null;
+        "storiesText"?: string;
         "twitter_url"?: any;
         "views"?: number | null;
+        "viewsText"?: string;
         "website"?: any;
+        "websiteText"?: string;
     }
     interface UrProfile {
         "description"?: any;

@@ -1,3 +1,13 @@
 :host {
-    display: block;
+    display: inline-block;
+}
+
+:host .non-clickable {
+    pointer-events: none;
+    cursor: default;
+}
+
+:host([disabled="true"]) {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
