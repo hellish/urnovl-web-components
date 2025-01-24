@@ -136,6 +136,8 @@ export namespace Components {
         "fullscreen": boolean;
         "open": boolean;
         "openDialog": () => Promise<void>;
+        "showHeader": boolean;
+        "variant": 'mobile' | 'desktop';
     }
     interface UrForm {
         "resetForm": () => Promise<void>;
@@ -1666,6 +1668,8 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
+        "showHeader"?: boolean;
+        "variant"?: 'mobile' | 'desktop';
     }
     interface UrForm {
         /**

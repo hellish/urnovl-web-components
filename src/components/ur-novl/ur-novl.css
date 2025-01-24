@@ -1,6 +1,8 @@
 :host {
     --novl-width: 100%;
     --novl-border-radius: 8px;
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-background: var(--mdui-color-background);
 }
 
 @keyframes placeholderAnimate {
@@ -42,10 +44,14 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
-}
+ }
 
 :host .cover .ongoing {
     background-color: rgb(var(--mdui-color-primary-container));
@@ -117,7 +123,7 @@
     flex-direction: column;
     padding: 8px;
     row-gap: 8px;
-    background: rgb(var(--mdui-color-background));
+    background: rgb(var(--ur-color-background));
     box-sizing: border-box;
 }
 
@@ -127,7 +133,7 @@
 }
 
 :host .info .title {
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -144,8 +150,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -155,7 +165,7 @@
     line-height: 12px;
     display: flex;
     flex-direction: row;
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
 }
 
 :host .info .stats.loading {
@@ -165,8 +175,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -183,7 +197,7 @@
 }
 
 :host .info .description {
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
@@ -201,10 +215,14 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
-}
+ }
 
 :host .info .author {
     height: 32px;
@@ -213,7 +231,7 @@
     font-size: 11px;
     font-style: normal;
     font-weight: 600;
-    color: rgb(var(--mdui-color-on-background));
+    color: rgb(var(--ur-color-on-background));
     cursor: pointer;
     column-gap: 8px;
 }
@@ -231,10 +249,14 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
-}
+ }
 
 :host .info .author .name {
     font-size: 12px;
@@ -244,15 +266,20 @@
 }
 
 :host .info .author .name.loading {
-    width: 50%;
-    animation-duration: 1.7s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
-    background-size: 1000px;
+    height: 12px;
+   width: 50%;
+   animation-duration: 1.7s;
+   animation-fill-mode: forwards;
+   animation-iteration-count: infinite;
+   animation-timing-function: linear;
+   animation-name: placeholderAnimate;
+   background: linear-gradient(
+       to right,
+       rgba(var(--ur-color-on-background), 0.04) 2%,
+       rgba(var(--ur-color-on-background), 0.12) 18%,
+       rgba(var(--ur-color-on-background), 0.04) 33%
+   );
+   background-size: 1000px;
 }
 
 @container novl (max-width: 300px) {

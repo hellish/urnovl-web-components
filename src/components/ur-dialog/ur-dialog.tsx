@@ -8,7 +8,6 @@ import 'mdui/components/dialog';
     shadow: true,
 })
 export class UrDialog {
-
     private dialogElement!: HTMLElement & { open: boolean };
 
     @Element()
@@ -30,11 +29,17 @@ export class UrDialog {
     closeOnOverlayClick = true;
 
     @Prop()
-    borderRadius: string | null = "0";
+    showHeader = true;
+
+    @Prop()
+    variant: 'mobile' | 'desktop' = 'desktop';
+
+    @Prop()
+    borderRadius: string | null = '12px';
 
     componentDidLoad() {
-        this.el.style.setProperty("--ur-dialog-panel-border-radius", this.borderRadius);
-        this.dialogElement = this.el.shadowRoot.querySelector(".inner-dialog");
+        this.el.style.setProperty('--ur-dialog-panel-border-radius', this.borderRadius);
+        this.dialogElement = this.el.shadowRoot.querySelector('.inner-dialog');
     }
 
     @Method()
@@ -44,18 +49,28 @@ export class UrDialog {
 
     @Method()
     async closeDialog() {
-        this.dialogElement.open = false
+        this.dialogElement.open = false;
     }
 
     render() {
         return (
             <Host>
-                <mdui-dialog
-                    open={this.open}
-                    close-on-overlay-click={this.closeOnOverlayClick}
-                    close-on-esc={this.closeOnEsc}
+                <mdui-dialog 
+                    open={this.open} 
+                    close-on-overlay-click={this.closeOnOverlayClick} 
+                    close-on-esc={this.closeOnEsc} 
                     fullscreen={this.fullscreen}
-                    class="inner-dialog">
+                    border-radius={this.borderRadius}
+                    class={{
+                        'inner-dialog': true,
+                        'mobile': this.variant === 'mobile',
+                        'desktop': this.variant === 'desktop',
+                    }}
+                    style={{
+                        '--ur-dialog-panel-border-radius': this.borderRadius,
+                    }}
+                >
+                    {this.showHeader && <slot name="header"></slot>}
                     <slot></slot>
                 </mdui-dialog>
             </Host>

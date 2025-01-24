@@ -350,7 +350,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: -4px;
+    right: 2px;
 }
 
 :host .notification-badge {
