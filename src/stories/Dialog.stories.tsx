@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import '../components/ur-button/ur-button';
+import '../components/ur-button-icon/ur-button-icon';
 import '../components/ur-dialog/ur-dialog';
 import '../components/ur-text-field/ur-text-field';
 
@@ -24,14 +25,13 @@ const FormContent = () => html`
 `;
 
 const CustomHeaderContent = () => html`
-    <div slot="header" style="padding: 16px; border-bottom: 1px solid #eee;">
-        <h2 style="margin: 0">Custom Header</h2>
+    <div slot="header">
+        <span style="margin: 0">Custom Header</span>
         <ur-button-icon 
             onclick="document.getElementById('dialog-with-header').closeDialog()"
-            style="position: absolute; right: 16px; top: 16px; background: none; border: none; cursor: pointer;"
-        >
-            ✕
-        </ur-button-icon>
+            icon="close"
+            variant="standard"
+        ></ur-button-icon>
     </div>
     <div style="padding: 24px">
         <p>This dialog demonstrates a custom header with a close button.</p>

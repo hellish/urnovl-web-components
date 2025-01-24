@@ -24,10 +24,10 @@
     }
 
     mdui-button-icon[disabled] {
-        opacity: none;
+        display: none;
     }
 
     mdui-button-icon[disabled] svg {
-        opacity: none;
+        display: none;
     }
 }
