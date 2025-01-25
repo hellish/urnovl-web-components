@@ -1215,6 +1215,7 @@ declare global {
         "emailClick": any;
         "phoneClick": any;
         "websiteClick": any;
+        "pageCreatorClick": any;
         "inviteMembers": any;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
@@ -2006,6 +2007,7 @@ declare namespace LocalJSX {
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;

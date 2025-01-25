@@ -1,5 +1,4 @@
-import { Component, Event, Host, Prop, h } from '@stencil/core';
-import { isNumber } from '../../utils/utils';
+import { Component, Event, Host, Prop, h, Watch } from '@stencil/core';
 import { Icons } from './icons';
 
 import '../ur-avatar/ur-avatar';
@@ -14,7 +13,6 @@ export class UrPageProfile {
     @Prop()
     platform: 'desktop' | 'mobile-main' | 'mobile-secondary' = 'desktop';
 
-    // All other props remain the same
     @Prop()
     avatar;
 
@@ -185,6 +183,8 @@ export class UrPageProfile {
     websiteClick;
 
     @Event()
+    pageCreatorClick;
+    @Event()
     inviteMembers;
 
     render() {
@@ -331,7 +331,7 @@ export class UrPageProfile {
     private renderStats() {
         return (
             <div class="stats">
-                {isNumber(this.stories) && (
+                {(
                     <div>
                         <div class="stat">
                             <div class="key">{this.storiesText}</div>
@@ -339,7 +339,7 @@ export class UrPageProfile {
                         </div>
                     </div>
                 )}
-                {isNumber(this.views) && (
+                {(
                     <div>
                         <div class="stat">
                             <div class="key">{this.viewsText}</div>
@@ -347,7 +347,7 @@ export class UrPageProfile {
                         </div>
                     </div>
                 )}
-                {isNumber(this.following) && (
+                {(
                     <div>
                         <div class="stat">
                             <div class="key">{this.followingText}</div>
@@ -357,7 +357,7 @@ export class UrPageProfile {
                         </div>
                     </div>
                 )}
-                {isNumber(this.followers) && (
+                {(
                     <div>
                         <div class="stat">
                             <div class="key">{this.followersText}</div>
@@ -367,7 +367,7 @@ export class UrPageProfile {
                         </div>
                     </div>
                 )}
-                {isNumber(this.members) && (
+                {(
                     <div>
                         <div class="stat">
                             <div class="key">{this.membersText}</div>
@@ -388,7 +388,7 @@ export class UrPageProfile {
                 <div class="category">{this.languagesText}</div>
                 <div class="items">
                     {this.languages.split(',').map(language => (
-                        <ur-chip size="24px" class="chip" clickable={false} label={language}></ur-chip>
+                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={language}></ur-chip>
                     ))}
                 </div>
             </div>
@@ -402,7 +402,7 @@ export class UrPageProfile {
                 <div class="category">{this.genresText}</div>
                 <div class="items">
                     {this.genres.split(',').map(genre => (
-                        <ur-chip size="24px" class="chip" clickable={false} label={genre}></ur-chip>
+                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={genre}></ur-chip>
                     ))}
                 </div>
             </div>
@@ -416,7 +416,7 @@ export class UrPageProfile {
                 <div class="category">{this.literatureTypesText}</div>
                 <div class="items">
                     {this.literatureTypes.split(',').map(litType => (
-                        <ur-chip size="24px" class="chip" clickable={false} label={litType}></ur-chip>
+                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={litType}></ur-chip>
                     ))}
                 </div>
             </div>
@@ -428,7 +428,7 @@ export class UrPageProfile {
         return (
             <div class="created-by">
                 <div class="category">{this.createdByText}</div>
-                <div class="person">
+                <div class="person" onClick={() => this.pageCreatorClick.emit()}>
                     <ur-avatar name={this.pageCreatorName} src={this.pageCreatorImage}></ur-avatar>
                     <div>{this.pageCreatorName}</div>
                 </div>

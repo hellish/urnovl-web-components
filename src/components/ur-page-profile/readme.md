@@ -23,6 +23,8 @@
 | `followingText`       | `following-text`        |             | `string`                                           | `'Following'`        |
 | `genres`              | `genres`                |             | `string`                                           | `null`               |
 | `genresText`          | `genres-text`           |             | `string`                                           | `'Genres'`           |
+| `inviteMembersText`   | `invite-members-text`   |             | `string`                                           | `'Invite Members'`   |
+| `isPageOwner`         | `is-page-owner`         |             | `boolean`                                          | `false`              |
 | `languages`           | `languages`             |             | `string`                                           | `null`               |
 | `languagesText`       | `languages-text`        |             | `string`                                           | `'Languages'`        |
 | `linkedin_url`        | `linkedin_url`          |             | `any`                                              | `null`               |
@@ -36,6 +38,7 @@
 | `pageCreationDate`    | `page-creation-date`    |             | `any`                                              | `null`               |
 | `pageCreatorImage`    | `page-creator-image`    |             | `any`                                              | `null`               |
 | `pageCreatorName`     | `page-creator-name`     |             | `any`                                              | `null`               |
+| `pageType`            | `page-type`             |             | `string`                                           | `null`               |
 | `phone`               | `phone`                 |             | `any`                                              | `null`               |
 | `platform`            | `platform`              |             | `"desktop" \| "mobile-main" \| "mobile-secondary"` | `'desktop'`          |
 | `sendMessageText`     | `send-message-text`     |             | `string`                                           | `'Message'`          |
@@ -62,6 +65,7 @@
 | `follow`         |             | `CustomEvent<any>` |
 | `followersClick` |             | `CustomEvent<any>` |
 | `followingClick` |             | `CustomEvent<any>` |
+| `inviteMembers`  |             | `CustomEvent<any>` |
 | `linkedinClick`  |             | `CustomEvent<any>` |
 | `member`         |             | `CustomEvent<any>` |
 | `membersClick`   |             | `CustomEvent<any>` |

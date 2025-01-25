@@ -5,6 +5,9 @@
     --ur-color-outline-variant: var(--mdui-color-outline-variant);
     --ur-color-outline: var(--mdui-color-outline);
     --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-surface-container-low: var(--mdui-color-surface-container-low);
+    --ur-color-on-surface-lite: var(--mdui-color-on-surface-lite);
+    --ur-color-surface-container-high: var(--mdui-color-surface-container-high);
 }
 
 :host .profile {
@@ -79,7 +82,7 @@
 :host .profile .website {
     margin-top: 16px;
     margin-bottom: 16px;
-    display: block;
+    display: inline-block;
     font-size: 12px;
     font-weight: 400;
     line-height: 11px;
@@ -166,11 +169,17 @@
 }
 
 :host .profile .created-by .person {
-    color: rgb(var(--ur-color-on-background));
+    color: rgb(var(--ur-color-primary));
     font-size: 12px;
     font-weight: 700;
-    display: flex;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
+}
+
+:host .profile .created-by .person:hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 :host .profile .created-by .person ur-avatar {
