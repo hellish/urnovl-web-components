@@ -1,4 +1,4 @@
-import { Component, Event, Host, Prop, h, Watch } from '@stencil/core';
+import { Component, Event, Host, Prop, h } from '@stencil/core';
 import { Icons } from './icons';
 
 import '../ur-avatar/ur-avatar';

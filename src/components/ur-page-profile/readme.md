@@ -57,22 +57,23 @@
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `donate`         |             | `CustomEvent<any>` |
-| `emailClick`     |             | `CustomEvent<any>` |
-| `facebookClick`  |             | `CustomEvent<any>` |
-| `follow`         |             | `CustomEvent<any>` |
-| `followersClick` |             | `CustomEvent<any>` |
-| `followingClick` |             | `CustomEvent<any>` |
-| `inviteMembers`  |             | `CustomEvent<any>` |
-| `linkedinClick`  |             | `CustomEvent<any>` |
-| `member`         |             | `CustomEvent<any>` |
-| `membersClick`   |             | `CustomEvent<any>` |
-| `phoneClick`     |             | `CustomEvent<any>` |
-| `sendMessage`    |             | `CustomEvent<any>` |
-| `twitterClick`   |             | `CustomEvent<any>` |
-| `websiteClick`   |             | `CustomEvent<any>` |
+| Event              | Description | Type               |
+| ------------------ | ----------- | ------------------ |
+| `donate`           |             | `CustomEvent<any>` |
+| `emailClick`       |             | `CustomEvent<any>` |
+| `facebookClick`    |             | `CustomEvent<any>` |
+| `follow`           |             | `CustomEvent<any>` |
+| `followersClick`   |             | `CustomEvent<any>` |
+| `followingClick`   |             | `CustomEvent<any>` |
+| `inviteMembers`    |             | `CustomEvent<any>` |
+| `linkedinClick`    |             | `CustomEvent<any>` |
+| `member`           |             | `CustomEvent<any>` |
+| `membersClick`     |             | `CustomEvent<any>` |
+| `pageCreatorClick` |             | `CustomEvent<any>` |
+| `phoneClick`       |             | `CustomEvent<any>` |
+| `sendMessage`      |             | `CustomEvent<any>` |
+| `twitterClick`     |             | `CustomEvent<any>` |
+| `websiteClick`     |             | `CustomEvent<any>` |
 
 
 ## Dependencies
