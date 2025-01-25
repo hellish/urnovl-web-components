@@ -26,6 +26,14 @@
     line-height: 24px;
 }
 
+:host .profile .info .page-type {
+    padding: 16px 0 0 0;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 700;
+    color: rgb(var(--ur-color-outline-variant));
+}
+
 :host .profile .info .about {
     color: rgb(var(--ur-color-on-background));
     padding-top: 16px;
@@ -37,7 +45,7 @@
 :host .profile .info .location {
     padding: 16px 0;
     font-size: 11px;
-    line-height: 11px;
+    line-height: 12px;
     font-weight: 700;
     color: rgb(var(--ur-color-outline-variant));
 }
@@ -50,7 +58,7 @@
     width: 18px;
     height: 18px;
     opacity: 0.75;
-    margin-right: 12px;
+    margin-right: 16px;
     margin-bottom: 8px;
     text-decoration: none;
     color: rgb(var(--ur-color-on-background));
@@ -69,9 +77,10 @@
 }
 
 :host .profile .website {
-    margin-top: 14px;
-    margin-bottom: 14px;
-    font-size: 11px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: block;
+    font-size: 12px;
     font-weight: 400;
     line-height: 11px;
     cursor: pointer;

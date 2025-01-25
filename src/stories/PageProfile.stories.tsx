@@ -13,6 +13,7 @@ const PageProfile = ({
     avatar = publisher,
     platform = 'desktop',
     about = null,
+    pageType = null,
     location = null,
     facebook_url = null,
     twitter_url = null,
@@ -35,13 +36,16 @@ const PageProfile = ({
     pageCreatorName = null,
     pageCreatorImage = null,
     pageCreationDate = null,
+    isPageOwner = false,
 }) => {
     return html`
         <div style="width:${containerWidth};">
             <ur-page-profile
                 platform=${platform}
+                is-page-owner=${isPageOwner}
                 name=${name}
                 avatar=${avatar}
+                page-type=${pageType}
                 about=${about}
                 location=${location}
                 facebook_url=${facebook_url}
@@ -85,6 +89,7 @@ export const Wider = {
         location: "London, UK",
         about: DESCRIPTION,
         facebook_url: 'https://facebook.com',
+        pageType: 'Publisher',
         twitter_url: 'https://twitter.com',
         linkedin_url: 'https://linkedin.com',
         phone: '999666333',
@@ -112,6 +117,7 @@ export const FullWidth = {
     render: () => PageProfile({
         containerWidth: '100%',
         location: "London, UK",
+        pageType: 'Publisher',
         about: DESCRIPTION,
         facebook_url: 'https://facebook.com',
         twitter_url: 'https://twitter.com',
@@ -143,6 +149,7 @@ export const MobileMain = {
         containerWidth: '100%',
         location: "London, UK",
         about: DESCRIPTION,
+        pageType: 'Publisher',
         facebook_url: 'https://facebook.com',
         twitter_url: 'https://twitter.com',
         linkedin_url: 'https://linkedin.com',
@@ -173,6 +180,7 @@ export const MobileSecondary = {
         containerWidth: '100%',
         location: "London, UK",
         about: DESCRIPTION,
+        pageType: 'Publisher',
         facebook_url: 'https://facebook.com',
         twitter_url: 'https://twitter.com',
         linkedin_url: 'https://linkedin.com',
@@ -183,6 +191,38 @@ export const MobileSecondary = {
         views: 350745,
         following: 1556,
         followers: 1557,
+        members: 17,
+        showFollow: true,
+        showBecomeAMember: true,
+        showDonate: true,
+        showSendMessage: true,
+        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
+        genres: [ "Horror", "Thriller" ],
+        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
+        pageCreatorName: 'Malik Abubakari',
+        pageCreatorImage: creator,
+        pageCreationDate: 'May 25, 2015'
+    })
+};
+
+export const IsPageOwner = {
+    render: () => PageProfile({
+        platform: 'desktop',
+        containerWidth: '100%',
+        location: "London, UK",
+        about: DESCRIPTION,
+        pageType: 'Publisher',
+        facebook_url: 'https://facebook.com',
+        twitter_url: 'https://twitter.com',
+        linkedin_url: 'https://linkedin.com',
+        phone: '999666333',
+        email: 'urnovl@gmail.com',
+        website: 'https://urnovl.co',
+        stories: 5,
+        views: 350745,
+        following: 1556,
+        followers: 1557,
+        isPageOwner: true,
         members: 17,
         showFollow: true,
         showBecomeAMember: true,
@@ -211,6 +251,7 @@ const PageProfileBackground = () => {
                     ${PageProfile({
                         containerWidth: '256px',
                         location: "London, UK",
+                        pageType: 'Publisher',
                         about: DESCRIPTION,
                         facebook_url: 'https://facebook.com',
                         twitter_url: 'https://twitter.com',

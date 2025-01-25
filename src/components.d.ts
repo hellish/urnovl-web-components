@@ -380,6 +380,8 @@ export namespace Components {
         "followingText": string;
         "genres": string | null;
         "genresText": string;
+        "inviteMembersText": string;
+        "isPageOwner": boolean;
         "languages": string | null;
         "languagesText": string;
         "linkedin_url": any;
@@ -393,6 +395,7 @@ export namespace Components {
         "pageCreationDate": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
+        "pageType": string | null;
         "phone": any;
         "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
         "sendMessageText": string;
@@ -1212,6 +1215,7 @@ declare global {
         "emailClick": any;
         "phoneClick": any;
         "websiteClick": any;
+        "inviteMembers": any;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1981,6 +1985,8 @@ declare namespace LocalJSX {
         "followingText"?: string;
         "genres"?: string | null;
         "genresText"?: string;
+        "inviteMembersText"?: string;
+        "isPageOwner"?: boolean;
         "languages"?: string | null;
         "languagesText"?: string;
         "linkedin_url"?: any;
@@ -1996,6 +2002,7 @@ declare namespace LocalJSX {
         "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowingClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
@@ -2007,6 +2014,7 @@ declare namespace LocalJSX {
         "pageCreationDate"?: any;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
+        "pageType"?: string | null;
         "phone"?: any;
         "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
         "sendMessageText"?: string;
