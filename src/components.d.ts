@@ -411,6 +411,16 @@ export namespace Components {
         "website": any;
         "websiteText": string;
     }
+    interface UrPageProfileTabs {
+        "activeTab": string;
+        "fullWidthTabs": boolean;
+        "isOwner": boolean;
+        "libraryTabText": string;
+        "settingsTabText": string;
+        "statisticsTabText": string;
+        "storiesTabText": string;
+        "transactionsTabText": string;
+    }
     interface UrProfile {
         "description": any;
         "email": any;
@@ -785,6 +795,10 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageProfileTabsElement;
 }
 export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1232,6 +1246,23 @@ declare global {
         prototype: HTMLUrPageProfileElement;
         new (): HTMLUrPageProfileElement;
     };
+    interface HTMLUrPageProfileTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrPageProfileTabsElement extends Components.UrPageProfileTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrPageProfileTabsElement, ev: UrPageProfileTabsCustomEvent<HTMLUrPageProfileTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrPageProfileTabsElement, ev: UrPageProfileTabsCustomEvent<HTMLUrPageProfileTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageProfileTabsElement: {
+        prototype: HTMLUrPageProfileTabsElement;
+        new (): HTMLUrPageProfileTabsElement;
+    };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
     var HTMLUrProfileElement: {
@@ -1546,6 +1577,7 @@ declare global {
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
         "ur-page-profile": HTMLUrPageProfileElement;
+        "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
@@ -2032,6 +2064,17 @@ declare namespace LocalJSX {
         "website"?: any;
         "websiteText"?: string;
     }
+    interface UrPageProfileTabs {
+        "activeTab"?: string;
+        "fullWidthTabs"?: boolean;
+        "isOwner"?: boolean;
+        "libraryTabText"?: string;
+        "onTabChange"?: (event: UrPageProfileTabsCustomEvent<string>) => void;
+        "settingsTabText"?: string;
+        "statisticsTabText"?: string;
+        "storiesTabText"?: string;
+        "transactionsTabText"?: string;
+    }
     interface UrProfile {
         "description"?: any;
         "email"?: any;
@@ -2422,6 +2465,7 @@ declare namespace LocalJSX {
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
         "ur-page-profile": UrPageProfile;
+        "ur-page-profile-tabs": UrPageProfileTabs;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
@@ -2478,6 +2522,7 @@ declare module "@stencil/core" {
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
+            "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;

@@ -1,0 +1,23 @@
+:host {
+    display: block;
+}
+
+:host mdui-tabs {
+    display: inline-flex;
+    width: auto;
+}
+
+:host mdui-tab {
+    min-width: fit-content;
+    padding: 0 16px;
+}
+
+:host mdui-tab span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host mdui-tabs[full-width-tabs] {
+    width: 100%;
+}
