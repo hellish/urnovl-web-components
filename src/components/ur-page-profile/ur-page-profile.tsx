@@ -119,9 +119,6 @@ export class UrPageProfile {
     storiesText = 'Stories';
 
     @Prop()
-    followingText = 'Following';
-
-    @Prop()
     followersText = 'Followers';
 
     @Prop()
@@ -156,9 +153,6 @@ export class UrPageProfile {
     sendMessage;
 
     @Event()
-    followingClick;
-
-    @Event()
     followersClick;
 
     @Event()
@@ -184,6 +178,7 @@ export class UrPageProfile {
 
     @Event()
     pageCreatorClick;
+    
     @Event()
     inviteMembers;
 
@@ -344,16 +339,6 @@ export class UrPageProfile {
                         <div class="stat">
                             <div class="key">{this.viewsText}</div>
                             <div class="value">{this.views}</div>
-                        </div>
-                    </div>
-                )}
-                {(
-                    <div>
-                        <div class="stat">
-                            <div class="key">{this.followingText}</div>
-                            <div class="value clickable" onClick={() => this.followingClick.emit()}>
-                                {this.following}
-                            </div>
                         </div>
                     </div>
                 )}

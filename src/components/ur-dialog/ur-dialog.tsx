@@ -72,6 +72,7 @@ export class UrDialog {
                 >
                     {this.showHeader && <slot name="header"></slot>}
                     <slot></slot>
+                    <slot name="main-content" />
                 </mdui-dialog>
             </Host>
         );

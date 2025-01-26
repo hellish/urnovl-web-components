@@ -377,7 +377,6 @@ export namespace Components {
         "followers": number | null;
         "followersText": string;
         "following": number | null;
-        "followingText": string;
         "genres": string | null;
         "genresText": string;
         "inviteMembersText": string;
@@ -1234,7 +1233,6 @@ declare global {
         "member": any;
         "donate": any;
         "sendMessage": any;
-        "followingClick": any;
         "followersClick": any;
         "membersClick": any;
         "facebookClick": any;
@@ -2047,7 +2045,6 @@ declare namespace LocalJSX {
         "followers"?: number | null;
         "followersText"?: string;
         "following"?: number | null;
-        "followingText"?: string;
         "genres"?: string | null;
         "genresText"?: string;
         "inviteMembersText"?: string;
@@ -2066,7 +2063,6 @@ declare namespace LocalJSX {
         "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
-        "onFollowingClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;

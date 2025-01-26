@@ -1,6 +1,6 @@
 {
     "name": "urnovl-web-components",
-    "version": "0.0.175-l",
+    "version": "0.0.175-n",
     "description": "Web components for Urnovl",
     "main": "dist/index.cjs.js",
     "module": "dist/index.js",
