@@ -9,8 +9,10 @@
 
 | Property              | Attribute               | Description | Type      | Default          |
 | --------------------- | ----------------------- | ----------- | --------- | ---------------- |
+| `aboutTabText`        | `about-tab-text`        |             | `string`  | `'About'`        |
 | `activeTab`           | `active-tab`            |             | `string`  | `'stories'`      |
 | `fullWidthTabs`       | `full-width-tabs`       |             | `boolean` | `true`           |
+| `isMobile`            | `is-mobile`             |             | `boolean` | `false`          |
 | `isOwner`             | `is-owner`              |             | `boolean` | `false`          |
 | `libraryTabText`      | `library-tab-text`      |             | `string`  | `'Library'`      |
 | `settingsTabText`     | `settings-tab-text`     |             | `string`  | `'Settings'`     |
