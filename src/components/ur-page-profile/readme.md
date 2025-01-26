@@ -20,7 +20,6 @@
 | `followers`           | `followers`             |             | `number`                                           | `null`               |
 | `followersText`       | `followers-text`        |             | `string`                                           | `'Followers'`        |
 | `following`           | `following`             |             | `number`                                           | `null`               |
-| `followingText`       | `following-text`        |             | `string`                                           | `'Following'`        |
 | `genres`              | `genres`                |             | `string`                                           | `null`               |
 | `genresText`          | `genres-text`           |             | `string`                                           | `'Genres'`           |
 | `inviteMembersText`   | `invite-members-text`   |             | `string`                                           | `'Invite Members'`   |
@@ -64,7 +63,6 @@
 | `facebookClick`    |             | `CustomEvent<any>` |
 | `follow`           |             | `CustomEvent<any>` |
 | `followersClick`   |             | `CustomEvent<any>` |
-| `followingClick`   |             | `CustomEvent<any>` |
 | `inviteMembers`    |             | `CustomEvent<any>` |
 | `linkedinClick`    |             | `CustomEvent<any>` |
 | `member`           |             | `CustomEvent<any>` |
