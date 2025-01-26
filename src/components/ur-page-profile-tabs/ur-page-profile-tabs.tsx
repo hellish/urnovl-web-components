@@ -7,6 +7,7 @@ interface Tab {
     value: string;
     text: () => string;
     visibleFor: 'all' | 'owner';
+    mobileOnly?: boolean; // New property to indicate if the tab is mobile-only
 }
 
 @Component({
@@ -34,10 +35,16 @@ export class UrPageProfileTabs {
     settingsTabText: string = 'Settings';
 
     @Prop()
+    aboutTabText: string = 'About';
+    
+    @Prop()
     isOwner: boolean = false;
 
     @Prop()
     fullWidthTabs: boolean = true;
+
+    @Prop()
+    isMobile: boolean = false; // Controlled by the parent
 
     @Event()
     tabChange: EventEmitter<string>; // Emitted when a tab is clicked
@@ -88,10 +95,19 @@ export class UrPageProfileTabs {
             text: () => this.settingsTabText,
             visibleFor: 'owner',
         },
+        {
+            value: 'about',
+            text: () => this.aboutTabText,
+            visibleFor: 'all',
+            mobileOnly: true, // This tab is only visible on mobile devices
+        },
     ];
 
     private getVisibleTabs(): Tab[] {
-        return this.tabs.filter(tab => tab.visibleFor === 'all' || (tab.visibleFor === 'owner' && this.isOwner));
+        return this.tabs.filter(tab => 
+            (tab.visibleFor === 'all' || (tab.visibleFor === 'owner' && this.isOwner)) &&
+            (!tab.mobileOnly || this.isMobile) // Include the tab if it's not mobile-only or if the device is mobile
+        );
     }
 
     render() {

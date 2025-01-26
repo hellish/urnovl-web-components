@@ -3,6 +3,11 @@ import '../components/ur-page-profile-tabs/ur-page-profile-tabs';
 
 export default {
     title: 'urnovl/Business/Profile Tabs',
+    parameters: {
+        viewport: {
+            defaultViewport: 'responsive', // Set a responsive viewport by default
+        },
+    },
     render: args => {
         // Function to handle tab changes
         const handleTabChange = (event: CustomEvent<string>) => {
@@ -39,6 +44,7 @@ export default {
                     .transactionsTabText=${args.transactionsTabText}
                     .statisticsTabText=${args.statisticsTabText}
                     .settingsTabText=${args.settingsTabText}
+                    .isMobile=${args.isMobile}
                     @tabChange=${handleTabChange}
                 >
                     <div slot="stories">Latest published stories and drafts</div>
@@ -46,15 +52,17 @@ export default {
                     <div slot="transactions">Recent purchases and earnings</div>
                     <div slot="statistics">Monthly reading and writing analytics</div>
                     <div slot="settings">Account preferences and notifications</div>
+                    <div slot="about">About the page</div>
                 </ur-page-profile-tabs>
             </div>
         `;
     },
     argTypes: {
         isOwner: { control: 'boolean' },
+        isMobile: { control: 'boolean' }, // Add isMobile to argTypes
         initialTab: {
             control: 'select',
-            options: ['stories', 'library', 'transactions', 'statistics', 'settings'],
+            options: ['stories', 'library', 'transactions', 'statistics', 'settings', 'about'],
         },
     },
 };
@@ -64,6 +72,7 @@ export const Visitor = {
         isOwner: false,
         storiesTabText: 'Stories',
         libraryTabText: 'Library',
+        isMobile: false, // Default to desktop view
     },
 };
 
@@ -75,6 +84,7 @@ export const Owner = {
         transactionsTabText: 'Transactions',
         statisticsTabText: 'Analytics',
         settingsTabText: 'Settings',
+        isMobile: false, // Default to desktop view
     },
 };
 
@@ -87,5 +97,20 @@ export const PreselectedTab = {
         transactionsTabText: 'Transactions',
         statisticsTabText: 'Analytics',
         settingsTabText: 'Settings',
+        isMobile: false, // Default to desktop view
+    },
+};
+
+export const MobileView = {
+    args: {
+        isOwner: false,
+        storiesTabText: 'Stories',
+        libraryTabText: 'Library',
+        isMobile: true, // Force mobile view
+    },
+    parameters: {
+        viewport: {
+            defaultViewport: 'mobile1', // Force mobile viewport for this story
+        },
     },
 };

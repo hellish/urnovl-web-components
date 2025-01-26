@@ -412,8 +412,10 @@ export namespace Components {
         "websiteText": string;
     }
     interface UrPageProfileTabs {
+        "aboutTabText": string;
         "activeTab": string;
         "fullWidthTabs": boolean;
+        "isMobile": boolean;
         "isOwner": boolean;
         "libraryTabText": string;
         "settingsTabText": string;
@@ -2065,8 +2067,10 @@ declare namespace LocalJSX {
         "websiteText"?: string;
     }
     interface UrPageProfileTabs {
+        "aboutTabText"?: string;
         "activeTab"?: string;
         "fullWidthTabs"?: boolean;
+        "isMobile"?: boolean;
         "isOwner"?: boolean;
         "libraryTabText"?: string;
         "onTabChange"?: (event: UrPageProfileTabsCustomEvent<string>) => void;
