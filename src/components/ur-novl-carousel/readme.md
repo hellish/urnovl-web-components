@@ -10,6 +10,7 @@
 | Property           | Attribute           | Description | Type                                              | Default                                        |
 | ------------------ | ------------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
 | `breakpoints`      | --                  |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
+| `debug`            | `debug`             |             | `boolean`                                         | `false`                                        |
 | `destroyListeners` | `destroy-listeners` |             | `boolean`                                         | `true`                                         |
 | `grid`             | --                  |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
 | `loading`          | `loading`           |             | `boolean`                                         | `false`                                        |

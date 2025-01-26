@@ -1,4 +1,4 @@
-import{k as A}from"./entry-preview-BcHUnPw7.js";import"./ur-menu-profile-CrfZH_zX.js";import"./index-DrFu-skq.js";import"./ur-avatar-DQP0n-vE.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-B9J0OpMa.js";const x=({userAvatar:s="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5",userName:f="John Doe",userRole:g="Admin",wrapperWidth:b="220px"})=>A`
+import{k as A}from"./entry-preview-BcHUnPw7.js";import"./ur-menu-profile-CfTysH1W.js";import"./index-DrFu-skq.js";import"./ur-avatar-DQP0n-vE.js";import"./chunk-L4EGOTBX-2Jzo53v8.js";import"./index-B9J0OpMa.js";const x=({userAvatar:s="https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5",userName:f="John Doe",userRole:g="Admin",wrapperWidth:b="220px"})=>A`
     <div style="width: ${b}; border: 1px solid #ddd;">
         <ur-menu-profile
             user-avatar=${s}

@@ -342,6 +342,7 @@ export namespace Components {
     interface UrNovlCarousel {
         "addNovls": (novls: Array<Novl | CustomContent>) => Promise<void>;
         "breakpoints"?: Breakpoints;
+        "debug": boolean;
         "destroyListeners": boolean;
         "grid"?: Grid;
         "loading": boolean;
@@ -1909,6 +1910,7 @@ declare namespace LocalJSX {
     }
     interface UrNovlCarousel {
         "breakpoints"?: Breakpoints;
+        "debug"?: boolean;
         "destroyListeners"?: boolean;
         "grid"?: Grid;
         "loading"?: boolean;
