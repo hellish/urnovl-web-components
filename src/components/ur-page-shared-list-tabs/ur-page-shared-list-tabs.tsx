@@ -7,36 +7,24 @@ interface Tab {
     value: string;
     text: () => string;
     visibleFor: 'all' | 'owner';
-    mobileOnly?: boolean; // New property to indicate if the tab is mobile-only
+    mobileOnly?: boolean;
 }
 
 @Component({
-    tag: 'ur-page-profile-tabs',
-    styleUrl: 'ur-page-profile-tabs.css',
+    tag: 'ur-page-shared-list-tabs',
+    styleUrl: 'ur-page-shared-list-tabs.css',
     shadow: true,
 })
-export class UrPageProfileTabs {
+export class UrPageSharedListTabs {
     @Prop()
-    activeTab: string = 'stories'; // Controlled by the parent
+    activeTab: string = 'followers'; // Controlled by the parent
 
     @Prop()
-    storiesTabText: string = 'Stories';
+    followersTabText: string = 'Followers';
 
     @Prop()
-    libraryTabText: string = 'Library';
+    membersTabText: string = 'Members';
 
-    @Prop()
-    transactionsTabText: string = 'Transactions';
-
-    @Prop()
-    statisticsTabText: string = 'Statistics';
-
-    @Prop()
-    settingsTabText: string = 'Settings';
-
-    @Prop()
-    aboutTabText: string = 'About';
-    
     @Prop()
     isOwner: boolean = false;
 
@@ -69,35 +57,14 @@ export class UrPageProfileTabs {
 
     private readonly tabs: Tab[] = [
         {
-            value: 'stories',
-            text: () => this.storiesTabText,
+            value: 'followers',
+            text: () => this.followersTabText,
             visibleFor: 'all',
         },
         {
-            value: 'library',
-            text: () => this.libraryTabText,
+            value: 'members',
+            text: () => this.membersTabText,
             visibleFor: 'all',
-        },
-        {
-            value: 'transactions',
-            text: () => this.transactionsTabText,
-            visibleFor: 'owner',
-        },
-        {
-            value: 'statistics',
-            text: () => this.statisticsTabText,
-            visibleFor: 'owner',
-        },
-        {
-            value: 'settings',
-            text: () => this.settingsTabText,
-            visibleFor: 'owner',
-        },
-        {
-            value: 'about',
-            text: () => this.aboutTabText,
-            visibleFor: 'all',
-            mobileOnly: true, // This tab is only visible on mobile devices
         },
     ];
 

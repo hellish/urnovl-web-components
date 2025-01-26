@@ -423,6 +423,14 @@ export namespace Components {
         "storiesTabText": string;
         "transactionsTabText": string;
     }
+    interface UrPageSharedListTabs {
+        "activeTab": string;
+        "followersTabText": string;
+        "fullWidthTabs": boolean;
+        "isMobile": boolean;
+        "isOwner": boolean;
+        "membersTabText": string;
+    }
     interface UrProfile {
         "description": any;
         "email": any;
@@ -801,6 +809,10 @@ export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileTabsElement;
+}
+export interface UrPageSharedListTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageSharedListTabsElement;
 }
 export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1265,6 +1277,23 @@ declare global {
         prototype: HTMLUrPageProfileTabsElement;
         new (): HTMLUrPageProfileTabsElement;
     };
+    interface HTMLUrPageSharedListTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrPageSharedListTabsElement extends Components.UrPageSharedListTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageSharedListTabsElementEventMap>(type: K, listener: (this: HTMLUrPageSharedListTabsElement, ev: UrPageSharedListTabsCustomEvent<HTMLUrPageSharedListTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageSharedListTabsElementEventMap>(type: K, listener: (this: HTMLUrPageSharedListTabsElement, ev: UrPageSharedListTabsCustomEvent<HTMLUrPageSharedListTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageSharedListTabsElement: {
+        prototype: HTMLUrPageSharedListTabsElement;
+        new (): HTMLUrPageSharedListTabsElement;
+    };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
     var HTMLUrProfileElement: {
@@ -1580,6 +1609,7 @@ declare global {
         "ur-page": HTMLUrPageElement;
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
+        "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
@@ -2079,6 +2109,15 @@ declare namespace LocalJSX {
         "storiesTabText"?: string;
         "transactionsTabText"?: string;
     }
+    interface UrPageSharedListTabs {
+        "activeTab"?: string;
+        "followersTabText"?: string;
+        "fullWidthTabs"?: boolean;
+        "isMobile"?: boolean;
+        "isOwner"?: boolean;
+        "membersTabText"?: string;
+        "onTabChange"?: (event: UrPageSharedListTabsCustomEvent<string>) => void;
+    }
     interface UrProfile {
         "description"?: any;
         "email"?: any;
@@ -2470,6 +2509,7 @@ declare namespace LocalJSX {
         "ur-page": UrPage;
         "ur-page-profile": UrPageProfile;
         "ur-page-profile-tabs": UrPageProfileTabs;
+        "ur-page-shared-list-tabs": UrPageSharedListTabs;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
@@ -2527,6 +2567,7 @@ declare module "@stencil/core" {
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
+            "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
