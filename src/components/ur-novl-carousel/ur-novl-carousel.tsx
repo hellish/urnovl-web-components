@@ -49,6 +49,9 @@ export class UrNovlCarousel {
     @Prop()
     navigation? = false;
 
+    @Prop()
+    debug = false;
+
     @Event()
     prevClicked: EventEmitter<void>;
 
@@ -175,13 +178,13 @@ export class UrNovlCarousel {
     renderNovl(novl: Novl | CustomContent, index: number) {
         if (is_custom_data(novl)) {
             return (<swiper-slide>
-                <span class="index">{index + 1}</span>
+                {this.debug && <span class="index">{index + 1}</span>}
                 <div class="custom" innerHTML={novl.content(index)}></div>
             </swiper-slide>)
         }
 
         return (<swiper-slide>
-            <span class="index">{index + 1}</span>
+            {this.debug && <span class="index">{index + 1}</span>}
             <ur-novl {...novl}></ur-novl>
         </swiper-slide>)
     }
