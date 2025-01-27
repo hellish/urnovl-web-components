@@ -44,6 +44,7 @@ export namespace Components {
         "disabled": boolean;
     }
     interface UrButtonIcon {
+        "active": boolean;
         "borderRadius": string;
         "buttonHeight": string;
         "buttonWidth": string;
@@ -110,6 +111,7 @@ export namespace Components {
     interface UrChip {
         "backColor": string;
         "border": string;
+        "clickable": boolean;
         "disabled": boolean;
         "fontColor": string;
         "label": string;
@@ -135,6 +137,8 @@ export namespace Components {
         "fullscreen": boolean;
         "open": boolean;
         "openDialog": () => Promise<void>;
+        "showHeader": boolean;
+        "variant": 'mobile' | 'desktop';
     }
     interface UrForm {
         "resetForm": () => Promise<void>;
@@ -239,11 +243,13 @@ export namespace Components {
         "badgeCount"?: number;
         "competitionsText": string;
         "contactUsText": string;
+        "currentRoute": string;
         "discordText": string;
         "facebookText": string;
         "faqsText": string;
         "homeText": string;
         "loggedIn": boolean;
+        "notificationCenterOpened": boolean;
         "notificationText": string;
         "opened": boolean;
         "pagesText": string;
@@ -361,31 +367,69 @@ export namespace Components {
         "showStats": boolean;
     }
     interface UrPageProfile {
+        "about": any;
         "avatar": any;
-        "description": any;
+        "becomeMemberText": string;
+        "createdByText": string;
+        "donateText": string;
         "email": any;
         "facebook_url": any;
+        "followText": string;
         "followers": number | null;
+        "followersText": string;
         "following": number | null;
         "genres": string | null;
+        "genresText": string;
+        "inviteMembersText": string;
+        "isPageOwner": boolean;
         "languages": string | null;
+        "languagesText": string;
         "linkedin_url": any;
         "literatureTypes": string | null;
+        "literatureTypesText": string;
         "location": any;
         "members": number | null;
+        "membersText": string;
         "name": any;
+        "pageCreatedText": string;
         "pageCreationDate": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
+        "pageType": string | null;
         "phone": any;
+        "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "sendMessageText": string;
         "showBecomeMember": boolean;
         "showDonate": boolean;
         "showFollow": boolean;
         "showSendMessage": boolean;
         "stories": number | null;
+        "storiesText": string;
         "twitter_url": any;
         "views": number | null;
+        "viewsText": string;
         "website": any;
+        "websiteText": string;
+    }
+    interface UrPageProfileTabs {
+        "aboutTabText": string;
+        "activeTab": string;
+        "fullWidthTabs": boolean;
+        "isMobile": boolean;
+        "isOwner": boolean;
+        "libraryTabText": string;
+        "settingsTabText": string;
+        "statisticsTabText": string;
+        "storiesTabText": string;
+        "transactionsTabText": string;
+    }
+    interface UrPageSharedListTabs {
+        "activeTab": string;
+        "followersTabText": string;
+        "fullWidthTabs": boolean;
+        "isMobile": boolean;
+        "isOwner": boolean;
+        "membersTabText": string;
     }
     interface UrProfile {
         "description": any;
@@ -761,6 +805,14 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
+}
+export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageProfileTabsElement;
+}
+export interface UrPageSharedListTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageSharedListTabsElement;
 }
 export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1182,6 +1234,16 @@ declare global {
         "member": any;
         "donate": any;
         "sendMessage": any;
+        "followersClick": any;
+        "membersClick": any;
+        "facebookClick": any;
+        "twitterClick": any;
+        "linkedinClick": any;
+        "emailClick": any;
+        "phoneClick": any;
+        "websiteClick": any;
+        "pageCreatorClick": any;
+        "inviteMembers": any;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1196,6 +1258,40 @@ declare global {
     var HTMLUrPageProfileElement: {
         prototype: HTMLUrPageProfileElement;
         new (): HTMLUrPageProfileElement;
+    };
+    interface HTMLUrPageProfileTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrPageProfileTabsElement extends Components.UrPageProfileTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrPageProfileTabsElement, ev: UrPageProfileTabsCustomEvent<HTMLUrPageProfileTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrPageProfileTabsElement, ev: UrPageProfileTabsCustomEvent<HTMLUrPageProfileTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageProfileTabsElement: {
+        prototype: HTMLUrPageProfileTabsElement;
+        new (): HTMLUrPageProfileTabsElement;
+    };
+    interface HTMLUrPageSharedListTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrPageSharedListTabsElement extends Components.UrPageSharedListTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageSharedListTabsElementEventMap>(type: K, listener: (this: HTMLUrPageSharedListTabsElement, ev: UrPageSharedListTabsCustomEvent<HTMLUrPageSharedListTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageSharedListTabsElementEventMap>(type: K, listener: (this: HTMLUrPageSharedListTabsElement, ev: UrPageSharedListTabsCustomEvent<HTMLUrPageSharedListTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageSharedListTabsElement: {
+        prototype: HTMLUrPageSharedListTabsElement;
+        new (): HTMLUrPageSharedListTabsElement;
     };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
@@ -1511,6 +1607,8 @@ declare global {
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
         "ur-page-profile": HTMLUrPageProfileElement;
+        "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
+        "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
@@ -1567,6 +1665,7 @@ declare namespace LocalJSX {
         "onRightClicked"?: (event: UrButtonArrowRightCustomEvent<any>) => void;
     }
     interface UrButtonIcon {
+        "active"?: boolean;
         "borderRadius"?: string;
         "buttonHeight"?: string;
         "buttonWidth"?: string;
@@ -1637,6 +1736,7 @@ declare namespace LocalJSX {
     interface UrChip {
         "backColor"?: string;
         "border"?: string;
+        "clickable"?: boolean;
         "disabled"?: boolean;
         "fontColor"?: string;
         "label"?: string;
@@ -1663,6 +1763,8 @@ declare namespace LocalJSX {
         "description"?: string | null;
         "fullscreen"?: boolean;
         "open"?: boolean;
+        "showHeader"?: boolean;
+        "variant"?: 'mobile' | 'desktop';
     }
     interface UrForm {
         /**
@@ -1789,11 +1891,13 @@ declare namespace LocalJSX {
         "badgeCount"?: number;
         "competitionsText"?: string;
         "contactUsText"?: string;
+        "currentRoute"?: string;
         "discordText"?: string;
         "facebookText"?: string;
         "faqsText"?: string;
         "homeText"?: string;
         "loggedIn"?: boolean;
+        "notificationCenterOpened"?: boolean;
         "notificationText"?: string;
         "onAcceptableUseClick"?: (event: UrMainMenuCustomEvent<void>) => void;
         "onCompetitionsClick"?: (event: UrMainMenuCustomEvent<void>) => void;
@@ -1932,35 +2036,85 @@ declare namespace LocalJSX {
         "showStats"?: boolean;
     }
     interface UrPageProfile {
+        "about"?: any;
         "avatar"?: any;
-        "description"?: any;
+        "becomeMemberText"?: string;
+        "createdByText"?: string;
+        "donateText"?: string;
         "email"?: any;
         "facebook_url"?: any;
+        "followText"?: string;
         "followers"?: number | null;
+        "followersText"?: string;
         "following"?: number | null;
         "genres"?: string | null;
+        "genresText"?: string;
+        "inviteMembersText"?: string;
+        "isPageOwner"?: boolean;
         "languages"?: string | null;
+        "languagesText"?: string;
         "linkedin_url"?: any;
         "literatureTypes"?: string | null;
+        "literatureTypesText"?: string;
         "location"?: any;
         "members"?: number | null;
+        "membersText"?: string;
         "name"?: any;
         "onDonate"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onEmailClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onWebsiteClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "pageCreatedText"?: string;
         "pageCreationDate"?: any;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
+        "pageType"?: string | null;
         "phone"?: any;
+        "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "sendMessageText"?: string;
         "showBecomeMember"?: boolean;
         "showDonate"?: boolean;
         "showFollow"?: boolean;
         "showSendMessage"?: boolean;
         "stories"?: number | null;
+        "storiesText"?: string;
         "twitter_url"?: any;
         "views"?: number | null;
+        "viewsText"?: string;
         "website"?: any;
+        "websiteText"?: string;
+    }
+    interface UrPageProfileTabs {
+        "aboutTabText"?: string;
+        "activeTab"?: string;
+        "fullWidthTabs"?: boolean;
+        "isMobile"?: boolean;
+        "isOwner"?: boolean;
+        "libraryTabText"?: string;
+        "onTabChange"?: (event: UrPageProfileTabsCustomEvent<string>) => void;
+        "settingsTabText"?: string;
+        "statisticsTabText"?: string;
+        "storiesTabText"?: string;
+        "transactionsTabText"?: string;
+    }
+    interface UrPageSharedListTabs {
+        "activeTab"?: string;
+        "followersTabText"?: string;
+        "fullWidthTabs"?: boolean;
+        "isMobile"?: boolean;
+        "isOwner"?: boolean;
+        "membersTabText"?: string;
+        "onTabChange"?: (event: UrPageSharedListTabsCustomEvent<string>) => void;
     }
     interface UrProfile {
         "description"?: any;
@@ -2352,6 +2506,8 @@ declare namespace LocalJSX {
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
         "ur-page-profile": UrPageProfile;
+        "ur-page-profile-tabs": UrPageProfileTabs;
+        "ur-page-shared-list-tabs": UrPageSharedListTabs;
         "ur-profile": UrProfile;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
@@ -2408,6 +2564,8 @@ declare module "@stencil/core" {
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
+            "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
+            "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;

@@ -5,6 +5,8 @@
     --list-item-active-light: rgba(223, 226, 235, 1);
     --list-item-active-dark: rgba(39, 42, 47, 1);
     --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-on-background: var(--mdui-color-on-background);
 }
 
 :host .ur-list-item {
@@ -23,22 +25,15 @@
     align-content: center;
 }
 
-:host-context(html.ur-theme-light) .ur-list-item--active {
-    background-color: rgb(var(--list-item-active-light));
-    color: rgb(var(--mdui-color-on-surface-light));
+/* Default active state */
+:host mdui-list-item.ur-list-item--active {
+    background-color: rgba(var(--ur-color-on-background), 0.07);
+    box-shadow: inset 4px 0 0 rgb(var(--ur-color-primary));
 }
 
-:host-context(html.ur-theme-dark) .ur-list-item--active {
-    background-color: rgb(var(--list-item-active-dark));
-    color: rgb(var(--mdui-color-on-surface-dark));
-}
-
-:host .ur-list-item--active {
-    background-color: #f0f0f0;
-}
-
-:host .ur-list-item--nonclickable {
-    cursor: default;
+/* Default active state */
+:host mdui-list-item.ur-list-item--disabled {
+    pointer-events: none;
 }
 
 :host .ur-list-item--rounded {

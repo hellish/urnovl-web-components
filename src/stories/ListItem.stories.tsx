@@ -100,6 +100,15 @@ export const Active = {
     render: ListItemTemplate,
 };
 
+export const ActiveIcon = {
+    args: {
+        content: 'Active Item',
+        active: true,
+        icon: 'home--outlined',
+    },
+    render: ListItemTemplate,
+};
+
 export const Rounded = {
     args: {
         content: 'Rounded Item',

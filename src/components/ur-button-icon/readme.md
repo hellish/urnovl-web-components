@@ -9,6 +9,7 @@
 
 | Property       | Attribute       | Description | Type                                              | Default             |
 | -------------- | --------------- | ----------- | ------------------------------------------------- | ------------------- |
+| `active`       | `active`        |             | `boolean`                                         | `false`             |
 | `borderRadius` | `border-radius` |             | `string`                                          | `'8px'`             |
 | `buttonHeight` | `button-height` |             | `string`                                          | `'40px'`            |
 | `buttonWidth`  | `button-width`  |             | `string`                                          | `'40px'`            |

@@ -7,43 +7,71 @@
 
 ## Properties
 
-| Property           | Attribute            | Description | Type      | Default     |
-| ------------------ | -------------------- | ----------- | --------- | ----------- |
-| `avatar`           | `avatar`             |             | `any`     | `undefined` |
-| `description`      | `description`        |             | `any`     | `null`      |
-| `email`            | `email`              |             | `any`     | `null`      |
-| `facebook_url`     | `facebook_url`       |             | `any`     | `null`      |
-| `followers`        | `followers`          |             | `number`  | `null`      |
-| `following`        | `following`          |             | `number`  | `null`      |
-| `genres`           | `genres`             |             | `string`  | `null`      |
-| `languages`        | `languages`          |             | `string`  | `null`      |
-| `linkedin_url`     | `linkedin_url`       |             | `any`     | `null`      |
-| `literatureTypes`  | `literature-types`   |             | `string`  | `null`      |
-| `location`         | `location`           |             | `any`     | `null`      |
-| `members`          | `members`            |             | `number`  | `null`      |
-| `name`             | `name`               |             | `any`     | `undefined` |
-| `pageCreationDate` | `page-creation-date` |             | `any`     | `null`      |
-| `pageCreatorImage` | `page-creator-image` |             | `any`     | `null`      |
-| `pageCreatorName`  | `page-creator-name`  |             | `any`     | `null`      |
-| `phone`            | `phone`              |             | `any`     | `null`      |
-| `showBecomeMember` | `show-become-member` |             | `boolean` | `false`     |
-| `showDonate`       | `show-donate`        |             | `boolean` | `false`     |
-| `showFollow`       | `show-follow`        |             | `boolean` | `false`     |
-| `showSendMessage`  | `show-send-message`  |             | `boolean` | `false`     |
-| `stories`          | `stories`            |             | `number`  | `null`      |
-| `twitter_url`      | `twitter_url`        |             | `any`     | `null`      |
-| `views`            | `views`              |             | `number`  | `null`      |
-| `website`          | `website`            |             | `any`     | `null`      |
+| Property              | Attribute               | Description | Type                                               | Default              |
+| --------------------- | ----------------------- | ----------- | -------------------------------------------------- | -------------------- |
+| `about`               | `about`                 |             | `any`                                              | `null`               |
+| `avatar`              | `avatar`                |             | `any`                                              | `undefined`          |
+| `becomeMemberText`    | `become-member-text`    |             | `string`                                           | `'Become a Member'`  |
+| `createdByText`       | `created-by-text`       |             | `string`                                           | `'Created by'`       |
+| `donateText`          | `donate-text`           |             | `string`                                           | `'Donate'`           |
+| `email`               | `email`                 |             | `any`                                              | `null`               |
+| `facebook_url`        | `facebook_url`          |             | `any`                                              | `null`               |
+| `followText`          | `follow-text`           |             | `string`                                           | `'Follow'`           |
+| `followers`           | `followers`             |             | `number`                                           | `null`               |
+| `followersText`       | `followers-text`        |             | `string`                                           | `'Followers'`        |
+| `following`           | `following`             |             | `number`                                           | `null`               |
+| `genres`              | `genres`                |             | `string`                                           | `null`               |
+| `genresText`          | `genres-text`           |             | `string`                                           | `'Genres'`           |
+| `inviteMembersText`   | `invite-members-text`   |             | `string`                                           | `'Invite Members'`   |
+| `isPageOwner`         | `is-page-owner`         |             | `boolean`                                          | `false`              |
+| `languages`           | `languages`             |             | `string`                                           | `null`               |
+| `languagesText`       | `languages-text`        |             | `string`                                           | `'Languages'`        |
+| `linkedin_url`        | `linkedin_url`          |             | `any`                                              | `null`               |
+| `literatureTypes`     | `literature-types`      |             | `string`                                           | `null`               |
+| `literatureTypesText` | `literature-types-text` |             | `string`                                           | `'Literature Types'` |
+| `location`            | `location`              |             | `any`                                              | `null`               |
+| `members`             | `members`               |             | `number`                                           | `null`               |
+| `membersText`         | `members-text`          |             | `string`                                           | `'Members'`          |
+| `name`                | `name`                  |             | `any`                                              | `undefined`          |
+| `pageCreatedText`     | `page-created-text`     |             | `string`                                           | `'Page Created'`     |
+| `pageCreationDate`    | `page-creation-date`    |             | `any`                                              | `null`               |
+| `pageCreatorImage`    | `page-creator-image`    |             | `any`                                              | `null`               |
+| `pageCreatorName`     | `page-creator-name`     |             | `any`                                              | `null`               |
+| `pageType`            | `page-type`             |             | `string`                                           | `null`               |
+| `phone`               | `phone`                 |             | `any`                                              | `null`               |
+| `platform`            | `platform`              |             | `"desktop" \| "mobile-main" \| "mobile-secondary"` | `'desktop'`          |
+| `sendMessageText`     | `send-message-text`     |             | `string`                                           | `'Message'`          |
+| `showBecomeMember`    | `show-become-member`    |             | `boolean`                                          | `false`              |
+| `showDonate`          | `show-donate`           |             | `boolean`                                          | `false`              |
+| `showFollow`          | `show-follow`           |             | `boolean`                                          | `false`              |
+| `showSendMessage`     | `show-send-message`     |             | `boolean`                                          | `false`              |
+| `stories`             | `stories`               |             | `number`                                           | `null`               |
+| `storiesText`         | `stories-text`          |             | `string`                                           | `'Stories'`          |
+| `twitter_url`         | `twitter_url`           |             | `any`                                              | `null`               |
+| `views`               | `views`                 |             | `number`                                           | `null`               |
+| `viewsText`           | `views-text`            |             | `string`                                           | `'Views'`            |
+| `website`             | `website`               |             | `any`                                              | `null`               |
+| `websiteText`         | `website-text`          |             | `string`                                           | `'Visit website'`    |
 
 
 ## Events
 
-| Event         | Description | Type               |
-| ------------- | ----------- | ------------------ |
-| `donate`      |             | `CustomEvent<any>` |
-| `follow`      |             | `CustomEvent<any>` |
-| `member`      |             | `CustomEvent<any>` |
-| `sendMessage` |             | `CustomEvent<any>` |
+| Event              | Description | Type               |
+| ------------------ | ----------- | ------------------ |
+| `donate`           |             | `CustomEvent<any>` |
+| `emailClick`       |             | `CustomEvent<any>` |
+| `facebookClick`    |             | `CustomEvent<any>` |
+| `follow`           |             | `CustomEvent<any>` |
+| `followersClick`   |             | `CustomEvent<any>` |
+| `inviteMembers`    |             | `CustomEvent<any>` |
+| `linkedinClick`    |             | `CustomEvent<any>` |
+| `member`           |             | `CustomEvent<any>` |
+| `membersClick`     |             | `CustomEvent<any>` |
+| `pageCreatorClick` |             | `CustomEvent<any>` |
+| `phoneClick`       |             | `CustomEvent<any>` |
+| `sendMessage`      |             | `CustomEvent<any>` |
+| `twitterClick`     |             | `CustomEvent<any>` |
+| `websiteClick`     |             | `CustomEvent<any>` |
 
 
 ## Dependencies
@@ -52,12 +80,14 @@
 
 - [ur-avatar](../ur-avatar)
 - [ur-button](../ur-button)
+- [ur-chip](../ur-chip)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-page-profile --> ur-avatar
   ur-page-profile --> ur-button
+  ur-page-profile --> ur-chip
   style ur-page-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
