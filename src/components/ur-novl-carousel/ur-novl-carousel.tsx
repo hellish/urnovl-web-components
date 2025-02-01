@@ -73,10 +73,7 @@ export class UrNovlCarousel {
 
     @Method()
     async addNovls(novls: Array<Novl | CustomContent>) {
-        console.log('>> add novls', novls);
-
         this.novls = this.novls.concat(...novls);
-
         forceUpdate(this)
     }
 
