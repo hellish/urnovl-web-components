@@ -354,6 +354,7 @@ export namespace Components {
         "loading": boolean;
         "navigation"?: boolean;
         "novls": Array<Novl | CustomContent>;
+        "reset": () => Promise<void>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;

@@ -50,6 +50,9 @@ export class UrNovlCarousel {
     navigation? = false;
 
     @Prop()
+    destroyListeners = true;
+
+    @Prop()
     debug = false;
 
     @Event()
@@ -79,8 +82,6 @@ export class UrNovlCarousel {
 
     @Method()
     async updateNovlsByIndex(updates: Map<number, Novl | CustomContent>) {
-        console.log('>> update novls', updates);
-
         this.novls = this.novls.map((oldNovl, oldIdx) => {
             if (updates.has(oldIdx)) {
                 const newNovl = updates.get(oldIdx);
@@ -93,8 +94,12 @@ export class UrNovlCarousel {
         forceUpdate(this);
     }
 
-    @Prop()
-    destroyListeners = true;
+    @Method()
+    async reset() {
+        const visibleElements = this.swiperContainer.getElementsByClassName('swiper-slide-visible').length;
+        const progress = 0;
+        this.progressUpdated.emit([ progress, visibleElements ]);
+    }
 
     private onSlideChange = () => {
         this.disabledPrev = this.swiperContainer?.swiper?.isBeginning;

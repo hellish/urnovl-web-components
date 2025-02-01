@@ -47,6 +47,16 @@ Type: `Promise<void>`
 
 
 
+### `reset() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `updateNovlsByIndex(updates: Map<number, Novl | CustomContent>) => Promise<void>`
 
 

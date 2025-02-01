@@ -86,6 +86,12 @@ const NovlCarousel = ({
 
         }
 
+        function reset() {
+            for (const item of document.getElementsByClassName('novls-carousel')) {
+                item.reset();
+            }
+        }
+
     </script>
     <style>
         ur-novl-carousel {
@@ -101,6 +107,7 @@ const NovlCarousel = ({
             .navigation="${navigation}"
             slides-per-view="${slidesPerView}"
             space-between="${spaceBetween}"></ur-novl-carousel>
+        <button id="reset-carousel" onclick="reset()">reset</button>
     </div>
 `;
 
