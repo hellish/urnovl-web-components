@@ -3,6 +3,13 @@
     --user-border-radius: 8px;
     --ur-color-on-background: var(--mdui-color-on-background);
     --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-container-primary: var(--mdui-color-primary-container);
+    --ur-color-primary: var(--mdui-color-primary);
+}
+
+@keyframes placeholderAnimate {
+    0%{ background-position: -650px 0; }
+    100%{ background-position: 650px 0; }
 }
 
 :host {
@@ -10,13 +17,18 @@
     flex-direction: column;
     box-sizing: content-box;
     container-type: inline-size;
-    container-name: page;
+    container-name: user;
 }
 
 :host .user {
     overflow: hidden;
     width: var(--user-width);
     border-radius: var(--user-border-radius);
+    cursor: pointer;
+}
+
+:host .user.loading {
+    cursor: default;
 }
 
 :host .cover {
@@ -28,6 +40,17 @@
     position: relative;
 }
 
+:host .cover.loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
+}
+
 :host .info {
     display: flex;
     flex-direction: column;
@@ -35,6 +58,11 @@
     row-gap: 8px;
     background: rgb(var(--ur-color-background));
     box-sizing: border-box;
+}
+
+:host .info:has(.loading) {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 :host .info .title {
@@ -49,6 +77,17 @@
     text-overflow: ellipsis;
 }
 
+:host .info .title.loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
+}
+
 :host .info .stats {
     font-size: 12px;
     font-weight: 400;
@@ -56,6 +95,18 @@
     display: flex;
     flex-direction: row;
     color: rgb(var(--ur-color-on-background));
+}
+
+:host .info .stats.loading {
+    height: 12px;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
 }
 
 :host .info .stats b {
@@ -68,6 +119,17 @@
 
 :host .user .actions {
     padding-top: 10px;
+}
+
+:host .info .actions.loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
 }
 
 :host .user .actions ur-button {
@@ -93,6 +155,17 @@
     text-overflow: ellipsis;
 }
 
+:host .info .description.loading {
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1000px;
+}
+
 @container user (max-width: 300px) {
     :host .info .title {
         font-size: 14px;
@@ -110,5 +183,18 @@
     :host .info {
         row-gap: 4px;
         padding: 4px;
+    }
+
+
+    :host .info .title.loading {
+        margin: 0 4px;
+    }
+
+    :host .info .stats.loading {
+        margin: 0 4px;
+    }
+
+    :host .info .description.loading {
+        margin: 0 4px;
     }
 }

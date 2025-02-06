@@ -3,13 +3,15 @@ import '../components/ur-user/ur-user';
 import { USERS } from '../data/user';
 
 const User = ({
-  userTitle,
-  userCover,
-  followers,
-  showStats,
-  userDescription,
-  borderRadius = '8px',
-  width,
+    userId,
+    userTitle,
+    userCover,
+    followers,
+    showStats,
+    userDescription,
+    borderRadius = '8px',
+    width,
+    loading = false,
 }) => html`
     <style>
         ur-user {
@@ -18,11 +20,13 @@ const User = ({
         }
     </style>
     <ur-user
+        user-id="${userId}"
         user-description="${userDescription}"
         user-title="${userTitle}"
         user-cover="${userCover}"
         followers="${followers}"
         show-stats="${showStats}"
+        loading=${loading}
     </ur-user>
 `;
 
@@ -82,4 +86,13 @@ export const NoBorderRadius = {
         width: '100%',
         borderRadius: '0',
     },
+};
+
+
+export const LoadingData = {
+    args: {
+        ...USERS[2],
+        loading: true,
+        width: '300px'
+    }
 };

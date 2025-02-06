@@ -3,6 +3,7 @@ import '../components/ur-page/ur-page';
 import { PAGES } from '../data/page';
 
 const Page = ({
+    pageId,
     pageTitle,
     pageCover,
     followers,
@@ -10,6 +11,7 @@ const Page = ({
     pageDescription,
     borderRadius = '8px',
     width,
+    loading = false,
 }) => html`
     <style>
         ur-page {
@@ -18,11 +20,13 @@ const Page = ({
         }
     </style>
     <ur-page
+        page-id="${pageId}"
         page-description="${pageDescription}"
         page-title="${pageTitle}"
         page-cover="${pageCover}"
         followers="${followers}"
         show-stats="${showStats}"
+        loading=${loading}
     </ur-page>
 `;
 
@@ -82,4 +86,12 @@ export const NoBorderRadius = {
         width: '100%',
         borderRadius: '0',
     },
+};
+
+export const LoadingData = {
+    args: {
+        ...PAGES[2],
+        loading: true,
+        width: '300px'
+    }
 };
