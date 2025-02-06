@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Event } from '@stencil/core';
+import { Component, Host, h, Prop, Event, Element, EventEmitter } from '@stencil/core';
 import { USER_COVER_FALLBACK } from '../../data/user';
 
 @Component({
@@ -8,31 +8,76 @@ import { USER_COVER_FALLBACK } from '../../data/user';
 })
 export class UrUser {
 
-    @Prop()
-    userTitle = 'User title'
+    @Element()
+    el: HTMLElement;
+
+    @Prop({ reflect: true })
+    userId: string;
 
     @Prop()
-    userCover;
+    loading: boolean = false;
 
     @Prop()
-    userCoverFallback = USER_COVER_FALLBACK;
+    followStatus: boolean = false;
 
     @Prop()
-    followers = 0;
+    userTitle: string = 'User title'
 
     @Prop()
-    showStats = true;
+    userCover: string;
 
     @Prop()
-    userDescription;
+    userCoverFallback: string = USER_COVER_FALLBACK;
+
+    @Prop()
+    followers: number = 0;
+
+    @Prop()
+    showStats: boolean = true;
+
+    @Prop()
+    userDescription: string;
+
+    @Prop()
+    borderRadius: string = '8px';
 
     @Event()
-    userFollowClicked;
+    userClicked: EventEmitter<string>;
+
+    @Event()
+    userFollowClicked: EventEmitter<string>;
+
+    componentDidLoad() {
+        this.el.style.setProperty("--page-border-radius", this.borderRadius);
+    }
+
+    handleFollowClicked(event) {
+        this.followStatus = !event;
+        this.userFollowClicked.emit(this.userId);
+    }
+
+    renderLoading() {
+        return <Host>
+            <div class="page loading">
+                <section class="cover loading"></section>
+                <section class="info">
+                    <div class="title loading">&nbsp;</div>
+                    <div class="stats loading"></div>
+                    <div class="description loading">&nbsp;</div>
+                    <div class="actions loading"></div>
+                </section>
+            </div>
+        </Host>
+    }
 
     render() {
+        if (this.loading) {
+            return this.renderLoading();
+        }
+
         return (
             <Host>
-                <div class="user">
+                <div class="user" onClick={() => this.userClicked.emit(this.userId)}>
                     <section class='cover' style={{
                         backgroundImage: this.userCover ? `url(${this.userCover})` : `url(${this.userCoverFallback})`
                     }}>
@@ -50,8 +95,10 @@ export class UrUser {
                         }
                         <div class="description">{this.userDescription}</div>
                         <div class="actions">
-                            <ur-button class="follow" variant="outlined"
-                                       onClick={() => this.userFollowClicked.emit()}>Follow
+                            <ur-button class="follow"
+                                       variant="outlined"
+                                       onClick={() => this.handleFollowClicked(this.followStatus)}>
+                                {this.followStatus ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>
                     </section>

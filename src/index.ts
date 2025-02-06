@@ -9,5 +9,7 @@
  */
 
 export type { Novl } from './models/novl';
+export type { Page } from './models/page';
+export type { User } from './models/user';
 export type { Locale } from './models/locale';
 // export type { Components } from './components.d.ts';
