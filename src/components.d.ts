@@ -8,9 +8,17 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "./models/locale";
 import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
+import { Page, PageCustomContent, PageFollowEvent } from "./models/page";
+import { PageBreakpoints, PageGrid } from "./data/page-carousel";
+import { User, UserCustomContent } from "./models/user";
+import { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export { Locale } from "./models/locale";
 export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
+export { Page, PageCustomContent, PageFollowEvent } from "./models/page";
+export { PageBreakpoints, PageGrid } from "./data/page-carousel";
+export { User, UserCustomContent } from "./models/user";
+export { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export namespace Components {
     interface UrAvatar {
         "border": string;
@@ -360,12 +368,24 @@ export namespace Components {
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
     interface UrPage {
+        "borderRadius": string;
+        "followStatus": boolean;
         "followers": number;
-        "pageCover": any;
+        "loading": boolean;
+        "pageCover": string;
         "pageCoverFallback": string;
-        "pageDescription": any;
+        "pageDescription": string;
+        "pageId": string;
         "pageTitle": string;
         "showStats": boolean;
+    }
+    interface UrPageCarousel {
+        "breakpoints"?: PageBreakpoints;
+        "grid"?: PageGrid;
+        "navigation"?: boolean;
+        "pages": Array<Page | PageCustomContent>;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
     }
     interface UrPageProfile {
         "about": any;
@@ -683,12 +703,24 @@ export namespace Components {
         "variant": string;
     }
     interface UrUser {
+        "borderRadius": string;
+        "followStatus": boolean;
         "followers": number;
+        "loading": boolean;
         "showStats": boolean;
-        "userCover": any;
+        "userCover": string;
         "userCoverFallback": string;
-        "userDescription": any;
+        "userDescription": string;
+        "userId": string;
         "userTitle": string;
+    }
+    interface UrUserCarousel {
+        "breakpoints"?: UserBreakpoints;
+        "grid"?: UserGrid;
+        "navigation"?: boolean;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
+        "users": Array<User | UserCustomContent>;
     }
     interface UrUserProfile {
     }
@@ -803,6 +835,10 @@ export interface UrPageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageElement;
 }
+export interface UrPageCarouselCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPageCarouselElement;
+}
 export interface UrPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageProfileElement;
@@ -858,6 +894,10 @@ export interface UrThumbsRatingCustomEvent<T> extends CustomEvent<T> {
 export interface UrUserCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserElement;
+}
+export interface UrUserCarouselCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserCarouselElement;
 }
 export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1214,7 +1254,8 @@ declare global {
         new (): HTMLUrNovlCarouselElement;
     };
     interface HTMLUrPageElementEventMap {
-        "pageFollowClicked": any;
+        "pageClicked": string;
+        "pageFollowClicked": PageFollowEvent;
     }
     interface HTMLUrPageElement extends Components.UrPage, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageElementEventMap>(type: K, listener: (this: HTMLUrPageElement, ev: UrPageCustomEvent<HTMLUrPageElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1229,6 +1270,25 @@ declare global {
     var HTMLUrPageElement: {
         prototype: HTMLUrPageElement;
         new (): HTMLUrPageElement;
+    };
+    interface HTMLUrPageCarouselElementEventMap {
+        "intersectionUpdated": Array<IntersectionObserverEntry>;
+        "prevClicked": void;
+        "nextClicked": void;
+    }
+    interface HTMLUrPageCarouselElement extends Components.UrPageCarousel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPageCarouselElementEventMap>(type: K, listener: (this: HTMLUrPageCarouselElement, ev: UrPageCarouselCustomEvent<HTMLUrPageCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPageCarouselElementEventMap>(type: K, listener: (this: HTMLUrPageCarouselElement, ev: UrPageCarouselCustomEvent<HTMLUrPageCarouselElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPageCarouselElement: {
+        prototype: HTMLUrPageCarouselElement;
+        new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
         "follow": any;
@@ -1536,7 +1596,8 @@ declare global {
         new (): HTMLUrTopAppBarElement;
     };
     interface HTMLUrUserElementEventMap {
-        "userFollowClicked": any;
+        "userClicked": string;
+        "userFollowClicked": string;
     }
     interface HTMLUrUserElement extends Components.UrUser, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrUserElementEventMap>(type: K, listener: (this: HTMLUrUserElement, ev: UrUserCustomEvent<HTMLUrUserElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1551,6 +1612,25 @@ declare global {
     var HTMLUrUserElement: {
         prototype: HTMLUrUserElement;
         new (): HTMLUrUserElement;
+    };
+    interface HTMLUrUserCarouselElementEventMap {
+        "intersectionUpdated": Array<IntersectionObserverEntry>;
+        "prevClicked": void;
+        "nextClicked": void;
+    }
+    interface HTMLUrUserCarouselElement extends Components.UrUserCarousel, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserCarouselElementEventMap>(type: K, listener: (this: HTMLUrUserCarouselElement, ev: UrUserCarouselCustomEvent<HTMLUrUserCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserCarouselElementEventMap>(type: K, listener: (this: HTMLUrUserCarouselElement, ev: UrUserCarouselCustomEvent<HTMLUrUserCarouselElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserCarouselElement: {
+        prototype: HTMLUrUserCarouselElement;
+        new (): HTMLUrUserCarouselElement;
     };
     interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
     }
@@ -1607,6 +1687,7 @@ declare global {
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
+        "ur-page-carousel": HTMLUrPageCarouselElement;
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
         "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
@@ -1627,6 +1708,7 @@ declare global {
         "ur-tooltip": HTMLUrTooltipElement;
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
+        "ur-user-carousel": HTMLUrUserCarouselElement;
         "ur-user-profile": HTMLUrUserProfileElement;
         "ur-wizard-step": HTMLUrWizardStepElement;
     }
@@ -2028,13 +2110,29 @@ declare namespace LocalJSX {
         "spaceBetween"?: number | string;
     }
     interface UrPage {
+        "borderRadius"?: string;
+        "followStatus"?: boolean;
         "followers"?: number;
-        "onPageFollowClicked"?: (event: UrPageCustomEvent<any>) => void;
-        "pageCover"?: any;
+        "loading"?: boolean;
+        "onPageClicked"?: (event: UrPageCustomEvent<string>) => void;
+        "onPageFollowClicked"?: (event: UrPageCustomEvent<PageFollowEvent>) => void;
+        "pageCover"?: string;
         "pageCoverFallback"?: string;
-        "pageDescription"?: any;
+        "pageDescription"?: string;
+        "pageId"?: string;
         "pageTitle"?: string;
         "showStats"?: boolean;
+    }
+    interface UrPageCarousel {
+        "breakpoints"?: PageBreakpoints;
+        "grid"?: PageGrid;
+        "navigation"?: boolean;
+        "onIntersectionUpdated"?: (event: UrPageCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
+        "onNextClicked"?: (event: UrPageCarouselCustomEvent<void>) => void;
+        "onPrevClicked"?: (event: UrPageCarouselCustomEvent<void>) => void;
+        "pages"?: Array<Page | PageCustomContent>;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
     }
     interface UrPageProfile {
         "about"?: any;
@@ -2411,13 +2509,29 @@ declare namespace LocalJSX {
         "variant"?: string;
     }
     interface UrUser {
+        "borderRadius"?: string;
+        "followStatus"?: boolean;
         "followers"?: number;
-        "onUserFollowClicked"?: (event: UrUserCustomEvent<any>) => void;
+        "loading"?: boolean;
+        "onUserClicked"?: (event: UrUserCustomEvent<string>) => void;
+        "onUserFollowClicked"?: (event: UrUserCustomEvent<string>) => void;
         "showStats"?: boolean;
-        "userCover"?: any;
+        "userCover"?: string;
         "userCoverFallback"?: string;
-        "userDescription"?: any;
+        "userDescription"?: string;
+        "userId"?: string;
         "userTitle"?: string;
+    }
+    interface UrUserCarousel {
+        "breakpoints"?: UserBreakpoints;
+        "grid"?: UserGrid;
+        "navigation"?: boolean;
+        "onIntersectionUpdated"?: (event: UrUserCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
+        "onNextClicked"?: (event: UrUserCarouselCustomEvent<void>) => void;
+        "onPrevClicked"?: (event: UrUserCarouselCustomEvent<void>) => void;
+        "slidesPerView"?: number | 'auto';
+        "spaceBetween"?: number | string;
+        "users"?: Array<User | UserCustomContent>;
     }
     interface UrUserProfile {
     }
@@ -2506,6 +2620,7 @@ declare namespace LocalJSX {
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
+        "ur-page-carousel": UrPageCarousel;
         "ur-page-profile": UrPageProfile;
         "ur-page-profile-tabs": UrPageProfileTabs;
         "ur-page-shared-list-tabs": UrPageSharedListTabs;
@@ -2526,6 +2641,7 @@ declare namespace LocalJSX {
         "ur-tooltip": UrTooltip;
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
+        "ur-user-carousel": UrUserCarousel;
         "ur-user-profile": UrUserProfile;
         "ur-wizard-step": UrWizardStep;
     }
@@ -2564,6 +2680,7 @@ declare module "@stencil/core" {
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
+            "ur-page-carousel": LocalJSX.UrPageCarousel & JSXBase.HTMLAttributes<HTMLUrPageCarouselElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
             "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
@@ -2584,6 +2701,7 @@ declare module "@stencil/core" {
             "ur-tooltip": LocalJSX.UrTooltip & JSXBase.HTMLAttributes<HTMLUrTooltipElement>;
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
+            "ur-user-carousel": LocalJSX.UrUserCarousel & JSXBase.HTMLAttributes<HTMLUrUserCarouselElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
             "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
