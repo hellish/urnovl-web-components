@@ -28,6 +28,7 @@
  - [ur-hero](../ur-hero)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
  - [ur-main-menu](../ur-main-menu)
+ - [ur-notification](../ur-notification)
  - [ur-page](../ur-page)
  - [ur-page-profile](../ur-page-profile)
  - [ur-reader](../ur-reader)
@@ -41,6 +42,7 @@ graph TD;
   ur-hero --> ur-button
   ur-main-desktop-top-app-bar --> ur-button
   ur-main-menu --> ur-button
+  ur-notification --> ur-button
   ur-page --> ur-button
   ur-page-profile --> ur-button
   ur-reader --> ur-button

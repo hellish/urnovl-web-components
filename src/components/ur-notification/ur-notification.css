@@ -1,0 +1,82 @@
+:host {
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-surface: var(--mdui-color-surface);
+    --ur-color-surface-variant: var(--mdui-color-surface-variant);
+    --ur-color-border: var(--mdui-color-border);
+    --ur-color-on-surface: var(--mdui-color-on-surface);
+    --ur-color-on-surface-variant: var(--mdui-color-on-surface-variant);
+    --ur-color-error: var(--mdui-color-error);
+    --ur-color-outline-variant: var(--mdui-color-outline-variant);
+
+    padding: 12px 16px;
+    font-size: 12px;
+    display: flex;
+    transition: background-color 0.2s ease;
+    color: rgb(var(--ur-color-on-background));
+    background: rgba(var(--ur-color-on-background), 0.02);
+    border-bottom: 1px solid rgb(var(--ur-color-outline-variant));
+}
+
+:host(:hover) {
+    background: rgba(var(--ur-color-on-background), 0.03);
+    transition: background-color 0.2s ease;
+}
+
+:host(.notification--read) {
+    background: rgb(var(--ur-color-background));
+}
+
+:host(.notification--read:hover) {
+    background: rgba(var(--ur-color-on-background), 0.03);
+}
+
+/* Main layout structure - will be common across all notification types */
+:host .vert {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+/* Avatar section */
+:host .profile {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Content section - main notification message */
+:host .content {
+    flex: 1;
+    cursor: pointer;
+    padding: 2px 0;
+}
+
+:host .action {
+    flex: 0 0 auto;
+}
+
+:host .message {
+    color: rgb(var(--ur-color-on-surface));
+}
+
+:host .ago {
+    opacity: 0.5;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+    color: rgb(var(--ur-color-on-surface-variant));
+}
+
+/* Read button positioning */
+:host .read {
+    margin-left: auto;
+}
+
+/* Error state */
+:host .unsupported {
+    color: rgb(var(--ur-color-error));
+    font-size: 0.875rem;
+    padding: 8px;
+    text-align: center;
+}

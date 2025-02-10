@@ -6,6 +6,7 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Locale } from "./models/locale";
+import { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
 import { Page, PageCustomContent, PageFollowEvent } from "./models/page";
@@ -13,6 +14,7 @@ import { PageBreakpoints, PageGrid } from "./data/page-carousel";
 import { User, UserCustomContent } from "./models/user";
 import { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export { Locale } from "./models/locale";
+export { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export { Page, PageCustomContent, PageFollowEvent } from "./models/page";
@@ -126,6 +128,16 @@ export namespace Components {
         "loading": boolean;
         "radius": string;
         "size": string;
+    }
+    interface UrCircularProgress {
+        /**
+          * The maximum value of the progress indicator. Defaults to 1.
+         */
+        "max": number;
+        /**
+          * The current value of the progress indicator. If not specified, the progress indicator will be in an indeterminate state.
+         */
+        "value"?: number;
     }
     interface UrCommentForm {
         "disabled": boolean;
@@ -334,6 +346,15 @@ export namespace Components {
           * Placement of the drawer: 'left' or 'right'
          */
         "placement": 'left' | 'right';
+    }
+    interface UrNotification {
+        "notification": NotificationType;
+    }
+    interface UrNotificationTabs {
+        "activeTab": string;
+        "fullWidthTabs": boolean;
+        "notificationsTabText": string;
+        "requestsTabText": string;
     }
     interface UrNovl {
         "authorAvatar": any;
@@ -668,6 +689,9 @@ export namespace Components {
         "isLiked": boolean;
         "likesCount": number;
     }
+    interface UrTimeAgo {
+        "date": string;
+    }
     interface UrTooltip {
         "closeDelay": number;
         "colorScheme": 'dark' | 'light';
@@ -822,6 +846,14 @@ export interface UrMainDesktopTopAppBarCustomEvent<T> extends CustomEvent<T> {
 export interface UrMainMenuCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrMainMenuElement;
+}
+export interface UrNotificationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNotificationElement;
+}
+export interface UrNotificationTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNotificationTabsElement;
 }
 export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1014,6 +1046,12 @@ declare global {
     var HTMLUrChipElement: {
         prototype: HTMLUrChipElement;
         new (): HTMLUrChipElement;
+    };
+    interface HTMLUrCircularProgressElement extends Components.UrCircularProgress, HTMLStencilElement {
+    }
+    var HTMLUrCircularProgressElement: {
+        prototype: HTMLUrCircularProgressElement;
+        new (): HTMLUrCircularProgressElement;
     };
     interface HTMLUrCommentFormElementEventMap {
         "commentSubmit": { text: string };
@@ -1216,6 +1254,40 @@ declare global {
     var HTMLUrNavigationDrawerGlobalElement: {
         prototype: HTMLUrNavigationDrawerGlobalElement;
         new (): HTMLUrNavigationDrawerGlobalElement;
+    };
+    interface HTMLUrNotificationElementEventMap {
+        "notificationEvent": NotificationEvent;
+    }
+    interface HTMLUrNotificationElement extends Components.UrNotification, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNotificationElementEventMap>(type: K, listener: (this: HTMLUrNotificationElement, ev: UrNotificationCustomEvent<HTMLUrNotificationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNotificationElementEventMap>(type: K, listener: (this: HTMLUrNotificationElement, ev: UrNotificationCustomEvent<HTMLUrNotificationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrNotificationElement: {
+        prototype: HTMLUrNotificationElement;
+        new (): HTMLUrNotificationElement;
+    };
+    interface HTMLUrNotificationTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrNotificationTabsElement extends Components.UrNotificationTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNotificationTabsElementEventMap>(type: K, listener: (this: HTMLUrNotificationTabsElement, ev: UrNotificationTabsCustomEvent<HTMLUrNotificationTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNotificationTabsElementEventMap>(type: K, listener: (this: HTMLUrNotificationTabsElement, ev: UrNotificationTabsCustomEvent<HTMLUrNotificationTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrNotificationTabsElement: {
+        prototype: HTMLUrNotificationTabsElement;
+        new (): HTMLUrNotificationTabsElement;
     };
     interface HTMLUrNovlElementEventMap {
         "novlClicked": string;
@@ -1583,6 +1655,12 @@ declare global {
         prototype: HTMLUrThumbsRatingElement;
         new (): HTMLUrThumbsRatingElement;
     };
+    interface HTMLUrTimeAgoElement extends Components.UrTimeAgo, HTMLStencilElement {
+    }
+    var HTMLUrTimeAgoElement: {
+        prototype: HTMLUrTimeAgoElement;
+        new (): HTMLUrTimeAgoElement;
+    };
     interface HTMLUrTooltipElement extends Components.UrTooltip, HTMLStencilElement {
     }
     var HTMLUrTooltipElement: {
@@ -1666,6 +1744,7 @@ declare global {
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
+        "ur-circular-progress": HTMLUrCircularProgressElement;
         "ur-comment-form": HTMLUrCommentFormElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
@@ -1684,6 +1763,8 @@ declare global {
         "ur-menu-profile": HTMLUrMenuProfileElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-navigation-drawer-global": HTMLUrNavigationDrawerGlobalElement;
+        "ur-notification": HTMLUrNotificationElement;
+        "ur-notification-tabs": HTMLUrNotificationTabsElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
         "ur-page": HTMLUrPageElement;
@@ -1705,6 +1786,7 @@ declare global {
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
         "ur-thumbs-rating": HTMLUrThumbsRatingElement;
+        "ur-time-ago": HTMLUrTimeAgoElement;
         "ur-tooltip": HTMLUrTooltipElement;
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
@@ -1826,6 +1908,16 @@ declare namespace LocalJSX {
         "loading"?: boolean;
         "radius"?: string;
         "size"?: string;
+    }
+    interface UrCircularProgress {
+        /**
+          * The maximum value of the progress indicator. Defaults to 1.
+         */
+        "max"?: number;
+        /**
+          * The current value of the progress indicator. If not specified, the progress indicator will be in an indeterminate state.
+         */
+        "value"?: number;
     }
     interface UrCommentForm {
         "disabled"?: boolean;
@@ -2075,6 +2167,17 @@ declare namespace LocalJSX {
           * Placement of the drawer: 'left' or 'right'
          */
         "placement"?: 'left' | 'right';
+    }
+    interface UrNotification {
+        "notification": NotificationType;
+        "onNotificationEvent"?: (event: UrNotificationCustomEvent<NotificationEvent>) => void;
+    }
+    interface UrNotificationTabs {
+        "activeTab"?: string;
+        "fullWidthTabs"?: boolean;
+        "notificationsTabText"?: string;
+        "onTabChange"?: (event: UrNotificationTabsCustomEvent<string>) => void;
+        "requestsTabText"?: string;
     }
     interface UrNovl {
         "authorAvatar"?: any;
@@ -2474,6 +2577,9 @@ declare namespace LocalJSX {
         "onThumbsDown"?: (event: UrThumbsRatingCustomEvent<void>) => void;
         "onThumbsUp"?: (event: UrThumbsRatingCustomEvent<void>) => void;
     }
+    interface UrTimeAgo {
+        "date"?: string;
+    }
     interface UrTooltip {
         "closeDelay"?: number;
         "colorScheme"?: 'dark' | 'light';
@@ -2599,6 +2705,7 @@ declare namespace LocalJSX {
         "ur-checkbox": UrCheckbox;
         "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
+        "ur-circular-progress": UrCircularProgress;
         "ur-comment-form": UrCommentForm;
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
@@ -2617,6 +2724,8 @@ declare namespace LocalJSX {
         "ur-menu-profile": UrMenuProfile;
         "ur-navigation-drawer": UrNavigationDrawer;
         "ur-navigation-drawer-global": UrNavigationDrawerGlobal;
+        "ur-notification": UrNotification;
+        "ur-notification-tabs": UrNotificationTabs;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
         "ur-page": UrPage;
@@ -2638,6 +2747,7 @@ declare namespace LocalJSX {
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
         "ur-thumbs-rating": UrThumbsRating;
+        "ur-time-ago": UrTimeAgo;
         "ur-tooltip": UrTooltip;
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
@@ -2659,6 +2769,7 @@ declare module "@stencil/core" {
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
+            "ur-circular-progress": LocalJSX.UrCircularProgress & JSXBase.HTMLAttributes<HTMLUrCircularProgressElement>;
             "ur-comment-form": LocalJSX.UrCommentForm & JSXBase.HTMLAttributes<HTMLUrCommentFormElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
@@ -2677,6 +2788,8 @@ declare module "@stencil/core" {
             "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-navigation-drawer-global": LocalJSX.UrNavigationDrawerGlobal & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerGlobalElement>;
+            "ur-notification": LocalJSX.UrNotification & JSXBase.HTMLAttributes<HTMLUrNotificationElement>;
+            "ur-notification-tabs": LocalJSX.UrNotificationTabs & JSXBase.HTMLAttributes<HTMLUrNotificationTabsElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
@@ -2698,6 +2811,7 @@ declare module "@stencil/core" {
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
             "ur-thumbs-rating": LocalJSX.UrThumbsRating & JSXBase.HTMLAttributes<HTMLUrThumbsRatingElement>;
+            "ur-time-ago": LocalJSX.UrTimeAgo & JSXBase.HTMLAttributes<HTMLUrTimeAgoElement>;
             "ur-tooltip": LocalJSX.UrTooltip & JSXBase.HTMLAttributes<HTMLUrTooltipElement>;
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
