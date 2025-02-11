@@ -15,6 +15,9 @@ export class UrChip {
     border = '0';
 
     @Prop()
+    borderColor = 'rgb(var(--ur-color-background))';
+
+    @Prop()
     radius = '8px';
 
     @Prop()
@@ -47,7 +50,8 @@ export class UrChip {
                         background: this.backColor,
                         borderRadius: this.radius,
                         height: this.size,
-                        borderWidth: this.border
+                        borderWidth: this.border,
+                        borderColor: this.borderColor
                     }}
                 >
                     {this.label}

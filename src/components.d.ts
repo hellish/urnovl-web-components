@@ -121,6 +121,7 @@ export namespace Components {
     interface UrChip {
         "backColor": string;
         "border": string;
+        "borderColor": string;
         "clickable": boolean;
         "disabled": boolean;
         "fontColor": string;
@@ -247,6 +248,11 @@ export namespace Components {
           * Width of the logo
          */
         "width": string;
+    }
+    interface UrLongDescription {
+        "description": string;
+        "showLessText": string;
+        "showMoreText": string;
     }
     interface UrMainDesktopTopAppBar {
         "deviceVariant": 'desktop' | 'mobile';
@@ -388,6 +394,37 @@ export namespace Components {
         "spaceBetween"?: number | string;
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
+    interface UrNovlSummary {
+        "buyStoryText": string;
+        "completeText": string;
+        "coverImage": string;
+        "description": string;
+        "genres": string;
+        "hasBranches": boolean;
+        "languages": string;
+        "learnMoreText": string;
+        "likes": number;
+        "likesText": string;
+        "literatureTypes": string;
+        "longDescription": string;
+        "novlPaid": boolean;
+        "novlPrice": string;
+        "novlPurchasedAt": string;
+        "novlTitle": string;
+        "ongoingText": string;
+        "ownerAvatar": string;
+        "ownerName": string;
+        "readStoryText": string;
+        "readingDuration": string;
+        "readingDurationText": string;
+        "showLessText": string;
+        "showMoreText": string;
+        "storyCompleteStatus": boolean;
+        "views": number;
+        "viewsText": string;
+        "writeEnabled": boolean;
+        "writeStoryText": string;
+    }
     interface UrPage {
         "borderRadius": string;
         "followStatus": boolean;
@@ -498,6 +535,20 @@ export namespace Components {
         "views_count": number;
         "website": any;
         "writers_count": number;
+    }
+    interface UrProfileCard {
+        "avatarAlt": string;
+        "avatarSize": string;
+        "avatarSrc": string;
+        "buttonHeight": string;
+        "description": string;
+        "followButtonText": string;
+        "isOwner": boolean;
+        "name": string;
+        "nameFontSize": string;
+        "profileType": 'user' | 'page';
+        "showDescription": boolean;
+        "unfollowButtonText": string;
     }
     interface UrRadioButton {
         "checked": boolean;
@@ -863,6 +914,10 @@ export interface UrNovlCarouselCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlCarouselElement;
 }
+export interface UrNovlSummaryCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNovlSummaryElement;
+}
 export interface UrPageCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageElement;
@@ -882,6 +937,10 @@ export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageSharedListTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageSharedListTabsElement;
+}
+export interface UrProfileCardCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrProfileCardElement;
 }
 export interface UrRadioButtonCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1174,6 +1233,12 @@ declare global {
         prototype: HTMLUrLogoElement;
         new (): HTMLUrLogoElement;
     };
+    interface HTMLUrLongDescriptionElement extends Components.UrLongDescription, HTMLStencilElement {
+    }
+    var HTMLUrLongDescriptionElement: {
+        prototype: HTMLUrLongDescriptionElement;
+        new (): HTMLUrLongDescriptionElement;
+    };
     interface HTMLUrMainDesktopTopAppBarElementEventMap {
         "searchLinkClicked": void;
         "themeToggle": void;
@@ -1325,6 +1390,26 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrNovlSummaryElementEventMap {
+        "readStoryEvent": any;
+        "learnMoreEvent": any;
+        "writeStoryEvent": any;
+        "buyStoryEvent": any;
+    }
+    interface HTMLUrNovlSummaryElement extends Components.UrNovlSummary, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNovlSummaryElementEventMap>(type: K, listener: (this: HTMLUrNovlSummaryElement, ev: UrNovlSummaryCustomEvent<HTMLUrNovlSummaryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNovlSummaryElementEventMap>(type: K, listener: (this: HTMLUrNovlSummaryElement, ev: UrNovlSummaryCustomEvent<HTMLUrNovlSummaryElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrNovlSummaryElement: {
+        prototype: HTMLUrNovlSummaryElement;
+        new (): HTMLUrNovlSummaryElement;
+    };
     interface HTMLUrPageElementEventMap {
         "pageClicked": string;
         "pageFollowClicked": PageFollowEvent;
@@ -1431,6 +1516,25 @@ declare global {
     var HTMLUrProfileElement: {
         prototype: HTMLUrProfileElement;
         new (): HTMLUrProfileElement;
+    };
+    interface HTMLUrProfileCardElementEventMap {
+        "profileLinkEvent": any;
+        "followEvent": any;
+        "unfollowEvent": any;
+    }
+    interface HTMLUrProfileCardElement extends Components.UrProfileCard, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrProfileCardElementEventMap>(type: K, listener: (this: HTMLUrProfileCardElement, ev: UrProfileCardCustomEvent<HTMLUrProfileCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrProfileCardElementEventMap>(type: K, listener: (this: HTMLUrProfileCardElement, ev: UrProfileCardCustomEvent<HTMLUrProfileCardElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrProfileCardElement: {
+        prototype: HTMLUrProfileCardElement;
+        new (): HTMLUrProfileCardElement;
     };
     interface HTMLUrRadioButtonElementEventMap {
         "valueSelected": { value: string };
@@ -1757,6 +1861,7 @@ declare global {
         "ur-locale-filter-button": HTMLUrLocaleFilterButtonElement;
         "ur-locale-filter-panel": HTMLUrLocaleFilterPanelElement;
         "ur-logo": HTMLUrLogoElement;
+        "ur-long-description": HTMLUrLongDescriptionElement;
         "ur-main-desktop-top-app-bar": HTMLUrMainDesktopTopAppBarElement;
         "ur-main-menu": HTMLUrMainMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
@@ -1767,12 +1872,14 @@ declare global {
         "ur-notification-tabs": HTMLUrNotificationTabsElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-novl-summary": HTMLUrNovlSummaryElement;
         "ur-page": HTMLUrPageElement;
         "ur-page-carousel": HTMLUrPageCarouselElement;
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
         "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
         "ur-profile": HTMLUrProfileElement;
+        "ur-profile-card": HTMLUrProfileCardElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
         "ur-radio-group": HTMLUrRadioGroupElement;
         "ur-read-mobile-top-app-bar": HTMLUrReadMobileTopAppBarElement;
@@ -1901,6 +2008,7 @@ declare namespace LocalJSX {
     interface UrChip {
         "backColor"?: string;
         "border"?: string;
+        "borderColor"?: string;
         "clickable"?: boolean;
         "disabled"?: boolean;
         "fontColor"?: string;
@@ -2047,6 +2155,11 @@ declare namespace LocalJSX {
           * Width of the logo
          */
         "width"?: string;
+    }
+    interface UrLongDescription {
+        "description"?: string;
+        "showLessText"?: string;
+        "showMoreText"?: string;
     }
     interface UrMainDesktopTopAppBar {
         "deviceVariant"?: 'desktop' | 'mobile';
@@ -2212,6 +2325,41 @@ declare namespace LocalJSX {
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
     }
+    interface UrNovlSummary {
+        "buyStoryText"?: string;
+        "completeText"?: string;
+        "coverImage"?: string;
+        "description"?: string;
+        "genres"?: string;
+        "hasBranches"?: boolean;
+        "languages"?: string;
+        "learnMoreText"?: string;
+        "likes"?: number;
+        "likesText"?: string;
+        "literatureTypes"?: string;
+        "longDescription"?: string;
+        "novlPaid"?: boolean;
+        "novlPrice"?: string;
+        "novlPurchasedAt"?: string;
+        "novlTitle"?: string;
+        "onBuyStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onLearnMoreEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onReadStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onWriteStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "ongoingText"?: string;
+        "ownerAvatar"?: string;
+        "ownerName"?: string;
+        "readStoryText"?: string;
+        "readingDuration"?: string;
+        "readingDurationText"?: string;
+        "showLessText"?: string;
+        "showMoreText"?: string;
+        "storyCompleteStatus"?: boolean;
+        "views"?: number;
+        "viewsText"?: string;
+        "writeEnabled"?: boolean;
+        "writeStoryText"?: string;
+    }
     interface UrPage {
         "borderRadius"?: string;
         "followStatus"?: boolean;
@@ -2343,6 +2491,23 @@ declare namespace LocalJSX {
         "views_count"?: number;
         "website"?: any;
         "writers_count"?: number;
+    }
+    interface UrProfileCard {
+        "avatarAlt"?: string;
+        "avatarSize"?: string;
+        "avatarSrc"?: string;
+        "buttonHeight"?: string;
+        "description"?: string;
+        "followButtonText"?: string;
+        "isOwner"?: boolean;
+        "name"?: string;
+        "nameFontSize"?: string;
+        "onFollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onProfileLinkEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onUnfollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "profileType"?: 'user' | 'page';
+        "showDescription"?: boolean;
+        "unfollowButtonText"?: string;
     }
     interface UrRadioButton {
         "checked"?: boolean;
@@ -2718,6 +2883,7 @@ declare namespace LocalJSX {
         "ur-locale-filter-button": UrLocaleFilterButton;
         "ur-locale-filter-panel": UrLocaleFilterPanel;
         "ur-logo": UrLogo;
+        "ur-long-description": UrLongDescription;
         "ur-main-desktop-top-app-bar": UrMainDesktopTopAppBar;
         "ur-main-menu": UrMainMenu;
         "ur-menu-item": UrMenuItem;
@@ -2728,12 +2894,14 @@ declare namespace LocalJSX {
         "ur-notification-tabs": UrNotificationTabs;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-novl-summary": UrNovlSummary;
         "ur-page": UrPage;
         "ur-page-carousel": UrPageCarousel;
         "ur-page-profile": UrPageProfile;
         "ur-page-profile-tabs": UrPageProfileTabs;
         "ur-page-shared-list-tabs": UrPageSharedListTabs;
         "ur-profile": UrProfile;
+        "ur-profile-card": UrProfileCard;
         "ur-radio-button": UrRadioButton;
         "ur-radio-group": UrRadioGroup;
         "ur-read-mobile-top-app-bar": UrReadMobileTopAppBar;
@@ -2782,6 +2950,7 @@ declare module "@stencil/core" {
             "ur-locale-filter-button": LocalJSX.UrLocaleFilterButton & JSXBase.HTMLAttributes<HTMLUrLocaleFilterButtonElement>;
             "ur-locale-filter-panel": LocalJSX.UrLocaleFilterPanel & JSXBase.HTMLAttributes<HTMLUrLocaleFilterPanelElement>;
             "ur-logo": LocalJSX.UrLogo & JSXBase.HTMLAttributes<HTMLUrLogoElement>;
+            "ur-long-description": LocalJSX.UrLongDescription & JSXBase.HTMLAttributes<HTMLUrLongDescriptionElement>;
             "ur-main-desktop-top-app-bar": LocalJSX.UrMainDesktopTopAppBar & JSXBase.HTMLAttributes<HTMLUrMainDesktopTopAppBarElement>;
             "ur-main-menu": LocalJSX.UrMainMenu & JSXBase.HTMLAttributes<HTMLUrMainMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
@@ -2792,12 +2961,14 @@ declare module "@stencil/core" {
             "ur-notification-tabs": LocalJSX.UrNotificationTabs & JSXBase.HTMLAttributes<HTMLUrNotificationTabsElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-novl-summary": LocalJSX.UrNovlSummary & JSXBase.HTMLAttributes<HTMLUrNovlSummaryElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-carousel": LocalJSX.UrPageCarousel & JSXBase.HTMLAttributes<HTMLUrPageCarouselElement>;
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
             "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
+            "ur-profile-card": LocalJSX.UrProfileCard & JSXBase.HTMLAttributes<HTMLUrProfileCardElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
             "ur-radio-group": LocalJSX.UrRadioGroup & JSXBase.HTMLAttributes<HTMLUrRadioGroupElement>;
             "ur-read-mobile-top-app-bar": LocalJSX.UrReadMobileTopAppBar & JSXBase.HTMLAttributes<HTMLUrReadMobileTopAppBarElement>;

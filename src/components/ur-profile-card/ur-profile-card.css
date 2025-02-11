@@ -1,0 +1,41 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+:host .profile-card {
+    display: flex;
+    flex-direction: row;
+}
+
+:host .profile-container {
+    gap: 8px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+:host .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+:host .avatar:hover {
+    cursor: pointer;
+}
+
+:host .name-link {
+    display: block;
+    font-weight: 700;
+}
+
+:host .name-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+:host .description-text {
+    font-size: 12px;
+}
+
