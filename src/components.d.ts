@@ -9,14 +9,16 @@ import { Locale } from "./models/locale";
 import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
 import { Page, PageCustomContent, PageFollowEvent } from "./models/page";
-import { PageBreakpoints, PageGrid } from "./data/page-carousel";
+import { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
+import { PageGrid } from "./data/page-carousel";
 import { User, UserCustomContent } from "./models/user";
 import { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export { Locale } from "./models/locale";
 export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
 export { Page, PageCustomContent, PageFollowEvent } from "./models/page";
-export { PageBreakpoints, PageGrid } from "./data/page-carousel";
+export { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
+export { PageGrid } from "./data/page-carousel";
 export { User, UserCustomContent } from "./models/user";
 export { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export namespace Components {
@@ -380,12 +382,18 @@ export namespace Components {
         "showStats": boolean;
     }
     interface UrPageCarousel {
-        "breakpoints"?: PageBreakpoints;
+        "addPages": (pages: Array<Page | CustomContent1>) => Promise<void>;
+        "breakpoints"?: Breakpoints1;
+        "debug": boolean;
+        "destroyListeners": boolean;
         "grid"?: PageGrid;
+        "loading": boolean;
         "navigation"?: boolean;
         "pages": Array<Page | PageCustomContent>;
+        "reset": () => Promise<void>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
+        "updateNovlsByIndex": (updates: Map<number, Page | CustomContent1>) => Promise<void>;
     }
     interface UrPageProfile {
         "about": any;
@@ -1272,9 +1280,9 @@ declare global {
         new (): HTMLUrPageElement;
     };
     interface HTMLUrPageCarouselElementEventMap {
-        "intersectionUpdated": Array<IntersectionObserverEntry>;
         "prevClicked": void;
         "nextClicked": void;
+        "progressUpdated": [ number, number ];
     }
     interface HTMLUrPageCarouselElement extends Components.UrPageCarousel, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageCarouselElementEventMap>(type: K, listener: (this: HTMLUrPageCarouselElement, ev: UrPageCarouselCustomEvent<HTMLUrPageCarouselElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2124,12 +2132,15 @@ declare namespace LocalJSX {
         "showStats"?: boolean;
     }
     interface UrPageCarousel {
-        "breakpoints"?: PageBreakpoints;
+        "breakpoints"?: Breakpoints1;
+        "debug"?: boolean;
+        "destroyListeners"?: boolean;
         "grid"?: PageGrid;
+        "loading"?: boolean;
         "navigation"?: boolean;
-        "onIntersectionUpdated"?: (event: UrPageCarouselCustomEvent<Array<IntersectionObserverEntry>>) => void;
         "onNextClicked"?: (event: UrPageCarouselCustomEvent<void>) => void;
         "onPrevClicked"?: (event: UrPageCarouselCustomEvent<void>) => void;
+        "onProgressUpdated"?: (event: UrPageCarouselCustomEvent<[ number, number ]>) => void;
         "pages"?: Array<Page | PageCustomContent>;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
