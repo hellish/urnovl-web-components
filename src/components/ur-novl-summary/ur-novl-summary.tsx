@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Method } from '@stencil/core';
 
 import '../ur-time-ago/ur-time-ago';
 import '../ur-chip/ur-chip';
@@ -12,28 +12,28 @@ import '../ur-profile-card/ur-profile-card';
 })
 export class UrNovlSummary {
     @Prop()
-    novlTitle: string = 'This is long story title';
+    novlTitle = 'This is long story title';
 
     @Prop()
-    coverImage: string = 'https://picsum.photos/200/300';
+    coverImage: string;
 
     @Prop()
-    completeText: string = 'Complete';
+    completeText = 'Complete';
 
     @Prop()
-    ongoingText: string = 'Ongoing';
+    ongoingText = 'Ongoing';
 
     @Prop()
     storyCompleteStatus: boolean;
 
     @Prop()
-    likes: number = 0;
+    likes: number;
 
     @Prop()
     likesText: string = 'Likes';
 
     @Prop()
-    views: number = 0;
+    views: number;
 
     @Prop()
     viewsText: string = 'Views';
@@ -110,6 +110,9 @@ export class UrNovlSummary {
     @Prop()
     ownerName: string;
 
+    @Prop()
+    expanded: boolean = false;
+
     onReadStory() {
         this.readStoryEvent.emit();
     }
@@ -124,6 +127,11 @@ export class UrNovlSummary {
 
     onBuyStory() {
         this.buyStoryEvent.emit();
+    }
+
+    @Method()
+    async reset() {
+        this.expanded = false;
     }
 
     render() {
@@ -163,16 +171,20 @@ export class UrNovlSummary {
                     <div class="main-content">
                         <h1 class="title-text">{this.novlTitle}</h1>
                         <span class="story-stats">
-                            <span class="story-stat">
-                                <span class="story-stat-value">{this.likes}</span>
-                                <span class="story-stat-label">{this.likesText}</span>
-                            </span>
-                            <span class="story-stat-separator">&middot;</span>
-                            <span class="story-stat">
-                                <span class="story-stat-value">{this.views}</span>
-                                <span class="story-stat-label">{this.viewsText}</span>
-                            </span>
-                            <span class="story-stat-separator">&middot;</span>
+                            {this.likes > 0 && (
+                                <span class="story-stat">
+                                    <span class="story-stat-value">{this.likes}</span>
+                                    <span class="story-stat-label">{this.likesText}</span>
+                                </span>
+                            )}
+                            {this.likes > 0 && <span class="story-stat-separator">&middot;</span>}
+                            {this.views > 0 && (
+                                <span class="story-stat">
+                                    <span class="story-stat-value">{this.views}</span>
+                                    <span class="story-stat-label">{this.viewsText}</span>
+                                </span>
+                            )}
+                            {this.views > 0 && <span class="story-stat-separator">&middot;</span>}
                             <span class="story-stat">
                                 <span class="story-stat-value">{this.readingDuration}</span>
                                 <span class="story-stat-label">{this.readingDurationText}</span>
@@ -213,8 +225,7 @@ export class UrNovlSummary {
                         ))}
                     </div>
 
-                    <div class="description">
-                        <ur-long-description description={this.longDescription}></ur-long-description>
+                    <div slot="description" class="description">
                     </div>
 
                     <div class="actions-holder">

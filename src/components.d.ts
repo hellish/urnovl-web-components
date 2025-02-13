@@ -399,6 +399,7 @@ export namespace Components {
         "completeText": string;
         "coverImage": string;
         "description": string;
+        "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
         "languages": string;
@@ -417,6 +418,7 @@ export namespace Components {
         "readStoryText": string;
         "readingDuration": string;
         "readingDurationText": string;
+        "reset": () => Promise<void>;
         "showLessText": string;
         "showMoreText": string;
         "storyCompleteStatus": boolean;
@@ -2330,6 +2332,7 @@ declare namespace LocalJSX {
         "completeText"?: string;
         "coverImage"?: string;
         "description"?: string;
+        "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;
         "languages"?: string;

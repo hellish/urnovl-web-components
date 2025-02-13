@@ -10,10 +10,10 @@ export class UrLongDescription {
     el: HTMLElement;
 
     @Prop()
-    description: string; // The description text to display
+    description: string;
 
     @State()
-    isExpanded: boolean = false; // State to manage expand/collapse
+    isExpanded: boolean = false;
 
     @Prop()
     showLessText: string = 'Show less';
@@ -21,9 +21,41 @@ export class UrLongDescription {
     @Prop()
     showMoreText: string = 'Show more...';
 
-    /** Toggles the expanded state */
+    @State()
+    isLongDescription: boolean = false;
+
+    private descriptionTextRef: HTMLElement;
+
+    componentDidLoad() {
+        // Check if the description is long enough to warrant expansion
+        this.checkDescriptionLength();
+    }
+
+    componentDidUpdate() {
+        this.checkDescriptionLength();
+    }
+
+    disconnectedCallback() {
+        // Reset the state when component is removed from DOM
+        this.isExpanded = false;
+    }
+
+    private checkDescriptionLength() {
+        if (this.descriptionTextRef) {
+            const descriptionHeight = this.descriptionTextRef.scrollHeight;
+            const lineHeight = parseFloat(getComputedStyle(this.descriptionTextRef).lineHeight);
+            const maxHeight = lineHeight * 3; // Height of 3 lines
+
+            // Only consider it a long description if it exceeds 3 lines
+            this.isLongDescription = descriptionHeight > maxHeight;
+        }
+    }
+
     private toggleDescription = () => {
-        this.isExpanded = !this.isExpanded;
+        // Only toggle if it's actually a long description
+        if (this.isLongDescription) {
+            this.isExpanded = !this.isExpanded;
+        }
     };
 
     render() {
@@ -33,12 +65,27 @@ export class UrLongDescription {
                     class={{
                         'description-container': true,
                         'expanded': this.isExpanded,
-                        'collapsed': !this.isExpanded,
+                        'collapsed': !this.isExpanded && this.isLongDescription,
                     }}
                 >
-                    <p class="description-text">{this.description}</p>
+                    <p
+                        class="description-text"
+                        ref={el => {
+                            this.descriptionTextRef = el;
+                            // Check length after ref is set
+                            if (el) {
+                                this.checkDescriptionLength();
+                            }
+                        }}
+                    >
+                        {this.description}
+                    </p>
                 </div>
-                <span class="toggle-label">{this.isExpanded ? this.showLessText : this.showMoreText}</span>
+                {this.isLongDescription && (
+                    <span class="toggle-label">
+                        {this.isExpanded ? this.showLessText : this.showMoreText}
+                    </span>
+                )}
             </Host>
         );
     }

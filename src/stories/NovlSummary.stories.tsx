@@ -35,7 +35,6 @@ const Template = args => html`
         <ur-profile-card 
             slot="owner-page"
             type="page"
-            nameMarginTop="0px"
             .avatarSrc=${args.ownerAvatar}
             avatarSize="32px"
             name="Penguin Publishing"

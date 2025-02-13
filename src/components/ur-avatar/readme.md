@@ -24,6 +24,7 @@
  - [ur-menu-profile](../ur-menu-profile)
  - [ur-notification](../ur-notification)
  - [ur-page-profile](../ur-page-profile)
+ - [ur-profile-card](../ur-profile-card)
  - [ur-read-rail](../ur-read-rail)
  - [ur-read-rail-mobile](../ur-read-rail-mobile)
 
@@ -34,6 +35,7 @@ graph TD;
   ur-menu-profile --> ur-avatar
   ur-notification --> ur-avatar
   ur-page-profile --> ur-avatar
+  ur-profile-card --> ur-avatar
   ur-read-rail --> ur-avatar
   ur-read-rail-mobile --> ur-avatar
   style ur-avatar fill:#f9f,stroke:#333,stroke-width:4px

@@ -112,7 +112,7 @@ export class UrProfileCard {
                             buttonHeight={this.buttonHeight}
                             class="follow-button"
                             onClick={this.isFollowing ? this.onUnfollow : this.onFollow}
-                            variant={this.isFollowing ? 'text' : 'filled'}
+                            variant={this.isFollowing ? 'text' : 'outlined'}
                         >
                             {this.isFollowing ? this.unfollowButtonText : this.followButtonText}
                         </ur-button>
