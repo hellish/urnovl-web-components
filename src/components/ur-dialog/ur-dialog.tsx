@@ -8,6 +8,7 @@ import 'mdui/components/dialog';
     shadow: true,
 })
 export class UrDialog {
+
     private dialogElement!: HTMLElement & { open: boolean };
 
     @Element()
@@ -62,10 +63,10 @@ export class UrDialog {
     render() {
         return (
             <Host>
-                <mdui-dialog 
-                    open={this.open} 
-                    close-on-overlay-click={this.closeOnOverlayClick} 
-                    close-on-esc={this.closeOnEsc} 
+                <mdui-dialog
+                    open={this.open}
+                    close-on-overlay-click={this.closeOnOverlayClick}
+                    close-on-esc={this.closeOnEsc}
                     fullscreen={this.fullscreen}
                     border-radius={this.borderRadius}
                     class={{

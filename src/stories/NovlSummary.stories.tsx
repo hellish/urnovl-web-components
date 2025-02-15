@@ -23,8 +23,11 @@ const Template = args => html`
         .ownerAvatar=${args.ownerAvatar}
         .ownerName=${args.ownerName}
     >
-        <ur-long-description slot="description" .description=${args.longDescription}></ur-long-description>
-        <ur-profile-card 
+        <ur-long-description
+            slot="description"
+            .description=${args.longDescription}></ur-long-description>
+
+        <ur-profile-card
             slot="owner"
             type="user"
             .avatarSrc=${args.ownerAvatar}
@@ -33,7 +36,8 @@ const Template = args => html`
             profileType="user"
             .showDescription=${false}
         ></ur-profile-card>
-        <ur-profile-card 
+
+        <ur-profile-card
             slot="owner-page"
             type="page"
             .avatarSrc=${args.ownerAvatar}

@@ -1409,10 +1409,10 @@ declare global {
         new (): HTMLUrNovlCarouselElement;
     };
     interface HTMLUrNovlSummaryElementEventMap {
-        "readStoryEvent": any;
-        "learnMoreEvent": any;
-        "writeStoryEvent": any;
-        "buyStoryEvent": any;
+        "readStoryEvent": void;
+        "learnMoreEvent": void;
+        "writeStoryEvent": void;
+        "buyStoryEvent": void;
     }
     interface HTMLUrNovlSummaryElement extends Components.UrNovlSummary, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlSummaryElementEventMap>(type: K, listener: (this: HTMLUrNovlSummaryElement, ev: UrNovlSummaryCustomEvent<HTMLUrNovlSummaryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2362,10 +2362,10 @@ declare namespace LocalJSX {
         "novlPrice"?: string;
         "novlPurchasedAt"?: string;
         "novlTitle"?: string;
-        "onBuyStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
-        "onLearnMoreEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
-        "onReadStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
-        "onWriteStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onBuyStoryEvent"?: (event: UrNovlSummaryCustomEvent<void>) => void;
+        "onLearnMoreEvent"?: (event: UrNovlSummaryCustomEvent<void>) => void;
+        "onReadStoryEvent"?: (event: UrNovlSummaryCustomEvent<void>) => void;
+        "onWriteStoryEvent"?: (event: UrNovlSummaryCustomEvent<void>) => void;
         "ongoingText"?: string;
         "ownerAvatar"?: string;
         "ownerName"?: string;

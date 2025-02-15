@@ -3,6 +3,9 @@ import '../components/ur-button/ur-button';
 import '../components/ur-button-icon/ur-button-icon';
 import '../components/ur-dialog/ur-dialog';
 import '../components/ur-text-field/ur-text-field';
+import '../components/ur-novl-summary/ur-novl-summary';
+import '../components/ur-profile-card/ur-profile-card';
+import '../components/ur-long-description/ur-long-description';
 
 // Sample content components for different use cases
 const SimpleContent = () => html`
@@ -27,7 +30,7 @@ const FormContent = () => html`
 const CustomHeaderContent = () => html`
     <div slot="header">
         <span style="margin: 0">Custom Header</span>
-        <ur-button-icon 
+        <ur-button-icon
             onclick="document.getElementById('dialog-with-header').closeDialog()"
             icon="close"
             variant="standard"
@@ -43,8 +46,8 @@ const LongContent = () => html`
         <h3>Scrollable Content</h3>
         ${Array(10).fill(null).map(() => html`
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
         `)}
@@ -86,15 +89,15 @@ export default {
     title: 'Core/Dialog',
     render: args => Dialog(args),
     argTypes: {
-        open: { 
+        open: {
             control: 'boolean',
             description: 'Controls whether the dialog is initially open'
         },
-        closeOnEsc: { 
+        closeOnEsc: {
             control: 'boolean',
             description: 'Allows closing the dialog with the ESC key'
         },
-        closeOnOverlayClick: { 
+        closeOnOverlayClick: {
             control: 'boolean',
             description: 'Allows closing the dialog by clicking the overlay'
         },
@@ -211,3 +214,70 @@ export const WithoutEscClose = {
         closeOnEsc: false,
     }
 };
+
+const NovlSummary = (args) => {
+    return () => html`
+        <ur-novl-summary
+            .novlTitle=${args.novlTitle}
+            .storyCompleteStatus=${args.storyCompleteStatus}
+            .writeEnabled=${args.writeEnabled}
+            .novlPaid=${args.novlPaid}
+            .novlPurchasedAt=${args.novlPurchasedAt}
+            .novlPrice=${args.novlPrice}
+            .likes=${args.likes}
+            .views=${args.views}
+            .readingDuration=${args.readingDuration}
+            .languages=${args.languages}
+            .genres=${args.genres}
+            .literatureTypes=${args.literatureTypes}
+            .coverImage=${args.coverImage}
+            .hasBranches=${args.hasBranches}
+            .ownerAvatar=${args.ownerAvatar}
+            .ownerName=${args.ownerName}
+        >
+            <ur-long-description slot="description" .description=${args.longDescription}></ur-long-description>
+            <ur-profile-card
+                slot="owner"
+                type="user"
+                .avatarSrc=${args.ownerAvatar}
+                avatarSize="32px"
+                name="Tasos Tsipidis"
+                profileType="user"
+                .showDescription=${false}
+            ></ur-profile-card>
+            <ur-profile-card
+                slot="owner-page"
+                type="page"
+                .avatarSrc=${args.ownerAvatar}
+                avatarSize="32px"
+                name="Penguin Publishing"
+                profileType="page"
+                .showDescription=${false}
+            ></ur-profile-card>
+        </ur-novl-summary>
+    `;
+}
+
+export const WithNovlSummary = {
+    args: {
+        id: 'with-novl-summary',
+        content: NovlSummary({
+            novlTitle: 'My First Novel',
+            storyCompleteStatus: false,
+            writeEnabled: false,
+            novlPaid: false,
+            novlPurchasedAt: '',
+            novlPrice: '50€',
+            longDescription: 'This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.This is a long description that will expand when clicked. It can contain a lot of text, and when expanded, it will show the full content. Click again to collapse it back to a shorter version.',
+            likes: 0,
+            views: 0,
+            readingDuration: '1min',
+            languages: 'English',
+            genres: 'Action, Adventure',
+            literatureTypes: 'Novel',
+            coverImage: 'https://picsum.photos/200/300',
+            hasBranches: true,
+        })
+    }
+}
+

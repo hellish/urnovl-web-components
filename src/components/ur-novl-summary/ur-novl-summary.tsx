@@ -11,6 +11,7 @@ import '../ur-profile-card/ur-profile-card';
     shadow: true,
 })
 export class UrNovlSummary {
+
     @Prop()
     novlTitle = 'This is long story title';
 
@@ -30,49 +31,49 @@ export class UrNovlSummary {
     likes: number;
 
     @Prop()
-    likesText: string = 'Likes';
+    likesText = 'Likes';
 
     @Prop()
     views: number;
 
     @Prop()
-    viewsText: string = 'Views';
+    viewsText = 'Views';
 
     @Prop()
-    readingDuration: string = '1min';
+    readingDuration = '1min';
 
     @Prop()
-    readingDurationText: string = 'Reading Duration';
+    readingDurationText = 'Reading Duration';
 
     @Prop()
-    description: string = 'Description';
+    description = 'Description';
 
     @Prop()
-    languages: string = 'English';
+    languages = 'English';
 
     @Prop()
-    genres: string = 'Action, Adventure';
+    genres = 'Action, Adventure';
 
     @Prop()
-    literatureTypes: string = 'Novel';
+    literatureTypes = 'Novel';
 
     @Prop()
-    showLessText: string = 'Show less';
+    showLessText = 'Show less';
 
     @Prop()
-    showMoreText: string = 'Show more...';
+    showMoreText = 'Show more...';
 
     @Prop()
-    readStoryText: string = 'Read story';
+    readStoryText = 'Read story';
 
     @Prop()
-    learnMoreText: string = 'Learn more';
+    learnMoreText = 'Learn more';
 
     @Prop()
-    writeStoryText: string = 'Start writing';
+    writeStoryText = 'Start writing';
 
     @Prop()
-    buyStoryText: string = 'Buy for';
+    buyStoryText = 'Buy for';
 
     @Prop()
     novlPrice: string;
@@ -87,22 +88,22 @@ export class UrNovlSummary {
     novlPaid: boolean;
 
     @Prop()
-    novlPurchasedAt: string = '';
+    novlPurchasedAt = '';
 
     @Prop()
     longDescription: string;
 
     @Event()
-    readStoryEvent: EventEmitter;
+    readStoryEvent: EventEmitter<void>;
 
     @Event()
-    learnMoreEvent: EventEmitter;
+    learnMoreEvent: EventEmitter<void>;
 
     @Event()
-    writeStoryEvent: EventEmitter;
+    writeStoryEvent: EventEmitter<void>;
 
     @Event()
-    buyStoryEvent: EventEmitter;
+    buyStoryEvent: EventEmitter<void>;
 
     @Prop()
     ownerAvatar: string;
@@ -111,7 +112,7 @@ export class UrNovlSummary {
     ownerName: string;
 
     @Prop()
-    expanded: boolean = false;
+    expanded = false;
 
     onReadStory() {
         this.readStoryEvent.emit();
