@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, State, Element } from '@stencil/core';
+import { Component, Prop, Host, h, State, Element, Method } from '@stencil/core';
 
 @Component({
     tag: 'ur-long-description',
@@ -26,6 +26,12 @@ export class UrLongDescription {
 
     private descriptionTextRef: HTMLElement;
 
+    @Method()
+    async reset() {
+        this.isExpanded = false;
+        this.checkDescriptionLength();
+    }
+
     componentDidLoad() {
         // Check if the description is long enough to warrant expansion
         this.checkDescriptionLength();
@@ -41,7 +47,9 @@ export class UrLongDescription {
     }
 
     private checkDescriptionLength() {
+        console.log('checkDescriptionLength', this.descriptionTextRef);
         if (this.descriptionTextRef) {
+            console.log('descriptionTextRef', this.descriptionTextRef);
             const descriptionHeight = this.descriptionTextRef.scrollHeight;
             const lineHeight = parseFloat(getComputedStyle(this.descriptionTextRef).lineHeight);
             const maxHeight = lineHeight * 3; // Height of 3 lines

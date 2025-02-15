@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import '../components/ur-novl-summary/ur-novl-summary';
 import '../components/ur-profile-card/ur-profile-card';
+import '../components/ur-long-description/ur-long-description';
 
 // Define the NovlSummary component in Storybook
 const Template = args => html`
@@ -11,7 +12,6 @@ const Template = args => html`
         .novlPaid=${args.novlPaid}
         .novlPurchasedAt=${args.novlPurchasedAt}
         .novlPrice=${args.novlPrice}
-        .longDescription=${args.longDescription}
         .likes=${args.likes}
         .views=${args.views}
         .readingDuration=${args.readingDuration}
@@ -23,6 +23,7 @@ const Template = args => html`
         .ownerAvatar=${args.ownerAvatar}
         .ownerName=${args.ownerName}
     >
+        <ur-long-description slot="description" .description=${args.longDescription}></ur-long-description>
         <ur-profile-card 
             slot="owner"
             type="user"
@@ -162,7 +163,7 @@ export const NotOwnerNoContent = {
         novlTitle: 'My First Novel',
         likes: 7,
         views: 100,
-        readingDuration: '1min',
+        readingDuration: '-1',
         languages: 'English',
         genres: 'Action, Adventure',
         literatureTypes: 'Novel',

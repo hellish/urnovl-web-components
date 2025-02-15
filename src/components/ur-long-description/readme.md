@@ -14,18 +14,18 @@
 | `showMoreText` | `show-more-text` |             | `string` | `'Show more...'` |
 
 
-## Dependencies
+## Methods
 
-### Used by
+### `reset() => Promise<void>`
 
- - [ur-novl-summary](../ur-novl-summary)
 
-### Graph
-```mermaid
-graph TD;
-  ur-novl-summary --> ur-long-description
-  style ur-long-description fill:#f9f,stroke:#333,stroke-width:4px
-```
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 
 ----------------------------------------------
 

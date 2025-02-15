@@ -1,6 +1,9 @@
 :host {
     --ur-dialog-panel-border-radius: 0;
+    --ur-color-background: var(--mdui-color-background);
     --ur-color-outline-variant: var(--mdui-color-outline-variant);
+
+    background: rgb(var(--ur-color-background));
 }
 
 :host mdui-dialog::part(panel) {

@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 
 import 'mdui/components/dialog';
 
@@ -37,6 +37,9 @@ export class UrDialog {
     @Prop()
     borderRadius: string | null = '12px';
 
+    @Event()
+    urDialogClose: EventEmitter<any>;
+
     componentDidLoad() {
         this.el.style.setProperty('--ur-dialog-panel-border-radius', this.borderRadius);
         this.dialogElement = this.el.shadowRoot.querySelector('.inner-dialog');
@@ -48,8 +51,12 @@ export class UrDialog {
     }
 
     @Method()
-    async closeDialog() {
-        this.dialogElement.open = false;
+    async closeDialog(result?: any) {
+        if (this.dialogElement) {
+            this.dialogElement.open = false;
+            // Emit the close event
+            this.urDialogClose.emit(result);
+        }
     }
 
     render() {
@@ -69,6 +76,7 @@ export class UrDialog {
                     style={{
                         '--ur-dialog-panel-border-radius': this.borderRadius,
                     }}
+                    onMduiDialogClose={() => this.closeDialog()}
                 >
                     {this.showHeader && <slot name="header"></slot>}
                     <slot></slot>

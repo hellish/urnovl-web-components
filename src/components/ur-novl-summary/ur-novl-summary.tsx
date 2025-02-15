@@ -186,7 +186,7 @@ export class UrNovlSummary {
                             )}
                             {this.views > 0 && <span class="story-stat-separator">&middot;</span>}
                             <span class="story-stat">
-                                <span class="story-stat-value">{this.readingDuration}</span>
+                                <span class="story-stat-value">{this.readingDuration === '-1' ? 'N/A' : this.readingDuration}</span>
                                 <span class="story-stat-label">{this.readingDurationText}</span>
                             </span>
                         </span>
@@ -225,7 +225,8 @@ export class UrNovlSummary {
                         ))}
                     </div>
 
-                    <div slot="description" class="description">
+                    <div class="description">
+                        <slot name="description"></slot>
                     </div>
 
                     <div class="actions-holder">

@@ -13,6 +13,7 @@
 | `completeText`        | `complete-text`         |             | `string`  | `'Complete'`                 |
 | `coverImage`          | `cover-image`           |             | `string`  | `undefined`                  |
 | `description`         | `description`           |             | `string`  | `'Description'`              |
+| `expanded`            | `expanded`              |             | `boolean` | `false`                      |
 | `genres`              | `genres`                |             | `string`  | `'Action, Adventure'`        |
 | `hasBranches`         | `has-branches`          |             | `boolean` | `undefined`                  |
 | `languages`           | `languages`             |             | `string`  | `'English'`                  |
@@ -50,19 +51,30 @@
 | `writeStoryEvent` |             | `CustomEvent<any>` |
 
 
+## Methods
+
+### `reset() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
 ## Dependencies
 
 ### Depends on
 
 - [ur-chip](../ur-chip)
-- [ur-long-description](../ur-long-description)
 - [ur-button](../ur-button)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-novl-summary --> ur-chip
-  ur-novl-summary --> ur-long-description
   ur-novl-summary --> ur-button
   style ur-novl-summary fill:#f9f,stroke:#333,stroke-width:4px
 ```

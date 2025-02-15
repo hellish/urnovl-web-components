@@ -19,11 +19,24 @@
 | `variant`             | `variant`                |             | `"desktop" \| "mobile"` | `'desktop'` |
 
 
+## Events
+
+| Event           | Description | Type               |
+| --------------- | ----------- | ------------------ |
+| `urDialogClose` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
-### `closeDialog() => Promise<void>`
+### `closeDialog(result?: any) => Promise<void>`
 
 
+
+#### Parameters
+
+| Name     | Type  | Description |
+| -------- | ----- | ----------- |
+| `result` | `any` |             |
 
 #### Returns
 
