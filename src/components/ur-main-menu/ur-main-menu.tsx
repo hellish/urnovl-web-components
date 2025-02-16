@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } from '@stencil/core';
+import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element, forceUpdate, Method } from '@stencil/core';
 
 @Component({
     tag: 'ur-main-menu',
@@ -6,6 +6,11 @@ import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } 
     shadow: true,
 })
 export class UrMainMenu {
+
+    private resizeObserver: ResizeObserver;
+
+    private mutationObserver: MutationObserver;
+
     @Element()
     el!: HTMLUrMainMenuElement;
 
@@ -21,10 +26,10 @@ export class UrMainMenu {
     @Watch('opened')
     watchOpenedHandler(newVal: boolean) {
         this.expanded = newVal;
-        this.toggleExpand.emit(this.expanded); // Notify Angular of the change
+        this.toggleExpand.emit(this.expanded); // Notify of the change
     }
 
-    // Public method to open the menu
+    @Method()
     public open() {
         if (!this.expanded) {
             this.expanded = true;
@@ -34,7 +39,7 @@ export class UrMainMenu {
         }
     }
 
-    // Public method to close the menu
+    @Method()
     public close() {
         if (this.expanded) {
             this.expanded = false;
@@ -44,7 +49,7 @@ export class UrMainMenu {
         }
     }
 
-    // Method to toggle the menu
+    @Method()
     public toggle() {
         if (this.expanded) {
             this.close();
@@ -53,13 +58,12 @@ export class UrMainMenu {
         }
     }
 
-    // Method to reset the menu state
+    @Method()
     public reset() {
         this.expanded = this.opened;
         this.toggleExpand.emit(this.expanded);
     }
 
-    private resizeObserver: ResizeObserver;
 
     @Prop()
     loggedIn: boolean;
@@ -74,64 +78,64 @@ export class UrMainMenu {
     userAvatar?: string;
 
     @Prop()
-    badgeCount?: number = 10;
+    badgeCount = 10;
 
     @Prop()
-    termsText: string = 'Terms of Service';
+    termsText = 'Terms of Service';
 
     @Prop()
-    rulesText: string = 'House Rules';
+    rulesText = 'House Rules';
 
     @Prop()
-    privacyText: string = 'Privacy Policy';
+    privacyText = 'Privacy Policy';
 
     @Prop()
-    paymentText: string = 'Payment Terms';
+    paymentText = 'Payment Terms';
 
     @Prop()
-    acceptableUseText: string = 'Quills Acceptable Use Policy';
+    acceptableUseText = 'Quills Acceptable Use Policy';
 
     @Prop()
-    partnershipText: string = 'Partnership Program';
+    partnershipText = 'Partnership Program';
 
     @Prop()
-    homeText: string = 'Home';
+    homeText = 'Home';
 
     @Prop()
-    storiesText: string = 'Stories';
+    storiesText = 'Stories';
 
     @Prop()
-    pagesText: string = 'Pages';
+    pagesText = 'Pages';
 
     @Prop()
-    competitionsText: string = 'Competitions';
+    competitionsText = 'Competitions';
 
     @Prop()
-    notificationText: string = 'Notifications';
+    notificationText = 'Notifications';
 
     @Prop()
-    facebookText: string = 'Our Facebook';
+    facebookText = 'Our Facebook';
 
     @Prop()
-    xText: string = 'Our X';
+    xText = 'Our X';
 
     @Prop()
-    discordText: string = 'Our Discord';
+    discordText = 'Our Discord';
 
     @Prop()
-    contactUsText: string = 'Contact us';
+    contactUsText = 'Contact us';
 
     @Prop()
-    signUpText: string = 'Sign Up/In';
+    signUpText = 'Sign Up/In';
 
     @Prop()
-    premiumText: string = 'Go Premium';
+    premiumText = 'Go Premium';
 
     @Prop()
-    whatsNewText: string = "What's new";
+    whatsNewText = "What's new";
 
     @Prop()
-    faqsText: string = 'FAQs';
+    faqsText = 'FAQs';
 
     @Event()
     notificationCenterClick: EventEmitter<void>;
@@ -205,41 +209,39 @@ export class UrMainMenu {
     @Event()
     discordClick: EventEmitter<void>;
 
-    @State()
-    private updateCounter = 0;
-
+    /*
     @Watch('userName')
     watchUserNameHandler(newVal: string, oldVal: string) {
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
 
     @Watch('userRole')
     watchUserRoleHandler(newVal: string, oldVal: string) {
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
 
     @Watch('userAvatar')
     watchUserAvatarHandler(newVal: string, oldVal: string) {
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
 
     @Watch('badgeCount')
     watchBadgeCountHandler(newVal: number, oldVal: number) {
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
 
     @Watch('currentRoute')
     watchCurrentRouteHandler(newVal: string, oldVal: string) {
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
 
@@ -247,16 +249,10 @@ export class UrMainMenu {
     watchNotificationCenterOpenedHandler(newVal: boolean, oldVal: boolean) {
         // Force re-render
         if (newVal !== oldVal) {
-            this.triggerUpdate();
+            // forceUpdate(this); // Forces a re-render
         }
     }
-
-    private triggerUpdate() {
-        // Increment the counter to trigger a re-render
-        this.updateCounter++;
-    }
-
-    private mutationObserver: MutationObserver;
+    */
 
     componentDidLoad() {
         this.expanded = this.opened;
@@ -291,6 +287,7 @@ export class UrMainMenu {
         if (this.mutationObserver) {
             this.mutationObserver.disconnect();
         }
+
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
         }
@@ -304,10 +301,10 @@ export class UrMainMenu {
         return (
             <div class="menu-navigation">
                 <ur-list>
-                    <ur-list-item 
-                        active={this.currentRoute === '/'} 
-                        icon="home--outlined" 
-                        content={this.homeText} 
+                    <ur-list-item
+                        active={this.currentRoute === '/'}
+                        icon="home--outlined"
+                        content={this.homeText}
                         onClick={() => this.homeClick.emit()}></ur-list-item>
 
                     <ur-list-item
@@ -575,7 +572,7 @@ export class UrMainMenu {
                         user-name={this.userName}
                         user-role={this.userRole}
                         on-click={() => this.viewProfileClick.emit()}
-                        class={`${this.expanded ? 'expanded' : 'collapsed'} ${this.currentRoute?.endsWith('/profile') || this.currentRoute?.endsWith('/profile/') ? 'active' : ''}`} 
+                        class={`${this.expanded ? 'expanded' : 'collapsed'} ${this.currentRoute?.endsWith('/profile') || this.currentRoute?.endsWith('/profile/') ? 'active' : ''}`}
 
                     ></ur-menu-profile>
                 )}

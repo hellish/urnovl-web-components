@@ -14,7 +14,7 @@ const MenuWithControls = (args) => {
         const menu = element.querySelector('ur-main-menu');
         const toggleButton = element.querySelector('.toggle-button');
         const badgeCountDisplay = element.querySelector('.badge-count');
-        
+
         if (menu) {
             menu.opened = isOpened;
             menu.badgeCount = badgeCount;
@@ -197,5 +197,59 @@ export const LoggedInOpened = {
         userRole: 'Author & Reader',
         userAvatar: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5',
         badgeCount: 10,
+    },
+};
+
+const DynamicMenuWithControls = (args) => {
+    let loggedIn = false;
+
+    const handleLogin = () => {
+        loggedIn = !loggedIn;
+        const menu = document.getElementById('mainMenu');
+        menu.setAttribute('logged-in', `${loggedIn}`);
+        menu.setAttribute('user-name', 'John Smith');
+        menu.setAttribute('user-avatar', 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5');
+    };
+
+    const handleToggleOpen = () => {
+        const menu = document.getElementById('mainMenu');
+        (menu as any).toggle();
+    }
+
+    return html`
+        <div class="menu-controls-wrapper" style="padding: 20px;">
+            <!-- Menu Component -->
+            <ur-main-menu
+                id="mainMenu"
+                .loggedIn=${args.loggedIn}
+                .userName=${args.userName}
+                .userAvatar=${args.userAvatar}
+                .userRole=${args.userRole}
+            >
+                ${args.loggedIn
+                    ? html`
+                          <ur-menu-profile
+                              .userAvatar=${args.userAvatar}
+                              .userName=${args.userName}
+                              .userRole=${args.userRole}
+                          ></ur-menu-profile>
+                      `
+                    : ''}
+            </ur-main-menu>
+            <button @click=${handleLogin}>[toggle-auth]</button>
+            <button @click=${handleToggleOpen}>[toggle-open]</button>
+        </div>
+    `;
+};
+
+export const DynamicLogin = {
+    render: args => DynamicMenuWithControls(args),
+    args: {
+        opened: false,
+        loggedIn: false,
+        userName: 'Guest',
+        userRole: '',
+        userAvatar: '',
+        badgeCount: 0,
     },
 };
