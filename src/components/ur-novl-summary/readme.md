@@ -43,12 +43,12 @@
 
 ## Events
 
-| Event             | Description | Type               |
-| ----------------- | ----------- | ------------------ |
-| `buyStoryEvent`   |             | `CustomEvent<any>` |
-| `learnMoreEvent`  |             | `CustomEvent<any>` |
-| `readStoryEvent`  |             | `CustomEvent<any>` |
-| `writeStoryEvent` |             | `CustomEvent<any>` |
+| Event             | Description | Type                |
+| ----------------- | ----------- | ------------------- |
+| `buyStoryEvent`   |             | `CustomEvent<void>` |
+| `learnMoreEvent`  |             | `CustomEvent<void>` |
+| `readStoryEvent`  |             | `CustomEvent<void>` |
+| `writeStoryEvent` |             | `CustomEvent<void>` |
 
 
 ## Methods

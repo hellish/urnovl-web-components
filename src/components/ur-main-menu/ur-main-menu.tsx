@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element, forceUpdate, Method } from '@stencil/core';
+import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element, Method } from '@stencil/core';
 
 @Component({
     tag: 'ur-main-menu',
@@ -30,7 +30,7 @@ export class UrMainMenu {
     }
 
     @Method()
-    public open() {
+    public async open() {
         if (!this.expanded) {
             this.expanded = true;
             this.opened = true;
@@ -40,7 +40,7 @@ export class UrMainMenu {
     }
 
     @Method()
-    public close() {
+    public async close() {
         if (this.expanded) {
             this.expanded = false;
             this.opened = false;
@@ -50,7 +50,7 @@ export class UrMainMenu {
     }
 
     @Method()
-    public toggle() {
+    public async toggle() {
         if (this.expanded) {
             this.close();
         } else {
@@ -59,7 +59,7 @@ export class UrMainMenu {
     }
 
     @Method()
-    public reset() {
+    public async reset() {
         this.expanded = this.opened;
         this.toggleExpand.emit(this.expanded);
     }

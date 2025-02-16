@@ -267,7 +267,8 @@ export namespace Components {
     }
     interface UrMainMenu {
         "acceptableUseText": string;
-        "badgeCount"?: number;
+        "badgeCount": number;
+        "close": () => Promise<void>;
         "competitionsText": string;
         "contactUsText": string;
         "currentRoute": string;
@@ -278,16 +279,19 @@ export namespace Components {
         "loggedIn": boolean;
         "notificationCenterOpened": boolean;
         "notificationText": string;
+        "open": () => Promise<void>;
         "opened": boolean;
         "pagesText": string;
         "partnershipText": string;
         "paymentText": string;
         "premiumText": string;
         "privacyText": string;
+        "reset": () => Promise<void>;
         "rulesText": string;
         "signUpText": string;
         "storiesText": string;
         "termsText": string;
+        "toggle": () => Promise<void>;
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
