@@ -25,17 +25,22 @@ export class UrAvatar {
     // Default avatar image path
     private defaultAvatar = '/assets/img/user/account.png';
 
+    componentDidLoad() {
+        // force image download
+        new Image().src = this.src;
+    }
+
     render() {
         // Use default avatar if src is not provided or is empty
         const avatarSrc = this.src || this.defaultAvatar;
 
         return (
             <Host>
-                <img 
-                    class="avatar" 
-                    src={avatarSrc} 
-                    style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }} 
-                    alt={this.name || 'User Avatar'} 
+                <img
+                    class="avatar"
+                    src={avatarSrc}
+                    style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }}
+                    alt={this.name || 'User Avatar'}
                 />
             </Host>
         );

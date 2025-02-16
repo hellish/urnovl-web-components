@@ -55,6 +55,7 @@ export const FullWithName = {
     render: () => Avatar({
         width: '96px',
         border: '5px',
-        name: 'John Smith'
+        name: 'John Smith',
+        src: 'https://lh3.googleusercontent.com/a/ACg8ocKfghLr_I0YDBONE8uf3Iqa9_NZDeO7lXz-LxOstonB6sZMriTM=s96-c'
     }),
 };
