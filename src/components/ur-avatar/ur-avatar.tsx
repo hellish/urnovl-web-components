@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h } from '@stencil/core';
+import { Component, Host, Prop, forceUpdate, h } from '@stencil/core';
 
 @Component({
     tag: 'ur-avatar',
@@ -25,17 +25,30 @@ export class UrAvatar {
     // Default avatar image path
     private defaultAvatar = '/assets/img/user/account.png';
 
+    componentDidLoad() {
+        const m = new Image();
+        m.src = this.src;
+        m.onload = () => {
+            forceUpdate(this);
+        }
+
+        m.onerror = () => {
+            this.src = this.defaultAvatar;
+            forceUpdate(this);
+        }
+    }
+
     render() {
         // Use default avatar if src is not provided or is empty
         const avatarSrc = this.src || this.defaultAvatar;
 
         return (
             <Host>
-                <img 
-                    class="avatar" 
-                    src={avatarSrc} 
-                    style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }} 
-                    alt={this.name || 'User Avatar'} 
+                <img
+                    class="avatar"
+                    src={avatarSrc}
+                    style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }}
+                    alt={this.name || 'User Avatar'}
                 />
             </Host>
         );
