@@ -16,6 +16,7 @@
 | `donateText`          | `donate-text`           |             | `string`                                           | `'Donate'`           |
 | `email`               | `email`                 |             | `any`                                              | `null`               |
 | `facebook_url`        | `facebook_url`          |             | `any`                                              | `null`               |
+| `followStatus`        | `follow-status`         |             | `boolean`                                          | `false`              |
 | `followText`          | `follow-text`           |             | `string`                                           | `'Follow'`           |
 | `followers`           | `followers`             |             | `number`                                           | `null`               |
 | `followersText`       | `followers-text`        |             | `string`                                           | `'Followers'`        |
@@ -37,6 +38,7 @@
 | `pageCreationDate`    | `page-creation-date`    |             | `any`                                              | `null`               |
 | `pageCreatorImage`    | `page-creator-image`    |             | `any`                                              | `null`               |
 | `pageCreatorName`     | `page-creator-name`     |             | `any`                                              | `null`               |
+| `pageId`              | `page-id`               |             | `string`                                           | `undefined`          |
 | `pageType`            | `page-type`             |             | `string`                                           | `null`               |
 | `phone`               | `phone`                 |             | `any`                                              | `null`               |
 | `platform`            | `platform`              |             | `"desktop" \| "mobile-main" \| "mobile-secondary"` | `'desktop'`          |
@@ -56,22 +58,23 @@
 
 ## Events
 
-| Event              | Description | Type               |
-| ------------------ | ----------- | ------------------ |
-| `donate`           |             | `CustomEvent<any>` |
-| `emailClick`       |             | `CustomEvent<any>` |
-| `facebookClick`    |             | `CustomEvent<any>` |
-| `follow`           |             | `CustomEvent<any>` |
-| `followersClick`   |             | `CustomEvent<any>` |
-| `inviteMembers`    |             | `CustomEvent<any>` |
-| `linkedinClick`    |             | `CustomEvent<any>` |
-| `member`           |             | `CustomEvent<any>` |
-| `membersClick`     |             | `CustomEvent<any>` |
-| `pageCreatorClick` |             | `CustomEvent<any>` |
-| `phoneClick`       |             | `CustomEvent<any>` |
-| `sendMessage`      |             | `CustomEvent<any>` |
-| `twitterClick`     |             | `CustomEvent<any>` |
-| `websiteClick`     |             | `CustomEvent<any>` |
+| Event               | Description | Type                           |
+| ------------------- | ----------- | ------------------------------ |
+| `donate`            |             | `CustomEvent<any>`             |
+| `emailClick`        |             | `CustomEvent<any>`             |
+| `facebookClick`     |             | `CustomEvent<any>`             |
+| `follow`            |             | `CustomEvent<any>`             |
+| `followersClick`    |             | `CustomEvent<any>`             |
+| `inviteMembers`     |             | `CustomEvent<any>`             |
+| `linkedinClick`     |             | `CustomEvent<any>`             |
+| `member`            |             | `CustomEvent<any>`             |
+| `membersClick`      |             | `CustomEvent<any>`             |
+| `pageCreatorClick`  |             | `CustomEvent<any>`             |
+| `pageFollowClicked` |             | `CustomEvent<PageFollowEvent>` |
+| `phoneClick`        |             | `CustomEvent<any>`             |
+| `sendMessage`       |             | `CustomEvent<any>`             |
+| `twitterClick`      |             | `CustomEvent<any>`             |
+| `websiteClick`      |             | `CustomEvent<any>`             |
 
 
 ## Dependencies
