@@ -148,9 +148,6 @@ export class UrPageProfile {
 
     // All events remain the same
     @Event()
-    follow;
-
-    @Event()
     member;
 
     @Event()
@@ -191,6 +188,23 @@ export class UrPageProfile {
 
     @Event({ bubbles: true, composed: true })
     pageFollowClicked: EventEmitter<PageFollowEvent>;
+
+    componentWillLoad() {
+        this.updateFollowText();
+    }
+
+    private updateFollowText() {
+        this.followText = this.followStatus ? 'Unfollow' : 'Follow';
+    }
+
+    private handleFollowClicked() {
+        this.followStatus = !this.followStatus;
+        this.updateFollowText();
+        this.pageFollowClicked.emit({
+            pageId: this.pageId,
+            followStatus: this.followStatus
+        });
+    }
 
     render() {
         const classes = {
@@ -301,20 +315,12 @@ export class UrPageProfile {
         );
     }
 
-    private handleFollowClicked() {
-        this.followStatus = !this.followStatus;
-        this.pageFollowClicked.emit({
-            pageId: this.pageId,
-            followStatus: this.followStatus
-        });
-    }
-
     private renderActions() {
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
                 {this.showFollow && !this.isPageOwner && (
-                    <ur-button class="follow" onClick={() => {this.handleFollowClicked()}}>
-                        {this.followStatus ? 'Unfollow' : 'Follow'}
+                    <ur-button class="follow" onClick={() => this.handleFollowClicked()}>
+                        {this.followText}
                     </ur-button>
                 )}
                 {this.showBecomeMember && !this.isPageOwner && (
