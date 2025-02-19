@@ -403,6 +403,7 @@ export namespace Components {
         "donateText": string;
         "email": any;
         "facebook_url": any;
+        "followStatus": boolean;
         "followText": string;
         "followers": number | null;
         "followersText": string;
@@ -424,6 +425,7 @@ export namespace Components {
         "pageCreationDate": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
+        "pageId": string;
         "pageType": string | null;
         "phone": any;
         "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
@@ -1313,6 +1315,7 @@ declare global {
         "websiteClick": any;
         "pageCreatorClick": any;
         "inviteMembers": any;
+        "pageFollowClicked": PageFollowEvent;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2153,6 +2156,7 @@ declare namespace LocalJSX {
         "donateText"?: string;
         "email"?: any;
         "facebook_url"?: any;
+        "followStatus"?: boolean;
         "followText"?: string;
         "followers"?: number | null;
         "followersText"?: string;
@@ -2180,6 +2184,7 @@ declare namespace LocalJSX {
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;
         "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;
@@ -2188,6 +2193,7 @@ declare namespace LocalJSX {
         "pageCreationDate"?: any;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
+        "pageId"?: string;
         "pageType"?: string | null;
         "phone"?: any;
         "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';

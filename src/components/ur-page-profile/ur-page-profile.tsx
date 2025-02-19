@@ -1,8 +1,9 @@
-import { Component, Event, Host, Prop, h } from '@stencil/core';
+import { Component, Event, Host, Prop, h, EventEmitter } from '@stencil/core';
 import { Icons } from './icons';
 
 import '../ur-avatar/ur-avatar';
 import '../ur-button/ur-button';
+import { PageFollowEvent } from '../../models/page';
 
 @Component({
     tag: 'ur-page-profile',
@@ -10,6 +11,9 @@ import '../ur-button/ur-button';
     shadow: true,
 })
 export class UrPageProfile {
+    @Prop({ reflect: true })
+    pageId: string;
+
     @Prop()
     platform: 'desktop' | 'mobile-main' | 'mobile-secondary' = 'desktop';
 
@@ -139,6 +143,9 @@ export class UrPageProfile {
     @Prop()
     sendMessageText = 'Message';
 
+    @Prop()
+    followStatus: boolean = false;
+
     // All events remain the same
     @Event()
     follow;
@@ -178,9 +185,12 @@ export class UrPageProfile {
 
     @Event()
     pageCreatorClick;
-    
+
     @Event()
     inviteMembers;
+
+    @Event({ bubbles: true, composed: true })
+    pageFollowClicked: EventEmitter<PageFollowEvent>;
 
     render() {
         const classes = {
@@ -291,12 +301,20 @@ export class UrPageProfile {
         );
     }
 
+    private handleFollowClicked() {
+        this.followStatus = !this.followStatus;
+        this.pageFollowClicked.emit({
+            pageId: this.pageId,
+            followStatus: this.followStatus
+        });
+    }
+
     private renderActions() {
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
                 {this.showFollow && !this.isPageOwner && (
-                    <ur-button class="follow" onClick={() => this.follow.emit()}>
-                        {this.followText}
+                    <ur-button class="follow" onClick={() => {this.handleFollowClicked()}}>
+                        {this.followStatus ? 'Unfollow' : 'Follow'}
                     </ur-button>
                 )}
                 {this.showBecomeMember && !this.isPageOwner && (
