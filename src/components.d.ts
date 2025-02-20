@@ -371,7 +371,7 @@ export namespace Components {
     }
     interface UrPage {
         "borderRadius": string;
-        "followStatus": boolean;
+        "followed": boolean;
         "followers": number;
         "loading": boolean;
         "pageCover": string;
@@ -2121,7 +2121,7 @@ declare namespace LocalJSX {
     }
     interface UrPage {
         "borderRadius"?: string;
-        "followStatus"?: boolean;
+        "followed"?: boolean;
         "followers"?: number;
         "loading"?: boolean;
         "onPageClicked"?: (event: UrPageCustomEvent<string>) => void;
