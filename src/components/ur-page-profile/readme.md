@@ -16,8 +16,8 @@
 | `donateText`          | `donate-text`           |             | `string`                                           | `'Donate'`           |
 | `email`               | `email`                 |             | `any`                                              | `null`               |
 | `facebook_url`        | `facebook_url`          |             | `any`                                              | `null`               |
-| `followStatus`        | `follow-status`         |             | `boolean`                                          | `false`              |
 | `followText`          | `follow-text`           |             | `string`                                           | `'Follow'`           |
+| `followed`            | `followed`              |             | `boolean`                                          | `false`              |
 | `followers`           | `followers`             |             | `number`                                           | `null`               |
 | `followersText`       | `followers-text`        |             | `string`                                           | `'Followers'`        |
 | `following`           | `following`             |             | `number`                                           | `null`               |
@@ -58,23 +58,22 @@
 
 ## Events
 
-| Event               | Description | Type                           |
-| ------------------- | ----------- | ------------------------------ |
-| `donate`            |             | `CustomEvent<any>`             |
-| `emailClick`        |             | `CustomEvent<any>`             |
-| `facebookClick`     |             | `CustomEvent<any>`             |
-| `follow`            |             | `CustomEvent<any>`             |
-| `followersClick`    |             | `CustomEvent<any>`             |
-| `inviteMembers`     |             | `CustomEvent<any>`             |
-| `linkedinClick`     |             | `CustomEvent<any>`             |
-| `member`            |             | `CustomEvent<any>`             |
-| `membersClick`      |             | `CustomEvent<any>`             |
-| `pageCreatorClick`  |             | `CustomEvent<any>`             |
-| `pageFollowClicked` |             | `CustomEvent<PageFollowEvent>` |
-| `phoneClick`        |             | `CustomEvent<any>`             |
-| `sendMessage`       |             | `CustomEvent<any>`             |
-| `twitterClick`      |             | `CustomEvent<any>`             |
-| `websiteClick`      |             | `CustomEvent<any>`             |
+| Event               | Description | Type                                                  |
+| ------------------- | ----------- | ----------------------------------------------------- |
+| `donate`            |             | `CustomEvent<any>`                                    |
+| `emailClick`        |             | `CustomEvent<any>`                                    |
+| `facebookClick`     |             | `CustomEvent<any>`                                    |
+| `followersClick`    |             | `CustomEvent<any>`                                    |
+| `inviteMembers`     |             | `CustomEvent<any>`                                    |
+| `linkedinClick`     |             | `CustomEvent<any>`                                    |
+| `member`            |             | `CustomEvent<any>`                                    |
+| `membersClick`      |             | `CustomEvent<any>`                                    |
+| `pageCreatorClick`  |             | `CustomEvent<any>`                                    |
+| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>` |
+| `phoneClick`        |             | `CustomEvent<any>`                                    |
+| `sendMessage`       |             | `CustomEvent<any>`                                    |
+| `twitterClick`      |             | `CustomEvent<any>`                                    |
+| `websiteClick`      |             | `CustomEvent<any>`                                    |
 
 
 ## Dependencies

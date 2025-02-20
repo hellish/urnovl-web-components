@@ -11,7 +11,7 @@ import { PageFollowEvent } from '../../models/page';
     shadow: true,
 })
 export class UrPageProfile {
-    @Prop({ reflect: true })
+    @Prop()
     pageId: string;
 
     @Prop()
@@ -144,7 +144,7 @@ export class UrPageProfile {
     sendMessageText = 'Message';
 
     @Prop()
-    followStatus: boolean = false;
+    followed = false;
 
     // All events remain the same
     @Event()
@@ -194,15 +194,15 @@ export class UrPageProfile {
     }
 
     private updateFollowText() {
-        this.followText = this.followStatus ? 'Unfollow' : 'Follow';
+        this.followText = this.followed ? 'Unfollow' : 'Follow';
     }
 
     private handleFollowClicked() {
-        this.followStatus = !this.followStatus;
+        this.followed = !this.followed;
         this.updateFollowText();
         this.pageFollowClicked.emit({
             pageId: this.pageId,
-            followStatus: this.followStatus
+            followed: this.followed
         });
     }
 

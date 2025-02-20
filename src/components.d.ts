@@ -403,8 +403,8 @@ export namespace Components {
         "donateText": string;
         "email": any;
         "facebook_url": any;
-        "followStatus": boolean;
         "followText": string;
+        "followed": boolean;
         "followers": number | null;
         "followersText": string;
         "following": number | null;
@@ -1301,7 +1301,6 @@ declare global {
         new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
-        "follow": any;
         "member": any;
         "donate": any;
         "sendMessage": any;
@@ -2156,8 +2155,8 @@ declare namespace LocalJSX {
         "donateText"?: string;
         "email"?: any;
         "facebook_url"?: any;
-        "followStatus"?: boolean;
         "followText"?: string;
+        "followed"?: boolean;
         "followers"?: number | null;
         "followersText"?: string;
         "following"?: number | null;
@@ -2177,7 +2176,6 @@ declare namespace LocalJSX {
         "onDonate"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onEmailClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
-        "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
