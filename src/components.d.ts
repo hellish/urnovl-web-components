@@ -800,7 +800,68 @@ export namespace Components {
         "spaceBetween"?: number | string;
         "users": Array<User | UserCustomContent>;
     }
+    interface UrUserPageProfile {
+        "about": any;
+        "avatar": any;
+        "createdByText": string;
+        "donateText": string;
+        "email": any;
+        "facebook_url": any;
+        "followText": string;
+        "followers": number | null;
+        "followersText": string;
+        "following": number | null;
+        "followingText": string;
+        "genres": string | null;
+        "genresText": string;
+        "isLoggedIn": boolean;
+        "isProfileFollowed": boolean;
+        "isProfileOwner": boolean;
+        "isWriter": boolean;
+        "languages": string | null;
+        "languagesText": string;
+        "linkedin_url": any;
+        "literatureTypes": string | null;
+        "literatureTypesText": string;
+        "location": any;
+        "logoutText": string;
+        "members": number | null;
+        "name": any;
+        "pageCreatorImage": any;
+        "pageCreatorName": any;
+        "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "readerText": string;
+        "showBecomeMember": boolean;
+        "showDonate": boolean;
+        "showFollow": boolean;
+        "showSendMessage": boolean;
+        "stories": number | null;
+        "storiesText": string;
+        "twitter_url": any;
+        "unFollowText": string;
+        "userProfileCreatedDate": any;
+        "userProfileCreatedText": string;
+        "views": number | null;
+        "viewsText": string;
+        "website": any;
+        "websiteText": string;
+        "writerText": string;
+    }
     interface UrUserProfile {
+    }
+    interface UrUserProfileTabs {
+        "aboutTabText": string;
+        "activeTab": string;
+        "followersTabText": string;
+        "followingTabText": string;
+        "fullWidthTabs": boolean;
+        "isMobile": boolean;
+        "isOwner": boolean;
+        "libraryTabText": string;
+        "settingsTabText": string;
+        "statisticsTabText": string;
+        "storiesTabText": string;
+        "transactionsTabText": string;
     }
     interface UrWizardStep {
         /**
@@ -996,6 +1057,14 @@ export interface UrUserCustomEvent<T> extends CustomEvent<T> {
 export interface UrUserCarouselCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserCarouselElement;
+}
+export interface UrUserPageProfileCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserPageProfileElement;
+}
+export interface UrUserProfileTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserProfileTabsElement;
 }
 export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1832,11 +1901,55 @@ declare global {
         prototype: HTMLUrUserCarouselElement;
         new (): HTMLUrUserCarouselElement;
     };
+    interface HTMLUrUserPageProfileElementEventMap {
+        "follow": any;
+        "donate": any;
+        "logout": any;
+        "followersClick": any;
+        "followingClick": any;
+        "unfollow": any;
+        "facebookClick": any;
+        "twitterClick": any;
+        "linkedinClick": any;
+        "emailClick": any;
+        "websiteClick": any;
+    }
+    interface HTMLUrUserPageProfileElement extends Components.UrUserPageProfile, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserPageProfileElementEventMap>(type: K, listener: (this: HTMLUrUserPageProfileElement, ev: UrUserPageProfileCustomEvent<HTMLUrUserPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserPageProfileElementEventMap>(type: K, listener: (this: HTMLUrUserPageProfileElement, ev: UrUserPageProfileCustomEvent<HTMLUrUserPageProfileElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserPageProfileElement: {
+        prototype: HTMLUrUserPageProfileElement;
+        new (): HTMLUrUserPageProfileElement;
+    };
     interface HTMLUrUserProfileElement extends Components.UrUserProfile, HTMLStencilElement {
     }
     var HTMLUrUserProfileElement: {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
+    };
+    interface HTMLUrUserProfileTabsElementEventMap {
+        "tabChange": string;
+    }
+    interface HTMLUrUserProfileTabsElement extends Components.UrUserProfileTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrUserProfileTabsElement, ev: UrUserProfileTabsCustomEvent<HTMLUrUserProfileTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserProfileTabsElementEventMap>(type: K, listener: (this: HTMLUrUserProfileTabsElement, ev: UrUserProfileTabsCustomEvent<HTMLUrUserProfileTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserProfileTabsElement: {
+        prototype: HTMLUrUserProfileTabsElement;
+        new (): HTMLUrUserProfileTabsElement;
     };
     interface HTMLUrWizardStepElementEventMap {
         "stepCompleted": { step: number; formData: { [key: string]: any } };
@@ -1916,7 +2029,9 @@ declare global {
         "ur-top-app-bar": HTMLUrTopAppBarElement;
         "ur-user": HTMLUrUserElement;
         "ur-user-carousel": HTMLUrUserCarouselElement;
+        "ur-user-page-profile": HTMLUrUserPageProfileElement;
         "ur-user-profile": HTMLUrUserProfileElement;
+        "ur-user-profile-tabs": HTMLUrUserProfileTabsElement;
         "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
@@ -2824,7 +2939,80 @@ declare namespace LocalJSX {
         "spaceBetween"?: number | string;
         "users"?: Array<User | UserCustomContent>;
     }
+    interface UrUserPageProfile {
+        "about"?: any;
+        "avatar"?: any;
+        "createdByText"?: string;
+        "donateText"?: string;
+        "email"?: any;
+        "facebook_url"?: any;
+        "followText"?: string;
+        "followers"?: number | null;
+        "followersText"?: string;
+        "following"?: number | null;
+        "followingText"?: string;
+        "genres"?: string | null;
+        "genresText"?: string;
+        "isLoggedIn"?: boolean;
+        "isProfileFollowed"?: boolean;
+        "isProfileOwner"?: boolean;
+        "isWriter"?: boolean;
+        "languages"?: string | null;
+        "languagesText"?: string;
+        "linkedin_url"?: any;
+        "literatureTypes"?: string | null;
+        "literatureTypesText"?: string;
+        "location"?: any;
+        "logoutText"?: string;
+        "members"?: number | null;
+        "name"?: any;
+        "onDonate"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onEmailClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onFacebookClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onFollow"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onFollowersClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onFollowingClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onLinkedinClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onLogout"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onTwitterClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onUnfollow"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onWebsiteClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "pageCreatorImage"?: any;
+        "pageCreatorName"?: any;
+        "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
+        "readerText"?: string;
+        "showBecomeMember"?: boolean;
+        "showDonate"?: boolean;
+        "showFollow"?: boolean;
+        "showSendMessage"?: boolean;
+        "stories"?: number | null;
+        "storiesText"?: string;
+        "twitter_url"?: any;
+        "unFollowText"?: string;
+        "userProfileCreatedDate"?: any;
+        "userProfileCreatedText"?: string;
+        "views"?: number | null;
+        "viewsText"?: string;
+        "website"?: any;
+        "websiteText"?: string;
+        "writerText"?: string;
+    }
     interface UrUserProfile {
+    }
+    interface UrUserProfileTabs {
+        "aboutTabText"?: string;
+        "activeTab"?: string;
+        "followersTabText"?: string;
+        "followingTabText"?: string;
+        "fullWidthTabs"?: boolean;
+        "isMobile"?: boolean;
+        "isOwner"?: boolean;
+        "libraryTabText"?: string;
+        "onTabChange"?: (event: UrUserProfileTabsCustomEvent<string>) => void;
+        "settingsTabText"?: string;
+        "statisticsTabText"?: string;
+        "storiesTabText"?: string;
+        "transactionsTabText"?: string;
     }
     interface UrWizardStep {
         /**
@@ -2940,7 +3128,9 @@ declare namespace LocalJSX {
         "ur-top-app-bar": UrTopAppBar;
         "ur-user": UrUser;
         "ur-user-carousel": UrUserCarousel;
+        "ur-user-page-profile": UrUserPageProfile;
         "ur-user-profile": UrUserProfile;
+        "ur-user-profile-tabs": UrUserProfileTabs;
         "ur-wizard-step": UrWizardStep;
     }
 }
@@ -3007,7 +3197,9 @@ declare module "@stencil/core" {
             "ur-top-app-bar": LocalJSX.UrTopAppBar & JSXBase.HTMLAttributes<HTMLUrTopAppBarElement>;
             "ur-user": LocalJSX.UrUser & JSXBase.HTMLAttributes<HTMLUrUserElement>;
             "ur-user-carousel": LocalJSX.UrUserCarousel & JSXBase.HTMLAttributes<HTMLUrUserCarouselElement>;
+            "ur-user-page-profile": LocalJSX.UrUserPageProfile & JSXBase.HTMLAttributes<HTMLUrUserPageProfileElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
+            "ur-user-profile-tabs": LocalJSX.UrUserProfileTabs & JSXBase.HTMLAttributes<HTMLUrUserProfileTabsElement>;
             "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
     }

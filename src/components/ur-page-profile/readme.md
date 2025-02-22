@@ -33,7 +33,7 @@
 | `members`             | `members`               |             | `number`                                           | `null`               |
 | `membersText`         | `members-text`          |             | `string`                                           | `'Members'`          |
 | `name`                | `name`                  |             | `any`                                              | `undefined`          |
-| `pageCreatedText`     | `page-created-text`     |             | `string`                                           | `'Page Created'`     |
+| `pageCreatedText`     | `page-created-text`     |             | `string`                                           | `'Page created'`     |
 | `pageCreationDate`    | `page-creation-date`    |             | `any`                                              | `null`               |
 | `pageCreatorImage`    | `page-creator-image`    |             | `any`                                              | `null`               |
 | `pageCreatorName`     | `page-creator-name`     |             | `any`                                              | `null`               |
@@ -81,6 +81,7 @@
 - [ur-avatar](../ur-avatar)
 - [ur-button](../ur-button)
 - [ur-chip](../ur-chip)
+- [ur-time-ago](../ur-time-ago)
 
 ### Graph
 ```mermaid
@@ -88,6 +89,7 @@ graph TD;
   ur-page-profile --> ur-avatar
   ur-page-profile --> ur-button
   ur-page-profile --> ur-chip
+  ur-page-profile --> ur-time-ago
   style ur-page-profile fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

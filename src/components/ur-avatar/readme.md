@@ -27,6 +27,7 @@
  - [ur-profile-card](../ur-profile-card)
  - [ur-read-rail](../ur-read-rail)
  - [ur-read-rail-mobile](../ur-read-rail-mobile)
+ - [ur-user-page-profile](../ur-user-page-profile)
 
 ### Graph
 ```mermaid
@@ -38,6 +39,7 @@ graph TD;
   ur-profile-card --> ur-avatar
   ur-read-rail --> ur-avatar
   ur-read-rail-mobile --> ur-avatar
+  ur-user-page-profile --> ur-avatar
   style ur-avatar fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
