@@ -408,7 +408,7 @@ export namespace Components {
         "likes": number;
         "likesText": string;
         "literatureTypes": string;
-        "longDescription": string;
+        "novlIsOwn": boolean;
         "novlPaid": boolean;
         "novlPrice": string;
         "novlPurchasedAt": string;
@@ -2472,7 +2472,7 @@ declare namespace LocalJSX {
         "likes"?: number;
         "likesText"?: string;
         "literatureTypes"?: string;
-        "longDescription"?: string;
+        "novlIsOwn"?: boolean;
         "novlPaid"?: boolean;
         "novlPrice"?: string;
         "novlPurchasedAt"?: string;

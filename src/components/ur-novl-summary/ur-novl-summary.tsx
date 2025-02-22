@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Method } from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Method, Watch} from '@stencil/core';
 
 import '../ur-time-ago/ur-time-ago';
 import '../ur-chip/ur-chip';
@@ -89,9 +89,6 @@ export class UrNovlSummary {
     @Prop()
     novlPurchasedAt: string = '';
 
-    @Prop()
-    longDescription: string;
-
     @Event()
     readStoryEvent: EventEmitter;
 
@@ -111,7 +108,52 @@ export class UrNovlSummary {
     ownerName: string;
 
     @Prop()
+    novlIsOwn: boolean = false;
+
+    @Prop()
     expanded: boolean = false;
+
+    @Watch('expanded')
+    expandedChanged(newValue: boolean) {
+        if (newValue) {
+            this.expanded = true;
+        }
+    }
+
+    @Watch('novlIsOwn')
+    novlIsOwnChanged(newValue: boolean) {
+        if (newValue) {
+            this.novlIsOwn = true;
+        }
+    }
+
+    @Watch('novlPaid')
+    novlPaidChanged(newValue: boolean) {
+        if (newValue) {
+            this.novlPaid = true;
+        }
+    }
+
+    @Watch('hasBranches')
+    hasBranchesChanged(newValue: boolean) {
+        if (newValue) {
+            this.hasBranches = true;
+        }
+    }
+
+    @Watch('writeEnabled')
+    writeEnabledChanged(newValue: boolean) {
+        if (newValue) {
+            this.writeEnabled = true;
+        }
+    }
+
+    @Watch('novlPrice')
+    novlPriceChanged(newValue: string) {
+        if (newValue) {
+            this.novlPrice = newValue;
+        }
+    }
 
     onReadStory() {
         this.readStoryEvent.emit();
@@ -230,7 +272,7 @@ export class UrNovlSummary {
                     </div>
 
                     <div class="actions-holder">
-                        {this.hasBranches && !this.novlPaid && (
+                        {this.hasBranches && (
                             <ur-button class="summary-action" variant="filled" full-width={true} onClick={() => this.onReadStory()}>
                                 {this.readStoryText}
                             </ur-button>
@@ -252,9 +294,11 @@ export class UrNovlSummary {
                                 </ur-button>
                             ))}
 
-                        <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
-                            {this.learnMoreText}
-                        </ur-button>
+                        {this.novlIsOwn && (
+                            <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
+                                {this.learnMoreText}
+                            </ur-button>
+                        )}
                     </div>
 
                     <div class="owner-holder">
