@@ -25,11 +25,11 @@
 
 ## Events
 
-| Event              | Description | Type               |
-| ------------------ | ----------- | ------------------ |
-| `followEvent`      |             | `CustomEvent<any>` |
-| `profileLinkEvent` |             | `CustomEvent<any>` |
-| `unfollowEvent`    |             | `CustomEvent<any>` |
+| Event              | Description | Type                |
+| ------------------ | ----------- | ------------------- |
+| `followEvent`      |             | `CustomEvent<void>` |
+| `profileLinkEvent` |             | `CustomEvent<void>` |
+| `unfollowEvent`    |             | `CustomEvent<void>` |
 
 
 ## Dependencies

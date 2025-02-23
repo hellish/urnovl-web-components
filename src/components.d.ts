@@ -1616,9 +1616,9 @@ declare global {
         new (): HTMLUrProfileElement;
     };
     interface HTMLUrProfileCardElementEventMap {
-        "profileLinkEvent": any;
-        "followEvent": any;
-        "unfollowEvent": any;
+        "profileLinkEvent": void;
+        "followEvent": void;
+        "unfollowEvent": void;
     }
     interface HTMLUrProfileCardElement extends Components.UrProfileCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrProfileCardElementEventMap>(type: K, listener: (this: HTMLUrProfileCardElement, ev: UrProfileCardCustomEvent<HTMLUrProfileCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2655,9 +2655,9 @@ declare namespace LocalJSX {
         "isOwner"?: boolean;
         "name"?: string;
         "nameFontSize"?: string;
-        "onFollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
-        "onProfileLinkEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
-        "onUnfollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onFollowEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
+        "onProfileLinkEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
+        "onUnfollowEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
         "profileType"?: 'user' | 'page';
         "showDescription"?: boolean;
         "unfollowButtonText"?: string;
