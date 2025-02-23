@@ -6,7 +6,8 @@ import { Component, Prop, h, State, Watch, Host } from '@stencil/core';
     shadow: true,
 })
 export class UrTimeAgo {
-    private timer: number;
+
+    private timer: ReturnType<typeof setInterval>;
 
     @Prop()
     date: string;
