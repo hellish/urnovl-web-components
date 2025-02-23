@@ -55,6 +55,7 @@ export namespace Components {
     }
     interface UrButtonIcon {
         "active": boolean;
+        "backgroundColor": string;
         "borderRadius": string;
         "buttonHeight": string;
         "buttonWidth": string;
@@ -158,6 +159,7 @@ export namespace Components {
         "fullscreen": boolean;
         "open": boolean;
         "openDialog": () => Promise<void>;
+        "overlayHeader": boolean;
         "showHeader": boolean;
         "variant": 'mobile' | 'desktop';
     }
@@ -251,7 +253,6 @@ export namespace Components {
     }
     interface UrLongDescription {
         "description": string;
-        "reset": () => Promise<void>;
         "showLessText": string;
         "showMoreText": string;
     }
@@ -2071,6 +2072,7 @@ declare namespace LocalJSX {
     }
     interface UrButtonIcon {
         "active"?: boolean;
+        "backgroundColor"?: string;
         "borderRadius"?: string;
         "buttonHeight"?: string;
         "buttonWidth"?: string;
@@ -2180,6 +2182,7 @@ declare namespace LocalJSX {
         "fullscreen"?: boolean;
         "onUrDialogClose"?: (event: UrDialogCustomEvent<any>) => void;
         "open"?: boolean;
+        "overlayHeader"?: boolean;
         "showHeader"?: boolean;
         "variant"?: 'mobile' | 'desktop';
     }

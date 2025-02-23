@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h, State, Element, Method } from '@stencil/core';
+import { Component, Prop, Host, h, State } from '@stencil/core';
 
 @Component({
     tag: 'ur-long-description',
@@ -6,9 +6,6 @@ import { Component, Prop, Host, h, State, Element, Method } from '@stencil/core'
     shadow: true,
 })
 export class UrLongDescription {
-    @Element()
-    el: HTMLElement;
-
     @Prop()
     description: string;
 
@@ -21,49 +18,8 @@ export class UrLongDescription {
     @Prop()
     showMoreText: string = 'Show more...';
 
-    @State()
-    isLongDescription: boolean = false;
-
-    private descriptionTextRef: HTMLElement;
-
-    @Method()
-    async reset() {
-        this.isExpanded = false;
-        this.checkDescriptionLength();
-    }
-
-    componentDidLoad() {
-        // Check if the description is long enough to warrant expansion
-        this.checkDescriptionLength();
-    }
-
-    componentDidUpdate() {
-        this.checkDescriptionLength();
-    }
-
-    disconnectedCallback() {
-        // Reset the state when component is removed from DOM
-        this.isExpanded = false;
-    }
-
-    private checkDescriptionLength() {
-        console.log('checkDescriptionLength', this.descriptionTextRef);
-        if (this.descriptionTextRef) {
-            console.log('descriptionTextRef', this.descriptionTextRef);
-            const descriptionHeight = this.descriptionTextRef.scrollHeight;
-            const lineHeight = parseFloat(getComputedStyle(this.descriptionTextRef).lineHeight);
-            const maxHeight = lineHeight * 3; // Height of 3 lines
-
-            // Only consider it a long description if it exceeds 3 lines
-            this.isLongDescription = descriptionHeight > maxHeight;
-        }
-    }
-
     private toggleDescription = () => {
-        // Only toggle if it's actually a long description
-        if (this.isLongDescription) {
-            this.isExpanded = !this.isExpanded;
-        }
+        this.isExpanded = !this.isExpanded;
     };
 
     render() {
@@ -73,27 +29,12 @@ export class UrLongDescription {
                     class={{
                         'description-container': true,
                         'expanded': this.isExpanded,
-                        'collapsed': !this.isExpanded && this.isLongDescription,
+                        'collapsed': !this.isExpanded,
                     }}
                 >
-                    <p
-                        class="description-text"
-                        ref={el => {
-                            this.descriptionTextRef = el;
-                            // Check length after ref is set
-                            if (el) {
-                                this.checkDescriptionLength();
-                            }
-                        }}
-                    >
-                        {this.description}
-                    </p>
+                    <p class="description-text">{this.description}</p>
                 </div>
-                {this.isLongDescription && (
-                    <span class="toggle-label">
-                        {this.isExpanded ? this.showLessText : this.showMoreText}
-                    </span>
-                )}
+                <span class="toggle-label">{this.isExpanded ? this.showLessText : this.showMoreText}</span>
             </Host>
         );
     }

@@ -17,7 +17,7 @@
 }
 
 :host .description-container.expanded {
-    max-height: none; /* Arbitrary large value to allow full expansion */
+    max-height: none;
 }
 
 :host .description-text {
@@ -27,4 +27,6 @@
 :host .toggle-label {
     font-weight: 700;
     line-height: 12px;
+    display: block;
+    margin-top: 0.5em;
 }

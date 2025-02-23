@@ -14,19 +14,6 @@
 | `showMoreText` | `show-more-text` |             | `string` | `'Show more...'` |
 
 
-## Methods
-
-### `reset() => Promise<void>`
-
-
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

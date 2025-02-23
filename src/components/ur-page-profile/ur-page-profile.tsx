@@ -212,6 +212,15 @@ export class UrPageProfile {
                         </div>
                     )}
 
+                    {this.platform === 'desktop' && [
+                        this.renderStats(),
+                        this.renderLanguages(),
+                        this.renderGenres(),
+                        this.renderLiteratureTypes(),
+                        this.renderPageCreator(),
+                        this.renderPageCreationDate(),
+                    ]}
+
                     {/* Mobile Main Version - Only shows avatar, title, actions */}
                     {this.platform === 'mobile-main' && (
                         <div class="mobile-main-content">

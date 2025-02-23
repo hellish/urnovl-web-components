@@ -1,4 +1,4 @@
-import { Component, Host, Prop, h, Event, EventEmitter, Method, Watch} from '@stencil/core';
+import { Component, Host, Prop, h, Event, EventEmitter, Method } from '@stencil/core';
 
 import '../ur-time-ago/ur-time-ago';
 import '../ur-chip/ur-chip';
@@ -112,48 +112,6 @@ export class UrNovlSummary {
 
     @Prop()
     expanded: boolean = false;
-
-    @Watch('expanded')
-    expandedChanged(newValue: boolean) {
-        if (newValue) {
-            this.expanded = true;
-        }
-    }
-
-    @Watch('novlIsOwn')
-    novlIsOwnChanged(newValue: boolean) {
-        if (newValue) {
-            this.novlIsOwn = true;
-        }
-    }
-
-    @Watch('novlPaid')
-    novlPaidChanged(newValue: boolean) {
-        if (newValue) {
-            this.novlPaid = true;
-        }
-    }
-
-    @Watch('hasBranches')
-    hasBranchesChanged(newValue: boolean) {
-        if (newValue) {
-            this.hasBranches = true;
-        }
-    }
-
-    @Watch('writeEnabled')
-    writeEnabledChanged(newValue: boolean) {
-        if (newValue) {
-            this.writeEnabled = true;
-        }
-    }
-
-    @Watch('novlPrice')
-    novlPriceChanged(newValue: string) {
-        if (newValue) {
-            this.novlPrice = newValue;
-        }
-    }
 
     onReadStory() {
         this.readStoryEvent.emit();

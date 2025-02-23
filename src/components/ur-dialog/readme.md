@@ -15,6 +15,7 @@
 | `description`         | `description`            |             | `string`                | `null`      |
 | `fullscreen`          | `fullscreen`             |             | `boolean`               | `false`     |
 | `open`                | `open`                   |             | `boolean`               | `false`     |
+| `overlayHeader`       | `overlay-header`         |             | `boolean`               | `false`     |
 | `showHeader`          | `show-header`            |             | `boolean`               | `true`      |
 | `variant`             | `variant`                |             | `"desktop" \| "mobile"` | `'desktop'` |
 
@@ -53,6 +54,13 @@ Type: `Promise<void>`
 Type: `Promise<void>`
 
 
+
+
+## Shadow Parts
+
+| Part       | Description |
+| ---------- | ----------- |
+| `"header"` |             |
 
 
 ----------------------------------------------

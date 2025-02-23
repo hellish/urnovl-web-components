@@ -21,7 +21,7 @@
 | `likes`               | `likes`                 |             | `number`  | `undefined`                  |
 | `likesText`           | `likes-text`            |             | `string`  | `'Likes'`                    |
 | `literatureTypes`     | `literature-types`      |             | `string`  | `'Novel'`                    |
-| `longDescription`     | `long-description`      |             | `string`  | `undefined`                  |
+| `novlIsOwn`           | `novl-is-own`           |             | `boolean` | `false`                      |
 | `novlPaid`            | `novl-paid`             |             | `boolean` | `undefined`                  |
 | `novlPrice`           | `novl-price`            |             | `string`  | `undefined`                  |
 | `novlPurchasedAt`     | `novl-purchased-at`     |             | `string`  | `''`                         |
