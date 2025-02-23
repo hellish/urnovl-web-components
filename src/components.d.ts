@@ -371,7 +371,7 @@ export namespace Components {
     }
     interface UrPage {
         "borderRadius": string;
-        "followStatus": boolean;
+        "followed": boolean;
         "followers": number;
         "loading": boolean;
         "pageCover": string;
@@ -404,6 +404,7 @@ export namespace Components {
         "email": any;
         "facebook_url": any;
         "followText": string;
+        "followed": boolean;
         "followers": number | null;
         "followersText": string;
         "following": number | null;
@@ -424,6 +425,7 @@ export namespace Components {
         "pageCreationDate": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
+        "pageId": string;
         "pageType": string | null;
         "phone": any;
         "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
@@ -1299,7 +1301,6 @@ declare global {
         new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
-        "follow": any;
         "member": any;
         "donate": any;
         "sendMessage": any;
@@ -1313,6 +1314,7 @@ declare global {
         "websiteClick": any;
         "pageCreatorClick": any;
         "inviteMembers": any;
+        "pageFollowClicked": PageFollowEvent;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2119,7 +2121,7 @@ declare namespace LocalJSX {
     }
     interface UrPage {
         "borderRadius"?: string;
-        "followStatus"?: boolean;
+        "followed"?: boolean;
         "followers"?: number;
         "loading"?: boolean;
         "onPageClicked"?: (event: UrPageCustomEvent<string>) => void;
@@ -2154,6 +2156,7 @@ declare namespace LocalJSX {
         "email"?: any;
         "facebook_url"?: any;
         "followText"?: string;
+        "followed"?: boolean;
         "followers"?: number | null;
         "followersText"?: string;
         "following"?: number | null;
@@ -2173,13 +2176,13 @@ declare namespace LocalJSX {
         "onDonate"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onEmailClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
-        "onFollow"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;
         "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;
@@ -2188,6 +2191,7 @@ declare namespace LocalJSX {
         "pageCreationDate"?: any;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
+        "pageId"?: string;
         "pageType"?: string | null;
         "phone"?: any;
         "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
