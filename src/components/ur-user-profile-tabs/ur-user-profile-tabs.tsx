@@ -16,44 +16,45 @@ interface Tab {
     shadow: true,
 })
 export class UrUserProfileTabs {
-    @Prop()
-    activeTab: string = 'stories'; // Controlled by the parent
 
     @Prop()
-    storiesTabText: string = 'Stories';
+    activeTab = 'stories'; // Controlled by the parent
 
     @Prop()
-    libraryTabText: string = 'Library';
+    storiesTabText = 'Stories';
 
     @Prop()
-    transactionsTabText: string = 'Transactions';
+    libraryTabText = 'Library';
 
     @Prop()
-    statisticsTabText: string = 'Statistics';
+    transactionsTabText = 'Transactions';
 
     @Prop()
-    settingsTabText: string = 'Settings';
+    statisticsTabText = 'Statistics';
 
     @Prop()
-    aboutTabText: string = 'About';
+    settingsTabText = 'Settings';
 
     @Prop()
-    followingTabText: string = 'Following';
+    aboutTabText = 'About';
 
     @Prop()
-    followersTabText: string = 'Followers';
+    followingTabText = 'Following';
 
     @Prop()
-    followingPagesTabText: string = 'Following Pages';
+    followersTabText = 'Followers';
 
     @Prop()
-    isOwner: boolean = false;
+    followingPagesTabText = 'Following Pages';
 
     @Prop()
-    fullWidthTabs: boolean = true;
+    isOwner = false;
 
     @Prop()
-    isMobile: boolean = false; // Controlled by the parent
+    fullWidthTabs = true;
+
+    @Prop()
+    isMobile = false; // Controlled by the parent
 
     @Event()
     tabChange: EventEmitter<string>; // Emitted when a tab is clicked
