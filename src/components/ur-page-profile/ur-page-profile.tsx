@@ -337,7 +337,7 @@ export class UrPageProfile {
     private renderActions() {
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
-                {this.showFollow && !this.isPageOwner && (
+                {this.showFollow && (
                     <ur-button class="follow" onClick={() => this.handleFollowClicked()}>
                         {this.followText}
                     </ur-button>
