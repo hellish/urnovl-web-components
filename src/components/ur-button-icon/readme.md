@@ -7,19 +7,20 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type                                              | Default             |
-| -------------- | --------------- | ----------- | ------------------------------------------------- | ------------------- |
-| `active`       | `active`        |             | `boolean`                                         | `false`             |
-| `borderRadius` | `border-radius` |             | `string`                                          | `'8px'`             |
-| `buttonHeight` | `button-height` |             | `string`                                          | `'40px'`            |
-| `buttonWidth`  | `button-width`  |             | `string`                                          | `'40px'`            |
-| `disabled`     | `disabled`      |             | `boolean`                                         | `false`             |
-| `fontColor`    | `font-color`    |             | `string`                                          | `undefined`         |
-| `icon`         | `icon`          |             | `string`                                          | `'favorite_border'` |
-| `loading`      | `loading`       |             | `boolean`                                         | `false`             |
-| `selected`     | `selected`      |             | `boolean`                                         | `false`             |
-| `selectedIcon` | `selected-icon` |             | `string`                                          | `undefined`         |
-| `variant`      | `variant`       |             | `"filled" \| "outlined" \| "standard" \| "tonal"` | `'standard'`        |
+| Property          | Attribute          | Description | Type                                              | Default             |
+| ----------------- | ------------------ | ----------- | ------------------------------------------------- | ------------------- |
+| `active`          | `active`           |             | `boolean`                                         | `false`             |
+| `backgroundColor` | `background-color` |             | `string`                                          | `undefined`         |
+| `borderRadius`    | `border-radius`    |             | `string`                                          | `'8px'`             |
+| `buttonHeight`    | `button-height`    |             | `string`                                          | `'40px'`            |
+| `buttonWidth`     | `button-width`     |             | `string`                                          | `'40px'`            |
+| `disabled`        | `disabled`         |             | `boolean`                                         | `false`             |
+| `fontColor`       | `font-color`       |             | `string`                                          | `undefined`         |
+| `icon`            | `icon`             |             | `string`                                          | `'favorite_border'` |
+| `loading`         | `loading`          |             | `boolean`                                         | `false`             |
+| `selected`        | `selected`         |             | `boolean`                                         | `false`             |
+| `selectedIcon`    | `selected-icon`    |             | `string`                                          | `undefined`         |
+| `variant`         | `variant`          |             | `"filled" \| "outlined" \| "standard" \| "tonal"` | `'standard'`        |
 
 
 ## Dependencies

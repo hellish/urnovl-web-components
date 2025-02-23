@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Method } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, Event, EventEmitter } from '@stencil/core';
 
 import 'mdui/components/dialog';
 
@@ -32,14 +32,31 @@ export class UrDialog {
     showHeader = true;
 
     @Prop()
+    overlayHeader = false;
+    
+    @Prop()
     variant: 'mobile' | 'desktop' = 'desktop';
 
     @Prop()
     borderRadius: string | null = '12px';
 
+    @Event()
+    urDialogClose: EventEmitter<any>;
+
+    private handleClose = async (event: CustomEvent) => {
+        // Call closeDialog to ensure consistent cleanup
+        await this.closeDialog(event.detail);
+    }
+
     componentDidLoad() {
         this.el.style.setProperty('--ur-dialog-panel-border-radius', this.borderRadius);
         this.dialogElement = this.el.shadowRoot.querySelector('.inner-dialog');
+    }
+
+    disconnectedCallback() {
+        if (this.dialogElement) {
+            this.dialogElement.removeEventListener('mdui-dialog-close', this.handleClose);
+        }
     }
 
     @Method()
@@ -48,8 +65,17 @@ export class UrDialog {
     }
 
     @Method()
-    async closeDialog() {
-        this.dialogElement.open = false;
+    async closeDialog(result?: any) {
+        if (this.dialogElement) {
+            // First set open to false
+            this.dialogElement.open = false;
+            
+            // Wait for next frame to ensure the dialog is actually closing
+            await new Promise(resolve => requestAnimationFrame(resolve));
+            
+            // Emit the close event
+            this.urDialogClose.emit(result);
+        }
     }
 
     render() {
@@ -69,8 +95,16 @@ export class UrDialog {
                     style={{
                         '--ur-dialog-panel-border-radius': this.borderRadius,
                     }}
+                    onMduiDialogClose={this.handleClose}
                 >
-                    {this.showHeader && <slot name="header"></slot>}
+                    {this.showHeader && (
+                        <div part="header" class={{
+                            'dialog-header': true,
+                            'header-overlay': this.overlayHeader
+                        }}>
+                            <slot name="header"></slot>
+                        </div>
+                    )}
                     <slot></slot>
                     <slot name="main-content" />
                 </mdui-dialog>

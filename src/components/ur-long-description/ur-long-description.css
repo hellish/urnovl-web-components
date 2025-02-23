@@ -1,0 +1,32 @@
+:host {
+    display: block;
+    cursor: pointer;
+    line-height: 1.5em;
+    font-size: 12px;
+}
+
+:host .description-container {
+    overflow: hidden;
+}
+
+:host .description-container.collapsed {
+    max-height: 4.5em; /* Show max 3 lines (1.5em per line) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+:host .description-container.expanded {
+    max-height: none;
+}
+
+:host .description-text {
+    margin: 0;
+}
+
+:host .toggle-label {
+    font-weight: 700;
+    line-height: 12px;
+    display: block;
+    margin-top: 0.5em;
+}

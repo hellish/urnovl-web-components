@@ -1,6 +1,8 @@
 :host {
     --ur-dialog-panel-border-radius: 0;
+    --ur-color-background: var(--mdui-color-background);
     --ur-color-outline-variant: var(--mdui-color-outline-variant);
+    --ur-color-background-container-highest: var(--mdui-color-surface-container-highest);
 }
 
 :host mdui-dialog::part(panel) {
@@ -13,7 +15,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 8px 16px;
-
 }
 
 :host ::slotted([slot="header"]) h2 {
@@ -21,4 +22,23 @@
     font-size: 1rem;
     font-weight: 500;
     color: rgb(var(--ur-color-on-surface));
+}
+
+:host ::part(panel) {
+    background: rgb(var(--ur-color-background));
+}
+
+:host .dialog-header {
+    position: relative;
+    z-index: 1;
+}
+
+:host .dialog-header.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 2;
+    background: transparent;
 }

@@ -41,6 +41,9 @@ export class UrButtonIcon {
     @Prop()
     fontColor: string;
 
+    @Prop()
+    backgroundColor: string;
+
     private renderIcon() {
         // If there's content in the slot, it will override this
         if (this.icon.includes('<svg')) {
@@ -58,9 +61,9 @@ export class UrButtonIcon {
             'ur-button-icon--active': this.active
         };
         return (
-            <Host style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}>
+            <Host style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight, backgroundColor: this.backgroundColor }}>
                 <mdui-button-icon
-                    style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight }}
+                    style={{ borderRadius: this.borderRadius, color: this.fontColor, width: this.buttonWidth, height: this.buttonHeight, backgroundColor: this.backgroundColor }}
                     class={classes}
                     variant={this.variant}
                     loading={this.loading}

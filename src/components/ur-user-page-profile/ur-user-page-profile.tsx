@@ -1,21 +1,16 @@
-import { Component, Event, Host, Prop, h, EventEmitter } from '@stencil/core';
+import { Component, Event, Host, Prop, Watch, h } from '@stencil/core';
 import { Icons } from './icons';
-
-import { PageFollowEvent } from '../../models/page';
 
 import '../ur-avatar/ur-avatar';
 import '../ur-button/ur-button';
 import '../ur-time-ago/ur-time-ago';
 
 @Component({
-    tag: 'ur-page-profile',
-    styleUrl: 'ur-page-profile.css',
+    tag: 'ur-user-page-profile',
+    styleUrl: 'ur-user-page-profile.css',
     shadow: true,
 })
-export class UrPageProfile {
-    @Prop()
-    pageId: string;
-
+export class UrUserPageProfile {
     @Prop()
     platform: 'desktop' | 'mobile-main' | 'mobile-secondary' = 'desktop';
 
@@ -44,9 +39,6 @@ export class UrPageProfile {
     email = null;
 
     @Prop()
-    phone = null;
-
-    @Prop()
     website = null;
 
     @Prop()
@@ -56,7 +48,7 @@ export class UrPageProfile {
     views: number | null = null;
 
     @Prop()
-    pageCreatedText = 'Page created';
+    userProfileCreatedText = 'Joined';
 
     @Prop()
     following: number | null = null;
@@ -71,7 +63,22 @@ export class UrPageProfile {
     showFollow = false;
 
     @Prop()
+    isProfileFollowed = false;
+
+    @Prop()
+    unFollowText = 'Unfollow';
+
+    @Prop()
     websiteText = 'Visit website';
+
+    @Prop()
+    writerText = 'Reader & Writer';
+
+    @Prop()
+    readerText = 'Reader';
+
+    @Prop()
+    isLoggedIn = true;
 
     @Prop()
     showBecomeMember = false;
@@ -92,7 +99,7 @@ export class UrPageProfile {
     literatureTypes: string | null = null;
 
     @Prop()
-    isPageOwner = false;
+    isProfileOwner = false;
 
     @Prop()
     pageCreatorName = null;
@@ -101,10 +108,10 @@ export class UrPageProfile {
     pageCreatorImage = null;
 
     @Prop()
-    pageType: string | null = null;
+    isWriter: boolean = false;
 
     @Prop()
-    pageCreationDate = null;
+    userProfileCreatedDate = null;
 
     @Prop()
     createdByText = 'Created by';
@@ -128,41 +135,34 @@ export class UrPageProfile {
     followersText = 'Followers';
 
     @Prop()
-    membersText = 'Members';
+    followingText = 'Following';
+
+    @Prop()
+    logoutText = 'Logout';
 
     @Prop()
     followText = 'Follow';
 
     @Prop()
-    becomeMemberText = 'Become a Member';
-
-    @Prop()
-    inviteMembersText = 'Invite Members';
-
-    @Prop()
     donateText = 'Donate';
 
-    @Prop()
-    sendMessageText = 'Message';
-
-    @Prop()
-    followed = false;
-
-    // All events remain the same
     @Event()
-    member;
+    follow;
 
     @Event()
     donate;
 
     @Event()
-    sendMessage;
+    logout;
 
     @Event()
     followersClick;
 
     @Event()
-    membersClick;
+    followingClick;
+
+    @Event()
+    unfollow;
 
     @Event()
     facebookClick;
@@ -177,35 +177,23 @@ export class UrPageProfile {
     emailClick;
 
     @Event()
-    phoneClick;
-
-    @Event()
     websiteClick;
 
-    @Event()
-    pageCreatorClick;
-
-    @Event()
-    inviteMembers;
-
-    @Event({ bubbles: true, composed: true })
-    pageFollowClicked: EventEmitter<PageFollowEvent>;
-
-    componentWillLoad() {
-        this.updateFollowText();
+    private handleFollow() {
+        this.followers = Math.max(0, this.followers + 1); // Ensure followers >= 0
+        this.isProfileFollowed = true;
+        this.follow.emit();
     }
 
-    private updateFollowText() {
-        this.followText = this.followed ? 'Unfollow' : 'Follow';
+    private handleUnfollow() {
+        this.followers = Math.max(0, this.followers - 1); // Ensure followers >= 0
+        this.isProfileFollowed = false;
+        this.unfollow.emit();
     }
 
-    private handleFollowClicked() {
-        this.followed = !this.followed;
-        this.updateFollowText();
-        this.pageFollowClicked.emit({
-            pageId: this.pageId,
-            followed: this.followed
-        });
+    @Watch('isProfileFollowed')
+    handleIsProfileFollowedChange(newValue: boolean, oldValue: boolean) {
+        console.log('isProfileFollowed changed from', oldValue, 'to', newValue);
     }
 
     render() {
@@ -223,41 +211,37 @@ export class UrPageProfile {
                     {this.platform === 'desktop' && (
                         <div class="desktop-content">
                             <div class="avatar">
-                                <ur-avatar border="4px" radius="25px" size="96px" src={this.avatar} name={this.name}></ur-avatar>
+                                <ur-avatar border="4px" radius="50px" size="96px" src={this.avatar} name={this.name}></ur-avatar>
                             </div>
                             <div class="info">
                                 <div class="name">{this.name}</div>
-                                {this.renderPageType()}
+                                {this.renderProfileType()}
                                 {this.about && <div class="about">{this.about}</div>}
                                 {this.renderLocation()}
                                 {this.renderSocialLinks()}
                                 {this.renderWebsite()}
                             </div>
-                            {this.renderActions()}
+                            {this.isLoggedIn && this.renderActions()}
                         </div>
                     )}
-
                     {this.platform === 'desktop' && [
                         this.renderStats(),
-                        this.renderLanguages(),
-                        this.renderGenres(),
-                        this.renderLiteratureTypes(),
-                        this.renderPageCreator(),
-                        this.renderPageCreationDate(),
+                        this.renderUserCreationDate(),
+                        this.renderLogoutAction(),
                     ]}
 
                     {/* Mobile Main Version - Only shows avatar, title, actions */}
                     {this.platform === 'mobile-main' && (
                         <div class="mobile-main-content">
                             <div class="avatar">
-                                <ur-avatar border="4px" radius="25px" size="96px" src={this.avatar} name={this.name}></ur-avatar>
+                                <ur-avatar border="4px" radius="50px" size="96px" src={this.avatar} name={this.name}></ur-avatar>
                             </div>
                             <div class="info">
                                 <div class="name">{this.name}</div>
-                                {this.renderPageType()}
+                                {this.renderProfileType()}
                                 {this.about && <div class="about">{this.about}</div>}
                             </div>
-                            {this.renderActions()}
+                            {this.isLoggedIn && this.renderActions()}
                         </div>
                     )}
 
@@ -267,11 +251,8 @@ export class UrPageProfile {
                         this.renderSocialLinks(),
                         this.renderWebsite(),
                         this.renderStats(),
-                        this.renderLanguages(),
-                        this.renderGenres(),
-                        this.renderLiteratureTypes(),
-                        this.renderPageCreator(),
-                        this.renderPageCreationDate(),
+                        this.renderUserCreationDate(),
+                        this.renderLogoutAction(),
                     ]}
                 </div>
             </Host>
@@ -283,13 +264,12 @@ export class UrPageProfile {
         return <div class="location">{this.location}</div>;
     }
 
-    private renderPageType() {
-        if (!this.pageType) return null;
-        return <div class="page-type">{this.pageType}</div>;
+    private renderProfileType() {
+        return this.isWriter ? <div class="profile-type">{this.writerText}</div> : <div class="profile-type">{this.readerText}</div>;
     }
 
     private renderSocialLinks() {
-        if (!this.facebook_url && !this.twitter_url && !this.linkedin_url && !this.email && !this.phone) {
+        if (!this.facebook_url && !this.twitter_url && !this.linkedin_url && !this.email) {
             return null;
         }
 
@@ -315,11 +295,6 @@ export class UrPageProfile {
                         <span class="icon" innerHTML={Icons.email}></span>
                     </a>
                 )}
-                {this.phone && (
-                    <a onClick={() => this.phoneClick.emit()} title="phone">
-                        <span class="icon" innerHTML={Icons.phone}></span>
-                    </a>
-                )}
             </div>
         );
     }
@@ -335,31 +310,35 @@ export class UrPageProfile {
     }
 
     private renderActions() {
+        if (!this.isLoggedIn) return null;
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
-                {this.showFollow && !this.isPageOwner && (
-                    <ur-button class="follow" onClick={() => this.handleFollowClicked()}>
+                {!this.isProfileFollowed && !this.isProfileOwner && (
+                    <ur-button class="follow" variant="filled" onClick={() => this.handleFollow()}>
                         {this.followText}
                     </ur-button>
                 )}
-                {this.showBecomeMember && !this.isPageOwner && (
-                    <ur-button class="follow" variant="outlined" onClick={() => this.member.emit()}>
-                        {this.becomeMemberText}
+                {this.isProfileFollowed && !this.isProfileOwner && (
+                    <ur-button class="follow" variant="outlined" onClick={() => this.handleUnfollow()}>
+                        {this.unFollowText}
                     </ur-button>
                 )}
-                {this.showDonate && !this.isPageOwner && (
+                {this.showDonate && !this.isProfileOwner && (
                     <ur-button class="follow" variant="outlined" onClick={() => this.donate.emit()}>
                         {this.donateText}
                     </ur-button>
                 )}
-                {this.showSendMessage && !this.isPageOwner && (
-                    <ur-button class="follow" variant="outlined" onClick={() => this.sendMessage.emit()}>
-                        {this.sendMessageText}
-                    </ur-button>
-                )}
-                {this.isPageOwner && (
-                    <ur-button class="invite-members" variant="outlined" onClick={() => this.inviteMembers.emit()}>
-                        {this.inviteMembersText}
+            </div>
+        );
+    }
+
+    private renderLogoutAction() {
+        if (!this.isLoggedIn) return null;
+        return (
+            <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
+                {this.isProfileOwner && (
+                    <ur-button class="logout" variant="text" onClick={() => this.logout.emit()}>
+                        {this.logoutText}
                     </ur-button>
                 )}
             </div>
@@ -369,23 +348,23 @@ export class UrPageProfile {
     private renderStats() {
         return (
             <div class="stats">
-                {(
+                {
                     <div>
                         <div class="stat">
                             <div class="key">{this.storiesText}</div>
                             <div class="value">{this.stories}</div>
                         </div>
                     </div>
-                )}
-                {(
+                }
+                {
                     <div>
                         <div class="stat">
                             <div class="key">{this.viewsText}</div>
                             <div class="value">{this.views}</div>
                         </div>
                     </div>
-                )}
-                {(
+                }
+                {
                     <div>
                         <div class="stat">
                             <div class="key">{this.followersText}</div>
@@ -394,81 +373,26 @@ export class UrPageProfile {
                             </div>
                         </div>
                     </div>
-                )}
-                {(
+                }
+                {
                     <div>
                         <div class="stat">
-                            <div class="key">{this.membersText}</div>
-                            <div class="value clickable" onClick={() => this.membersClick.emit()}>
-                                {this.members}
+                            <div class="key">{this.followingText}</div>
+                            <div class="value clickable" onClick={() => this.followingClick.emit()}>
+                                {this.following}
                             </div>
                         </div>
                     </div>
-                )}
+                }
             </div>
         );
     }
 
-    private renderLanguages() {
-        if (!this.languages) return null;
+    private renderUserCreationDate() {
+        if (!this.userProfileCreatedDate) return null;
         return (
-            <div class="languages">
-                <div class="category">{this.languagesText}</div>
-                <div class="items">
-                    {this.languages.split(',').map(language => (
-                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={language}></ur-chip>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
-    private renderGenres() {
-        if (!this.genres) return null;
-        return (
-            <div class="genres">
-                <div class="category">{this.genresText}</div>
-                <div class="items">
-                    {this.genres.split(',').map(genre => (
-                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={genre}></ur-chip>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
-    private renderLiteratureTypes() {
-        if (!this.literatureTypes) return null;
-        return (
-            <div class="literature-types">
-                <div class="category">{this.literatureTypesText}</div>
-                <div class="items">
-                    {this.literatureTypes.split(',').map(litType => (
-                        <ur-chip fontColor="rgb(var(--ur-color-on-surface-lite))" backColor="rgb(var(--ur-color-surface-container-high))" size="24px" class="chip" clickable={false} label={litType}></ur-chip>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-
-    private renderPageCreator() {
-        if (!this.pageCreatorName && !this.pageCreatorImage) return null;
-        return (
-            <div class="created-by">
-                <div class="category">{this.createdByText}</div>
-                <div class="person" onClick={() => this.pageCreatorClick.emit()}>
-                    <ur-avatar name={this.pageCreatorName} src={this.pageCreatorImage}></ur-avatar>
-                    <div>{this.pageCreatorName}</div>
-                </div>
-            </div>
-        );
-    }
-
-    private renderPageCreationDate() {
-        if (!this.pageCreationDate) return null;
-        return (
-            <div class="page-creation-date">
-                {this.pageCreatedText} <ur-time-ago date={this.pageCreationDate}></ur-time-ago>
+            <div class="user-profile-created-date">
+                {this.userProfileCreatedText} <ur-time-ago date={this.userProfileCreatedDate}></ur-time-ago>
             </div>
         );
     }

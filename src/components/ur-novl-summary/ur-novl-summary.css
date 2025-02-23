@@ -1,0 +1,132 @@
+:host {
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-on-complete-surface: #1A5100;
+    --ur-color-complete-surface: red;
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-primary-container: var(--mdui-color-primary-container);
+    --ur-color-on-surface-lite: var(--mdui-color-on-surface-lite);
+    --ur-color-surface-container-high: var(--mdui-color-surface-container-high);
+
+    display: block;
+    color: rgb(var(--ur-color-on-background-rgb));
+    background: rgb(var(--ur-color-complete-surface));
+}
+
+:host .cover-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+:host .cover {
+    height: calc( 100vw / 3);
+    width: 100%;
+    max-height: 210px;
+    position: relative;
+}
+
+:host .status {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 24px;
+    transform: translate(0, -50%);
+}
+
+:host .novl-content {
+    display: flex;
+    position: relative;
+    padding: 24px;
+    gap: 16px;
+    flex-direction: column;
+}
+
+:host .title-text {
+    margin: 0;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.262px;
+}
+
+:host .story-stats {
+    margin-top: 8px;
+    display: flex;
+}
+
+:host .story-stat {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+:host .story-stat-label {
+    font-weight: 700;
+    line-height: 12px;
+}
+
+:host .story-stat-value {
+    font-weight: 400;
+    line-height: 12px;
+    margin-right: 4px;
+}
+
+:host .story-stat-separator {
+    margin: 0 4px;
+}
+
+:host .novl-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+:host .actions-holder {
+    display: flex;
+    gap: 8px;
+}
+
+:host .summary-action {
+    flex: 1;
+}
+
+:host .owner-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@keyframes placeholderAnimate {
+    0% { background-position: -650px 0; }
+    100% { background-position: 650px 0; }
+}
+
+:host .title-text.loading {
+    height: 24px;
+    margin: 8px 0;
+    border-radius: 4px;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
+    background-size: 1000px;
+}
+
+
+
+
+
+
+
+
+
+
