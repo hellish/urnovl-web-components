@@ -7,6 +7,7 @@ import '../ur-avatar/ur-avatar';
     shadow: true,
 })
 export class UrProfileCard {
+
     @Element()
     el: HTMLElement;
 
@@ -14,19 +15,19 @@ export class UrProfileCard {
     avatarSrc: string; // Source for the avatar image
 
     @Prop()
-    avatarAlt: string = 'Avatar'; // Alt text for the avatar image
+    avatarAlt = 'Avatar'; // Alt text for the avatar image
 
     @Prop()
     name: string; // Name or title of the user/page
 
     @Prop()
-    avatarSize: string = '24px'; // Size of the avatar
+    avatarSize = '24px'; // Size of the avatar
 
     @Prop()
     description: string; // Description of the user/page
 
     @Prop()
-    followButtonText: string = 'Follow'; // Text for the follow button
+    followButtonText = 'Follow'; // Text for the follow button
 
     @Prop()
     isOwner: boolean;
@@ -35,44 +36,41 @@ export class UrProfileCard {
     profileType: 'user' | 'page' = 'user';
 
     @Prop()
-    nameFontSize: string = '12px';
+    nameFontSize = '12px';
 
     @Prop()
-    unfollowButtonText: string = 'Following'; // Text for the unfollow button
+    unfollowButtonText = 'Following'; // Text for the unfollow button
 
     @Prop()
-    buttonHeight: string = '32px';
+    buttonHeight = '32px';
 
     @Prop()
-    showDescription: boolean = false;
+    showDescription = false;
 
     @State()
-    isFollowing: boolean = false; // State to manage follow/unfollow
+    isFollowing = false; // State to manage follow/unfollow
 
     @Event({ bubbles: true })
-    profileLinkEvent: EventEmitter;
+    profileLinkEvent: EventEmitter<void>;
 
     @Event({ bubbles: true })
-    followEvent: EventEmitter;
+    followEvent: EventEmitter<void>;
 
     @Event({ bubbles: true })
-    unfollowEvent: EventEmitter;
+    unfollowEvent: EventEmitter<void>;
 
     private handleProfileLink = () => {
         this.profileLinkEvent.emit();
-        console.log('profileLinkEvent');
     };
 
     private onFollow = () => {
         this.isFollowing = true;
         this.followEvent.emit();
-        console.log('followEvent');
     };
 
     private onUnfollow = () => {
         this.isFollowing = false;
         this.unfollowEvent.emit();
-        console.log('unfollowEvent');
     };
 
     render() {
