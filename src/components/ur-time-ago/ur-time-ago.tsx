@@ -8,25 +8,27 @@ import { Component, Prop, h, State, Watch, Host } from '@stencil/core';
 export class UrTimeAgo {
     private timer: number;
 
-    @Prop() date: string;
+    @Prop()
+    date: string;
 
-    @State() timeAgo: string;
+    @State()
+    timeAgo: string;
+
+    @Watch('date')
+    watchDate() {
+        this.updateTime();
+    }
 
     componentWillLoad() {
         this.updateTime();
         // Update every minute
-        this.timer = window.setInterval(() => this.updateTime(), 60000);
+        this.timer = setInterval(() => this.updateTime(), 60000);
     }
 
     disconnectedCallback() {
         if (this.timer) {
             clearInterval(this.timer);
         }
-    }
-
-    @Watch('date')
-    watchDate() {
-        this.updateTime();
     }
 
     private updateTime() {
