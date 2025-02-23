@@ -1,6 +1,7 @@
-import { Component, Element, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, Method, Prop, State, forceUpdate, h } from '@stencil/core';
 import { PageCustomContent, is_custom_data, Page } from '../../models/page';
-import { PageBreakpoints, PageGrid } from '../../data/page-carousel';
+import { PageGrid } from '../../data/page-carousel';
+import { Breakpoints, CustomContent } from '../../components';
 
 @Component({
     tag: 'ur-page-carousel',
@@ -12,7 +13,6 @@ export class UrPageCarousel {
     private swiperContainer!: any;
     private leftArrow?: HTMLElement;
     private rightArrow?: HTMLElement;
-    private observer: IntersectionObserver;
 
     @Element()
     el: HTMLElement;
@@ -21,7 +21,17 @@ export class UrPageCarousel {
     pages: Array<Page | PageCustomContent> = [];
 
     @Prop()
-    breakpoints?: PageBreakpoints = {
+    @State()
+    loading = false;
+
+    @State()
+    disabledPrev = true;
+
+    @State()
+    disabledNext = false;
+
+    @Prop()
+    breakpoints?: Breakpoints = {
         // add default
     };
 
@@ -40,8 +50,11 @@ export class UrPageCarousel {
     @Prop()
     navigation? = false;
 
-    @Event()
-    intersectionUpdated: EventEmitter<Array<IntersectionObserverEntry>>;
+    @Prop()
+    destroyListeners = true;
+
+    @Prop()
+    debug = false;
 
     @Event()
     prevClicked: EventEmitter<void>;
@@ -49,9 +62,42 @@ export class UrPageCarousel {
     @Event()
     nextClicked: EventEmitter<void>;
 
-    private onIntersection = async (entries: Array<IntersectionObserverEntry>) => {
-        this.intersectionUpdated.emit(entries);
-    };
+    /*
+    @Event()
+    slideChange: EventEmitter<[boolean, boolean, number]>;
+
+    @Event()
+    snapIndexChange: EventEmitter<Swiper>;*/
+
+    @Event()
+    progressUpdated: EventEmitter<[ number, number ]>;
+
+    @Method()
+    async addPages(pages: Array<Page | CustomContent>) {
+        this.pages = this.pages.concat(...pages);
+        forceUpdate(this)
+    }
+
+    @Method()
+    async updateNovlsByIndex(updates: Map<number, Page | CustomContent>) {
+        this.pages = this.pages.map((oldNovl, oldIdx) => {
+            if (updates.has(oldIdx)) {
+                const newPage = updates.get(oldIdx);
+                return newPage;
+            }
+
+            return oldNovl;
+        });
+
+        forceUpdate(this);
+    }
+
+    @Method()
+    async reset() {
+        const visibleElements = this.swiperContainer.getElementsByClassName('swiper-slide-visible').length;
+        const progress = 0;
+        this.progressUpdated.emit([ progress, visibleElements ]);
+    }
 
     private onSlideChange = () => {
         this.leftArrow?.setAttribute('disabled', this.swiperContainer?.swiper?.isBeginning);
@@ -59,11 +105,19 @@ export class UrPageCarousel {
     };
 
     private onLeftClick = () => {
+        if (this.disabledPrev) {
+            return;
+        }
+
         this.swiperContainer?.swiper?.slidePrev();
         this.prevClicked.emit();
     };
 
     private onRightClick = () => {
+        if (this.disabledNext) {
+            return;
+        }
+
         this.swiperContainer?.swiper?.slideNext();
         this.nextClicked.emit();
     };
@@ -74,25 +128,68 @@ export class UrPageCarousel {
         if (this.navigation) {
             this.leftArrow = this.el.shadowRoot.querySelector('ur-button-arrow-left');
             this.rightArrow = this.el.shadowRoot.querySelector('ur-button-arrow-right');
-            this.leftArrow.setAttribute('disabled', 'true');
-            this.rightArrow.setAttribute('disabled', `${this.pages.length === 0}`);
             this.leftArrow.addEventListener('click', this.onLeftClick);
-            this.rightArrow .addEventListener('click', this.onRightClick);
+            this.rightArrow.addEventListener('click', this.onRightClick);
             this.swiperContainer?.swiper.on('slideChange', this.onSlideChange);
         }
 
-        const pages = this.el.shadowRoot.querySelectorAll('ur-page');
-        this.observer = new IntersectionObserver(this.onIntersection);
-        pages.forEach(page => {
-            this.observer.observe(page);
-        })
+        this.swiperContainer?.swiper.on('reachBeginning', () => {
+            this.disabledPrev = true;
+        });
+
+        this.swiperContainer?.swiper.on('reachEnd', () => {
+            this.disabledNext = true;
+        });
+
+        this.swiperContainer?.swiper.on('progress', (event, value) => {
+            const progress = parseInt(Math.round(value * 100).toFixed(0), 10)
+            const visibleElements = event.slidesEl.getElementsByClassName('swiper-slide-visible').length;
+            this.progressUpdated.emit([ progress, visibleElements ]);
+        });
+
+        /*
+        this.swiperContainer?.swiper.on('fromEdge', (ss) => {
+            // console.log('fromEdge', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesGridLengthChange', (ss) => {
+            // console.log('slidesGridLengthChange', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesLengthChange', (ss) => {
+            // console.log('slidesLengthChange', ss);
+        });
+
+        this.swiperContainer?.swiper.on('slidesUpdated', (ss) => {
+            // console.log('slidesUpdated', ss);
+        });
+
+        this.swiperContainer?.swiper.on('snapIndexChange', (swiper) => {
+            // this.snapIndexChange.emit(swiper);
+        });
+        */
     }
 
     disconnectedCallback() {
-        this.leftArrow?.removeEventListener('click', this.onLeftClick);
-        this.rightArrow?.removeEventListener('click', this.onRightClick);
-        this.swiperContainer?.swiper.destroy(true, true);
-        this.observer.disconnect();
+        if (this.destroyListeners) {
+            this.leftArrow?.removeEventListener('click', this.onLeftClick);
+            this.rightArrow?.removeEventListener('click', this.onRightClick);
+            this.swiperContainer?.swiper.destroy(true, true);
+        }
+    }
+
+    renderPage(page: Page | CustomContent, index: number) {
+        if (is_custom_data(page)) {
+            return (<swiper-slide>
+                {this.debug && <span class="index">{index + 1}</span>}
+                <div class="custom" innerHTML={page.content(index)}></div>
+            </swiper-slide>)
+        }
+
+        return (<swiper-slide>
+            {this.debug && <span class="index">{index + 1}</span>}
+            <ur-page {...page}></ur-page>
+        </swiper-slide>)
     }
 
     render() {
@@ -100,28 +197,23 @@ export class UrPageCarousel {
             <Host>
                 <div class="carousel">
                     {this.navigation && (
-                        <ur-button-arrow-left disabled />
+                        <ur-button-arrow-left disabled={this.disabledPrev} />
                     )}
                     {this.navigation && (
-                        <ur-button-arrow-right disabled />
+                        <ur-button-arrow-right disabled={this.loading || this.disabledNext} />
                     )}
                     <swiper-container
+                        init
+                        observer
+                        observe-slide-children
+                        slides-per-group-auto
+                        watch-slides-progress
                         breakpoint-base="container"
                         grid={this.grid}
                         breakpoints={this.breakpoints}
                         slides-per-view={this.slidesPerView}
                         space-between={this.spaceBetween}>
-                        {this.pages.map((page, index) => {
-                            if (is_custom_data(page)) {
-                                return (<swiper-slide>
-                                    <div class="custom" innerHTML={page.content(index)}></div>
-                                </swiper-slide>)
-                            } else {
-                                return (<swiper-slide>
-                                    <ur-page {...page}></ur-page>
-                                </swiper-slide>)
-                            }
-                        })}
+                        {this.pages.map((page, index) => this.renderPage(page, index))}
                     </swiper-container>
                 </div>
             </Host>

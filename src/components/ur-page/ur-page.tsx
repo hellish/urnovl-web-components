@@ -11,14 +11,14 @@ export class UrPage {
     @Element()
     el: HTMLElement;
 
-    @Prop({ reflect: true })
+    @Prop()
     pageId: string;
 
     @Prop()
-    loading= false;
+    loading = false;
 
     @Prop()
-    followStatus: boolean = false;
+    followed = false;
 
     @Prop()
     pageTitle: string = 'Page title'
@@ -53,10 +53,10 @@ export class UrPage {
 
     handleFollowClicked(event: Event) {
         event.stopPropagation(); // Prevent the click from bubbling to the page click handler
-        this.followStatus = !this.followStatus;
+        this.followed = !this.followed;
         this.pageFollowClicked.emit({
             pageId: this.pageId,
-            followStatus: this.followStatus
+            followed: this.followed
         });
     }
 
@@ -106,7 +106,7 @@ export class UrPage {
                                        onClick={(event) => {
                                            this.handleFollowClicked(event);
                                        }}>
-                                {this.followStatus ? 'Unfollow' : 'Follow'}
+                                {this.followed ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>
                     </section>
