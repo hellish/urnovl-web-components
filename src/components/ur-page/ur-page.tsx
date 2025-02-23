@@ -15,7 +15,7 @@ export class UrPage {
     pageId: string;
 
     @Prop()
-    loading= false;
+    loading = false;
 
     @Prop()
     followed = false;
