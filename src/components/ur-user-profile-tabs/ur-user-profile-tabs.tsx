@@ -44,6 +44,9 @@ export class UrUserProfileTabs {
     followersTabText: string = 'Followers';
 
     @Prop()
+    followingPagesTabText: string = 'Following Pages';
+
+    @Prop()
     isOwner: boolean = false;
 
     @Prop()
@@ -115,10 +118,15 @@ export class UrUserProfileTabs {
             visibleFor: 'all',
             mobileOnly: true, // This tab is only visible on mobile devices
         },
+        {
+            value: 'followingPages',
+            text: () => this.followingPagesTabText,
+            visibleFor: 'owner',
+        },
     ];
 
     private getVisibleTabs(): Tab[] {
-        return this.tabs.filter(tab => 
+        return this.tabs.filter(tab =>
             (tab.visibleFor === 'all' || (tab.visibleFor === 'owner' && this.isOwner)) &&
             (!tab.mobileOnly || this.isMobile) // Include the tab if it's not mobile-only or if the device is mobile
         );

@@ -864,6 +864,7 @@ export namespace Components {
         "aboutTabText": string;
         "activeTab": string;
         "followersTabText": string;
+        "followingPagesTabText": string;
         "followingTabText": string;
         "fullWidthTabs": boolean;
         "isMobile": boolean;
@@ -3021,6 +3022,7 @@ declare namespace LocalJSX {
         "aboutTabText"?: string;
         "activeTab"?: string;
         "followersTabText"?: string;
+        "followingPagesTabText"?: string;
         "followingTabText"?: string;
         "fullWidthTabs"?: boolean;
         "isMobile"?: boolean;
