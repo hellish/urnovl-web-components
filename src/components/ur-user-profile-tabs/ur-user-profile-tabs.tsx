@@ -16,41 +16,45 @@ interface Tab {
     shadow: true,
 })
 export class UrUserProfileTabs {
-    @Prop()
-    activeTab: string = 'stories'; // Controlled by the parent
 
     @Prop()
-    storiesTabText: string = 'Stories';
+    activeTab = 'stories'; // Controlled by the parent
 
     @Prop()
-    libraryTabText: string = 'Library';
+    storiesTabText = 'Stories';
 
     @Prop()
-    transactionsTabText: string = 'Transactions';
+    libraryTabText = 'Library';
 
     @Prop()
-    statisticsTabText: string = 'Statistics';
+    transactionsTabText = 'Transactions';
 
     @Prop()
-    settingsTabText: string = 'Settings';
+    statisticsTabText = 'Statistics';
 
     @Prop()
-    aboutTabText: string = 'About';
+    settingsTabText = 'Settings';
 
     @Prop()
-    followingTabText: string = 'Following';
+    aboutTabText = 'About';
 
     @Prop()
-    followersTabText: string = 'Followers';
+    followingTabText = 'Following';
 
     @Prop()
-    isOwner: boolean = false;
+    followersTabText = 'Followers';
 
     @Prop()
-    fullWidthTabs: boolean = true;
+    followingPagesTabText = 'Following Pages';
 
     @Prop()
-    isMobile: boolean = false; // Controlled by the parent
+    isOwner = false;
+
+    @Prop()
+    fullWidthTabs = true;
+
+    @Prop()
+    isMobile = false; // Controlled by the parent
 
     @Event()
     tabChange: EventEmitter<string>; // Emitted when a tab is clicked
@@ -115,10 +119,15 @@ export class UrUserProfileTabs {
             visibleFor: 'all',
             mobileOnly: true, // This tab is only visible on mobile devices
         },
+        {
+            value: 'followingPages',
+            text: () => this.followingPagesTabText,
+            visibleFor: 'owner',
+        },
     ];
 
     private getVisibleTabs(): Tab[] {
-        return this.tabs.filter(tab => 
+        return this.tabs.filter(tab =>
             (tab.visibleFor === 'all' || (tab.visibleFor === 'owner' && this.isOwner)) &&
             (!tab.mobileOnly || this.isMobile) // Include the tab if it's not mobile-only or if the device is mobile
         );
