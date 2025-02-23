@@ -10,7 +10,7 @@
 | Property            | Attribute             | Description | Type      | Default               |
 | ------------------- | --------------------- | ----------- | --------- | --------------------- |
 | `borderRadius`      | `border-radius`       |             | `string`  | `'8px'`               |
-| `followStatus`      | `follow-status`       |             | `boolean` | `false`               |
+| `followed`          | `followed`            |             | `boolean` | `false`               |
 | `followers`         | `followers`           |             | `number`  | `0`                   |
 | `loading`           | `loading`             |             | `boolean` | `false`               |
 | `pageCover`         | `page-cover`          |             | `string`  | `undefined`           |
@@ -23,10 +23,10 @@
 
 ## Events
 
-| Event               | Description | Type                           |
-| ------------------- | ----------- | ------------------------------ |
-| `pageClicked`       |             | `CustomEvent<string>`          |
-| `pageFollowClicked` |             | `CustomEvent<PageFollowEvent>` |
+| Event               | Description | Type                                                  |
+| ------------------- | ----------- | ----------------------------------------------------- |
+| `pageClicked`       |             | `CustomEvent<string>`                                 |
+| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>` |
 
 
 ## Dependencies

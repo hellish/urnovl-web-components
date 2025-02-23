@@ -6,24 +6,17 @@ import '../components/ur-button-arrow-right/ur-button-arrow-right';
 import { PAGES } from '../data/page';
 
 const PageCarousel = ({
-                          pages,
-                          breakpoints,
-                          grid,
-                          slidesPerView,
-                          spaceBetween,
-                          navigation = false,
-                          slideWidth = '100%',
-                          containerWidth = '100%',
-                          containerPadding = '20px',
-                          containerBackgroundColor = '#efefef',
-                      }) => html`
-    <script>
-        for (const item of document.getElementsByClassName('page-carousel')) {
-            item.addEventListener('pageClicked', (event) => {
-                alert('page clicked with id ' + event.detail);
-            })
-        }
-    </script>
+    pages,
+    breakpoints,
+    grid,
+    slidesPerView,
+    spaceBetween,
+    navigation = false,
+    slideWidth = '100%',
+    containerWidth = '100%',
+    containerPadding = '20px',
+    containerBackgroundColor = '#efefef',
+}) => html`
     <style>
         ur-page-carousel {
             --swiper-slide-width: ${slideWidth};
@@ -38,6 +31,7 @@ const PageCarousel = ({
             .navigation="${navigation}"
             slides-per-view="${slidesPerView}"
             space-between="${spaceBetween}"></ur-page-carousel>
+        <button id="reset-carousel" onclick="reset()">reset</button>
     </div>
 `;
 

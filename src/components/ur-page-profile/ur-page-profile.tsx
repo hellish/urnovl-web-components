@@ -1,8 +1,9 @@
-import { Component, Event, Host, Prop, h } from '@stencil/core';
+import { Component, Event, Host, Prop, h, EventEmitter } from '@stencil/core';
 import { Icons } from './icons';
 
 import '../ur-avatar/ur-avatar';
 import '../ur-button/ur-button';
+import { PageFollowEvent } from '../../models/page';
 
 @Component({
     tag: 'ur-page-profile',
@@ -10,6 +11,9 @@ import '../ur-button/ur-button';
     shadow: true,
 })
 export class UrPageProfile {
+    @Prop()
+    pageId: string;
+
     @Prop()
     platform: 'desktop' | 'mobile-main' | 'mobile-secondary' = 'desktop';
 
@@ -139,10 +143,10 @@ export class UrPageProfile {
     @Prop()
     sendMessageText = 'Message';
 
-    // All events remain the same
-    @Event()
-    follow;
+    @Prop()
+    followed = false;
 
+    // All events remain the same
     @Event()
     member;
 
@@ -178,9 +182,29 @@ export class UrPageProfile {
 
     @Event()
     pageCreatorClick;
-    
+
     @Event()
     inviteMembers;
+
+    @Event({ bubbles: true, composed: true })
+    pageFollowClicked: EventEmitter<PageFollowEvent>;
+
+    componentWillLoad() {
+        this.updateFollowText();
+    }
+
+    private updateFollowText() {
+        this.followText = this.followed ? 'Unfollow' : 'Follow';
+    }
+
+    private handleFollowClicked() {
+        this.followed = !this.followed;
+        this.updateFollowText();
+        this.pageFollowClicked.emit({
+            pageId: this.pageId,
+            followed: this.followed
+        });
+    }
 
     render() {
         const classes = {
@@ -295,7 +319,7 @@ export class UrPageProfile {
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
                 {this.showFollow && !this.isPageOwner && (
-                    <ur-button class="follow" onClick={() => this.follow.emit()}>
+                    <ur-button class="follow" onClick={() => this.handleFollowClicked()}>
                         {this.followText}
                     </ur-button>
                 )}

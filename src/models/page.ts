@@ -2,9 +2,9 @@ export type PageCustomContent = {
     content: (index: number) => string;
 }
 
-export interface PageFollowEvent {
+export type PageFollowEvent = {
     pageId: string;
-    followStatus: boolean;
+    followed: boolean;
 }
 
 export type LoadingPage = {
