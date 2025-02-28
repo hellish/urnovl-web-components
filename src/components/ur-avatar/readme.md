@@ -7,13 +7,14 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `border` | `border`  |             | `string` | `'0'`       |
-| `name`   | `name`    |             | `string` | `undefined` |
-| `radius` | `radius`  |             | `string` | `'50%'`     |
-| `size`   | `size`    |             | `string` | `'32px'`    |
-| `src`    | `src`     |             | `string` | `undefined` |
+| Property  | Attribute | Description | Type               | Default     |
+| --------- | --------- | ----------- | ------------------ | ----------- |
+| `border`  | `border`  |             | `string`           | `'0'`       |
+| `name`    | `name`    |             | `string`           | `undefined` |
+| `radius`  | `radius`  |             | `string`           | `'50%'`     |
+| `size`    | `size`    |             | `string`           | `'32px'`    |
+| `src`     | `src`     |             | `string`           | `undefined` |
+| `variant` | `variant` |             | `"page" \| "user"` | `'user'`    |
 
 
 ## Dependencies

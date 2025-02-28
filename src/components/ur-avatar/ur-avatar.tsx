@@ -20,10 +20,18 @@ export class UrAvatar {
     border = '0';
 
     @Prop()
-    radius = '50%'
+    radius = '50%';
+
+    @Prop()
+    variant: 'user' | 'page' = 'user';
 
     // Default avatar image path
-    private defaultAvatar = '/assets/img/user/account.png';
+    private defaultUserAvatar = '/assets/img/user/account.png';
+    private defaultPageAvatar = '/assets/img/pages/page.png';
+
+    private get defaultAvatar() {
+        return this.variant === 'page' ? this.defaultPageAvatar : this.defaultUserAvatar;
+    }
 
     componentDidLoad() {
         const m = new Image();
@@ -48,7 +56,7 @@ export class UrAvatar {
                     class="avatar"
                     src={avatarSrc}
                     style={{ borderRadius: this.radius, height: this.size, width: this.size, borderWidth: this.border }}
-                    alt={this.name || 'User Avatar'}
+                    alt={this.name || (this.variant === 'page' ? 'Business Avatar' : 'User Avatar')}
                 />
             </Host>
         );

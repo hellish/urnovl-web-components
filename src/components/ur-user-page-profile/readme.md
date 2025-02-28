@@ -37,6 +37,8 @@
 | `name`                   | `name`                      |             | `any`                                              | `undefined`          |
 | `pageCreatorImage`       | `page-creator-image`        |             | `any`                                              | `null`               |
 | `pageCreatorName`        | `page-creator-name`         |             | `any`                                              | `null`               |
+| `pagesFollowing`         | `pages-following`           |             | `number`                                           | `null`               |
+| `pagesFollowingText`     | `pages-following-text`      |             | `string`                                           | `'Pages Following'`  |
 | `platform`               | `platform`                  |             | `"desktop" \| "mobile-main" \| "mobile-secondary"` | `'desktop'`          |
 | `readerText`             | `reader-text`               |             | `string`                                           | `'Reader'`           |
 | `showBecomeMember`       | `show-become-member`        |             | `boolean`                                          | `false`              |
@@ -58,19 +60,20 @@
 
 ## Events
 
-| Event            | Description | Type               |
-| ---------------- | ----------- | ------------------ |
-| `donate`         |             | `CustomEvent<any>` |
-| `emailClick`     |             | `CustomEvent<any>` |
-| `facebookClick`  |             | `CustomEvent<any>` |
-| `follow`         |             | `CustomEvent<any>` |
-| `followersClick` |             | `CustomEvent<any>` |
-| `followingClick` |             | `CustomEvent<any>` |
-| `linkedinClick`  |             | `CustomEvent<any>` |
-| `logout`         |             | `CustomEvent<any>` |
-| `twitterClick`   |             | `CustomEvent<any>` |
-| `unfollow`       |             | `CustomEvent<any>` |
-| `websiteClick`   |             | `CustomEvent<any>` |
+| Event                 | Description | Type               |
+| --------------------- | ----------- | ------------------ |
+| `donate`              |             | `CustomEvent<any>` |
+| `emailClick`          |             | `CustomEvent<any>` |
+| `facebookClick`       |             | `CustomEvent<any>` |
+| `follow`              |             | `CustomEvent<any>` |
+| `followersClick`      |             | `CustomEvent<any>` |
+| `followingClick`      |             | `CustomEvent<any>` |
+| `linkedinClick`       |             | `CustomEvent<any>` |
+| `logout`              |             | `CustomEvent<any>` |
+| `pagesFollowingClick` |             | `CustomEvent<any>` |
+| `twitterClick`        |             | `CustomEvent<any>` |
+| `unfollow`            |             | `CustomEvent<any>` |
+| `websiteClick`        |             | `CustomEvent<any>` |
 
 
 ## Dependencies

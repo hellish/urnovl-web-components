@@ -138,6 +138,12 @@ export class UrUserPageProfile {
     followingText = 'Following';
 
     @Prop()
+    pagesFollowingText = 'Pages Following';
+
+    @Prop()
+    pagesFollowing: number | null = null;
+
+    @Prop()
     logoutText = 'Logout';
 
     @Prop()
@@ -178,6 +184,9 @@ export class UrUserPageProfile {
 
     @Event()
     websiteClick;
+
+    @Event()
+    pagesFollowingClick;
 
     private handleFollow() {
         this.followers = Math.max(0, this.followers + 1); // Ensure followers >= 0
@@ -384,6 +393,16 @@ export class UrUserPageProfile {
                         </div>
                     </div>
                 }
+                { this.isProfileOwner && (
+                    <div>
+                        <div class="stat">
+                            <div class="key">{this.pagesFollowingText}</div>
+                            <div class="value clickable" onClick={() => this.pagesFollowingClick.emit()}>
+                                {this.pagesFollowing}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         );
     }
