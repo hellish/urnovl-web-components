@@ -39,15 +39,6 @@ export class UrUserProfileTabs {
     aboutTabText = 'About';
 
     @Prop()
-    followingTabText = 'Following';
-
-    @Prop()
-    followersTabText = 'Followers';
-
-    @Prop()
-    followingPagesTabText = 'Following Pages';
-
-    @Prop()
     isOwner = false;
 
     @Prop()
@@ -84,16 +75,6 @@ export class UrUserProfileTabs {
             visibleFor: 'all',
         },
         {
-            value: 'following',
-            text: () => this.followingTabText,
-            visibleFor: 'all',
-        },
-        {
-            value: 'followers',
-            text: () => this.followersTabText,
-            visibleFor: 'all',
-        },
-        {
             value: 'library',
             text: () => this.libraryTabText,
             visibleFor: 'owner',
@@ -118,11 +99,6 @@ export class UrUserProfileTabs {
             text: () => this.aboutTabText,
             visibleFor: 'all',
             mobileOnly: true, // This tab is only visible on mobile devices
-        },
-        {
-            value: 'followingPages',
-            text: () => this.followingPagesTabText,
-            visibleFor: 'owner',
         },
     ];
 

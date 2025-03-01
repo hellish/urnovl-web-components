@@ -14,6 +14,8 @@ const Template = args => html`
         .isOwner=${args.isOwner}
         .profileType=${args.profileType}
         .showDescription=${args.showDescription}
+        .showMemberActions=${args.showMemberActions}
+        .showPageActions=${args.showPageActions}
     ></ur-profile-card>
 `;
 
@@ -61,6 +63,14 @@ export default {
         showDescription: {
             control: 'boolean',
             description: 'Whether to show the description',
+            },
+        showMemberActions: {
+            control: 'boolean',
+            description: 'Whether to show the member actions',
+        },
+        showPageActions: {
+            control: 'boolean',
+            description: 'Whether to show the page actions',
         },
     },
 };
@@ -151,5 +161,23 @@ export const CustomFollowText = {
         ...DefaultUserProfile.args,
         followButtonText: 'Subscribe',
         unfollowButtonText: 'Unsubscribe',
+    },
+};
+
+// User Profile with Member Actions
+export const UserProfileWithMemberActions = {
+    args: {
+        ...DefaultUserProfile.args,
+        profileType: 'user',
+        showMemberActions: true,
+    },
+};
+
+// Page Profile with Page Actions
+export const PageProfileWithPageActions = {
+    args: {
+        ...PageProfile.args,
+        profileType: 'page',
+        showPageActions: true,
     },
 };

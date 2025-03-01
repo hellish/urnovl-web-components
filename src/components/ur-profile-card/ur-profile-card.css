@@ -6,10 +6,11 @@
 :host .profile-card {
     display: flex;
     flex-direction: row;
+    gap: 8px;
 }
 
 :host .profile-container {
-    gap: 8px;
+    gap: 4px;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -39,4 +40,12 @@
 :host .description-text {
     font-size: 12px;
 }
+
+:host .actions-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+
 

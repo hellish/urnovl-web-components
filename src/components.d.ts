@@ -30,6 +30,7 @@ export namespace Components {
         "radius": string;
         "size": string;
         "src": string;
+        "variant": 'user' | 'page';
     }
     interface UrBottomSheet {
         "backdropDismiss": boolean;
@@ -555,13 +556,20 @@ export namespace Components {
         "avatarSize": string;
         "avatarSrc": string;
         "buttonHeight": string;
+        "buttonWidth": string;
         "description": string;
         "followButtonText": string;
+        "hideFollowActions": boolean;
+        "initialFollowState": boolean;
         "isOwner": boolean;
+        "memberActionsTooltipText": string;
         "name": string;
         "nameFontSize": string;
+        "pageActionsTooltipText": string;
         "profileType": 'user' | 'page';
         "showDescription": boolean;
+        "showMemberActions": boolean;
+        "showPageActions": boolean;
         "unfollowButtonText": string;
     }
     interface UrRadioButton {
@@ -840,6 +848,8 @@ export namespace Components {
         "name": any;
         "pageCreatorImage": any;
         "pageCreatorName": any;
+        "pagesFollowing": number | null;
+        "pagesFollowingText": string;
         "platform": 'desktop' | 'mobile-main' | 'mobile-secondary';
         "readerText": string;
         "showBecomeMember": boolean;
@@ -863,9 +873,6 @@ export namespace Components {
     interface UrUserProfileTabs {
         "aboutTabText": string;
         "activeTab": string;
-        "followersTabText": string;
-        "followingPagesTabText": string;
-        "followingTabText": string;
         "fullWidthTabs": boolean;
         "isMobile": boolean;
         "isOwner": boolean;
@@ -1617,9 +1624,11 @@ declare global {
         new (): HTMLUrProfileElement;
     };
     interface HTMLUrProfileCardElementEventMap {
-        "profileLinkEvent": void;
-        "followEvent": void;
-        "unfollowEvent": void;
+        "profileLinkEvent": any;
+        "followEvent": any;
+        "unfollowEvent": any;
+        "removeMemberEvent": any;
+        "removePageEvent": any;
     }
     interface HTMLUrProfileCardElement extends Components.UrProfileCard, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrProfileCardElementEventMap>(type: K, listener: (this: HTMLUrProfileCardElement, ev: UrProfileCardCustomEvent<HTMLUrProfileCardElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1925,6 +1934,7 @@ declare global {
         "linkedinClick": any;
         "emailClick": any;
         "websiteClick": any;
+        "pagesFollowingClick": any;
     }
     interface HTMLUrUserPageProfileElement extends Components.UrUserPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrUserPageProfileElementEventMap>(type: K, listener: (this: HTMLUrUserPageProfileElement, ev: UrUserPageProfileCustomEvent<HTMLUrUserPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2054,6 +2064,7 @@ declare namespace LocalJSX {
         "radius"?: string;
         "size"?: string;
         "src"?: string;
+        "variant"?: 'user' | 'page';
     }
     interface UrBottomSheet {
         "backdropDismiss"?: boolean;
@@ -2651,16 +2662,25 @@ declare namespace LocalJSX {
         "avatarSize"?: string;
         "avatarSrc"?: string;
         "buttonHeight"?: string;
+        "buttonWidth"?: string;
         "description"?: string;
         "followButtonText"?: string;
+        "hideFollowActions"?: boolean;
+        "initialFollowState"?: boolean;
         "isOwner"?: boolean;
+        "memberActionsTooltipText"?: string;
         "name"?: string;
         "nameFontSize"?: string;
-        "onFollowEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
-        "onProfileLinkEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
-        "onUnfollowEvent"?: (event: UrProfileCardCustomEvent<void>) => void;
+        "onFollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onProfileLinkEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onRemoveMemberEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onRemovePageEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "onUnfollowEvent"?: (event: UrProfileCardCustomEvent<any>) => void;
+        "pageActionsTooltipText"?: string;
         "profileType"?: 'user' | 'page';
         "showDescription"?: boolean;
+        "showMemberActions"?: boolean;
+        "showPageActions"?: boolean;
         "unfollowButtonText"?: string;
     }
     interface UrRadioButton {
@@ -2993,11 +3013,14 @@ declare namespace LocalJSX {
         "onFollowingClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "onLogout"?: (event: UrUserPageProfileCustomEvent<any>) => void;
+        "onPagesFollowingClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "onTwitterClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "onUnfollow"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "onWebsiteClick"?: (event: UrUserPageProfileCustomEvent<any>) => void;
         "pageCreatorImage"?: any;
         "pageCreatorName"?: any;
+        "pagesFollowing"?: number | null;
+        "pagesFollowingText"?: string;
         "platform"?: 'desktop' | 'mobile-main' | 'mobile-secondary';
         "readerText"?: string;
         "showBecomeMember"?: boolean;
@@ -3021,9 +3044,6 @@ declare namespace LocalJSX {
     interface UrUserProfileTabs {
         "aboutTabText"?: string;
         "activeTab"?: string;
-        "followersTabText"?: string;
-        "followingPagesTabText"?: string;
-        "followingTabText"?: string;
         "fullWidthTabs"?: boolean;
         "isMobile"?: boolean;
         "isOwner"?: boolean;

@@ -7,7 +7,6 @@ import '../ur-avatar/ur-avatar';
     shadow: true,
 })
 export class UrProfileCard {
-
     @Element()
     el: HTMLElement;
 
@@ -15,19 +14,19 @@ export class UrProfileCard {
     avatarSrc: string; // Source for the avatar image
 
     @Prop()
-    avatarAlt = 'Avatar'; // Alt text for the avatar image
+    avatarAlt: string = 'Avatar'; // Alt text for the avatar image
 
     @Prop()
     name: string; // Name or title of the user/page
 
     @Prop()
-    avatarSize = '24px'; // Size of the avatar
+    avatarSize: string = '24px'; // Size of the avatar
 
     @Prop()
     description: string; // Description of the user/page
 
     @Prop()
-    followButtonText = 'Follow'; // Text for the follow button
+    followButtonText: string = 'Follow'; // Text for the follow button
 
     @Prop()
     isOwner: boolean;
@@ -36,31 +35,59 @@ export class UrProfileCard {
     profileType: 'user' | 'page' = 'user';
 
     @Prop()
-    nameFontSize = '12px';
+    nameFontSize: string = '12px';
 
     @Prop()
-    unfollowButtonText = 'Following'; // Text for the unfollow button
+    unfollowButtonText: string = 'Following'; // Text for the unfollow button
 
     @Prop()
-    buttonHeight = '32px';
+    buttonHeight: string = '32px';
 
     @Prop()
-    showDescription = false;
+    buttonWidth: string = '32px';
+
+    @Prop()
+    pageActionsTooltipText: string = 'Remove page from story';
+
+    @Prop()
+    memberActionsTooltipText: string = 'Remove member from page';
+
+    @Prop()
+    showDescription: boolean = false;
+
+    @Prop()
+    showMemberActions: boolean = false;
+
+    @Prop()
+    showPageActions: boolean = false;
+
+    @Prop()
+    hideFollowActions: boolean = false;
 
     @State()
-    isFollowing = false; // State to manage follow/unfollow
+    isFollowing: boolean = false;
+
+    @Prop()
+    initialFollowState: boolean = false;
 
     @Event({ bubbles: true })
-    profileLinkEvent: EventEmitter<void>;
+    profileLinkEvent: EventEmitter;
 
     @Event({ bubbles: true })
-    followEvent: EventEmitter<void>;
+    followEvent: EventEmitter;
 
     @Event({ bubbles: true })
-    unfollowEvent: EventEmitter<void>;
+    unfollowEvent: EventEmitter;
+
+    @Event({ bubbles: true })
+    removeMemberEvent: EventEmitter;
+
+    @Event({ bubbles: true })
+    removePageEvent: EventEmitter;
 
     private handleProfileLink = () => {
         this.profileLinkEvent.emit();
+        console.log('profileLinkEvent');
     };
 
     private onFollow = () => {
@@ -73,6 +100,18 @@ export class UrProfileCard {
         this.unfollowEvent.emit();
     };
 
+    private onRemoveMember = () => {
+        this.removeMemberEvent.emit();
+    };
+
+    private onRemovePage = () => {
+        this.removePageEvent.emit();
+    };
+
+    componentDidLoad() {
+        this.isFollowing = this.initialFollowState;
+    }
+
     render() {
         return (
             <Host>
@@ -82,6 +121,7 @@ export class UrProfileCard {
                         <ur-avatar
                             size={this.avatarSize}
                             class="avatar"
+                            variant={this.profileType}
                             radius={this.profileType === 'page' ? '12px' : '50%'}
                             src={this.avatarSrc}
                             onClick={this.handleProfileLink}
@@ -104,17 +144,33 @@ export class UrProfileCard {
                         </span>
                     </div>
 
-                    {/* Follow/Unfollow Button */}
-                    {!this.isOwner && (
-                        <ur-button
-                            buttonHeight={this.buttonHeight}
-                            class="follow-button"
-                            onClick={this.isFollowing ? this.onUnfollow : this.onFollow}
-                            variant={this.isFollowing ? 'text' : 'outlined'}
-                        >
-                            {this.isFollowing ? this.unfollowButtonText : this.followButtonText}
-                        </ur-button>
-                    )}
+                    <div class="actions-container">
+                        {/* Follow/Unfollow Button */}
+                        {!this.isOwner && !this.hideFollowActions && (
+                            <ur-button
+                                buttonHeight={this.buttonHeight}
+                                class="follow-button"
+                                onClick={this.isFollowing ? this.onUnfollow : this.onFollow}
+                                variant={this.isFollowing ? 'text' : 'outlined'}
+                            >
+                                {this.isFollowing ? this.unfollowButtonText : this.followButtonText}
+                            </ur-button>
+                        )}
+
+                        {this.profileType === 'user' && this.showMemberActions && (
+                            <ur-tooltip content={this.memberActionsTooltipText} placement="bottom" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
+                                <ur-button-icon buttonHeight={this.buttonHeight} buttonWidth={this.buttonWidth} class="member-actions-button" icon="close" onClick={this.onRemoveMember}>
+                                </ur-button-icon>
+                            </ur-tooltip>
+                        )}
+
+                        {this.profileType === 'page' && this.showPageActions && (
+                            <ur-tooltip content={this.pageActionsTooltipText} placement="bottom" trigger="hover" colorScheme="dark" open-delay="200" close-delay="100">
+                                <ur-button-icon buttonHeight={this.buttonHeight} buttonWidth={this.buttonWidth} class="page-actions-button" icon="close" onClick={this.onRemovePage}>
+                                </ur-button-icon>
+                            </ur-tooltip>
+                        )}
+                    </div>
                 </div>
             </Host>
         );

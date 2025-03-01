@@ -73,6 +73,7 @@ export class UrPageProfileTabs {
             text: () => this.storiesTabText,
             visibleFor: 'all',
         },
+        /*
         {
             value: 'library',
             text: () => this.libraryTabText,
@@ -93,6 +94,7 @@ export class UrPageProfileTabs {
             text: () => this.settingsTabText,
             visibleFor: 'owner',
         },
+        */
         {
             value: 'about',
             text: () => this.aboutTabText,

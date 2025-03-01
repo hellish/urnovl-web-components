@@ -24,6 +24,7 @@
 ### Used by
 
  - [ur-main-menu](../ur-main-menu)
+ - [ur-profile-card](../ur-profile-card)
  - [ur-read-rail](../ur-read-rail)
  - [ur-reader](../ur-reader)
 
@@ -31,6 +32,7 @@
 ```mermaid
 graph TD;
   ur-main-menu --> ur-tooltip
+  ur-profile-card --> ur-tooltip
   ur-read-rail --> ur-tooltip
   ur-reader --> ur-tooltip
   style ur-tooltip fill:#f9f,stroke:#333,stroke-width:4px

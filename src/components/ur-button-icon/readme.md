@@ -31,6 +31,7 @@
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
  - [ur-main-menu](../ur-main-menu)
+ - [ur-profile-card](../ur-profile-card)
  - [ur-read-mobile-top-app-bar](../ur-read-mobile-top-app-bar)
  - [ur-read-rail](../ur-read-rail)
  - [ur-read-rail-mobile](../ur-read-rail-mobile)
@@ -45,6 +46,7 @@ graph TD;
   ur-locale-filter-panel --> ur-button-icon
   ur-main-desktop-top-app-bar --> ur-button-icon
   ur-main-menu --> ur-button-icon
+  ur-profile-card --> ur-button-icon
   ur-read-mobile-top-app-bar --> ur-button-icon
   ur-read-rail --> ur-button-icon
   ur-read-rail-mobile --> ur-button-icon
