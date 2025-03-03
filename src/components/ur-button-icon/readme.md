@@ -27,10 +27,12 @@
 
 ### Used by
 
+ - [ur-chapter-item](../ur-chapter-item)
  - [ur-comment-form](../ur-comment-form)
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
  - [ur-main-menu](../ur-main-menu)
+ - [ur-novl-overview-info](../ur-novl-overview-info)
  - [ur-profile-card](../ur-profile-card)
  - [ur-read-mobile-top-app-bar](../ur-read-mobile-top-app-bar)
  - [ur-read-rail](../ur-read-rail)
@@ -42,10 +44,12 @@
 ### Graph
 ```mermaid
 graph TD;
+  ur-chapter-item --> ur-button-icon
   ur-comment-form --> ur-button-icon
   ur-locale-filter-panel --> ur-button-icon
   ur-main-desktop-top-app-bar --> ur-button-icon
   ur-main-menu --> ur-button-icon
+  ur-novl-overview-info --> ur-button-icon
   ur-profile-card --> ur-button-icon
   ur-read-mobile-top-app-bar --> ur-button-icon
   ur-read-rail --> ur-button-icon
