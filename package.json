@@ -14,9 +14,9 @@
             "require": "./dist/urnovl-web-components/urnovl-web-components.cjs.js"
         },
         "./loader": {
+            "types": "./loader/index.d.ts",
             "import": "./loader/index.js",
-            "require": "./loader/index.cjs",
-            "types": "./loader/index.d.ts"
+            "require": "./loader/index.cjs"
         }
     },
     "files": [
