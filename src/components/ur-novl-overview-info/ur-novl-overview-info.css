@@ -99,10 +99,11 @@
 }
 
 :host .overview.large-device .inner-cover-hld {
-    display: flex;
-    flex-direction: column;
+    gap: 8px;
     width: 100%;
+    display: flex;
     max-width: 380px;
+    flex-direction: column;
     align-items: flex-start;
 }
 

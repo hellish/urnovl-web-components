@@ -426,6 +426,8 @@ export namespace Components {
         "description": string;
         "descriptionText": string;
         "deviceSize": 'large' | 'small';
+        "editDescriptionMode": boolean;
+        "editTitleMode": boolean;
         "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
@@ -2641,6 +2643,8 @@ declare namespace LocalJSX {
         "description"?: string;
         "descriptionText"?: string;
         "deviceSize"?: 'large' | 'small';
+        "editDescriptionMode"?: boolean;
+        "editTitleMode"?: boolean;
         "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;

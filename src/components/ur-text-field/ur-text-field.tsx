@@ -92,9 +92,9 @@ export class UrTextField {
         const target = event.target as HTMLInputElement;
         this.value = target.value; // Update the local value property
         this.valueChanged.emit({ name: this.name, value: this.value });
-
+    
         console.log(`Handling input for field '${this.name}':`, this.value);
-
+    
         // Validate input after every change
         this.validateInput(target);
     };

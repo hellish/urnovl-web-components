@@ -40,6 +40,12 @@ export class UrNovlOverviewInfo {
     views: number;
 
     @Prop()
+    editTitleMode: boolean = false;
+
+    @Prop()
+    editDescriptionMode: boolean = false;
+
+    @Prop()
     viewsText: string = 'Views';
 
     @Prop()
@@ -162,12 +168,14 @@ export class UrNovlOverviewInfo {
         this.buyStoryEvent.emit();
     }
 
-    onEditDescription() {
-        this.editDescriptionEvent.emit();
+    onEditTitle() {
+        this.editTitleMode = true;
+        this.editTitleEvent.emit();
     }
 
-    onEditTitle() {
-        this.editTitleEvent.emit();
+    onEditDescription() {
+        this.editDescriptionMode = true;
+        this.editDescriptionEvent.emit();
     }
 
     onChangeVisibility() {
@@ -207,8 +215,9 @@ export class UrNovlOverviewInfo {
                                 {this.renderStatusChips()}
 
                                 <div class="title-hld">
-                                    <h1 class="title-text">{this.novlTitle}</h1>
-                                    {this.isOwner && (
+                                    {!this.editTitleMode ? <h1 class="title-text">{this.novlTitle}</h1> : <slot name="title-edit"></slot>}
+
+                                    {this.isOwner && !this.editTitleMode && (
                                         <ur-tooltip colorScheme="dark" placement="left" content="Edit title">
                                             <ur-button-icon
                                                 buttonHeight="30px"
@@ -304,7 +313,7 @@ export class UrNovlOverviewInfo {
                         <div class="description">
                             <div class="description-header">
                                 <span class="label">{this.descriptionText}</span>
-                                {this.isOwner && (
+                                {this.isOwner && !this.editDescriptionMode && (
                                     <ur-tooltip colorScheme="dark" placement="left" content="Edit description">
                                         <ur-button-icon
                                             buttonHeight="30px"
@@ -316,13 +325,19 @@ export class UrNovlOverviewInfo {
                                     </ur-tooltip>
                                 )}
                             </div>
-                            <slot name="description"></slot>
+                            {!this.editDescriptionMode ? <slot name="description"></slot> : <slot name="description-edit"></slot>}
+                            {this.editDescriptionMode && (
+                                <div class="description-edit" slot="description-edit">
+                                </div>
+                            )}
                         </div>
 
                         <div class="owner-holder">
                             <slot name="owner"></slot>
                             <slot name="owner-page"></slot>
                         </div>
+
+                        <slot name="chapters"></slot>
 
                         {!this.novlPaid && this.isOwner && this.renderCompleteActions()}
                     </div>
@@ -378,6 +393,7 @@ export class UrNovlOverviewInfo {
                     <ur-button
                         class="overview-action"
                         variant="filled"
+                        fullWidth={true}
                         onClick={() => this.onCompleteStory()}
                         disabled={!this.showPublishedButton}
                         backgroundColor={this.showPublishedButton ? 'rgb(var(--ur-color-tertiary))' : ''}
@@ -386,7 +402,7 @@ export class UrNovlOverviewInfo {
                         {this.completeStoryText}
                     </ur-button>
                 ) : (
-                    <ur-button class="overview-action" variant="text" onClick={() => this.onRevertStory()} buttonHeight="40px">
+                    <ur-button class="overview-action" variant="text" fullWidth={true} onClick={() => this.onRevertStory()} buttonHeight="40px">
                         {this.revertStoryText}
                     </ur-button>
                 )}

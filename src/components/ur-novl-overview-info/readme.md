@@ -17,6 +17,8 @@
 | `description`           | `description`             |             | `string`                | `'Description'`              |
 | `descriptionText`       | `description-text`        |             | `string`                | `'Description'`              |
 | `deviceSize`            | `device-size`             |             | `"large" \| "small"`    | `'large'`                    |
+| `editDescriptionMode`   | `edit-description-mode`   |             | `boolean`               | `false`                      |
+| `editTitleMode`         | `edit-title-mode`         |             | `boolean`               | `false`                      |
 | `expanded`              | `expanded`                |             | `boolean`               | `false`                      |
 | `genres`                | `genres`                  |             | `string`                | `'Action, Adventure'`        |
 | `hasBranches`           | `has-branches`            |             | `boolean`               | `undefined`                  |

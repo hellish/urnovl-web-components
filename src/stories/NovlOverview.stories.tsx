@@ -3,6 +3,8 @@ import '../components/ur-novl-overview-info/ur-novl-overview-info';
 import '../components/ur-profile-card/ur-profile-card';
 import '../components/ur-long-description/ur-long-description';
 import '../components/ur-chapter-item/ur-chapter-item';
+import '../components/ur-text-field/ur-text-field';
+import '../components/ur-button/ur-button';
 
 // Define the NovlSummary component in Storybook
 const Template = args => html`
@@ -33,8 +35,16 @@ const Template = args => html`
         .revertStoryText=${args.revertStoryText}
         .showCompleteActions=${args.showCompleteActions}
         .showPublishButton=${args.showPublishButton}
+        .editTitleMode=${args.editTitleMode}
+        .editDescriptionMode=${args.editDescriptionMode}
     >
+        <div class="title-edit" slot="title-edit">
+            EDITING MODE FOR TITLE
+        </div>
         <ur-long-description slot="description" .description=${args.longDescription}></ur-long-description>
+        <div class="description-edit" slot="description-edit">
+            EDITING MODE FOR DESCRIPTION
+        </div>
         <ur-profile-card
             slot="owner"
             type="user"
@@ -54,7 +64,6 @@ const Template = args => html`
             .showDescription=${false}
             .hideFollowActions=${true}
         ></ur-profile-card>
-
     </ur-novl-overview-info>
 `;
 
@@ -206,6 +215,14 @@ export default {
         showPublishButton: {
             control: 'boolean',
             description: 'Whether the publish button is shown',
+        },
+        editTitleMode: {
+            control: 'boolean',
+            description: 'Whether the edit title mode is shown',
+        },
+        editDescriptionMode: {
+            control: 'boolean',
+            description: 'Whether the edit description mode is shown',
         },
     },
 };

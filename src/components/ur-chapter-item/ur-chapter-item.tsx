@@ -86,7 +86,7 @@ export class UrChapterItem {
                                     <span class="chapter-number">{this.chapterNumber}</span>
 
                                     <span class="main-holder">
-                                        <span class="chapter-title">{this.chapterTitle}</span>
+                                        <span class="chapter-title" onClick={() => this.onReadChapter(this.chapterId)}>{this.chapterTitle}</span>
 
                                         <span class="story-stats">
                                             {this.likes > 0 && (
