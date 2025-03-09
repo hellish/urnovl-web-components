@@ -35,7 +35,7 @@ export class UrAvatar {
 
     componentDidLoad() {
         const m = new Image();
-        m.src = this.src;
+        m.src = this.src || this.defaultAvatar;
         m.onload = () => {
             forceUpdate(this);
         }

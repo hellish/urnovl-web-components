@@ -100,8 +100,8 @@ export class UrPageCarousel {
     }
 
     private onSlideChange = () => {
-        this.leftArrow?.setAttribute('disabled', this.swiperContainer?.swiper?.isBeginning);
-        this.rightArrow?.setAttribute('disabled', this.swiperContainer?.swiper?.isEnd);
+        this.disabledPrev = this.swiperContainer?.swiper?.isBeginning;
+        this.disabledNext = this.swiperContainer?.swiper?.isEnd;
     };
 
     private onLeftClick = () => {
