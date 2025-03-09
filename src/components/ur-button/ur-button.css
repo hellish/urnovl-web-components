@@ -22,3 +22,7 @@ mdui-button::part(icon) {
     width: 100%;
     display: flex; /* Ensure proper flexbox behavior */
 }
+
+:host.disabled {
+    pointer-events: none;
+}

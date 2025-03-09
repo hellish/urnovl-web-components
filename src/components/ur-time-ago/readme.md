@@ -23,6 +23,7 @@
 
 ### Used by
 
+ - [ur-chapter-item](../ur-chapter-item)
  - [ur-notification](../ur-notification)
  - [ur-page-profile](../ur-page-profile)
  - [ur-user-page-profile](../ur-user-page-profile)
@@ -30,6 +31,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ur-chapter-item --> ur-time-ago
   ur-notification --> ur-time-ago
   ur-page-profile --> ur-time-ago
   ur-user-page-profile --> ur-time-ago

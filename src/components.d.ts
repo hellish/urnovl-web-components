@@ -40,6 +40,7 @@ export namespace Components {
         "showSheet": () => Promise<void>;
     }
     interface UrButton {
+        "backgroundColor": string;
         "borderRadius": string;
         "buttonHeight": string;
         "disabled": boolean;
@@ -69,6 +70,23 @@ export namespace Components {
         "selected": boolean;
         "selectedIcon"?: string;
         "variant": 'standard' | 'filled' | 'tonal' | 'outlined';
+    }
+    interface UrChapterItem {
+        "chapterId": string;
+        "chapterNumber": number;
+        "chapterTitle": string;
+        "createdAt": string;
+        "isBound": boolean;
+        "isLocked": boolean;
+        "isOwner": boolean;
+        "isStoryCompleted": boolean;
+        "likes": number;
+        "likesText": string;
+        "readChapterText": string;
+        "readingDuration": number;
+        "readingDurationText": string;
+        "views": number;
+        "viewsText": string;
     }
     interface UrCheckbox {
         /**
@@ -399,6 +417,49 @@ export namespace Components {
         "spaceBetween"?: number | string;
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
+    interface UrNovlOverviewInfo {
+        "buyStoryText": string;
+        "chapterListText": string;
+        "completeStoryText": string;
+        "completeText": string;
+        "coverImage": string;
+        "description": string;
+        "descriptionText": string;
+        "deviceSize": 'large' | 'small';
+        "editDescriptionMode": boolean;
+        "editTitleMode": boolean;
+        "expanded": boolean;
+        "genres": string;
+        "hasBranches": boolean;
+        "isOwner": boolean;
+        "languages": string;
+        "likes": number;
+        "likesText": string;
+        "literatureTypes": string;
+        "novlPaid": boolean;
+        "novlPrice": string;
+        "novlPurchasedAt": string;
+        "novlTitle": string;
+        "ongoingText": string;
+        "ownerAvatar": string;
+        "ownerName": string;
+        "readStoryText": string;
+        "readingDuration": string;
+        "readingDurationText": string;
+        "reset": () => Promise<void>;
+        "revertStoryText": string;
+        "showLessText": string;
+        "showMoreText": string;
+        "showPublishedButton": boolean;
+        "storyCompleteStatus": boolean;
+        "views": number;
+        "viewsText": string;
+        "visibility": 'public' | 'private';
+        "visibilityPrivateText": string;
+        "visibilityPublicText": string;
+        "writeEnabled": boolean;
+        "writeStoryText": string;
+    }
     interface UrNovlSummary {
         "buyStoryText": string;
         "completeText": string;
@@ -725,7 +786,9 @@ export namespace Components {
     }
     interface UrSwitch {
         "checked": boolean;
+        "checkedIcon": string;
         "disabled": boolean;
+        "uncheckedIcon": string;
     }
     interface UrTabs {
         "panels": { content: string, value: string }[];
@@ -949,6 +1012,10 @@ export interface UrButtonArrowRightCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrButtonArrowRightElement;
 }
+export interface UrChapterItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrChapterItemElement;
+}
 export interface UrCheckboxCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrCheckboxElement;
@@ -1000,6 +1067,10 @@ export interface UrNovlCustomEvent<T> extends CustomEvent<T> {
 export interface UrNovlCarouselCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrNovlCarouselElement;
+}
+export interface UrNovlOverviewInfoCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrNovlOverviewInfoElement;
 }
 export interface UrNovlSummaryCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1060,6 +1131,10 @@ export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSelectElement;
+}
+export interface UrSwitchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrSwitchElement;
 }
 export interface UrTextFieldCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1159,6 +1234,24 @@ declare global {
     var HTMLUrButtonIconElement: {
         prototype: HTMLUrButtonIconElement;
         new (): HTMLUrButtonIconElement;
+    };
+    interface HTMLUrChapterItemElementEventMap {
+        "readChapter": string;
+        "deleteChapter": { chapterId: string; chapterTitle: string };
+    }
+    interface HTMLUrChapterItemElement extends Components.UrChapterItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrChapterItemElementEventMap>(type: K, listener: (this: HTMLUrChapterItemElement, ev: UrChapterItemCustomEvent<HTMLUrChapterItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrChapterItemElementEventMap>(type: K, listener: (this: HTMLUrChapterItemElement, ev: UrChapterItemCustomEvent<HTMLUrChapterItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrChapterItemElement: {
+        prototype: HTMLUrChapterItemElement;
+        new (): HTMLUrChapterItemElement;
     };
     interface HTMLUrCheckboxElementEventMap {
         "valueChanged": { name: string; value: string; checked: boolean };
@@ -1496,6 +1589,30 @@ declare global {
         prototype: HTMLUrNovlCarouselElement;
         new (): HTMLUrNovlCarouselElement;
     };
+    interface HTMLUrNovlOverviewInfoElementEventMap {
+        "readStoryEvent": any;
+        "writeStoryEvent": any;
+        "buyStoryEvent": any;
+        "editDescriptionEvent": any;
+        "editTitleEvent": any;
+        "visibilityChangeEvent": any;
+        "completeStoryEvent": any;
+        "revertStoryEvent": any;
+    }
+    interface HTMLUrNovlOverviewInfoElement extends Components.UrNovlOverviewInfo, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrNovlOverviewInfoElementEventMap>(type: K, listener: (this: HTMLUrNovlOverviewInfoElement, ev: UrNovlOverviewInfoCustomEvent<HTMLUrNovlOverviewInfoElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrNovlOverviewInfoElementEventMap>(type: K, listener: (this: HTMLUrNovlOverviewInfoElement, ev: UrNovlOverviewInfoCustomEvent<HTMLUrNovlOverviewInfoElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrNovlOverviewInfoElement: {
+        prototype: HTMLUrNovlOverviewInfoElement;
+        new (): HTMLUrNovlOverviewInfoElement;
+    };
     interface HTMLUrNovlSummaryElementEventMap {
         "readStoryEvent": any;
         "learnMoreEvent": any;
@@ -1819,7 +1936,18 @@ declare global {
         prototype: HTMLUrSelectElement;
         new (): HTMLUrSelectElement;
     };
+    interface HTMLUrSwitchElementEventMap {
+        "switchChange": boolean;
+    }
     interface HTMLUrSwitchElement extends Components.UrSwitch, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrSwitchElementEventMap>(type: K, listener: (this: HTMLUrSwitchElement, ev: UrSwitchCustomEvent<HTMLUrSwitchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrSwitchElementEventMap>(type: K, listener: (this: HTMLUrSwitchElement, ev: UrSwitchCustomEvent<HTMLUrSwitchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLUrSwitchElement: {
         prototype: HTMLUrSwitchElement;
@@ -1998,6 +2126,7 @@ declare global {
         "ur-button-arrow-left": HTMLUrButtonArrowLeftElement;
         "ur-button-arrow-right": HTMLUrButtonArrowRightElement;
         "ur-button-icon": HTMLUrButtonIconElement;
+        "ur-chapter-item": HTMLUrChapterItemElement;
         "ur-checkbox": HTMLUrCheckboxElement;
         "ur-checkbox-group": HTMLUrCheckboxGroupElement;
         "ur-chip": HTMLUrChipElement;
@@ -2025,6 +2154,7 @@ declare global {
         "ur-notification-tabs": HTMLUrNotificationTabsElement;
         "ur-novl": HTMLUrNovlElement;
         "ur-novl-carousel": HTMLUrNovlCarouselElement;
+        "ur-novl-overview-info": HTMLUrNovlOverviewInfoElement;
         "ur-novl-summary": HTMLUrNovlSummaryElement;
         "ur-page": HTMLUrPageElement;
         "ur-page-carousel": HTMLUrPageCarouselElement;
@@ -2074,6 +2204,7 @@ declare namespace LocalJSX {
         "selectedDetent"?: 'large' | 'medium' | 'small';
     }
     interface UrButton {
+        "backgroundColor"?: string;
         "borderRadius"?: string;
         "buttonHeight"?: string;
         "disabled"?: boolean;
@@ -2105,6 +2236,25 @@ declare namespace LocalJSX {
         "selected"?: boolean;
         "selectedIcon"?: string;
         "variant"?: 'standard' | 'filled' | 'tonal' | 'outlined';
+    }
+    interface UrChapterItem {
+        "chapterId"?: string;
+        "chapterNumber"?: number;
+        "chapterTitle"?: string;
+        "createdAt"?: string;
+        "isBound"?: boolean;
+        "isLocked"?: boolean;
+        "isOwner"?: boolean;
+        "isStoryCompleted"?: boolean;
+        "likes"?: number;
+        "likesText"?: string;
+        "onDeleteChapter"?: (event: UrChapterItemCustomEvent<{ chapterId: string; chapterTitle: string }>) => void;
+        "onReadChapter"?: (event: UrChapterItemCustomEvent<string>) => void;
+        "readChapterText"?: string;
+        "readingDuration"?: number;
+        "readingDurationText"?: string;
+        "views"?: number;
+        "viewsText"?: string;
     }
     interface UrCheckbox {
         /**
@@ -2483,6 +2633,56 @@ declare namespace LocalJSX {
         "onProgressUpdated"?: (event: UrNovlCarouselCustomEvent<[ number, number ]>) => void;
         "slidesPerView"?: number | 'auto';
         "spaceBetween"?: number | string;
+    }
+    interface UrNovlOverviewInfo {
+        "buyStoryText"?: string;
+        "chapterListText"?: string;
+        "completeStoryText"?: string;
+        "completeText"?: string;
+        "coverImage"?: string;
+        "description"?: string;
+        "descriptionText"?: string;
+        "deviceSize"?: 'large' | 'small';
+        "editDescriptionMode"?: boolean;
+        "editTitleMode"?: boolean;
+        "expanded"?: boolean;
+        "genres"?: string;
+        "hasBranches"?: boolean;
+        "isOwner"?: boolean;
+        "languages"?: string;
+        "likes"?: number;
+        "likesText"?: string;
+        "literatureTypes"?: string;
+        "novlPaid"?: boolean;
+        "novlPrice"?: string;
+        "novlPurchasedAt"?: string;
+        "novlTitle"?: string;
+        "onBuyStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onCompleteStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onEditDescriptionEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onEditTitleEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onReadStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onRevertStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onVisibilityChangeEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onWriteStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "ongoingText"?: string;
+        "ownerAvatar"?: string;
+        "ownerName"?: string;
+        "readStoryText"?: string;
+        "readingDuration"?: string;
+        "readingDurationText"?: string;
+        "revertStoryText"?: string;
+        "showLessText"?: string;
+        "showMoreText"?: string;
+        "showPublishedButton"?: boolean;
+        "storyCompleteStatus"?: boolean;
+        "views"?: number;
+        "viewsText"?: string;
+        "visibility"?: 'public' | 'private';
+        "visibilityPrivateText"?: string;
+        "visibilityPublicText"?: string;
+        "writeEnabled"?: boolean;
+        "writeStoryText"?: string;
     }
     interface UrNovlSummary {
         "buyStoryText"?: string;
@@ -2875,7 +3075,10 @@ declare namespace LocalJSX {
     }
     interface UrSwitch {
         "checked"?: boolean;
+        "checkedIcon"?: string;
         "disabled"?: boolean;
+        "onSwitchChange"?: (event: UrSwitchCustomEvent<boolean>) => void;
+        "uncheckedIcon"?: string;
     }
     interface UrTabs {
         "panels"?: { content: string, value: string }[];
@@ -3115,6 +3318,7 @@ declare namespace LocalJSX {
         "ur-button-arrow-left": UrButtonArrowLeft;
         "ur-button-arrow-right": UrButtonArrowRight;
         "ur-button-icon": UrButtonIcon;
+        "ur-chapter-item": UrChapterItem;
         "ur-checkbox": UrCheckbox;
         "ur-checkbox-group": UrCheckboxGroup;
         "ur-chip": UrChip;
@@ -3142,6 +3346,7 @@ declare namespace LocalJSX {
         "ur-notification-tabs": UrNotificationTabs;
         "ur-novl": UrNovl;
         "ur-novl-carousel": UrNovlCarousel;
+        "ur-novl-overview-info": UrNovlOverviewInfo;
         "ur-novl-summary": UrNovlSummary;
         "ur-page": UrPage;
         "ur-page-carousel": UrPageCarousel;
@@ -3184,6 +3389,7 @@ declare module "@stencil/core" {
             "ur-button-arrow-left": LocalJSX.UrButtonArrowLeft & JSXBase.HTMLAttributes<HTMLUrButtonArrowLeftElement>;
             "ur-button-arrow-right": LocalJSX.UrButtonArrowRight & JSXBase.HTMLAttributes<HTMLUrButtonArrowRightElement>;
             "ur-button-icon": LocalJSX.UrButtonIcon & JSXBase.HTMLAttributes<HTMLUrButtonIconElement>;
+            "ur-chapter-item": LocalJSX.UrChapterItem & JSXBase.HTMLAttributes<HTMLUrChapterItemElement>;
             "ur-checkbox": LocalJSX.UrCheckbox & JSXBase.HTMLAttributes<HTMLUrCheckboxElement>;
             "ur-checkbox-group": LocalJSX.UrCheckboxGroup & JSXBase.HTMLAttributes<HTMLUrCheckboxGroupElement>;
             "ur-chip": LocalJSX.UrChip & JSXBase.HTMLAttributes<HTMLUrChipElement>;
@@ -3211,6 +3417,7 @@ declare module "@stencil/core" {
             "ur-notification-tabs": LocalJSX.UrNotificationTabs & JSXBase.HTMLAttributes<HTMLUrNotificationTabsElement>;
             "ur-novl": LocalJSX.UrNovl & JSXBase.HTMLAttributes<HTMLUrNovlElement>;
             "ur-novl-carousel": LocalJSX.UrNovlCarousel & JSXBase.HTMLAttributes<HTMLUrNovlCarouselElement>;
+            "ur-novl-overview-info": LocalJSX.UrNovlOverviewInfo & JSXBase.HTMLAttributes<HTMLUrNovlOverviewInfoElement>;
             "ur-novl-summary": LocalJSX.UrNovlSummary & JSXBase.HTMLAttributes<HTMLUrNovlSummaryElement>;
             "ur-page": LocalJSX.UrPage & JSXBase.HTMLAttributes<HTMLUrPageElement>;
             "ur-page-carousel": LocalJSX.UrPageCarousel & JSXBase.HTMLAttributes<HTMLUrPageCarouselElement>;

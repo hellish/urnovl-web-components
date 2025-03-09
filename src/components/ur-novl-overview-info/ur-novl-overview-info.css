@@ -1,0 +1,255 @@
+:host {
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-on-complete-surface: #1a5100;
+    --ur-color-complete-surface: red;
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-primary-container: var(--mdui-color-primary-container);
+    --ur-color-on-surface-lite: var(--mdui-color-on-surface-lite);
+    --ur-color-surface-container-high: var(--mdui-color-surface-container-high);
+    --ur-color-tertiary: var(--mdui-color-tertiary);
+    --ur-color-outline: var(--mdui-color-outline);
+
+    width: 100%;
+    display: block;
+    color: rgb(var(--ur-color-on-background-rgb));
+}
+
+:host .overview.small-device {
+    display: flex;
+    flex-direction: column;
+}
+
+:host .overview.large-device {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+:host .overview.large-device .novl-content {
+    flex: 1;
+    padding: 24px 0;
+}
+
+:host .visibility-toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+}
+
+:host .overview.large-device .cover-image {
+    overflow: hidden;
+}
+
+:host .overview.small-device .visibility-toggle {
+    top: 12px;
+    left: 24px;
+    height: 30px;
+    position: absolute;
+    padding: 0 12px 0 0;
+    border-radius: 25px;
+    background: rgb(var(--ur-color-background));
+}
+
+:host .description-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+:host .overview.large-device .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+:host .overview.small-device .novl-content {
+    max-width: initial;
+    padding: 24px;
+}
+
+:host .overview.large-device .inner-cover {
+    border-radius: 12px;
+    position: relative;
+    width: 100%;
+}
+
+:host .overview.small-device .inner-cover {
+    width: 100%;
+    max-width: initial;
+    max-height: 210px;
+    height: calc(100vw / 3);
+}
+
+:host .cover-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+:host .cover {
+    flex: 0.5;
+    position: relative;
+}
+
+:host .overview .inner-cover-hld {
+    flex: 1;
+    align-items: flex-end;
+}
+
+:host .overview.large-device .inner-cover-hld {
+    gap: 8px;
+    width: 100%;
+    display: flex;
+    max-width: 380px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+:host .inner-cover {
+    max-width: 380px;
+    max-height: 210px;
+    position: relative;
+    overflow: hidden;
+}
+
+:host .main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+:host .status.small-device {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 24px;
+    transform: translate(0, -50%);
+}
+
+:host .status.large-device {
+    display: flex;
+}
+
+:host .novl-content {
+    flex: 1;
+    max-width: 740px;
+    display: flex;
+    position: relative;
+    gap: 24px;
+    flex-direction: column;
+}
+
+:host .upper-hld {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+:host .title-hld {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+:host .ad-space {
+    flex: 0.5;
+}
+
+:host .title-text {
+    flex: 1;
+    margin: 0;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.262px;
+}
+
+:host .label {
+    flex: 1;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    min-height: 30px;
+}
+
+:host .description {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+:host .story-stats {
+    display: flex;
+}
+
+:host .story-stat {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+:host .story-stat-label {
+    font-weight: 700;
+    line-height: 12px;
+}
+
+:host .story-stat-value {
+    font-weight: 400;
+    line-height: 12px;
+    margin-right: 4px;
+}
+
+:host .story-stat-separator {
+    margin: 0 4px;
+}
+
+:host .novl-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+:host .actions-holder {
+    display: flex;
+    gap: 8px;
+}
+
+:host .summary-action {
+    flex: 1;
+}
+
+:host .owner-holder {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+@keyframes placeholderAnimate {
+    0% {
+        background-position: -650px 0;
+    }
+    100% {
+        background-position: 650px 0;
+    }
+}
+
+:host .title-text.loading {
+    height: 24px;
+    margin: 8px 0;
+    border-radius: 4px;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
+    background-size: 1000px;
+}
