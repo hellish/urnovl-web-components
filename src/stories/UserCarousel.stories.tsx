@@ -6,17 +6,17 @@ import '../components/ur-button-arrow-right/ur-button-arrow-right';
 import { USERS } from '../data/user';
 
 const UserCarousel = ({
-                          users,
-                          breakpoints,
-                          grid,
-                          slidesPerView,
-                          spaceBetween,
-                          navigation = false,
-                          slideWidth = '100%',
-                          containerWidth = '100%',
-                          containerPadding = '20px',
-                          containerBackgroundColor = '#efefef',
-                      }) => html`
+    users,
+    breakpoints,
+    grid,
+    slidesPerView,
+    spaceBetween,
+    navigation = false,
+    slideWidth = '100%',
+    containerWidth = '100%',
+    containerPadding = '20px',
+    containerBackgroundColor = '#efefef',
+}) => html`
     <script>
         for (const item of document.getElementsByClassName('user-carousel')) {
             item.addEventListener('userClicked', (event) => {
