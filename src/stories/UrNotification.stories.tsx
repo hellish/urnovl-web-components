@@ -1,6 +1,7 @@
 import { html } from 'lit';
 import '../components/ur-notification/ur-notification';
 import '../components/ur-time-ago/ur-time-ago';
+import { NotificationType } from '../components/ur-notification/ur-notification.types';
 
 const Template = args => html`
     <style>
@@ -43,7 +44,7 @@ export const FollowNotification = {
             },
             read: false,
             updatedAt: new Date().toISOString(),
-        },
+        } as NotificationType,
         locale: 'en',
     },
 };
@@ -68,6 +69,39 @@ export const AlreadyFollowingNotification = {
                 ...FollowNotification.args.notification.creator,
                 followed: true,
             },
+        },
+        locale: 'en',
+    },
+};
+
+// Page Follow Notification
+export const PageFollowNotification = {
+    args: {
+        notification: {
+            _id: '7',
+            event: 'pfollowed',
+            creator: {
+                _id: 'user123',
+                displayName: 'John Doe',
+                profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
+                followed: false,
+            },
+            page: {
+                name: 'My Page',
+            },
+            read: false,
+            updatedAt: new Date().toISOString(),
+        } as NotificationType,
+        locale: 'en',
+    },
+};
+
+// Read Page Follow Notification
+export const ReadPageFollowNotification = {
+    args: {
+        notification: {
+            ...PageFollowNotification.args.notification,
+            read: true,
         },
         locale: 'en',
     },
@@ -129,17 +163,70 @@ export const CommentNotification = {
             },
             read: false,
             updatedAt: new Date().toISOString(),
-        },
+        } as NotificationType,
         locale: 'en',
     },
 };
 
+// Membership Request Notification
+export const MembershipRequestNotification = {
+    args: {
+        notification: {
+            _id: '3',
+            event: 'mrequest',
+            creator: {
+                _id: 'user123',
+                displayName: 'John Doe',
+                profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
+            },
+            read: false,
+            updatedAt: new Date().toISOString(),
+        } as NotificationType,
+        locale: 'en',
+    },
+};
+
+// Membership Acceptance Notification
+export const MembershipAcceptNotification = {
+    args: {
+        notification: {
+            _id: '4',
+            event: 'mrequestaccepted',
+            creator: {
+                _id: 'user123',
+                displayName: 'John Doe',
+                profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
+            },
+            read: false,
+            updatedAt: new Date().toISOString(),
+        } as NotificationType,
+        locale: 'en',
+    },
+};
+
+// Membership Rejection Notification
+export const MembershipRejectNotification = {
+    args: {
+        notification: {
+            _id: '5',
+            event: 'mrequestrejected',
+            creator: {
+                _id: 'user123',
+                displayName: 'John Doe',
+                profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
+            },
+            read: false,
+            updatedAt: new Date().toISOString(),
+        } as NotificationType,
+        locale: 'en',
+    },
+};
 
 // Unsupported Notification Type
 export const UnsupportedNotification = {
     args: {
         notification: {
-            _id: '1',
+            _id: '6',
             event: 'unsupported_type',
             creator: {
                 _id: 'user123',

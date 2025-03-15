@@ -31,6 +31,7 @@
 | `literatureTypes`     | `literature-types`      |             | `string`                                           | `null`               |
 | `literatureTypesText` | `literature-types-text` |             | `string`                                           | `'Literature Types'` |
 | `location`            | `location`              |             | `any`                                              | `null`               |
+| `memberRequestStatus` | `member-request-status` |             | `"accepted" \| "idle" \| "pending" \| "rejected"`  | `'idle'`             |
 | `members`             | `members`               |             | `number`                                           | `null`               |
 | `membersText`         | `members-text`          |             | `string`                                           | `'Members'`          |
 | `name`                | `name`                  |             | `any`                                              | `undefined`          |
@@ -58,22 +59,22 @@
 
 ## Events
 
-| Event               | Description | Type                                                  |
-| ------------------- | ----------- | ----------------------------------------------------- |
-| `donate`            |             | `CustomEvent<any>`                                    |
-| `emailClick`        |             | `CustomEvent<any>`                                    |
-| `facebookClick`     |             | `CustomEvent<any>`                                    |
-| `followersClick`    |             | `CustomEvent<any>`                                    |
-| `inviteMembers`     |             | `CustomEvent<any>`                                    |
-| `linkedinClick`     |             | `CustomEvent<any>`                                    |
-| `member`            |             | `CustomEvent<any>`                                    |
-| `membersClick`      |             | `CustomEvent<any>`                                    |
-| `pageCreatorClick`  |             | `CustomEvent<any>`                                    |
-| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>` |
-| `phoneClick`        |             | `CustomEvent<any>`                                    |
-| `sendMessage`       |             | `CustomEvent<any>`                                    |
-| `twitterClick`      |             | `CustomEvent<any>`                                    |
-| `websiteClick`      |             | `CustomEvent<any>`                                    |
+| Event               | Description | Type                                                                                        |
+| ------------------- | ----------- | ------------------------------------------------------------------------------------------- |
+| `donate`            |             | `CustomEvent<any>`                                                                          |
+| `emailClick`        |             | `CustomEvent<any>`                                                                          |
+| `facebookClick`     |             | `CustomEvent<any>`                                                                          |
+| `followersClick`    |             | `CustomEvent<any>`                                                                          |
+| `inviteMembers`     |             | `CustomEvent<any>`                                                                          |
+| `linkedinClick`     |             | `CustomEvent<any>`                                                                          |
+| `membersClick`      |             | `CustomEvent<any>`                                                                          |
+| `pageCreatorClick`  |             | `CustomEvent<any>`                                                                          |
+| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                       |
+| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "idle" \| "pending" \| "accepted" \| "rejected"; }>` |
+| `phoneClick`        |             | `CustomEvent<any>`                                                                          |
+| `sendMessage`       |             | `CustomEvent<any>`                                                                          |
+| `twitterClick`      |             | `CustomEvent<any>`                                                                          |
+| `websiteClick`      |             | `CustomEvent<any>`                                                                          |
 
 
 ## Dependencies

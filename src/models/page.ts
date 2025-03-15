@@ -7,6 +7,11 @@ export type PageFollowEvent = {
     followed: boolean;
 }
 
+export type PageMemberEvent = {
+    pageId: string;
+    status: 'idle' | 'pending' | 'accepted' | 'rejected';
+}
+
 export type LoadingPage = {
     pageId: string;
     loading: true;
