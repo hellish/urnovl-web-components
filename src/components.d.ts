@@ -9,7 +9,7 @@ import { Locale } from "./models/locale";
 import { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
-import { Page, PageCustomContent, PageFollowEvent } from "./models/page";
+import { Page, PageCustomContent, PageFollowEvent, PageMemberEvent } from "./models/page";
 import { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
 import { PageGrid } from "./data/page-carousel";
 import { User, UserCustomContent } from "./models/user";
@@ -18,7 +18,7 @@ export { Locale } from "./models/locale";
 export { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
-export { Page, PageCustomContent, PageFollowEvent } from "./models/page";
+export { Page, PageCustomContent, PageFollowEvent, PageMemberEvent } from "./models/page";
 export { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
 export { PageGrid } from "./data/page-carousel";
 export { User, UserCustomContent } from "./models/user";
@@ -542,6 +542,7 @@ export namespace Components {
         "literatureTypes": string | null;
         "literatureTypesText": string;
         "location": any;
+        "memberRequestStatus": 'idle' | 'pending' | 'accepted' | 'rejected';
         "members": number | null;
         "membersText": string;
         "name": any;
@@ -1671,7 +1672,6 @@ declare global {
         new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
-        "member": any;
         "donate": any;
         "sendMessage": any;
         "followersClick": any;
@@ -1685,6 +1685,7 @@ declare global {
         "pageCreatorClick": any;
         "inviteMembers": any;
         "pageFollowClicked": PageFollowEvent;
+        "pageMemberClicked": PageMemberEvent;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageProfileElementEventMap>(type: K, listener: (this: HTMLUrPageProfileElement, ev: UrPageProfileCustomEvent<HTMLUrPageProfileElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -2771,6 +2772,7 @@ declare namespace LocalJSX {
         "literatureTypes"?: string | null;
         "literatureTypesText"?: string;
         "location"?: any;
+        "memberRequestStatus"?: 'idle' | 'pending' | 'accepted' | 'rejected';
         "members"?: number | null;
         "membersText"?: string;
         "name"?: any;
@@ -2780,10 +2782,10 @@ declare namespace LocalJSX {
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
-        "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;
+        "onPageMemberClicked"?: (event: UrPageProfileCustomEvent<PageMemberEvent>) => void;
         "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onTwitterClick"?: (event: UrPageProfileCustomEvent<any>) => void;

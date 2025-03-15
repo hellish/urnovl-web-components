@@ -1,7 +1,7 @@
 import { Component, Event, Host, Prop, h, EventEmitter } from '@stencil/core';
 import { Icons } from './icons';
 
-import { PageFollowEvent } from '../../models/page';
+import { PageFollowEvent, PageMemberEvent } from '../../models/page';
 
 import '../ur-avatar/ur-avatar';
 import '../ur-button/ur-button';
@@ -148,9 +148,8 @@ export class UrPageProfile {
     @Prop()
     followed = false;
 
-    // All events remain the same
-    @Event()
-    member;
+    @Prop()
+    memberRequestStatus: 'idle' | 'pending' | 'accepted' | 'rejected' = 'idle';
 
     @Event()
     donate;
@@ -191,8 +190,51 @@ export class UrPageProfile {
     @Event({ bubbles: true, composed: true })
     pageFollowClicked: EventEmitter<PageFollowEvent>;
 
+    @Event()
+    pageMemberClicked: EventEmitter<PageMemberEvent>;
+
     componentWillLoad() {
         this.updateFollowText();
+    }
+
+    private handleBecomeMemberClicked() {
+        if (this.memberRequestStatus !== 'idle') {
+            return;
+        }
+        this.memberRequestStatus = 'pending';
+        this.pageMemberClicked.emit({
+            pageId: this.pageId,
+            status: this.memberRequestStatus,
+        });
+    }
+
+    // private handleAcceptMembershipRequest() {
+    //     this.memberRequestStatus = 'accepted';
+    //     this.pageMemberClicked.emit({
+    //         pageId: this.pageId,
+    //         status: this.memberRequestStatus,
+    //     });
+    // }
+    //
+    // private handleRejectMembershipRequest() {
+    //     this.memberRequestStatus = 'rejected';
+    //     this.pageMemberClicked.emit({
+    //         pageId: this.pageId,
+    //         status: this.memberRequestStatus,
+    //     });
+    // }
+
+    private getBecomeMemberButtonText() {
+        switch (this.memberRequestStatus) {
+            case 'pending':
+                return 'Request Pending...';
+            case 'accepted':
+                return 'You\'re a Member';
+            case 'rejected':
+                return this.becomeMemberText;
+            default:
+                return this.becomeMemberText;
+        }
     }
 
     private updateFollowText() {
@@ -343,8 +385,13 @@ export class UrPageProfile {
                     </ur-button>
                 )}
                 {this.showBecomeMember && !this.isPageOwner && (
-                    <ur-button class="follow" variant="outlined" onClick={() => this.member.emit()}>
-                        {this.becomeMemberText}
+                    <ur-button
+                        class="follow"
+                        variant="outlined"
+                        disabled={this.memberRequestStatus !== 'idle'}
+                        onClick={() => this.handleBecomeMemberClicked()}
+                    >
+                        {this.getBecomeMemberButtonText()}
                     </ur-button>
                 )}
                 {this.showDonate && !this.isPageOwner && (

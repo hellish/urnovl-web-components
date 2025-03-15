@@ -22,7 +22,7 @@ export class UrNotification {
     componentWillLoad() {
         this.isRead = this.notification.read;
         if (this.notification.event === 'followed') {
-            this.isFollowing = this.notification.creator.followed;
+            this.isFollowing = (this.notification as any).creator.followed;
         }
     }
 
@@ -42,10 +42,18 @@ export class UrNotification {
         });
     }
 
+    private handleAcceptMembershipRequest() {
+        this.emitEvent('mrequest_accept');
+    }
+
+    private handleRejectMembershipRequest() {
+        this.emitEvent('mrequest_reject');
+    }
+
     private renderFollowNotification() {
         if (this.notification.event !== 'followed') return null;
 
-        const { creator } = this.notification;
+        const { creator } = this.notification as any;
 
         return [
             <section class="vert">
@@ -65,10 +73,28 @@ export class UrNotification {
         ];
     }
 
+    private renderPageFollowNotification() {
+        if (this.notification.event !== 'pfollowed') return null;
+
+        const { creator, page } = this.notification as any;
+
+        return (
+            <section class="vert">
+                <ur-avatar class="profile" onClick={() => this.emitEvent('profile_click')} src={creator.profileImage} name={creator.displayName} size="40px" />
+                <section class="content" onClick={() => this.emitEvent('profile_click')}>
+                    <div class="message">{creator.displayName} has followed your page <b>{page.name}</b>.</div>
+                    <div class="ago">
+                        <ur-time-ago date={this.notification.updatedAt} />
+                    </div>
+                </section>
+            </section>
+        );
+    }
+
     private renderCommentNotification() {
         if (this.notification.event !== 'commented') return null;
 
-        const { creator, novl, chapter } = this.notification;
+        const { creator, novl, chapter } = this.notification as any;
 
         return (
             <section class="vert">
@@ -76,6 +102,50 @@ export class UrNotification {
                 <section class="content" onClick={() => this.emitEvent('comment_click')}>
                     <div class="message">
                         {creator.displayName} has commented in chapter {chapter.number} of novl <b>{novl.title}</b>.
+                    </div>
+                    <div class="ago">
+                        <ur-time-ago date={this.notification.updatedAt} />
+                    </div>
+                </section>
+            </section>
+        );
+    }
+
+    private renderMembershipRequestNotification() {
+        if (this.notification.event !== 'mrequest') return null;
+
+        const { creator } = this.notification;
+
+        return (
+            <section class="vert">
+                <ur-avatar class="profile" onClick={() => this.emitEvent('profile_click')} src={creator.profileImage} name={creator.displayName} size="40px" />
+                <section class="content" onClick={() => this.emitEvent('profile_click')}>
+                    <div class="message">{creator.displayName} has requested to become a member.</div>
+                    <div class="ago">
+                        <ur-time-ago date={this.notification.updatedAt} />
+                    </div>
+                </section>
+                <ur-button class="action accept" variant="filled" onClick={() => this.handleAcceptMembershipRequest()}>
+                    Accept
+                </ur-button>
+                <ur-button class="action reject" variant="outlined" onClick={() => this.handleRejectMembershipRequest()}>
+                    Reject
+                </ur-button>
+            </section>
+        );
+    }
+
+    private renderMembershipDecisionNotification() {
+        if (this.notification.event !== 'mrequestaccepted' && this.notification.event !== 'mrequestrejected') return null;
+
+        const { creator } = this.notification;
+
+        return (
+            <section class="vert">
+                <ur-avatar class="profile" onClick={() => this.emitEvent('profile_click')} src={creator.profileImage} name={creator.displayName} size="40px" />
+                <section class="content" onClick={() => this.emitEvent('profile_click')}>
+                    <div class="message">
+                        {creator.displayName} has {this.notification.event === 'mrequestaccepted' ? 'accepted' : 'rejected'} your membership request.
                     </div>
                     <div class="ago">
                         <ur-time-ago date={this.notification.updatedAt} />
@@ -97,8 +167,15 @@ export class UrNotification {
                     switch (this.notification.event) {
                         case 'followed':
                             return this.renderFollowNotification();
+                        case 'pfollowed':
+                            return this.renderPageFollowNotification();
                         case 'commented':
                             return this.renderCommentNotification();
+                        case 'mrequest':
+                            return this.renderMembershipRequestNotification();
+                        case 'mrequestaccepted':
+                        case 'mrequestrejected':
+                            return this.renderMembershipDecisionNotification();
                         default:
                             return <div class="unsupported">Unsupported notification type: {(this.notification as any).event}</div>;
                     }

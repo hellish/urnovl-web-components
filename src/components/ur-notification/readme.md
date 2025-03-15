@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property                    | Attribute | Description | Type                                        | Default     |
-| --------------------------- | --------- | ----------- | ------------------------------------------- | ----------- |
-| `notification` _(required)_ | --        |             | `CommentNotification \| FollowNotification` | `undefined` |
+| Property                    | Attribute | Description | Type                                                                                                                                                                   | Default     |
+| --------------------------- | --------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `notification` _(required)_ | --        |             | `CommentNotification \| FollowNotification \| MembershipAcceptNotification \| MembershipRejectNotification \| MembershipRequestNotification \| PageFollowNotification` | `undefined` |
 
 
 ## Events
