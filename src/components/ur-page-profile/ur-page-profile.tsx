@@ -137,9 +137,6 @@ export class UrPageProfile {
     becomeMemberText = 'Become a Member';
 
     @Prop()
-    inviteMembersText = 'Invite Members';
-
-    @Prop()
     donateText = 'Donate';
 
     @Prop()
@@ -183,9 +180,6 @@ export class UrPageProfile {
 
     @Event()
     pageCreatorClick;
-
-    @Event()
-    inviteMembers;
 
     @Event({ bubbles: true, composed: true })
     pageFollowClicked: EventEmitter<PageFollowEvent>;
@@ -388,7 +382,7 @@ export class UrPageProfile {
                     <ur-button
                         class="follow"
                         variant="outlined"
-                        disabled={this.memberRequestStatus !== 'idle'}
+                        disabled={this.memberRequestStatus === 'pending' || this.memberRequestStatus === 'accepted'}
                         onClick={() => this.handleBecomeMemberClicked()}
                     >
                         {this.getBecomeMemberButtonText()}
@@ -402,11 +396,6 @@ export class UrPageProfile {
                 {this.showSendMessage && !this.isPageOwner && (
                     <ur-button class="follow" variant="outlined" onClick={() => this.sendMessage.emit()}>
                         {this.sendMessageText}
-                    </ur-button>
-                )}
-                {this.isPageOwner && (
-                    <ur-button class="invite-members" variant="outlined" onClick={() => this.inviteMembers.emit()}>
-                        {this.inviteMembersText}
                     </ur-button>
                 )}
             </div>

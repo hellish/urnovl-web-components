@@ -16,11 +16,17 @@ export class UrNotification {
     @State()
     private isFollowing: boolean;
 
+    @State()
+    private memberRequestStatus: 'pending' | 'accepted' | 'rejected';
+
     @Event()
     notificationEvent: EventEmitter<NotificationEvent>;
 
     componentWillLoad() {
         this.isRead = this.notification.read;
+        if (this.notification.event === 'mrequest') {
+            this.memberRequestStatus = this.notification.status;
+        }
         if (this.notification.event === 'followed') {
             this.isFollowing = (this.notification as any).creator.followed;
         }
@@ -43,10 +49,12 @@ export class UrNotification {
     }
 
     private handleAcceptMembershipRequest() {
+        this.memberRequestStatus = 'accepted';
         this.emitEvent('mrequest_accept');
     }
 
     private handleRejectMembershipRequest() {
+        this.memberRequestStatus = 'rejected';
         this.emitEvent('mrequest_reject');
     }
 
@@ -114,23 +122,29 @@ export class UrNotification {
     private renderMembershipRequestNotification() {
         if (this.notification.event !== 'mrequest') return null;
 
-        const { creator } = this.notification;
+        const { creator, page } = this.notification;
 
         return (
             <section class="vert">
                 <ur-avatar class="profile" onClick={() => this.emitEvent('profile_click')} src={creator.profileImage} name={creator.displayName} size="40px" />
                 <section class="content" onClick={() => this.emitEvent('profile_click')}>
-                    <div class="message">{creator.displayName} has requested to become a member.</div>
+                    <div class="message">
+                        {this.memberRequestStatus === 'pending'
+                            ? `${creator.displayName} has requested to become a member to ${page.name}`
+                            : `You ${this.memberRequestStatus} ${creator.displayName} as a member to ${page.name}`}
+                    </div>
                     <div class="ago">
                         <ur-time-ago date={this.notification.updatedAt} />
                     </div>
                 </section>
-                <ur-button class="action accept" variant="filled" onClick={() => this.handleAcceptMembershipRequest()}>
-                    Accept
-                </ur-button>
-                <ur-button class="action reject" variant="outlined" onClick={() => this.handleRejectMembershipRequest()}>
-                    Reject
-                </ur-button>
+                {this.memberRequestStatus === 'pending' && [
+                    <ur-button class="action accept" variant="filled" onClick={() => this.handleAcceptMembershipRequest()}>
+                        Accept
+                    </ur-button>,
+                    <ur-button class="action reject" variant="outlined" onClick={() => this.handleRejectMembershipRequest()}>
+                        Reject
+                    </ur-button>
+                ]}
             </section>
         );
     }
@@ -138,14 +152,15 @@ export class UrNotification {
     private renderMembershipDecisionNotification() {
         if (this.notification.event !== 'mrequestaccepted' && this.notification.event !== 'mrequestrejected') return null;
 
-        const { creator } = this.notification;
+        const { creator, page } = this.notification;
 
         return (
             <section class="vert">
                 <ur-avatar class="profile" onClick={() => this.emitEvent('profile_click')} src={creator.profileImage} name={creator.displayName} size="40px" />
                 <section class="content" onClick={() => this.emitEvent('profile_click')}>
                     <div class="message">
-                        {creator.displayName} has {this.notification.event === 'mrequestaccepted' ? 'accepted' : 'rejected'} your membership request.
+                        {creator.displayName} has {this.notification.event === 'mrequestaccepted' ? 'accepted' : 'rejected'} your
+                        membership request to {page.name}.
                     </div>
                     <div class="ago">
                         <ur-time-ago date={this.notification.updatedAt} />

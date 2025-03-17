@@ -23,7 +23,6 @@
 | `following`           | `following`             |             | `number`                                           | `null`               |
 | `genres`              | `genres`                |             | `string`                                           | `null`               |
 | `genresText`          | `genres-text`           |             | `string`                                           | `'Genres'`           |
-| `inviteMembersText`   | `invite-members-text`   |             | `string`                                           | `'Invite Members'`   |
 | `isPageOwner`         | `is-page-owner`         |             | `boolean`                                          | `false`              |
 | `languages`           | `languages`             |             | `string`                                           | `null`               |
 | `languagesText`       | `languages-text`        |             | `string`                                           | `'Languages'`        |
@@ -65,12 +64,11 @@
 | `emailClick`        |             | `CustomEvent<any>`                                                                          |
 | `facebookClick`     |             | `CustomEvent<any>`                                                                          |
 | `followersClick`    |             | `CustomEvent<any>`                                                                          |
-| `inviteMembers`     |             | `CustomEvent<any>`                                                                          |
 | `linkedinClick`     |             | `CustomEvent<any>`                                                                          |
 | `membersClick`      |             | `CustomEvent<any>`                                                                          |
 | `pageCreatorClick`  |             | `CustomEvent<any>`                                                                          |
 | `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                       |
-| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "idle" \| "pending" \| "accepted" \| "rejected"; }>` |
+| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "pending" \| "accepted" \| "rejected" \| "idle"; }>` |
 | `phoneClick`        |             | `CustomEvent<any>`                                                                          |
 | `sendMessage`       |             | `CustomEvent<any>`                                                                          |
 | `twitterClick`      |             | `CustomEvent<any>`                                                                          |
