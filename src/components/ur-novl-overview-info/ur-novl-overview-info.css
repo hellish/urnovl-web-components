@@ -215,10 +215,7 @@
 :host .actions-holder {
     display: flex;
     gap: 8px;
-}
-
-:host .summary-action {
-    flex: 1;
+    overflow: auto;
 }
 
 :host .owner-holder {

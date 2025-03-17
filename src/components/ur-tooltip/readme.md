@@ -25,6 +25,7 @@
 
  - [ur-main-menu](../ur-main-menu)
  - [ur-novl-overview-info](../ur-novl-overview-info)
+ - [ur-player](../ur-player)
  - [ur-profile-card](../ur-profile-card)
  - [ur-read-rail](../ur-read-rail)
  - [ur-reader](../ur-reader)
@@ -34,6 +35,7 @@
 graph TD;
   ur-main-menu --> ur-tooltip
   ur-novl-overview-info --> ur-tooltip
+  ur-player --> ur-tooltip
   ur-profile-card --> ur-tooltip
   ur-read-rail --> ur-tooltip
   ur-reader --> ur-tooltip

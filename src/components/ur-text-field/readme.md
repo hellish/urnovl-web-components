@@ -47,11 +47,13 @@
 ### Used by
 
  - [ur-comment-form](../ur-comment-form)
+ - [ur-library-shelf-selector](../ur-library-shelf-selector)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-comment-form --> ur-text-field
+  ur-library-shelf-selector --> ur-text-field
   style ur-text-field fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

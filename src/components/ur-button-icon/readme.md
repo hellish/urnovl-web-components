@@ -33,6 +33,7 @@
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
  - [ur-main-menu](../ur-main-menu)
  - [ur-novl-overview-info](../ur-novl-overview-info)
+ - [ur-player](../ur-player)
  - [ur-profile-card](../ur-profile-card)
  - [ur-read-mobile-top-app-bar](../ur-read-mobile-top-app-bar)
  - [ur-read-rail](../ur-read-rail)
@@ -50,6 +51,7 @@ graph TD;
   ur-main-desktop-top-app-bar --> ur-button-icon
   ur-main-menu --> ur-button-icon
   ur-novl-overview-info --> ur-button-icon
+  ur-player --> ur-button-icon
   ur-profile-card --> ur-button-icon
   ur-read-mobile-top-app-bar --> ur-button-icon
   ur-read-rail --> ur-button-icon

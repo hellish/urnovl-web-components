@@ -84,6 +84,7 @@
 }
 
 :host .actions-holder {
+    overflow: auto;
     display: flex;
     gap: 8px;
 }

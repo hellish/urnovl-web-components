@@ -200,6 +200,17 @@ export namespace Components {
         "heroTitleColor": string;
         "layout": 'left' | 'right' | 'center';
     }
+    interface UrLibraryShelfSelector {
+        "chooseButtonText": string;
+        "chooseShelfLabelText": string;
+        "createButtonText": string;
+        "createNewShelfLabelText": string;
+        "createNewShelfSubtitleText": string;
+        "newShelfPlaceholder": string;
+        "orCreateNewShelf": string;
+        "selectedShelf": string;
+        "shelves": { name: string }[];
+    }
     interface UrLinearProgress {
         /**
           * The maximum value of the progress indicator.
@@ -418,6 +429,7 @@ export namespace Components {
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
     interface UrNovlOverviewInfo {
+        "addToLibraryText": string;
         "buyStoryText": string;
         "chapterListText": string;
         "completeStoryText": string;
@@ -431,7 +443,9 @@ export namespace Components {
         "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
+        "isNovlLibrary": boolean;
         "isOwner": boolean;
+        "isUserLoggedIn": boolean;
         "languages": string;
         "likes": number;
         "likesText": string;
@@ -446,6 +460,7 @@ export namespace Components {
         "readStoryText": string;
         "readingDuration": string;
         "readingDurationText": string;
+        "removeFromLibraryText": string;
         "reset": () => Promise<void>;
         "revertStoryText": string;
         "showLessText": string;
@@ -461,6 +476,7 @@ export namespace Components {
         "writeStoryText": string;
     }
     interface UrNovlSummary {
+        "addToLibraryText": string;
         "buyStoryText": string;
         "completeText": string;
         "coverImage": string;
@@ -468,6 +484,8 @@ export namespace Components {
         "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
+        "isNovlLibrary": boolean;
+        "isUserLoggedIn": boolean;
         "languages": string;
         "learnMoreText": string;
         "likes": number;
@@ -484,6 +502,7 @@ export namespace Components {
         "readStoryText": string;
         "readingDuration": string;
         "readingDurationText": string;
+        "removeFromLibraryText": string;
         "reset": () => Promise<void>;
         "showLessText": string;
         "showMoreText": string;
@@ -586,6 +605,32 @@ export namespace Components {
         "isMobile": boolean;
         "isOwner": boolean;
         "membersTabText": string;
+    }
+    interface UrPlayer {
+        "accentColor": string;
+        "author": string;
+        "autoPlay": boolean;
+        "backwardText": string;
+        "chapterName": string;
+        "coverImage": string;
+        "darkMode": boolean;
+        "forwardText": string;
+        "pause": () => Promise<void>;
+        "pauseText": string;
+        "play": () => Promise<void>;
+        "playText": string;
+        "primaryColor": string;
+        "seekTo": (time: number) => Promise<void>;
+        "setPlaybackRate": (rate: number) => Promise<void>;
+        "setVolume": (value: number) => Promise<void>;
+        "showControls": boolean;
+        "skipBackward": (seconds?: number) => Promise<void>;
+        "skipForward": (seconds?: number) => Promise<void>;
+        "speedText": string;
+        "src": string;
+        "storyTitle": string;
+        "togglePlay": () => Promise<void>;
+        "volumeText": string;
     }
     interface UrProfile {
         "description": any;
@@ -1041,6 +1086,10 @@ export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
 }
+export interface UrLibraryShelfSelectorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrLibraryShelfSelectorElement;
+}
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrLocaleFilterPanelElement;
@@ -1096,6 +1145,10 @@ export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageSharedListTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageSharedListTabsElement;
+}
+export interface UrPlayerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPlayerElement;
 }
 export interface UrProfileCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1373,6 +1426,24 @@ declare global {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
     };
+    interface HTMLUrLibraryShelfSelectorElementEventMap {
+        "chooseShelfEvent": { shelfName: string };
+        "createShelfEvent": { shelfName: string };
+    }
+    interface HTMLUrLibraryShelfSelectorElement extends Components.UrLibraryShelfSelector, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrLibraryShelfSelectorElementEventMap>(type: K, listener: (this: HTMLUrLibraryShelfSelectorElement, ev: UrLibraryShelfSelectorCustomEvent<HTMLUrLibraryShelfSelectorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrLibraryShelfSelectorElementEventMap>(type: K, listener: (this: HTMLUrLibraryShelfSelectorElement, ev: UrLibraryShelfSelectorCustomEvent<HTMLUrLibraryShelfSelectorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrLibraryShelfSelectorElement: {
+        prototype: HTMLUrLibraryShelfSelectorElement;
+        new (): HTMLUrLibraryShelfSelectorElement;
+    };
     interface HTMLUrLinearProgressElement extends Components.UrLinearProgress, HTMLStencilElement {
     }
     var HTMLUrLinearProgressElement: {
@@ -1599,6 +1670,7 @@ declare global {
         "visibilityChangeEvent": any;
         "completeStoryEvent": any;
         "revertStoryEvent": any;
+        "toggleLibraryEvent": any;
     }
     interface HTMLUrNovlOverviewInfoElement extends Components.UrNovlOverviewInfo, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlOverviewInfoElementEventMap>(type: K, listener: (this: HTMLUrNovlOverviewInfoElement, ev: UrNovlOverviewInfoCustomEvent<HTMLUrNovlOverviewInfoElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1619,6 +1691,7 @@ declare global {
         "learnMoreEvent": any;
         "writeStoryEvent": any;
         "buyStoryEvent": any;
+        "toggleLibraryEvent": any;
     }
     interface HTMLUrNovlSummaryElement extends Components.UrNovlSummary, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlSummaryElementEventMap>(type: K, listener: (this: HTMLUrNovlSummaryElement, ev: UrNovlSummaryCustomEvent<HTMLUrNovlSummaryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1734,6 +1807,28 @@ declare global {
     var HTMLUrPageSharedListTabsElement: {
         prototype: HTMLUrPageSharedListTabsElement;
         new (): HTMLUrPageSharedListTabsElement;
+    };
+    interface HTMLUrPlayerElementEventMap {
+        "playerPlay": any;
+        "playerPause": any;
+        "playerEnded": any;
+        "playerTimeUpdate": { currentTime: number; duration: number };
+        "playerVolumeChange": { volume: number };
+        "playerRateChange": { rate: number };
+    }
+    interface HTMLUrPlayerElement extends Components.UrPlayer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPlayerElementEventMap>(type: K, listener: (this: HTMLUrPlayerElement, ev: UrPlayerCustomEvent<HTMLUrPlayerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPlayerElementEventMap>(type: K, listener: (this: HTMLUrPlayerElement, ev: UrPlayerCustomEvent<HTMLUrPlayerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPlayerElement: {
+        prototype: HTMLUrPlayerElement;
+        new (): HTMLUrPlayerElement;
     };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
@@ -2136,6 +2231,7 @@ declare global {
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-library-shelf-selector": HTMLUrLibraryShelfSelectorElement;
         "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
@@ -2162,6 +2258,7 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
         "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
+        "ur-player": HTMLUrPlayerElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-profile-card": HTMLUrProfileCardElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
@@ -2385,6 +2482,19 @@ declare namespace LocalJSX {
         "heroTitleColor"?: string;
         "layout"?: 'left' | 'right' | 'center';
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
+    }
+    interface UrLibraryShelfSelector {
+        "chooseButtonText"?: string;
+        "chooseShelfLabelText"?: string;
+        "createButtonText"?: string;
+        "createNewShelfLabelText"?: string;
+        "createNewShelfSubtitleText"?: string;
+        "newShelfPlaceholder"?: string;
+        "onChooseShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
+        "onCreateShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
+        "orCreateNewShelf"?: string;
+        "selectedShelf"?: string;
+        "shelves"?: { name: string }[];
     }
     interface UrLinearProgress {
         /**
@@ -2636,6 +2746,7 @@ declare namespace LocalJSX {
         "spaceBetween"?: number | string;
     }
     interface UrNovlOverviewInfo {
+        "addToLibraryText"?: string;
         "buyStoryText"?: string;
         "chapterListText"?: string;
         "completeStoryText"?: string;
@@ -2649,7 +2760,9 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;
+        "isNovlLibrary"?: boolean;
         "isOwner"?: boolean;
+        "isUserLoggedIn"?: boolean;
         "languages"?: string;
         "likes"?: number;
         "likesText"?: string;
@@ -2664,6 +2777,7 @@ declare namespace LocalJSX {
         "onEditTitleEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onReadStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onRevertStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onToggleLibraryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onVisibilityChangeEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onWriteStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "ongoingText"?: string;
@@ -2672,6 +2786,7 @@ declare namespace LocalJSX {
         "readStoryText"?: string;
         "readingDuration"?: string;
         "readingDurationText"?: string;
+        "removeFromLibraryText"?: string;
         "revertStoryText"?: string;
         "showLessText"?: string;
         "showMoreText"?: string;
@@ -2686,6 +2801,7 @@ declare namespace LocalJSX {
         "writeStoryText"?: string;
     }
     interface UrNovlSummary {
+        "addToLibraryText"?: string;
         "buyStoryText"?: string;
         "completeText"?: string;
         "coverImage"?: string;
@@ -2693,6 +2809,8 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;
+        "isNovlLibrary"?: boolean;
+        "isUserLoggedIn"?: boolean;
         "languages"?: string;
         "learnMoreText"?: string;
         "likes"?: number;
@@ -2706,6 +2824,7 @@ declare namespace LocalJSX {
         "onBuyStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onLearnMoreEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onReadStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onToggleLibraryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onWriteStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "ongoingText"?: string;
         "ownerAvatar"?: string;
@@ -2713,6 +2832,7 @@ declare namespace LocalJSX {
         "readStoryText"?: string;
         "readingDuration"?: string;
         "readingDurationText"?: string;
+        "removeFromLibraryText"?: string;
         "showLessText"?: string;
         "showMoreText"?: string;
         "storyCompleteStatus"?: boolean;
@@ -2832,6 +2952,30 @@ declare namespace LocalJSX {
         "isOwner"?: boolean;
         "membersTabText"?: string;
         "onTabChange"?: (event: UrPageSharedListTabsCustomEvent<string>) => void;
+    }
+    interface UrPlayer {
+        "accentColor"?: string;
+        "author"?: string;
+        "autoPlay"?: boolean;
+        "backwardText"?: string;
+        "chapterName"?: string;
+        "coverImage"?: string;
+        "darkMode"?: boolean;
+        "forwardText"?: string;
+        "onPlayerEnded"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerPause"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerPlay"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerRateChange"?: (event: UrPlayerCustomEvent<{ rate: number }>) => void;
+        "onPlayerTimeUpdate"?: (event: UrPlayerCustomEvent<{ currentTime: number; duration: number }>) => void;
+        "onPlayerVolumeChange"?: (event: UrPlayerCustomEvent<{ volume: number }>) => void;
+        "pauseText"?: string;
+        "playText"?: string;
+        "primaryColor"?: string;
+        "showControls"?: boolean;
+        "speedText"?: string;
+        "src"?: string;
+        "storyTitle"?: string;
+        "volumeText"?: string;
     }
     interface UrProfile {
         "description"?: any;
@@ -3329,6 +3473,7 @@ declare namespace LocalJSX {
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
         "ur-hero": UrHero;
+        "ur-library-shelf-selector": UrLibraryShelfSelector;
         "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
@@ -3355,6 +3500,7 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-page-profile-tabs": UrPageProfileTabs;
         "ur-page-shared-list-tabs": UrPageSharedListTabs;
+        "ur-player": UrPlayer;
         "ur-profile": UrProfile;
         "ur-profile-card": UrProfileCard;
         "ur-radio-button": UrRadioButton;
@@ -3400,6 +3546,7 @@ declare module "@stencil/core" {
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-library-shelf-selector": LocalJSX.UrLibraryShelfSelector & JSXBase.HTMLAttributes<HTMLUrLibraryShelfSelectorElement>;
             "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
@@ -3426,6 +3573,7 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
             "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
+            "ur-player": LocalJSX.UrPlayer & JSXBase.HTMLAttributes<HTMLUrPlayerElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-profile-card": LocalJSX.UrProfileCard & JSXBase.HTMLAttributes<HTMLUrProfileCardElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;

@@ -88,7 +88,19 @@ export class UrNovlOverviewInfo {
     buyStoryText: string = 'Buy for';
 
     @Prop()
+    addToLibraryText: string = 'Add to Library';
+
+    @Prop()
+    removeFromLibraryText: string = 'Remove from Library';
+
+    @Prop()
     novlPrice: string;
+
+    @Prop()
+    isUserLoggedIn: boolean = false;
+
+    @Prop()
+    isNovlLibrary: boolean;
 
     @Prop()
     hasBranches: boolean;
@@ -156,6 +168,9 @@ export class UrNovlOverviewInfo {
     @Event()
     revertStoryEvent: EventEmitter;
 
+    @Event()
+    toggleLibraryEvent: EventEmitter;
+
     onReadStory() {
         this.readStoryEvent.emit();
     }
@@ -189,6 +204,10 @@ export class UrNovlOverviewInfo {
 
     onRevertStory() {
         this.revertStoryEvent.emit();
+    }
+
+    onToggleLibrary() {
+        this.toggleLibraryEvent.emit();
     }
 
     @Method()
@@ -307,6 +326,16 @@ export class UrNovlOverviewInfo {
                                             <span class="buy-price">{this.novlPrice}</span>
                                         </ur-button>
                                     ))}
+                                {this.isUserLoggedIn && (
+                                    <ur-button
+                                        class="summary-action"
+                                        icon={this.isNovlLibrary ? 'bookmark_added' : 'bookmark_add--outlined'}
+                                        variant="text"
+                                        onClick={() => this.onToggleLibrary()}
+                                    >
+                                        {this.isNovlLibrary ? this.removeFromLibraryText : this.addToLibraryText}
+                                    </ur-button>
+                                )}
                             </div>
                         </div>
 
@@ -326,10 +355,7 @@ export class UrNovlOverviewInfo {
                                 )}
                             </div>
                             {!this.editDescriptionMode ? <slot name="description"></slot> : <slot name="description-edit"></slot>}
-                            {this.editDescriptionMode && (
-                                <div class="description-edit" slot="description-edit">
-                                </div>
-                            )}
+                            {this.editDescriptionMode && <div class="description-edit" slot="description-edit"></div>}
                         </div>
 
                         <div class="owner-holder">

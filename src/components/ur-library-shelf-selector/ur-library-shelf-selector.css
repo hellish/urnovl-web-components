@@ -1,0 +1,35 @@
+:host {
+    display: block;
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+}
+
+:host .library-shelf-selector {
+    padding: 16px;
+}
+
+:host .section-title {
+    font-size: 16px;
+}
+
+:host .create-new-shelf-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+:host .create-new-shelf-container .section-subtitle {
+    margin: 0;
+}
+
+:host .library-shelf-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+:host .library-shelf-selector .shelves-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

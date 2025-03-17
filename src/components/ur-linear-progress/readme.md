@@ -20,6 +20,19 @@
 | `"indicator"` |             |
 
 
+## Dependencies
+
+### Used by
+
+ - [ur-player](../ur-player)
+
+### Graph
+```mermaid
+graph TD;
+  ur-player --> ur-linear-progress
+  style ur-linear-progress fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

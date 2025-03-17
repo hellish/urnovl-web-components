@@ -45,6 +45,19 @@ Type: `Promise<boolean>`
 
 
 
+## Dependencies
+
+### Used by
+
+ - [ur-library-shelf-selector](../ur-library-shelf-selector)
+
+### Graph
+```mermaid
+graph TD;
+  ur-library-shelf-selector --> ur-radio-group
+  style ur-radio-group fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
