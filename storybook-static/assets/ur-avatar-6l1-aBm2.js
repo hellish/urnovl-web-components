@@ -1,0 +1,11 @@
+import{s as i,g as t}from"./chunk-L4EGOTBX-2Jzo53v8.js";import"./entry-preview-BcHUnPw7.js";import{d as n,H as d,f as e,h as r,a as o}from"./index-BJvbtjhH.js";const u=`:host {
+    --ur-color-background: var(--mdui-color-background);
+
+    img {
+        display: block;
+        border-color: rgb(var(--ur-color-background));
+        border-style: solid;
+        background: #fff;
+    }
+}
+`,c=class extends d{constructor(){super(),this.__registerHost(),this.__attachShadow(),this.size="32px",this.border="0",this.radius="50%",this.variant="user",this.defaultUserAvatar="/assets/img/user/account.png",this.defaultPageAvatar="/assets/img/pages/page.png"}get defaultAvatar(){return this.variant==="page"?this.defaultPageAvatar:this.defaultUserAvatar}componentDidLoad(){const a=new Image;a.src=this.src||this.defaultAvatar,a.onload=()=>{e(this)},a.onerror=()=>{this.src=this.defaultAvatar,e(this)}}render(){const a=this.src||this.defaultAvatar;return r(o,{key:"6d74d539a70cf189c15dde756370ad0a42a88c56"},r("img",{key:"745835aa7a3dfea018a6957bdf5ddf2ea56e57f7",class:"avatar",src:a,style:{borderRadius:this.radius,height:this.size,width:this.size,borderWidth:this.border},alt:this.name||(this.variant==="page"?"Business Avatar":"User Avatar")}))}static get style(){return u}};n(c,[1,"ur-avatar",{size:[1],src:[1],name:[1],border:[1],radius:[1],variant:[1]}]);const s={schemaVersion:"1.0.0",modules:[{kind:"javascript-module",path:"",declarations:[{kind:"class",name:"UrAvatar",tagName:"ur-avatar",customElement:!0,members:[{kind:"field",name:"size",type:"string",description:"",default:"'32px'"},{kind:"field",name:"src",type:"string",description:""},{kind:"field",name:"name",type:"string",description:""},{kind:"field",name:"border",type:"string",description:"",default:"'0'"},{kind:"field",name:"radius",type:"string",description:"",default:"'50%'"},{kind:"field",name:"variant",type:"string",description:"",default:"'user'"}],events:[]}],exports:[{kind:"js",name:"UrAvatar",declaration:{name:"UrAvatar",module:"src/components/ur-avatar/ur-avatar.tsx"}},{kind:"custom-element-definition",name:"ur-avatar",declaration:{name:"UrAvatar",module:"src/components/ur-avatar/ur-avatar.tsx"}}]}]};i({...t()||{},...s,modules:[...(t()||{}).modules||[],...s.modules]});
