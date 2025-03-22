@@ -24,6 +24,36 @@ export { PageGrid } from "./data/page-carousel";
 export { User, UserCustomContent } from "./models/user";
 export { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export namespace Components {
+    interface UrAutosaveDrawer {
+        /**
+          * Array of autosave items to display in the drawer
+         */
+        "autosaves": any[];
+        /**
+          * Text for the autosaves title
+         */
+        "autosavesTitle": string;
+        /**
+          * Text for the chapter label
+         */
+        "chapterText": string;
+        /**
+          * Text for delete confirmation
+         */
+        "deleteConfirmMessage": string;
+        /**
+          * Empty drawer message
+         */
+        "emptyMessage": string;
+        /**
+          * Text for the no button
+         */
+        "noText": string;
+        /**
+          * Text for the yes button
+         */
+        "yesText": string;
+    }
     interface UrAvatar {
         "border": string;
         "name"?: string;
@@ -342,6 +372,36 @@ export namespace Components {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+    }
+    interface UrNavigationBar {
+        /**
+          * Label visibility
+         */
+        "labelVisibility": 'auto' | 'selected' | 'labeled' | 'unlabeled';
+        /**
+          * Position of the navigation bar
+         */
+        "position": 'bottom' | 'top';
+        /**
+          * Scroll behavior
+         */
+        "scrollBehavior": '' | 'hide';
+        /**
+          * Scroll target (CSS selector or DOM element)
+         */
+        "scrollTarget": string;
+        /**
+          * Scroll threshold in pixels
+         */
+        "scrollThreshold": number;
+        /**
+          * Method to set active item by value
+         */
+        "setValue": (value: string) => Promise<void>;
+        /**
+          * Selected value
+         */
+        "value": string;
     }
     interface UrNavigationDrawer {
         "closeDrawer": () => Promise<void>;
@@ -1046,6 +1106,10 @@ export namespace Components {
         "validationMessage": string;
     }
 }
+export interface UrAutosaveDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrAutosaveDrawerElement;
+}
 export interface UrBottomSheetCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrBottomSheetElement;
@@ -1219,6 +1283,26 @@ export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
     target: HTMLUrWizardStepElement;
 }
 declare global {
+    interface HTMLUrAutosaveDrawerElementEventMap {
+        "autosaveOpen": any;
+        "autosaveDeleteRequest": any;
+        "autosaveDeleteConfirm": any;
+        "autosaveDeleteCancel": any;
+    }
+    interface HTMLUrAutosaveDrawerElement extends Components.UrAutosaveDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrAutosaveDrawerElementEventMap>(type: K, listener: (this: HTMLUrAutosaveDrawerElement, ev: UrAutosaveDrawerCustomEvent<HTMLUrAutosaveDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrAutosaveDrawerElementEventMap>(type: K, listener: (this: HTMLUrAutosaveDrawerElement, ev: UrAutosaveDrawerCustomEvent<HTMLUrAutosaveDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrAutosaveDrawerElement: {
+        prototype: HTMLUrAutosaveDrawerElement;
+        new (): HTMLUrAutosaveDrawerElement;
+    };
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
     }
     var HTMLUrAvatarElement: {
@@ -1578,6 +1662,12 @@ declare global {
     var HTMLUrMenuProfileElement: {
         prototype: HTMLUrMenuProfileElement;
         new (): HTMLUrMenuProfileElement;
+    };
+    interface HTMLUrNavigationBarElement extends Components.UrNavigationBar, HTMLStencilElement {
+    }
+    var HTMLUrNavigationBarElement: {
+        prototype: HTMLUrNavigationBarElement;
+        new (): HTMLUrNavigationBarElement;
     };
     interface HTMLUrNavigationDrawerElement extends Components.UrNavigationDrawer, HTMLStencilElement {
     }
@@ -2216,6 +2306,7 @@ declare global {
         new (): HTMLUrWizardStepElement;
     };
     interface HTMLElementTagNameMap {
+        "ur-autosave-drawer": HTMLUrAutosaveDrawerElement;
         "ur-avatar": HTMLUrAvatarElement;
         "ur-bottom-sheet": HTMLUrBottomSheetElement;
         "ur-button": HTMLUrButtonElement;
@@ -2245,6 +2336,7 @@ declare global {
         "ur-main-menu": HTMLUrMainMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menu-profile": HTMLUrMenuProfileElement;
+        "ur-navigation-bar": HTMLUrNavigationBarElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-navigation-drawer-global": HTMLUrNavigationDrawerGlobalElement;
         "ur-notification": HTMLUrNotificationElement;
@@ -2286,6 +2378,52 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface UrAutosaveDrawer {
+        /**
+          * Array of autosave items to display in the drawer
+         */
+        "autosaves"?: any[];
+        /**
+          * Text for the autosaves title
+         */
+        "autosavesTitle"?: string;
+        /**
+          * Text for the chapter label
+         */
+        "chapterText"?: string;
+        /**
+          * Text for delete confirmation
+         */
+        "deleteConfirmMessage"?: string;
+        /**
+          * Empty drawer message
+         */
+        "emptyMessage"?: string;
+        /**
+          * Text for the no button
+         */
+        "noText"?: string;
+        /**
+          * Event emitted when delete confirmation "No" button is clicked
+         */
+        "onAutosaveDeleteCancel"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when delete confirmation "Yes" button is clicked
+         */
+        "onAutosaveDeleteConfirm"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when delete icon is clicked for an autosave
+         */
+        "onAutosaveDeleteRequest"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when an autosave is selected to open
+         */
+        "onAutosaveOpen"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Text for the yes button
+         */
+        "yesText"?: string;
+    }
     interface UrAvatar {
         "border"?: string;
         "name"?: string;
@@ -2660,6 +2798,32 @@ declare namespace LocalJSX {
         "userAvatar"?: string;
         "userName"?: string;
         "userRole"?: string;
+    }
+    interface UrNavigationBar {
+        /**
+          * Label visibility
+         */
+        "labelVisibility"?: 'auto' | 'selected' | 'labeled' | 'unlabeled';
+        /**
+          * Position of the navigation bar
+         */
+        "position"?: 'bottom' | 'top';
+        /**
+          * Scroll behavior
+         */
+        "scrollBehavior"?: '' | 'hide';
+        /**
+          * Scroll target (CSS selector or DOM element)
+         */
+        "scrollTarget"?: string;
+        /**
+          * Scroll threshold in pixels
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Selected value
+         */
+        "value"?: string;
     }
     interface UrNavigationDrawer {
         /**
@@ -3458,6 +3622,7 @@ declare namespace LocalJSX {
         "validationMessage"?: string;
     }
     interface IntrinsicElements {
+        "ur-autosave-drawer": UrAutosaveDrawer;
         "ur-avatar": UrAvatar;
         "ur-bottom-sheet": UrBottomSheet;
         "ur-button": UrButton;
@@ -3487,6 +3652,7 @@ declare namespace LocalJSX {
         "ur-main-menu": UrMainMenu;
         "ur-menu-item": UrMenuItem;
         "ur-menu-profile": UrMenuProfile;
+        "ur-navigation-bar": UrNavigationBar;
         "ur-navigation-drawer": UrNavigationDrawer;
         "ur-navigation-drawer-global": UrNavigationDrawerGlobal;
         "ur-notification": UrNotification;
@@ -3531,6 +3697,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ur-autosave-drawer": LocalJSX.UrAutosaveDrawer & JSXBase.HTMLAttributes<HTMLUrAutosaveDrawerElement>;
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
             "ur-bottom-sheet": LocalJSX.UrBottomSheet & JSXBase.HTMLAttributes<HTMLUrBottomSheetElement>;
             "ur-button": LocalJSX.UrButton & JSXBase.HTMLAttributes<HTMLUrButtonElement>;
@@ -3560,6 +3727,7 @@ declare module "@stencil/core" {
             "ur-main-menu": LocalJSX.UrMainMenu & JSXBase.HTMLAttributes<HTMLUrMainMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
+            "ur-navigation-bar": LocalJSX.UrNavigationBar & JSXBase.HTMLAttributes<HTMLUrNavigationBarElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-navigation-drawer-global": LocalJSX.UrNavigationDrawerGlobal & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerGlobalElement>;
             "ur-notification": LocalJSX.UrNotification & JSXBase.HTMLAttributes<HTMLUrNotificationElement>;

@@ -271,14 +271,17 @@ export class UrNovlSummary {
                                 </ur-button>
                             ))}
 
-                        {this.novlIsOwn && (
-                            <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
-                                {this.learnMoreText}
-                            </ur-button>
-                        )}
+                        <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
+                            {this.learnMoreText}
+                        </ur-button>
 
                         {this.isUserLoggedIn && (
-                            <ur-button class="summary-action" icon={this.isNovlLibrary ? 'bookmark_added' : 'bookmark_add--outlined'} variant="text" onClick={() => this.onToggleLibrary()}>
+                            <ur-button
+                                class="summary-action"
+                                icon={this.isNovlLibrary ? 'bookmark_added' : 'bookmark_add--outlined'}
+                                variant="text"
+                                onClick={() => this.onToggleLibrary()}
+                            >
                                 {this.isNovlLibrary ? this.removeFromLibraryText : this.addToLibraryText}
                             </ur-button>
                         )}

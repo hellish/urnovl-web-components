@@ -27,6 +27,7 @@
 
 ### Used by
 
+ - [ur-autosave-drawer](../ur-autosave-drawer)
  - [ur-chapter-item](../ur-chapter-item)
  - [ur-comment-form](../ur-comment-form)
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
@@ -45,6 +46,7 @@
 ### Graph
 ```mermaid
 graph TD;
+  ur-autosave-drawer --> ur-button-icon
   ur-chapter-item --> ur-button-icon
   ur-comment-form --> ur-button-icon
   ur-locale-filter-panel --> ur-button-icon
