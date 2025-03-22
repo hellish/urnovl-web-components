@@ -47,24 +47,14 @@ export interface CommentNotification extends BaseNotification {
 // Membership Request Notification
 export interface MembershipRequestNotification extends BaseNotification {
     event: 'mrequest';
-    status: 'pending' | 'accepted' | 'rejected';
-    page: {
-        name: string;
-    };
 }
 
 export interface MembershipAcceptNotification extends BaseNotification {
     event: 'mrequestaccepted';
-    page: {
-        name: string;
-    };
 }
 
 export interface MembershipRejectNotification extends BaseNotification {
     event: 'mrequestrejected';
-    page: {
-        name: string;
-    };
 }
 
 // Extensible notification type

@@ -534,6 +534,7 @@ export namespace Components {
         "following": number | null;
         "genres": string | null;
         "genresText": string;
+        "inviteMembersText": string;
         "isPageOwner": boolean;
         "languages": string | null;
         "languagesText": string;
@@ -1682,6 +1683,7 @@ declare global {
         "phoneClick": any;
         "websiteClick": any;
         "pageCreatorClick": any;
+        "inviteMembers": any;
         "pageFollowClicked": PageFollowEvent;
         "pageMemberClicked": PageMemberEvent;
     }
@@ -2762,6 +2764,7 @@ declare namespace LocalJSX {
         "following"?: number | null;
         "genres"?: string | null;
         "genresText"?: string;
+        "inviteMembersText"?: string;
         "isPageOwner"?: boolean;
         "languages"?: string | null;
         "languagesText"?: string;
@@ -2777,6 +2780,7 @@ declare namespace LocalJSX {
         "onEmailClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
