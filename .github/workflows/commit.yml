@@ -20,7 +20,7 @@ jobs:
               with:
                   node-version: 22
                   registry-url: 'https://registry.npmjs.org'
-            - run: npm ci
+            - run: npx yarn
             - run: npm test
             - run: npm run build
             - run: npm install -D storybook-addon-stencil@0.2.2
