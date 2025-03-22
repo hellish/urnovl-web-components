@@ -27,11 +27,13 @@
 ### Used by
 
  - [ur-novl-overview-info](../ur-novl-overview-info)
+ - [ur-user-profile-settings-form](../ur-user-profile-settings-form)
 
 ### Graph
 ```mermaid
 graph TD;
   ur-novl-overview-info --> ur-switch
+  ur-user-profile-settings-form --> ur-switch
   style ur-switch fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

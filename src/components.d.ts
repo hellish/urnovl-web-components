@@ -1039,6 +1039,30 @@ export namespace Components {
     }
     interface UrUserProfile {
     }
+    interface UrUserProfileSettingsForm {
+        "aboutLabelText": string;
+        "emailLabelText": string;
+        "emailTitleText": string;
+        "facebookLabelText": string;
+        "facebookPrefixText": string;
+        "facebookTitleText": string;
+        "interactSubtitleText": string;
+        "interactTitleText": string;
+        "linkedinLabelText": string;
+        "linkedinPrefixText": string;
+        "linkedinTitleText": string;
+        "locationLabelText": string;
+        "personalInfoSubtitleText": string;
+        "personalInfoTitleText": string;
+        /**
+          * The form values (settings data)
+         */
+        "settings": any;
+        "twitterLabelText": string;
+        "twitterPrefixText": string;
+        "twitterTitleText": string;
+        "websiteLabelText": string;
+    }
     interface UrUserProfileTabs {
         "aboutTabText": string;
         "activeTab": string;
@@ -1273,6 +1297,10 @@ export interface UrUserCarouselCustomEvent<T> extends CustomEvent<T> {
 export interface UrUserPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserPageProfileElement;
+}
+export interface UrUserProfileSettingsFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserProfileSettingsFormElement;
 }
 export interface UrUserProfileTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -2270,6 +2298,23 @@ declare global {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
     };
+    interface HTMLUrUserProfileSettingsFormElementEventMap {
+        "inputChanged": { field: string; value: any };
+    }
+    interface HTMLUrUserProfileSettingsFormElement extends Components.UrUserProfileSettingsForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserProfileSettingsFormElementEventMap>(type: K, listener: (this: HTMLUrUserProfileSettingsFormElement, ev: UrUserProfileSettingsFormCustomEvent<HTMLUrUserProfileSettingsFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserProfileSettingsFormElementEventMap>(type: K, listener: (this: HTMLUrUserProfileSettingsFormElement, ev: UrUserProfileSettingsFormCustomEvent<HTMLUrUserProfileSettingsFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserProfileSettingsFormElement: {
+        prototype: HTMLUrUserProfileSettingsFormElement;
+        new (): HTMLUrUserProfileSettingsFormElement;
+    };
     interface HTMLUrUserProfileTabsElementEventMap {
         "tabChange": string;
     }
@@ -2373,6 +2418,7 @@ declare global {
         "ur-user-carousel": HTMLUrUserCarouselElement;
         "ur-user-page-profile": HTMLUrUserPageProfileElement;
         "ur-user-profile": HTMLUrUserProfileElement;
+        "ur-user-profile-settings-form": HTMLUrUserProfileSettingsFormElement;
         "ur-user-profile-tabs": HTMLUrUserProfileTabsElement;
         "ur-wizard-step": HTMLUrWizardStepElement;
     }
@@ -3554,6 +3600,34 @@ declare namespace LocalJSX {
     }
     interface UrUserProfile {
     }
+    interface UrUserProfileSettingsForm {
+        "aboutLabelText"?: string;
+        "emailLabelText"?: string;
+        "emailTitleText"?: string;
+        "facebookLabelText"?: string;
+        "facebookPrefixText"?: string;
+        "facebookTitleText"?: string;
+        "interactSubtitleText"?: string;
+        "interactTitleText"?: string;
+        "linkedinLabelText"?: string;
+        "linkedinPrefixText"?: string;
+        "linkedinTitleText"?: string;
+        "locationLabelText"?: string;
+        /**
+          * Event emitted when an input changes
+         */
+        "onInputChanged"?: (event: UrUserProfileSettingsFormCustomEvent<{ field: string; value: any }>) => void;
+        "personalInfoSubtitleText"?: string;
+        "personalInfoTitleText"?: string;
+        /**
+          * The form values (settings data)
+         */
+        "settings"?: any;
+        "twitterLabelText"?: string;
+        "twitterPrefixText"?: string;
+        "twitterTitleText"?: string;
+        "websiteLabelText"?: string;
+    }
     interface UrUserProfileTabs {
         "aboutTabText"?: string;
         "activeTab"?: string;
@@ -3689,6 +3763,7 @@ declare namespace LocalJSX {
         "ur-user-carousel": UrUserCarousel;
         "ur-user-page-profile": UrUserPageProfile;
         "ur-user-profile": UrUserProfile;
+        "ur-user-profile-settings-form": UrUserProfileSettingsForm;
         "ur-user-profile-tabs": UrUserProfileTabs;
         "ur-wizard-step": UrWizardStep;
     }
@@ -3764,6 +3839,7 @@ declare module "@stencil/core" {
             "ur-user-carousel": LocalJSX.UrUserCarousel & JSXBase.HTMLAttributes<HTMLUrUserCarouselElement>;
             "ur-user-page-profile": LocalJSX.UrUserPageProfile & JSXBase.HTMLAttributes<HTMLUrUserPageProfileElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
+            "ur-user-profile-settings-form": LocalJSX.UrUserProfileSettingsForm & JSXBase.HTMLAttributes<HTMLUrUserProfileSettingsFormElement>;
             "ur-user-profile-tabs": LocalJSX.UrUserProfileTabs & JSXBase.HTMLAttributes<HTMLUrUserProfileTabsElement>;
             "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
