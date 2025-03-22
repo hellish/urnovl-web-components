@@ -179,9 +179,6 @@ export const MembershipRequestNotification = {
                 displayName: 'John Doe',
                 profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
             },
-            page: {
-                name: 'My Page',
-            },
             read: false,
             updatedAt: new Date().toISOString(),
         } as NotificationType,
@@ -200,9 +197,6 @@ export const MembershipAcceptNotification = {
                 displayName: 'John Doe',
                 profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
             },
-            page: {
-                name: 'My Page',
-            },
             read: false,
             updatedAt: new Date().toISOString(),
         } as NotificationType,
@@ -220,9 +214,6 @@ export const MembershipRejectNotification = {
                 _id: 'user123',
                 displayName: 'John Doe',
                 profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&h=96&fit=crop&crop=faces',
-            },
-            page: {
-                name: 'My Page',
             },
             read: false,
             updatedAt: new Date().toISOString(),
