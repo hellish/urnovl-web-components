@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/web-components-vite';
+import type { StorybookConfig } from '@storybook/core-common';
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -14,7 +14,7 @@ const config: StorybookConfig = {
     ],
 
     framework: {
-        name: '@storybook/web-components-vite',
+        name: '@storybook/html-webpack5', // ✅ Use this for Stencil
         options: {},
     },
 
@@ -22,7 +22,9 @@ const config: StorybookConfig = {
         disableTelemetry: true, // 👈 Disables telemetry
     },
 
-    docs: {},
+    docs: {
+        autodocs: true
+    },
 };
 
 export default config;
