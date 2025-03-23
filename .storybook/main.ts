@@ -4,7 +4,7 @@ const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
     addons: [
-        require.resolve('storybook-addon-stencil/dist/preset.js'), // ✅ Ensure correct path
+        'storybook-addon-stencil',
         '@storybook/addon-links',
         '@storybook/addon-essentials',
         '@storybook/addon-storysource',
