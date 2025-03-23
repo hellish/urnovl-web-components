@@ -21,6 +21,15 @@ const config = {
         disableTelemetry: true, // 👈 Disables telemetry
     },
 
+    webpackFinal: async (config) => {
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            'storybook-addon-stencil': require.resolve('storybook-addon-stencil/dist/stencil'),
+        };
+
+        return config;
+    },
+
     docs: {},
 };
 export default config;
