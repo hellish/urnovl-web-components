@@ -17,6 +17,10 @@ const config = {
         options: {},
     },
 
+    core: {
+        disableTelemetry: true, // 👈 Disables telemetry
+    },
+
     docs: {},
 };
 export default config;
