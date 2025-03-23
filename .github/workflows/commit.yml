@@ -23,6 +23,4 @@ jobs:
             - run: npm ci
             - run: npm test
             - run: npm run build
-            - run: npm list storybook-addon-stencil
-            - run: npm install --save-dev storybook-addon-stencil
             - run: npm run build-storybook
