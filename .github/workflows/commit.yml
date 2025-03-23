@@ -10,6 +10,7 @@ on:
 
 env:
     CI: true
+    STORYBOOK_ENABLE_CRASH_REPORTS: 1
 
 jobs:
     Build:
