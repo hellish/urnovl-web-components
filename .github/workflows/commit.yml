@@ -22,5 +22,4 @@ jobs:
             - run: npm ci
             - run: npm test
             - run: npm run build
-            - run: node ./scripts/02-patch-stencil-modules.js
             - run: npm run build-storybook
