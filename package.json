@@ -22,7 +22,8 @@
     "files": [
         "dist/",
         "loader/",
-        "www/build/"
+        "www/build/",
+        "scripts/"
     ],
     "scripts": {
         "build": "stencil build",
