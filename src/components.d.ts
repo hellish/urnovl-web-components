@@ -1863,6 +1863,7 @@ declare global {
         new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
+        "member": any;
         "donate": any;
         "sendMessage": any;
         "followersClick": any;
@@ -3112,6 +3113,7 @@ declare namespace LocalJSX {
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onInviteMembers"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;

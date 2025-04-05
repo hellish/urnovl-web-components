@@ -151,6 +151,10 @@ export class UrPageProfile {
     @Prop()
     memberRequestStatus: 'idle' | 'pending' | 'accepted' | 'rejected' = 'idle';
 
+    // All events remain the same
+    @Event()
+    member;
+
     @Event()
     donate;
 
