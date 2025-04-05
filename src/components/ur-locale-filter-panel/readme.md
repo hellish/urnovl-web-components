@@ -7,12 +7,12 @@
 
 ## Properties
 
-| Property          | Attribute     | Description                 | Type       | Default    |
-| ----------------- | ------------- | --------------------------- | ---------- | ---------- |
-| `disabledLocales` | --            |                             | `string[]` | `[ 'en' ]` |
-| `locales`         | --            | List of available languages | `Locale[]` | `[]`       |
-| `showFooter`      | `show-footer` | Whether to show the footer  | `boolean`  | `true`     |
-| `showHeader`      | `show-header` | Whether to show the header  | `boolean`  | `true`     |
+| Property          | Attribute          | Description                 | Type       | Default    |
+| ----------------- | ------------------ | --------------------------- | ---------- | ---------- |
+| `disabledLocales` | `disabled-locales` |                             | `string[]` | `[ 'en' ]` |
+| `locales`         | `locales`          | List of available languages | `Locale[]` | `[]`       |
+| `showFooter`      | `show-footer`      | Whether to show the footer  | `boolean`  | `true`     |
+| `showHeader`      | `show-header`      | Whether to show the header  | `boolean`  | `true`     |
 
 
 ## Events

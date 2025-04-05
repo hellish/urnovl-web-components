@@ -9,7 +9,7 @@
 
 | Property               | Attribute                | Description                                      | Type     | Default                                                |
 | ---------------------- | ------------------------ | ------------------------------------------------ | -------- | ------------------------------------------------------ |
-| `autosaves`            | --                       | Array of autosave items to display in the drawer | `any[]`  | `[]`                                                   |
+| `autosaves`            | `autosaves`              | Array of autosave items to display in the drawer | `any[]`  | `[]`                                                   |
 | `autosavesTitle`       | `autosaves-title`        | Text for the autosaves title                     | `string` | `'Autosaves'`                                          |
 | `chapterText`          | `chapter-text`           | Text for the chapter label                       | `string` | `'Chapter'`                                            |
 | `deleteConfirmMessage` | `delete-confirm-message` | Text for delete confirmation                     | `string` | `'Delete chapter?'`                                    |

@@ -9,8 +9,8 @@
 
 | Property | Attribute | Description | Type                                    | Default     |
 | -------- | --------- | ----------- | --------------------------------------- | ----------- |
-| `panels` | --        |             | `{ content: string; value: string; }[]` | `undefined` |
-| `tabs`   | --        |             | `{ label: string; value: string; }[]`   | `undefined` |
+| `panels` | `panels`  |             | `{ content: string; value: string; }[]` | `undefined` |
+| `tabs`   | `tabs`    |             | `{ label: string; value: string; }[]`   | `undefined` |
 
 
 ----------------------------------------------
