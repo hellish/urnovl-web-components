@@ -1,10 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, State, Listen } from '@stencil/core';
 
-import '../ur-text-field/ur-text-field';
-import '../ur-radio-button/ur-radio-button';
-import '../ur-radio-group/ur-radio-group';
-import '../ur-button/ur-button';
-
 @Component({
     tag: 'ur-library-shelf-selector',
     styleUrl: 'ur-library-shelf-selector.css',
