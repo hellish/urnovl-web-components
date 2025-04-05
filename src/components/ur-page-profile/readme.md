@@ -69,7 +69,7 @@
 | `membersClick`      |             | `CustomEvent<any>`                                                                          |
 | `pageCreatorClick`  |             | `CustomEvent<any>`                                                                          |
 | `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                       |
-| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "idle" \| "pending" \| "accepted" \| "rejected"; }>` |
+| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "pending" \| "accepted" \| "rejected" \| "idle"; }>` |
 | `phoneClick`        |             | `CustomEvent<any>`                                                                          |
 | `sendMessage`       |             | `CustomEvent<any>`                                                                          |
 | `twitterClick`      |             | `CustomEvent<any>`                                                                          |
