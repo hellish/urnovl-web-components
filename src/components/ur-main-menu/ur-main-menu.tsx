@@ -1,4 +1,5 @@
 import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } from '@stencil/core';
+import '../ur-autosave-drawer/ur-autosave-drawer';
 
 @Component({
     tag: 'ur-main-menu',
@@ -518,6 +519,12 @@ export class UrMainMenu {
         );
     }
 
+    renderAutosaveDrawer() {
+        return (
+            <slot name="autosave-drawer"></slot>
+        );
+    }
+
     renderFooter() {
         return (
             <footer class="menu-footer">
@@ -595,6 +602,7 @@ export class UrMainMenu {
 
                 {this.loggedIn && !this.expanded && this.renderNotificationsCollapsed()}
 
+                {this.loggedIn && this.expanded && this.renderAutosaveDrawer()}
                 {this.loggedIn && this.expanded && this.renderNotifications()}
 
                 {this.expanded ? this.renderFooter() : this.renderCollapsedFooter()}
