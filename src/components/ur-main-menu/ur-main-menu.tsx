@@ -1,5 +1,7 @@
 import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } from '@stencil/core';
+
 import '../ur-autosave-drawer/ur-autosave-drawer';
+
 
 @Component({
     tag: 'ur-main-menu',
@@ -305,10 +307,10 @@ export class UrMainMenu {
         return (
             <div class="menu-navigation">
                 <ur-list>
-                    <ur-list-item 
-                        active={this.currentRoute === '/'} 
-                        icon="home--outlined" 
-                        content={this.homeText} 
+                    <ur-list-item
+                        active={this.currentRoute === '/'}
+                        icon="home--outlined"
+                        content={this.homeText}
                         onClick={() => this.homeClick.emit()}></ur-list-item>
 
                     <ur-list-item
@@ -582,7 +584,7 @@ export class UrMainMenu {
                         user-name={this.userName}
                         user-role={this.userRole}
                         on-click={() => this.viewProfileClick.emit()}
-                        class={`${this.expanded ? 'expanded' : 'collapsed'} ${this.currentRoute?.endsWith('/profile') || this.currentRoute?.endsWith('/profile/') ? 'active' : ''}`} 
+                        class={`${this.expanded ? 'expanded' : 'collapsed'} ${this.currentRoute?.endsWith('/profile') || this.currentRoute?.endsWith('/profile/') ? 'active' : ''}`}
 
                     ></ur-menu-profile>
                 )}
