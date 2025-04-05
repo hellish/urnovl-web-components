@@ -1,7 +1,8 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Watch, State } from '@stencil/core';
-import '../ur-button-icon/ur-button-icon';
+
 import '../ur-list/ur-list';
-import '../ur-list/ur-list-item';
+import '../ur-list-item/ur-list-item';
+import '../ur-button-icon/ur-button-icon';
 
 @Component({
     tag: 'ur-autosave-drawer',
@@ -139,13 +140,13 @@ export class UrAutosaveDrawer {
     renderAutosaveContent(autosave) {
         // Display novl title as the main title
         const mainTitle = autosave.novl?.title || 'Untitled Story';
-        
+
         // Use the autosave title as subtitle if available
         const subtitle = autosave.title || 'Untitled Chapter';
-        
+
         // Display chapter sequence
         const chapterSequence = autosave.sequence ? `${this.chapterText} ${autosave.sequence}` : '';
-        
+
         return (
             <div class="autosave-content">
                 <div class="content-info">

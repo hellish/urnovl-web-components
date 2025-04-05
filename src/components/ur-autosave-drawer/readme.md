@@ -34,7 +34,7 @@
 
 - [ur-button-icon](../ur-button-icon)
 - [ur-list](../ur-list)
-- [ur-list-item](../ur-list)
+- [ur-list-item](../ur-list-item)
 
 ### Graph
 ```mermaid

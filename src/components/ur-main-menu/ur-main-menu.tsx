@@ -1,7 +1,8 @@
 import { Component, h, State, Prop, Event, EventEmitter, Watch, Host, Element } from '@stencil/core';
 
+import '../ur-list/ur-list';
+import '../ur-list-item/ur-list-item';
 import '../ur-autosave-drawer/ur-autosave-drawer';
-
 
 @Component({
     tag: 'ur-main-menu',

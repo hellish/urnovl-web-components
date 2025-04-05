@@ -8,7 +8,9 @@ import 'mdui/components/list-subheader';
     shadow: true,
 })
 export class UrListSubheader {
-    @Prop() text: string = ''; // The text for the subheader
+
+    @Prop()
+    text = '';
 
     render() {
         return (

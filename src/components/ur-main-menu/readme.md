@@ -78,7 +78,7 @@
 ### Depends on
 
 - [ur-list](../ur-list)
-- [ur-list-item](../ur-list)
+- [ur-list-item](../ur-list-item)
 - [ur-tooltip](../ur-tooltip)
 - [ur-button-icon](../ur-button-icon)
 - [ur-logo](../ur-logo)

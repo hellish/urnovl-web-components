@@ -1,5 +1,6 @@
 import { html } from 'lit';
-import '../components/ur-list/ur-list-item'; // Import your list-item component
+
+import '../components/ur-list-item/ur-list-item'; // Import your list-item component
 import 'mdui/components/icon';
 
 export default {
