@@ -1,9 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Watch, State } from '@stencil/core';
 
-import '../ur-list/ur-list';
-import '../ur-list-item/ur-list-item';
-import '../ur-button-icon/ur-button-icon';
-
 @Component({
     tag: 'ur-autosave-drawer',
     styleUrl: 'ur-autosave-drawer.css',

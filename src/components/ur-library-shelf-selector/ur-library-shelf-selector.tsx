@@ -11,35 +11,36 @@ import '../ur-button/ur-button';
     shadow: true,
 })
 export class UrLibraryShelfSelector {
-    @Prop()
-    chooseButtonText: string = 'Choose';
 
     @Prop()
-    createButtonText: string = 'Create';
+    chooseButtonText = 'Choose';
 
     @Prop()
-    chooseShelfLabelText: string = 'You can add this story to a shelf in your library.';
+    createButtonText = 'Create';
 
     @Prop()
-    createNewShelfLabelText: string = 'Create a new shelf';
+    chooseShelfLabelText = 'You can add this story to a shelf in your library.';
 
     @Prop()
-    createNewShelfSubtitleText: string = 'Create a shelve and organize your favorite stories in your Library.';
+    createNewShelfLabelText = 'Create a new shelf';
 
     @Prop()
-    orCreateNewShelf: string = 'or create a new one';
+    createNewShelfSubtitleText = 'Create a shelve and organize your favorite stories in your Library.';
 
     @Prop()
-    newShelfPlaceholder: string = 'Please enter a shelf name';
+    orCreateNewShelf = 'or create a new one';
+
+    @Prop()
+    newShelfPlaceholder = 'Please enter a shelf name';
 
     @Prop()
     shelves: { name: string }[] = [];
 
     @Prop({ mutable: true })
-    selectedShelf: string = '';
+    selectedShelf = '';
 
     @State()
-    newShelfName: string = '';
+    newShelfName = '';
 
     @Event()
     chooseShelfEvent: EventEmitter<{ shelfName: string }>;

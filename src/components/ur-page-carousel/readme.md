@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type                                              | Default                                        |
-| ------------------ | ------------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
-| `breakpoints`      | `breakpoints`       |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
-| `debug`            | `debug`             |             | `boolean`                                         | `false`                                        |
-| `destroyListeners` | `destroy-listeners` |             | `boolean`                                         | `true`                                         |
-| `grid`             | `grid`              |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
-| `loading`          | `loading`           |             | `boolean`                                         | `false`                                        |
-| `navigation`       | `navigation`        |             | `boolean`                                         | `false`                                        |
-| `pages`            | `pages`             |             | `(PageCustomContent \| Page)[]`                   | `[]`                                           |
-| `slidesPerView`    | `slides-per-view`   |             | `"auto" \| number`                                | `'auto'`                                       |
-| `spaceBetween`     | `space-between`     |             | `number \| string`                                | `'0'`                                          |
+| Property           | Attribute           | Description | Type                                           | Default                                        |
+| ------------------ | ------------------- | ----------- | ---------------------------------------------- | ---------------------------------------------- |
+| `breakpoints`      | `breakpoints`       |             | `Breakpoints`                                  | `{         // add default     }`               |
+| `debug`            | `debug`             |             | `boolean`                                      | `false`                                        |
+| `destroyListeners` | `destroy-listeners` |             | `boolean`                                      | `true`                                         |
+| `grid`             | `grid`              |             | `{ rows?: number; fill?: "row" \| "column"; }` | `{         rows: 1,         fill: 'row'     }` |
+| `loading`          | `loading`           |             | `boolean`                                      | `false`                                        |
+| `navigation`       | `navigation`        |             | `boolean`                                      | `false`                                        |
+| `pages`            | `pages`             |             | `(PageCustomContent \| Page)[]`                | `[]`                                           |
+| `slidesPerView`    | `slides-per-view`   |             | `"auto" \| number`                             | `'auto'`                                       |
+| `spaceBetween`     | `space-between`     |             | `number \| string`                             | `'0'`                                          |
 
 
 ## Events
@@ -37,9 +37,9 @@
 
 #### Parameters
 
-| Name    | Type                        | Description |
-| ------- | --------------------------- | ----------- |
-| `pages` | `(CustomContent \| Page)[]` |             |
+| Name    | Type    | Description |
+| ------- | ------- | ----------- |
+| `pages` | `any[]` |             |
 
 #### Returns
 
@@ -63,9 +63,9 @@ Type: `Promise<void>`
 
 #### Parameters
 
-| Name      | Type                                 | Description |
-| --------- | ------------------------------------ | ----------- |
-| `updates` | `Map<number, CustomContent \| Page>` |             |
+| Name      | Type               | Description |
+| --------- | ------------------ | ----------- |
+| `updates` | `Map<number, any>` |             |
 
 #### Returns
 

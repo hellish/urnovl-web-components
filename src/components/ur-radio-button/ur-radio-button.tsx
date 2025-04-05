@@ -1,5 +1,6 @@
 import { Component, Host, Prop, h, Event, EventEmitter, Watch } from '@stencil/core';
-import 'mdui/components/radio.js';
+
+import 'mdui/components/radio';
 
 @Component({
     tag: 'ur-radio-button',
@@ -7,6 +8,7 @@ import 'mdui/components/radio.js';
     shadow: true,
 })
 export class UrRadioButton {
+
     @Prop()
     disabled = false;
 

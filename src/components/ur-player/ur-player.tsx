@@ -458,7 +458,7 @@ export class UrPlayer {
                                     ></ur-button-icon>
 
                                     <div class="volume-slider-container">
-                                        <input type="range" min="0" max="1" step="0.01" value={this.volume} class="volume-slider" onInput={this.handleVolumeChange} />
+                                        <input title="Volume" type="range" min="0" max="1" step="0.01" value={this.volume} class="volume-slider" onInput={this.handleVolumeChange} />
                                     </div>
                                 </div>
                             </div>
