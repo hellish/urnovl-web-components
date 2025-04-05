@@ -1,0 +1,308 @@
+:host {
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-primary-container: var(--mdui-color-primary-container);
+    --ur-color-on-surface-lite: var(--mdui-color-on-surface-lite);
+    --ur-color-surface-container-high: var(--mdui-color-surface-container-high);
+
+    display: block;
+    color: rgb(var(--ur-color-on-background));
+    background: rgb(var(--ur-color-background));
+}
+
+:host .player-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 16px;
+}
+
+:host .player-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+:host .cover-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+:host .cover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+:host .player-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+:host .title {
+    margin: 0;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.262px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host .author {
+    margin: 8px 0 0 0;
+    font-size: 14px;
+    color: rgb(var(--ur-color-on-surface-lite));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host .chapter {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: rgb(var(--ur-color-on-surface-lite));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host .progress-container {
+    width: 100%;
+}
+
+:host .progress-bar {
+    height: 4px;
+    background-color: rgb(var(--ur-color-surface-container-high));
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 8px;
+    overflow: visible; /* Changed from hidden to visible to show the thumb */
+}
+
+:host .progress-thumb {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(var(--ur-color-primary));
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    transition: transform 0.1s ease;
+}
+
+:host .progress-thumb:hover,
+:host .progress-thumb:active {
+    transform: translate(-50%, -50%) scale(1.2);
+    cursor: grabbing;
+}
+
+/* Optional: Add a hover effect to show the thumb more prominently when hovering over the progress bar */
+:host .progress-bar:hover .progress-thumb {
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+:host .progress-loaded {
+    position: absolute;
+    height: 100%;
+    background-color: rgba(var(--ur-color-primary), 0.3);
+    left: 0;
+    top: 0;
+}
+
+:host .progress-current {
+    position: absolute;
+    height: 100%;
+    background-color: rgb(var(--ur-color-primary));
+    left: 0;
+    top: 0;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+:host .time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: rgb(var(--ur-color-on-surface-lite));
+}
+
+:host .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+:host .main-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+:host .play-pause-button {
+    --mdui-icon-size: 28px;
+}
+
+:host .secondary-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+:host .volume-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host .speed-options {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(var(--ur-color-background));
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+    z-index: 10;
+    width: 120px;
+}
+
+:host .speed-option {
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    color: rgb(var(--ur-color-on-background));
+    transition: background-color 0.2s;
+}
+
+:host .speed-option:hover {
+    background-color: rgba(var(--ur-color-primary), 0.1);
+}
+
+:host .speed-option.active {
+    background-color: rgb(var(--ur-color-primary-container));
+    color: rgb(var(--ur-color-primary));
+    font-weight: 600;
+}
+
+:host .volume-slider-container {
+    border-radius: 8px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host .volume-slider {
+    width: 100px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgb(var(--ur-color-surface-container-high));
+    outline: none;
+}
+
+:host .volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgb(var(--ur-color-primary));
+    cursor: pointer;
+}
+
+:host .volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgb(var(--ur-color-primary));
+    cursor: pointer;
+    border: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    :host .player-container {
+        gap: 12px;
+    }
+
+    :host .cover-image {
+        width: 64px;
+        height: 64px;
+    }
+
+    :host .title {
+        font-size: 18px;
+    }
+
+    :host .main-controls {
+        gap: 16px;
+    }
+}
+
+/* Loading animation similar to ur-novl-summary */
+@keyframes placeholderAnimate {
+    0% {
+        background-position: -650px 0;
+    }
+    100% {
+        background-position: 650px 0;
+    }
+}
+
+:host .title.loading {
+    height: 24px;
+    margin: 8px 0;
+    border-radius: 4px;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
+    background-size: 1000px;
+}
+
+:host .author.loading,
+:host .chapter.loading {
+    height: 16px;
+    width: 70%;
+    margin: 8px 0;
+    border-radius: 4px;
+    animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
+    background-size: 1000px;
+}

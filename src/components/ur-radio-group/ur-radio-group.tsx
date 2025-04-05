@@ -3,106 +3,104 @@ import 'mdui/components/radio-group.js';
 import 'mdui/components/radio.js';
 
 @Component({
-  tag: 'ur-radio-group',
-  styleUrl: 'ur-radio-group.css',
-  shadow: true,
+    tag: 'ur-radio-group',
+    styleUrl: 'ur-radio-group.css',
+    shadow: true,
 })
 export class UrRadioGroup {
-  /** Group name for the radio buttons */
-  @Prop()
-  name: string = 'default-group';
+    /** Group name for the radio buttons */
+    @Prop()
+    name: string = 'default-group';
 
-  /** The currently selected value */
-  @Prop({ mutable: true })
-  value: string | null = null;
+    /** The currently selected value */
+    @Prop({ mutable: true })
+    value: string | null = null;
 
-  /** Whether the group is required */
-  @Prop()
-  required: boolean = false;
+    /** Whether the group is required */
+    @Prop()
+    required: boolean = false;
 
-  /** Event emitted when the value changes */
-  @Event({
-    bubbles: true,
-    composed: true,
-  })
-  valueChanged: EventEmitter<{ name: string; value: string }>;
+    /** Event emitted when the value changes */
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
+    valueChanged: EventEmitter<{ name: string; value: string }>;
 
-  /** Event emitted when validation state changes */
-  @Event({
-    bubbles: true,
-    composed: true,
-  })
-  errorStateChanged: EventEmitter<{ name: string; error: boolean; message?: string }>;
+    /** Event emitted when validation state changes */
+    @Event({
+        bubbles: true,
+        composed: true,
+    })
+    errorStateChanged: EventEmitter<{ name: string; error: boolean; message?: string }>;
 
-  @State()
-  options: HTMLUrRadioButtonElement[] = []; // List of radio buttons in the group
+    @State()
+    options: HTMLUrRadioButtonElement[] = []; // List of radio buttons in the group
 
-  /** Validate the radio group */
-  @Method()
-  async validate(): Promise<boolean> {
-    if (this.required && !this.value) {
-      this.errorStateChanged.emit({
-        name: this.name,
-        error: true,
-        message: 'A selection is required.',
-      });
-      return false;
+    /** Validate the radio group */
+    @Method()
+    async validate(): Promise<boolean> {
+        if (this.required && !this.value) {
+            this.errorStateChanged.emit({
+                name: this.name,
+                error: true,
+                message: 'A selection is required.',
+            });
+            return false;
+        }
+        this.errorStateChanged.emit({
+            name: this.name,
+            error: false,
+        });
+        return true;
     }
-    this.errorStateChanged.emit({
-      name: this.name,
-      error: false,
-    });
-    return true;
-  }
 
-  /** Reset the radio group */
-  @Method()
-  async reset(): Promise<void> {
-    this.value = null;
-    this.syncSelection();
-  }
-
-  /** Handle selection changes */
-  private handleSelectionChange = (event: CustomEvent<{ value: string }>) => {
-    const selectedValue = event.detail.value;
-
-    if (this.value !== selectedValue) {
-      this.value = selectedValue; // Update the selected value
-      this.syncSelection();
-      console.log(`Radio group '${this.name}' value changed to: ${this.value}`);
-      this.valueChanged.emit({ name: this.name, value: this.value }); // Emit the event
+    /** Reset the radio group */
+    @Method()
+    async reset(): Promise<void> {
+        this.value = null;
+        this.syncSelection();
     }
-  };
 
-  /** Sync selection state across options */
-  private syncSelection() {
-    this.options.forEach((option) => {
-      option.checked = option.value === this.value;
-    });
-  }
+    /** Handle selection changes */
+    private handleSelectionChange = (event: CustomEvent<{ value: string }>) => {
+        const selectedValue = event.detail.value;
 
-  /** Handle slot change to register options */
-  private onSlotChange = (event: Event) => {
-    const slot = event.target as HTMLSlotElement;
-    this.options = slot
-      .assignedElements()
-      .filter((el) => el.tagName === 'UR-RADIO-BUTTON') as HTMLUrRadioButtonElement[];
+        if (this.value !== selectedValue) {
+            this.value = selectedValue; // Update the selected value
+            this.syncSelection();
+            console.log(`Radio group '${this.name}' value changed to: ${this.value}`);
+            this.valueChanged.emit({ name: this.name, value: this.value }); // Emit the event
+        }
+    };
 
-    this.options.forEach((option) => {
-      option.name = this.name; // Propagate the group name
-      option.addEventListener('valueSelected', this.handleSelectionChange as EventListener);
-    });
+    /** Sync selection state across options */
+    private syncSelection() {
+        this.options.forEach(option => {
+            option.checked = option.value === this.value;
+        });
+    }
 
-    this.syncSelection(); // Sync the selection initially
-  };
+    /** Handle slot change to register options */
+    private onSlotChange = (event: Event) => {
+        const slot = event.target as HTMLSlotElement;
+        this.options = slot.assignedElements().filter(el => el.tagName === 'UR-RADIO-BUTTON') as HTMLUrRadioButtonElement[];
 
-  render() {
-    return (
-      <Host>
-        <mdui-radio-group>
-          <slot onSlotchange={this.onSlotChange}></slot>
-        </mdui-radio-group>
-      </Host>
-    );
-  }
+        this.options.forEach(option => {
+            option.name = this.name; // Propagate the group name
+            option.addEventListener('valueSelected', this.handleSelectionChange as EventListener);
+        });
+
+        this.syncSelection(); // Sync the selection initially
+    };
+
+    render() {
+        return (
+            <Host>
+                <mdui-radio-group>
+                    <slot onSlotchange={this.onSlotChange}></slot>
+                </mdui-radio-group>
+            </Host>
+        );
+    }
 }

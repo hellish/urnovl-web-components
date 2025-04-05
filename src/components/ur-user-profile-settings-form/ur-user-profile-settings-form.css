@@ -1,0 +1,87 @@
+
+:host {
+    display: block;
+}
+
+:host .settings-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    max-width: 550px;
+}
+
+:host .section-header {
+    margin-bottom: 16px;
+}
+
+:host .section-title {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    font-weight: 700;
+}
+
+:host .section-description {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    margin: 0;
+    max-width: 400px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Social media section styling */
+:host .social-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+:host .social-name {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    font-weight: 700;
+}
+
+:host .social-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+:host .prefix-label {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+    white-space: nowrap;
+    min-width: 90px;
+    opacity: 0.6;
+}
+
+:host ur-text-field {
+    flex: 1;
+}
+
+:host .toggle-wrapper {
+    display: flex;
+    align-items: center;
+}

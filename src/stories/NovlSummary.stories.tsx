@@ -22,6 +22,8 @@ const Template = args => html`
         .hasBranches=${args.hasBranches}
         .ownerAvatar=${args.ownerAvatar}
         .ownerName=${args.ownerName}
+        .isUserLoggedIn=${args.isUserLoggedIn}
+        .isNovlLibrary=${args.isNovlLibrary}
     >
         <ur-long-description slot="description" .description=${args.longDescription}></ur-long-description>
         <ur-profile-card 
@@ -117,6 +119,14 @@ export default {
             control: 'boolean',
             description: 'Whether the novel has branches',
         },
+        isUserLoggedIn: {
+            control: 'boolean',
+            description: 'Whether the user is logged in',
+        },
+        isNovlLibrary: {
+            control: 'boolean',
+            description: 'Whether the novel is in the user\'s library',
+        },
     },
 };
 
@@ -138,6 +148,8 @@ export const Default = {
         literatureTypes: 'Novel',
         coverImage: 'https://picsum.photos/200/300',
         hasBranches: true,
+        isUserLoggedIn: true,
+        isNovlLibrary: false,
     },
 };
 
@@ -153,6 +165,8 @@ export const OwnerWritingChapter = {
         literatureTypes: 'Novel',
         writeEnabled: true,
         hasBranches: false,
+        isUserLoggedIn: true,
+        isNovlLibrary: true,
     },
 };
 

@@ -37,6 +37,10 @@ const Template = args => html`
         .showPublishButton=${args.showPublishButton}
         .editTitleMode=${args.editTitleMode}
         .editDescriptionMode=${args.editDescriptionMode}
+        .isUserLoggedIn=${args.isUserLoggedIn}
+        .isNovlLibrary=${args.isNovlLibrary}
+        .addToLibraryText=${args.addToLibraryText}
+        .removeFromLibraryText=${args.removeFromLibraryText}
     >
         <div class="title-edit" slot="title-edit">
             EDITING MODE FOR TITLE
@@ -224,6 +228,22 @@ export default {
             control: 'boolean',
             description: 'Whether the edit description mode is shown',
         },
+        isUserLoggedIn: {
+            control: 'boolean',
+            description: 'Whether the user is logged in',
+        },
+        isNovlLibrary: {
+            control: 'boolean',
+            description: 'Whether the novel is in the user\'s library',
+        },
+        addToLibraryText: {
+            control: 'text',
+            description: 'Text of the add to library button',
+        },
+        removeFromLibraryText: {
+            control: 'text',
+            description: 'Text of the remove from library button',
+        },
     },
 };
 
@@ -265,6 +285,10 @@ export const Default = {
         completeStoryText: 'Complete story',
         revertStoryText: 'Revert to ongoing',
         showCompleteActions: true,
+        isUserLoggedIn: false,
+        isNovlLibrary: false,
+        addToLibraryText: 'Add to Library',
+        removeFromLibraryText: 'Remove from Library',
     },
 };
 
@@ -273,6 +297,8 @@ export const OwnerNotCompleted = {
     args: {
         ...Default.args,
         isOwner: true,
+        isUserLoggedIn: true,
+        isNovlLibrary: false,
     },
 };
 
@@ -281,6 +307,8 @@ export const OwnerCompleted = {
         ...Default.args,
         isOwner: true,
         storyCompleteStatus: true,
+        isUserLoggedIn: true,
+        isNovlLibrary: true,
     },
 };
 
@@ -366,6 +394,8 @@ export const SmallDevice = {
     args: {
         ...Default.args,
         deviceSize: 'small',
+        isUserLoggedIn: true,
+        isNovlLibrary: true,
     },
 };
 

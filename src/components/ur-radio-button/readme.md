@@ -22,6 +22,19 @@
 | `valueSelected` |             | `CustomEvent<{ value: string; }>` |
 
 
+## Dependencies
+
+### Used by
+
+ - [ur-library-shelf-selector](../ur-library-shelf-selector)
+
+### Graph
+```mermaid
+graph TD;
+  ur-library-shelf-selector --> ur-radio-button
+  style ur-radio-button fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

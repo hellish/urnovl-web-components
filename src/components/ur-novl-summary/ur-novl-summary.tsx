@@ -75,6 +75,12 @@ export class UrNovlSummary {
     buyStoryText: string = 'Buy for';
 
     @Prop()
+    addToLibraryText: string = 'Add to Library';
+
+    @Prop()
+    removeFromLibraryText: string = 'Remove from Library';
+
+    @Prop()
     novlPrice: string;
 
     @Prop()
@@ -101,6 +107,9 @@ export class UrNovlSummary {
     @Event()
     buyStoryEvent: EventEmitter;
 
+    @Event()
+    toggleLibraryEvent: EventEmitter;
+
     @Prop()
     ownerAvatar: string;
 
@@ -108,10 +117,20 @@ export class UrNovlSummary {
     ownerName: string;
 
     @Prop()
+    isUserLoggedIn: boolean;
+
+    @Prop()
+    isNovlLibrary: boolean;
+
+    @Prop()
     novlIsOwn: boolean = false;
 
     @Prop()
     expanded: boolean = false;
+
+    onToggleLibrary() {
+        this.toggleLibraryEvent.emit();
+    }
 
     onReadStory() {
         this.readStoryEvent.emit();
@@ -252,9 +271,18 @@ export class UrNovlSummary {
                                 </ur-button>
                             ))}
 
-                        {this.novlIsOwn && (
-                            <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
-                                {this.learnMoreText}
+                        <ur-button class="summary-action" variant="outlined" fullWidth={true} onClick={() => this.onLearnMore()}>
+                            {this.learnMoreText}
+                        </ur-button>
+
+                        {this.isUserLoggedIn && (
+                            <ur-button
+                                class="summary-action"
+                                icon={this.isNovlLibrary ? 'bookmark_added' : 'bookmark_add--outlined'}
+                                variant="text"
+                                onClick={() => this.onToggleLibrary()}
+                            >
+                                {this.isNovlLibrary ? this.removeFromLibraryText : this.addToLibraryText}
                             </ur-button>
                         )}
                     </div>

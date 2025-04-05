@@ -24,6 +24,36 @@ export { PageGrid } from "./data/page-carousel";
 export { User, UserCustomContent } from "./models/user";
 export { UserBreakpoints, UserGrid } from "./data/user-carousel";
 export namespace Components {
+    interface UrAutosaveDrawer {
+        /**
+          * Array of autosave items to display in the drawer
+         */
+        "autosaves": any[];
+        /**
+          * Text for the autosaves title
+         */
+        "autosavesTitle": string;
+        /**
+          * Text for the chapter label
+         */
+        "chapterText": string;
+        /**
+          * Text for delete confirmation
+         */
+        "deleteConfirmMessage": string;
+        /**
+          * Empty drawer message
+         */
+        "emptyMessage": string;
+        /**
+          * Text for the no button
+         */
+        "noText": string;
+        /**
+          * Text for the yes button
+         */
+        "yesText": string;
+    }
     interface UrAvatar {
         "border": string;
         "name"?: string;
@@ -200,6 +230,17 @@ export namespace Components {
         "heroTitleColor": string;
         "layout": 'left' | 'right' | 'center';
     }
+    interface UrLibraryShelfSelector {
+        "chooseButtonText": string;
+        "chooseShelfLabelText": string;
+        "createButtonText": string;
+        "createNewShelfLabelText": string;
+        "createNewShelfSubtitleText": string;
+        "newShelfPlaceholder": string;
+        "orCreateNewShelf": string;
+        "selectedShelf": string;
+        "shelves": { name: string }[];
+    }
     interface UrLinearProgress {
         /**
           * The maximum value of the progress indicator.
@@ -332,6 +373,36 @@ export namespace Components {
         "userName"?: string;
         "userRole"?: string;
     }
+    interface UrNavigationBar {
+        /**
+          * Label visibility
+         */
+        "labelVisibility": 'auto' | 'selected' | 'labeled' | 'unlabeled';
+        /**
+          * Position of the navigation bar
+         */
+        "position": 'bottom' | 'top';
+        /**
+          * Scroll behavior
+         */
+        "scrollBehavior": '' | 'hide';
+        /**
+          * Scroll target (CSS selector or DOM element)
+         */
+        "scrollTarget": string;
+        /**
+          * Scroll threshold in pixels
+         */
+        "scrollThreshold": number;
+        /**
+          * Method to set active item by value
+         */
+        "setValue": (value: string) => Promise<void>;
+        /**
+          * Selected value
+         */
+        "value": string;
+    }
     interface UrNavigationDrawer {
         "closeDrawer": () => Promise<void>;
         /**
@@ -418,6 +489,7 @@ export namespace Components {
         "updateNovlsByIndex": (updates: Map<number, Novl | CustomContent>) => Promise<void>;
     }
     interface UrNovlOverviewInfo {
+        "addToLibraryText": string;
         "buyStoryText": string;
         "chapterListText": string;
         "completeStoryText": string;
@@ -431,7 +503,9 @@ export namespace Components {
         "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
+        "isNovlLibrary": boolean;
         "isOwner": boolean;
+        "isUserLoggedIn": boolean;
         "languages": string;
         "likes": number;
         "likesText": string;
@@ -446,6 +520,7 @@ export namespace Components {
         "readStoryText": string;
         "readingDuration": string;
         "readingDurationText": string;
+        "removeFromLibraryText": string;
         "reset": () => Promise<void>;
         "revertStoryText": string;
         "showLessText": string;
@@ -461,6 +536,7 @@ export namespace Components {
         "writeStoryText": string;
     }
     interface UrNovlSummary {
+        "addToLibraryText": string;
         "buyStoryText": string;
         "completeText": string;
         "coverImage": string;
@@ -468,6 +544,8 @@ export namespace Components {
         "expanded": boolean;
         "genres": string;
         "hasBranches": boolean;
+        "isNovlLibrary": boolean;
+        "isUserLoggedIn": boolean;
         "languages": string;
         "learnMoreText": string;
         "likes": number;
@@ -484,6 +562,7 @@ export namespace Components {
         "readStoryText": string;
         "readingDuration": string;
         "readingDurationText": string;
+        "removeFromLibraryText": string;
         "reset": () => Promise<void>;
         "showLessText": string;
         "showMoreText": string;
@@ -585,6 +664,32 @@ export namespace Components {
         "isMobile": boolean;
         "isOwner": boolean;
         "membersTabText": string;
+    }
+    interface UrPlayer {
+        "accentColor": string;
+        "author": string;
+        "autoPlay": boolean;
+        "backwardText": string;
+        "chapterName": string;
+        "coverImage": string;
+        "darkMode": boolean;
+        "forwardText": string;
+        "pause": () => Promise<void>;
+        "pauseText": string;
+        "play": () => Promise<void>;
+        "playText": string;
+        "primaryColor": string;
+        "seekTo": (time: number) => Promise<void>;
+        "setPlaybackRate": (rate: number) => Promise<void>;
+        "setVolume": (value: number) => Promise<void>;
+        "showControls": boolean;
+        "skipBackward": (seconds?: number) => Promise<void>;
+        "skipForward": (seconds?: number) => Promise<void>;
+        "speedText": string;
+        "src": string;
+        "storyTitle": string;
+        "togglePlay": () => Promise<void>;
+        "volumeText": string;
     }
     interface UrProfile {
         "description": any;
@@ -933,6 +1038,30 @@ export namespace Components {
     }
     interface UrUserProfile {
     }
+    interface UrUserProfileSettingsForm {
+        "aboutLabelText": string;
+        "emailLabelText": string;
+        "emailTitleText": string;
+        "facebookLabelText": string;
+        "facebookPrefixText": string;
+        "facebookTitleText": string;
+        "interactSubtitleText": string;
+        "interactTitleText": string;
+        "linkedinLabelText": string;
+        "linkedinPrefixText": string;
+        "linkedinTitleText": string;
+        "locationLabelText": string;
+        "personalInfoSubtitleText": string;
+        "personalInfoTitleText": string;
+        /**
+          * The form values (settings data)
+         */
+        "settings": any;
+        "twitterLabelText": string;
+        "twitterPrefixText": string;
+        "twitterTitleText": string;
+        "websiteLabelText": string;
+    }
     interface UrUserProfileTabs {
         "aboutTabText": string;
         "activeTab": string;
@@ -1000,6 +1129,10 @@ export namespace Components {
         "validationMessage": string;
     }
 }
+export interface UrAutosaveDrawerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrAutosaveDrawerElement;
+}
 export interface UrBottomSheetCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrBottomSheetElement;
@@ -1039,6 +1172,10 @@ export interface UrFormCustomEvent<T> extends CustomEvent<T> {
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
+}
+export interface UrLibraryShelfSelectorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrLibraryShelfSelectorElement;
 }
 export interface UrLocaleFilterPanelCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1095,6 +1232,10 @@ export interface UrPageProfileTabsCustomEvent<T> extends CustomEvent<T> {
 export interface UrPageSharedListTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrPageSharedListTabsElement;
+}
+export interface UrPlayerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrPlayerElement;
 }
 export interface UrProfileCardCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1156,6 +1297,10 @@ export interface UrUserPageProfileCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserPageProfileElement;
 }
+export interface UrUserProfileSettingsFormCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrUserProfileSettingsFormElement;
+}
 export interface UrUserProfileTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserProfileTabsElement;
@@ -1165,6 +1310,26 @@ export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
     target: HTMLUrWizardStepElement;
 }
 declare global {
+    interface HTMLUrAutosaveDrawerElementEventMap {
+        "autosaveOpen": any;
+        "autosaveDeleteRequest": any;
+        "autosaveDeleteConfirm": any;
+        "autosaveDeleteCancel": any;
+    }
+    interface HTMLUrAutosaveDrawerElement extends Components.UrAutosaveDrawer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrAutosaveDrawerElementEventMap>(type: K, listener: (this: HTMLUrAutosaveDrawerElement, ev: UrAutosaveDrawerCustomEvent<HTMLUrAutosaveDrawerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrAutosaveDrawerElementEventMap>(type: K, listener: (this: HTMLUrAutosaveDrawerElement, ev: UrAutosaveDrawerCustomEvent<HTMLUrAutosaveDrawerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrAutosaveDrawerElement: {
+        prototype: HTMLUrAutosaveDrawerElement;
+        new (): HTMLUrAutosaveDrawerElement;
+    };
     interface HTMLUrAvatarElement extends Components.UrAvatar, HTMLStencilElement {
     }
     var HTMLUrAvatarElement: {
@@ -1372,6 +1537,24 @@ declare global {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
     };
+    interface HTMLUrLibraryShelfSelectorElementEventMap {
+        "chooseShelfEvent": { shelfName: string };
+        "createShelfEvent": { shelfName: string };
+    }
+    interface HTMLUrLibraryShelfSelectorElement extends Components.UrLibraryShelfSelector, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrLibraryShelfSelectorElementEventMap>(type: K, listener: (this: HTMLUrLibraryShelfSelectorElement, ev: UrLibraryShelfSelectorCustomEvent<HTMLUrLibraryShelfSelectorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrLibraryShelfSelectorElementEventMap>(type: K, listener: (this: HTMLUrLibraryShelfSelectorElement, ev: UrLibraryShelfSelectorCustomEvent<HTMLUrLibraryShelfSelectorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrLibraryShelfSelectorElement: {
+        prototype: HTMLUrLibraryShelfSelectorElement;
+        new (): HTMLUrLibraryShelfSelectorElement;
+    };
     interface HTMLUrLinearProgressElement extends Components.UrLinearProgress, HTMLStencilElement {
     }
     var HTMLUrLinearProgressElement: {
@@ -1507,6 +1690,12 @@ declare global {
         prototype: HTMLUrMenuProfileElement;
         new (): HTMLUrMenuProfileElement;
     };
+    interface HTMLUrNavigationBarElement extends Components.UrNavigationBar, HTMLStencilElement {
+    }
+    var HTMLUrNavigationBarElement: {
+        prototype: HTMLUrNavigationBarElement;
+        new (): HTMLUrNavigationBarElement;
+    };
     interface HTMLUrNavigationDrawerElement extends Components.UrNavigationDrawer, HTMLStencilElement {
     }
     var HTMLUrNavigationDrawerElement: {
@@ -1598,6 +1787,7 @@ declare global {
         "visibilityChangeEvent": any;
         "completeStoryEvent": any;
         "revertStoryEvent": any;
+        "toggleLibraryEvent": any;
     }
     interface HTMLUrNovlOverviewInfoElement extends Components.UrNovlOverviewInfo, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlOverviewInfoElementEventMap>(type: K, listener: (this: HTMLUrNovlOverviewInfoElement, ev: UrNovlOverviewInfoCustomEvent<HTMLUrNovlOverviewInfoElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1618,6 +1808,7 @@ declare global {
         "learnMoreEvent": any;
         "writeStoryEvent": any;
         "buyStoryEvent": any;
+        "toggleLibraryEvent": any;
     }
     interface HTMLUrNovlSummaryElement extends Components.UrNovlSummary, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrNovlSummaryElementEventMap>(type: K, listener: (this: HTMLUrNovlSummaryElement, ev: UrNovlSummaryCustomEvent<HTMLUrNovlSummaryElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1671,6 +1862,7 @@ declare global {
         new (): HTMLUrPageCarouselElement;
     };
     interface HTMLUrPageProfileElementEventMap {
+        "member": any;
         "donate": any;
         "sendMessage": any;
         "followersClick": any;
@@ -1732,6 +1924,28 @@ declare global {
     var HTMLUrPageSharedListTabsElement: {
         prototype: HTMLUrPageSharedListTabsElement;
         new (): HTMLUrPageSharedListTabsElement;
+    };
+    interface HTMLUrPlayerElementEventMap {
+        "playerPlay": any;
+        "playerPause": any;
+        "playerEnded": any;
+        "playerTimeUpdate": { currentTime: number; duration: number };
+        "playerVolumeChange": { volume: number };
+        "playerRateChange": { rate: number };
+    }
+    interface HTMLUrPlayerElement extends Components.UrPlayer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrPlayerElementEventMap>(type: K, listener: (this: HTMLUrPlayerElement, ev: UrPlayerCustomEvent<HTMLUrPlayerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrPlayerElementEventMap>(type: K, listener: (this: HTMLUrPlayerElement, ev: UrPlayerCustomEvent<HTMLUrPlayerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrPlayerElement: {
+        prototype: HTMLUrPlayerElement;
+        new (): HTMLUrPlayerElement;
     };
     interface HTMLUrProfileElement extends Components.UrProfile, HTMLStencilElement {
     }
@@ -2083,6 +2297,23 @@ declare global {
         prototype: HTMLUrUserProfileElement;
         new (): HTMLUrUserProfileElement;
     };
+    interface HTMLUrUserProfileSettingsFormElementEventMap {
+        "inputChanged": { field: string; value: any };
+    }
+    interface HTMLUrUserProfileSettingsFormElement extends Components.UrUserProfileSettingsForm, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrUserProfileSettingsFormElementEventMap>(type: K, listener: (this: HTMLUrUserProfileSettingsFormElement, ev: UrUserProfileSettingsFormCustomEvent<HTMLUrUserProfileSettingsFormElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrUserProfileSettingsFormElementEventMap>(type: K, listener: (this: HTMLUrUserProfileSettingsFormElement, ev: UrUserProfileSettingsFormCustomEvent<HTMLUrUserProfileSettingsFormElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrUserProfileSettingsFormElement: {
+        prototype: HTMLUrUserProfileSettingsFormElement;
+        new (): HTMLUrUserProfileSettingsFormElement;
+    };
     interface HTMLUrUserProfileTabsElementEventMap {
         "tabChange": string;
     }
@@ -2119,6 +2350,7 @@ declare global {
         new (): HTMLUrWizardStepElement;
     };
     interface HTMLElementTagNameMap {
+        "ur-autosave-drawer": HTMLUrAutosaveDrawerElement;
         "ur-avatar": HTMLUrAvatarElement;
         "ur-bottom-sheet": HTMLUrBottomSheetElement;
         "ur-button": HTMLUrButtonElement;
@@ -2134,6 +2366,7 @@ declare global {
         "ur-dialog": HTMLUrDialogElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-library-shelf-selector": HTMLUrLibraryShelfSelectorElement;
         "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
         "ur-list-item": HTMLUrListItemElement;
@@ -2147,6 +2380,7 @@ declare global {
         "ur-main-menu": HTMLUrMainMenuElement;
         "ur-menu-item": HTMLUrMenuItemElement;
         "ur-menu-profile": HTMLUrMenuProfileElement;
+        "ur-navigation-bar": HTMLUrNavigationBarElement;
         "ur-navigation-drawer": HTMLUrNavigationDrawerElement;
         "ur-navigation-drawer-global": HTMLUrNavigationDrawerGlobalElement;
         "ur-notification": HTMLUrNotificationElement;
@@ -2160,6 +2394,7 @@ declare global {
         "ur-page-profile": HTMLUrPageProfileElement;
         "ur-page-profile-tabs": HTMLUrPageProfileTabsElement;
         "ur-page-shared-list-tabs": HTMLUrPageSharedListTabsElement;
+        "ur-player": HTMLUrPlayerElement;
         "ur-profile": HTMLUrProfileElement;
         "ur-profile-card": HTMLUrProfileCardElement;
         "ur-radio-button": HTMLUrRadioButtonElement;
@@ -2182,11 +2417,58 @@ declare global {
         "ur-user-carousel": HTMLUrUserCarouselElement;
         "ur-user-page-profile": HTMLUrUserPageProfileElement;
         "ur-user-profile": HTMLUrUserProfileElement;
+        "ur-user-profile-settings-form": HTMLUrUserProfileSettingsFormElement;
         "ur-user-profile-tabs": HTMLUrUserProfileTabsElement;
         "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
 declare namespace LocalJSX {
+    interface UrAutosaveDrawer {
+        /**
+          * Array of autosave items to display in the drawer
+         */
+        "autosaves"?: any[];
+        /**
+          * Text for the autosaves title
+         */
+        "autosavesTitle"?: string;
+        /**
+          * Text for the chapter label
+         */
+        "chapterText"?: string;
+        /**
+          * Text for delete confirmation
+         */
+        "deleteConfirmMessage"?: string;
+        /**
+          * Empty drawer message
+         */
+        "emptyMessage"?: string;
+        /**
+          * Text for the no button
+         */
+        "noText"?: string;
+        /**
+          * Event emitted when delete confirmation "No" button is clicked
+         */
+        "onAutosaveDeleteCancel"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when delete confirmation "Yes" button is clicked
+         */
+        "onAutosaveDeleteConfirm"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when delete icon is clicked for an autosave
+         */
+        "onAutosaveDeleteRequest"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Event emitted when an autosave is selected to open
+         */
+        "onAutosaveOpen"?: (event: UrAutosaveDrawerCustomEvent<any>) => void;
+        /**
+          * Text for the yes button
+         */
+        "yesText"?: string;
+    }
     interface UrAvatar {
         "border"?: string;
         "name"?: string;
@@ -2384,6 +2666,19 @@ declare namespace LocalJSX {
         "layout"?: 'left' | 'right' | 'center';
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
     }
+    interface UrLibraryShelfSelector {
+        "chooseButtonText"?: string;
+        "chooseShelfLabelText"?: string;
+        "createButtonText"?: string;
+        "createNewShelfLabelText"?: string;
+        "createNewShelfSubtitleText"?: string;
+        "newShelfPlaceholder"?: string;
+        "onChooseShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
+        "onCreateShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
+        "orCreateNewShelf"?: string;
+        "selectedShelf"?: string;
+        "shelves"?: { name: string }[];
+    }
     interface UrLinearProgress {
         /**
           * The maximum value of the progress indicator.
@@ -2549,6 +2844,32 @@ declare namespace LocalJSX {
         "userName"?: string;
         "userRole"?: string;
     }
+    interface UrNavigationBar {
+        /**
+          * Label visibility
+         */
+        "labelVisibility"?: 'auto' | 'selected' | 'labeled' | 'unlabeled';
+        /**
+          * Position of the navigation bar
+         */
+        "position"?: 'bottom' | 'top';
+        /**
+          * Scroll behavior
+         */
+        "scrollBehavior"?: '' | 'hide';
+        /**
+          * Scroll target (CSS selector or DOM element)
+         */
+        "scrollTarget"?: string;
+        /**
+          * Scroll threshold in pixels
+         */
+        "scrollThreshold"?: number;
+        /**
+          * Selected value
+         */
+        "value"?: string;
+    }
     interface UrNavigationDrawer {
         /**
           * Closes the drawer when the 'Esc' key is pressed
@@ -2634,6 +2955,7 @@ declare namespace LocalJSX {
         "spaceBetween"?: number | string;
     }
     interface UrNovlOverviewInfo {
+        "addToLibraryText"?: string;
         "buyStoryText"?: string;
         "chapterListText"?: string;
         "completeStoryText"?: string;
@@ -2647,7 +2969,9 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;
+        "isNovlLibrary"?: boolean;
         "isOwner"?: boolean;
+        "isUserLoggedIn"?: boolean;
         "languages"?: string;
         "likes"?: number;
         "likesText"?: string;
@@ -2662,6 +2986,7 @@ declare namespace LocalJSX {
         "onEditTitleEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onReadStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onRevertStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
+        "onToggleLibraryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onVisibilityChangeEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "onWriteStoryEvent"?: (event: UrNovlOverviewInfoCustomEvent<any>) => void;
         "ongoingText"?: string;
@@ -2670,6 +2995,7 @@ declare namespace LocalJSX {
         "readStoryText"?: string;
         "readingDuration"?: string;
         "readingDurationText"?: string;
+        "removeFromLibraryText"?: string;
         "revertStoryText"?: string;
         "showLessText"?: string;
         "showMoreText"?: string;
@@ -2684,6 +3010,7 @@ declare namespace LocalJSX {
         "writeStoryText"?: string;
     }
     interface UrNovlSummary {
+        "addToLibraryText"?: string;
         "buyStoryText"?: string;
         "completeText"?: string;
         "coverImage"?: string;
@@ -2691,6 +3018,8 @@ declare namespace LocalJSX {
         "expanded"?: boolean;
         "genres"?: string;
         "hasBranches"?: boolean;
+        "isNovlLibrary"?: boolean;
+        "isUserLoggedIn"?: boolean;
         "languages"?: string;
         "learnMoreText"?: string;
         "likes"?: number;
@@ -2704,6 +3033,7 @@ declare namespace LocalJSX {
         "onBuyStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onLearnMoreEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onReadStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
+        "onToggleLibraryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "onWriteStoryEvent"?: (event: UrNovlSummaryCustomEvent<any>) => void;
         "ongoingText"?: string;
         "ownerAvatar"?: string;
@@ -2711,6 +3041,7 @@ declare namespace LocalJSX {
         "readStoryText"?: string;
         "readingDuration"?: string;
         "readingDurationText"?: string;
+        "removeFromLibraryText"?: string;
         "showLessText"?: string;
         "showMoreText"?: string;
         "storyCompleteStatus"?: boolean;
@@ -2778,6 +3109,7 @@ declare namespace LocalJSX {
         "onFacebookClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onFollowersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onLinkedinClick"?: (event: UrPageProfileCustomEvent<any>) => void;
+        "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;
@@ -2828,6 +3160,30 @@ declare namespace LocalJSX {
         "isOwner"?: boolean;
         "membersTabText"?: string;
         "onTabChange"?: (event: UrPageSharedListTabsCustomEvent<string>) => void;
+    }
+    interface UrPlayer {
+        "accentColor"?: string;
+        "author"?: string;
+        "autoPlay"?: boolean;
+        "backwardText"?: string;
+        "chapterName"?: string;
+        "coverImage"?: string;
+        "darkMode"?: boolean;
+        "forwardText"?: string;
+        "onPlayerEnded"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerPause"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerPlay"?: (event: UrPlayerCustomEvent<any>) => void;
+        "onPlayerRateChange"?: (event: UrPlayerCustomEvent<{ rate: number }>) => void;
+        "onPlayerTimeUpdate"?: (event: UrPlayerCustomEvent<{ currentTime: number; duration: number }>) => void;
+        "onPlayerVolumeChange"?: (event: UrPlayerCustomEvent<{ volume: number }>) => void;
+        "pauseText"?: string;
+        "playText"?: string;
+        "primaryColor"?: string;
+        "showControls"?: boolean;
+        "speedText"?: string;
+        "src"?: string;
+        "storyTitle"?: string;
+        "volumeText"?: string;
     }
     interface UrProfile {
         "description"?: any;
@@ -3242,6 +3598,34 @@ declare namespace LocalJSX {
     }
     interface UrUserProfile {
     }
+    interface UrUserProfileSettingsForm {
+        "aboutLabelText"?: string;
+        "emailLabelText"?: string;
+        "emailTitleText"?: string;
+        "facebookLabelText"?: string;
+        "facebookPrefixText"?: string;
+        "facebookTitleText"?: string;
+        "interactSubtitleText"?: string;
+        "interactTitleText"?: string;
+        "linkedinLabelText"?: string;
+        "linkedinPrefixText"?: string;
+        "linkedinTitleText"?: string;
+        "locationLabelText"?: string;
+        /**
+          * Event emitted when an input changes
+         */
+        "onInputChanged"?: (event: UrUserProfileSettingsFormCustomEvent<{ field: string; value: any }>) => void;
+        "personalInfoSubtitleText"?: string;
+        "personalInfoTitleText"?: string;
+        /**
+          * The form values (settings data)
+         */
+        "settings"?: any;
+        "twitterLabelText"?: string;
+        "twitterPrefixText"?: string;
+        "twitterTitleText"?: string;
+        "websiteLabelText"?: string;
+    }
     interface UrUserProfileTabs {
         "aboutTabText"?: string;
         "activeTab"?: string;
@@ -3310,6 +3694,7 @@ declare namespace LocalJSX {
         "validationMessage"?: string;
     }
     interface IntrinsicElements {
+        "ur-autosave-drawer": UrAutosaveDrawer;
         "ur-avatar": UrAvatar;
         "ur-bottom-sheet": UrBottomSheet;
         "ur-button": UrButton;
@@ -3325,6 +3710,7 @@ declare namespace LocalJSX {
         "ur-dialog": UrDialog;
         "ur-form": UrForm;
         "ur-hero": UrHero;
+        "ur-library-shelf-selector": UrLibraryShelfSelector;
         "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
         "ur-list-item": UrListItem;
@@ -3338,6 +3724,7 @@ declare namespace LocalJSX {
         "ur-main-menu": UrMainMenu;
         "ur-menu-item": UrMenuItem;
         "ur-menu-profile": UrMenuProfile;
+        "ur-navigation-bar": UrNavigationBar;
         "ur-navigation-drawer": UrNavigationDrawer;
         "ur-navigation-drawer-global": UrNavigationDrawerGlobal;
         "ur-notification": UrNotification;
@@ -3351,6 +3738,7 @@ declare namespace LocalJSX {
         "ur-page-profile": UrPageProfile;
         "ur-page-profile-tabs": UrPageProfileTabs;
         "ur-page-shared-list-tabs": UrPageSharedListTabs;
+        "ur-player": UrPlayer;
         "ur-profile": UrProfile;
         "ur-profile-card": UrProfileCard;
         "ur-radio-button": UrRadioButton;
@@ -3373,6 +3761,7 @@ declare namespace LocalJSX {
         "ur-user-carousel": UrUserCarousel;
         "ur-user-page-profile": UrUserPageProfile;
         "ur-user-profile": UrUserProfile;
+        "ur-user-profile-settings-form": UrUserProfileSettingsForm;
         "ur-user-profile-tabs": UrUserProfileTabs;
         "ur-wizard-step": UrWizardStep;
     }
@@ -3381,6 +3770,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "ur-autosave-drawer": LocalJSX.UrAutosaveDrawer & JSXBase.HTMLAttributes<HTMLUrAutosaveDrawerElement>;
             "ur-avatar": LocalJSX.UrAvatar & JSXBase.HTMLAttributes<HTMLUrAvatarElement>;
             "ur-bottom-sheet": LocalJSX.UrBottomSheet & JSXBase.HTMLAttributes<HTMLUrBottomSheetElement>;
             "ur-button": LocalJSX.UrButton & JSXBase.HTMLAttributes<HTMLUrButtonElement>;
@@ -3396,6 +3786,7 @@ declare module "@stencil/core" {
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-library-shelf-selector": LocalJSX.UrLibraryShelfSelector & JSXBase.HTMLAttributes<HTMLUrLibraryShelfSelectorElement>;
             "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
             "ur-list-item": LocalJSX.UrListItem & JSXBase.HTMLAttributes<HTMLUrListItemElement>;
@@ -3409,6 +3800,7 @@ declare module "@stencil/core" {
             "ur-main-menu": LocalJSX.UrMainMenu & JSXBase.HTMLAttributes<HTMLUrMainMenuElement>;
             "ur-menu-item": LocalJSX.UrMenuItem & JSXBase.HTMLAttributes<HTMLUrMenuItemElement>;
             "ur-menu-profile": LocalJSX.UrMenuProfile & JSXBase.HTMLAttributes<HTMLUrMenuProfileElement>;
+            "ur-navigation-bar": LocalJSX.UrNavigationBar & JSXBase.HTMLAttributes<HTMLUrNavigationBarElement>;
             "ur-navigation-drawer": LocalJSX.UrNavigationDrawer & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerElement>;
             "ur-navigation-drawer-global": LocalJSX.UrNavigationDrawerGlobal & JSXBase.HTMLAttributes<HTMLUrNavigationDrawerGlobalElement>;
             "ur-notification": LocalJSX.UrNotification & JSXBase.HTMLAttributes<HTMLUrNotificationElement>;
@@ -3422,6 +3814,7 @@ declare module "@stencil/core" {
             "ur-page-profile": LocalJSX.UrPageProfile & JSXBase.HTMLAttributes<HTMLUrPageProfileElement>;
             "ur-page-profile-tabs": LocalJSX.UrPageProfileTabs & JSXBase.HTMLAttributes<HTMLUrPageProfileTabsElement>;
             "ur-page-shared-list-tabs": LocalJSX.UrPageSharedListTabs & JSXBase.HTMLAttributes<HTMLUrPageSharedListTabsElement>;
+            "ur-player": LocalJSX.UrPlayer & JSXBase.HTMLAttributes<HTMLUrPlayerElement>;
             "ur-profile": LocalJSX.UrProfile & JSXBase.HTMLAttributes<HTMLUrProfileElement>;
             "ur-profile-card": LocalJSX.UrProfileCard & JSXBase.HTMLAttributes<HTMLUrProfileCardElement>;
             "ur-radio-button": LocalJSX.UrRadioButton & JSXBase.HTMLAttributes<HTMLUrRadioButtonElement>;
@@ -3444,6 +3837,7 @@ declare module "@stencil/core" {
             "ur-user-carousel": LocalJSX.UrUserCarousel & JSXBase.HTMLAttributes<HTMLUrUserCarouselElement>;
             "ur-user-page-profile": LocalJSX.UrUserPageProfile & JSXBase.HTMLAttributes<HTMLUrUserPageProfileElement>;
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
+            "ur-user-profile-settings-form": LocalJSX.UrUserProfileSettingsForm & JSXBase.HTMLAttributes<HTMLUrUserProfileSettingsFormElement>;
             "ur-user-profile-tabs": LocalJSX.UrUserProfileTabs & JSXBase.HTMLAttributes<HTMLUrUserProfileTabsElement>;
             "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }

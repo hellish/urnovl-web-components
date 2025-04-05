@@ -65,6 +65,7 @@
 | `facebookClick`     |             | `CustomEvent<any>`                                                                          |
 | `followersClick`    |             | `CustomEvent<any>`                                                                          |
 | `linkedinClick`     |             | `CustomEvent<any>`                                                                          |
+| `member`            |             | `CustomEvent<any>`                                                                          |
 | `membersClick`      |             | `CustomEvent<any>`                                                                          |
 | `pageCreatorClick`  |             | `CustomEvent<any>`                                                                          |
 | `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                       |
