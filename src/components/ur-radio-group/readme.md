@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                      | Type      | Default           |
-| ---------- | ---------- | -------------------------------- | --------- | ----------------- |
-| `name`     | `name`     | Group name for the radio buttons | `string`  | `'default-group'` |
-| `required` | `required` | Whether the group is required    | `boolean` | `false`           |
-| `value`    | `value`    | The currently selected value     | `string`  | `null`            |
+| Property   | Attribute  | Description                   | Type      | Default           |
+| ---------- | ---------- | ----------------------------- | --------- | ----------------- |
+| `name`     | `name`     |                               | `string`  | `'default-group'` |
+| `required` | `required` | Whether the group is required | `boolean` | `false`           |
+| `value`    | `value`    | The currently selected value  | `string`  | `null`            |
 
 
 ## Events
@@ -26,7 +26,7 @@
 
 ### `reset() => Promise<void>`
 
-Reset the radio group
+
 
 #### Returns
 
@@ -36,7 +36,7 @@ Type: `Promise<void>`
 
 ### `validate() => Promise<boolean>`
 
-Validate the radio group
+
 
 #### Returns
 

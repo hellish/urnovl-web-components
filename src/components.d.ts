@@ -745,21 +745,12 @@ export namespace Components {
         "value": string;
     }
     interface UrRadioGroup {
-        /**
-          * Group name for the radio buttons
-         */
         "name": string;
         /**
           * Whether the group is required
          */
         "required": boolean;
-        /**
-          * Reset the radio group
-         */
         "reset": () => Promise<void>;
-        /**
-          * Validate the radio group
-         */
         "validate": () => Promise<boolean>;
         /**
           * The currently selected value
@@ -3245,9 +3236,6 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface UrRadioGroup {
-        /**
-          * Group name for the radio buttons
-         */
         "name"?: string;
         /**
           * Event emitted when validation state changes

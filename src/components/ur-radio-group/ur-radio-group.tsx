@@ -1,4 +1,5 @@
 import { Component, Host, Prop, h, Event, EventEmitter, State, Method } from '@stencil/core';
+
 import 'mdui/components/radio-group.js';
 import 'mdui/components/radio.js';
 
@@ -8,9 +9,9 @@ import 'mdui/components/radio.js';
     shadow: true,
 })
 export class UrRadioGroup {
-    /** Group name for the radio buttons */
+
     @Prop()
-    name: string = 'default-group';
+    name = 'default-group';
 
     /** The currently selected value */
     @Prop({ mutable: true })
@@ -18,7 +19,7 @@ export class UrRadioGroup {
 
     /** Whether the group is required */
     @Prop()
-    required: boolean = false;
+    required = false;
 
     /** Event emitted when the value changes */
     @Event({
@@ -37,7 +38,6 @@ export class UrRadioGroup {
     @State()
     options: HTMLUrRadioButtonElement[] = []; // List of radio buttons in the group
 
-    /** Validate the radio group */
     @Method()
     async validate(): Promise<boolean> {
         if (this.required && !this.value) {
@@ -55,14 +55,12 @@ export class UrRadioGroup {
         return true;
     }
 
-    /** Reset the radio group */
     @Method()
     async reset(): Promise<void> {
         this.value = null;
         this.syncSelection();
     }
 
-    /** Handle selection changes */
     private handleSelectionChange = (event: CustomEvent<{ value: string }>) => {
         const selectedValue = event.detail.value;
 
@@ -74,14 +72,12 @@ export class UrRadioGroup {
         }
     };
 
-    /** Sync selection state across options */
     private syncSelection() {
         this.options.forEach(option => {
             option.checked = option.value === this.value;
         });
     }
 
-    /** Handle slot change to register options */
     private onSlotChange = (event: Event) => {
         const slot = event.target as HTMLSlotElement;
         this.options = slot.assignedElements().filter(el => el.tagName === 'UR-RADIO-BUTTON') as HTMLUrRadioButtonElement[];
