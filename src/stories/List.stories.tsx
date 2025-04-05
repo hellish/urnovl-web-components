@@ -2,7 +2,7 @@ import { html } from 'lit';
 
 import '../components/ur-list/ur-list'; // Import your list component
 import '../components/ur-list-item/ur-list-item'; // Import your list-item component
-import '../components/ur-list/ur-list-subheader'; // Import the list-subheader component
+import '../components/ur-list-subheader/ur-list-subheader'; // Import the list-subheader component
 import '../components/ur-avatar/ur-avatar'; // Import the list-subheader component
 
 export default {
