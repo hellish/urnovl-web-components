@@ -50,7 +50,7 @@ jobs:
 
                   git tag ${VERSION}
 
-                  npm publish --access public
+                  # npm publish --access public
 
                   git push origin $VERSION
                   git push origin $GIT_BRANCH
