@@ -1,7 +1,6 @@
 import { Component, Host, h } from '@stencil/core';
 
 import 'mdui/components/list';
-import 'mdui/components/list-subheader';
 
 @Component({
     tag: 'ur-list',
