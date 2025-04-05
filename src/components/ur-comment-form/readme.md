@@ -14,7 +14,7 @@
 | `maxLength`   | `max-length`  |             | `number`                                   | `400`                          |
 | `minLength`   | `min-length`  |             | `number`                                   | `1`                            |
 | `placeholder` | `placeholder` |             | `string`                                   | `'Write your comment here...'` |
-| `user`        | --            |             | `{ displayName: string; avatar: string; }` | `undefined`                    |
+| `user`        | `user`        |             | `{ displayName: string; avatar: string; }` | `undefined`                    |
 | `variant`     | `variant`     |             | `"desktop" \| "mobile"`                    | `'desktop'`                    |
 
 

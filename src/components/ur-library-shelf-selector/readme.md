@@ -17,7 +17,7 @@
 | `newShelfPlaceholder`        | `new-shelf-placeholder`          |             | `string`              | `'Please enter a shelf name'`                                           |
 | `orCreateNewShelf`           | `or-create-new-shelf`            |             | `string`              | `'or create a new one'`                                                 |
 | `selectedShelf`              | `selected-shelf`                 |             | `string`              | `''`                                                                    |
-| `shelves`                    | --                               |             | `{ name: string; }[]` | `[]`                                                                    |
+| `shelves`                    | `shelves`                        |             | `{ name: string; }[]` | `[]`                                                                    |
 
 
 ## Events

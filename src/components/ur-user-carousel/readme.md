@@ -9,12 +9,12 @@
 
 | Property        | Attribute         | Description | Type                                              | Default                                        |
 | --------------- | ----------------- | ----------- | ------------------------------------------------- | ---------------------------------------------- |
-| `breakpoints`   | --                |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
-| `grid`          | --                |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
+| `breakpoints`   | `breakpoints`     |             | `{ [width: number]: any; [ratio: string]: any; }` | `{         // add default     }`               |
+| `grid`          | `grid`            |             | `{ rows?: number; fill?: "row" \| "column"; }`    | `{         rows: 1,         fill: 'row'     }` |
 | `navigation`    | `navigation`      |             | `boolean`                                         | `false`                                        |
 | `slidesPerView` | `slides-per-view` |             | `"auto" \| number`                                | `'auto'`                                       |
 | `spaceBetween`  | `space-between`   |             | `number \| string`                                | `'0'`                                          |
-| `users`         | --                |             | `(UserCustomContent \| User)[]`                   | `[]`                                           |
+| `users`         | `users`           |             | `(UserCustomContent \| User)[]`                   | `[]`                                           |
 
 
 ## Events

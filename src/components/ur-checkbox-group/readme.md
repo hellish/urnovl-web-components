@@ -14,7 +14,7 @@
 | `required`      | `required`        | Whether the group is required        | `boolean`  | `false`           |
 | `selectAll`     | `select-all`      | Enable a "Select All" checkbox       | `boolean`  | `false`           |
 | `selectAllText` | `select-all-text` | Text for the "Select All" checkbox   | `string`   | `'Select All'`    |
-| `values`        | --                | Currently selected values            | `string[]` | `[]`              |
+| `values`        | `values`          | Currently selected values            | `string[]` | `[]`              |
 
 
 ## Events
