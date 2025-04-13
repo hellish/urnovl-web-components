@@ -23,10 +23,10 @@
 
 ## Events
 
-| Event               | Description | Type                  |
-| ------------------- | ----------- | --------------------- |
-| `userClicked`       |             | `CustomEvent<string>` |
-| `userFollowClicked` |             | `CustomEvent<string>` |
+| Event               | Description | Type                             |
+| ------------------- | ----------- | -------------------------------- |
+| `userClicked`       |             | `CustomEvent<string>`            |
+| `userFollowClicked` |             | `CustomEvent<[string, boolean]>` |
 
 
 ## Dependencies
