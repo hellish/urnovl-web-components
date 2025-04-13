@@ -45,15 +45,23 @@ export class UrUser {
     userClicked: EventEmitter<string>;
 
     @Event()
-    userFollowClicked: EventEmitter<string>;
+    userFollowClicked: EventEmitter<[string, boolean]>;
 
     componentDidLoad() {
         this.el.style.setProperty("--page-border-radius", this.borderRadius);
     }
 
-    handleFollowClicked(event) {
-        this.followStatus = !event;
-        this.userFollowClicked.emit(this.userId);
+    handleFollowClicked($event, followed) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        this.followStatus = !followed;
+        this.userFollowClicked.emit([ this.userId, this.followStatus ]);
+    }
+
+    handleUserClicked($event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        this.userClicked.emit(this.userId)
     }
 
     renderLoading() {
@@ -77,7 +85,7 @@ export class UrUser {
 
         return (
             <Host>
-                <div class="user" onClick={() => this.userClicked.emit(this.userId)}>
+                <div class="user" onClick={($event) => this.handleUserClicked($event)}>
                     <section class='cover' style={{
                         backgroundImage: this.userCover ? `url(${this.userCover})` : `url(${this.userCoverFallback})`
                     }}>
@@ -97,7 +105,7 @@ export class UrUser {
                         <div class="actions">
                             <ur-button class="follow"
                                        variant="outlined"
-                                       onClick={() => this.handleFollowClicked(this.followStatus)}>
+                                       onClick={($event) => this.handleFollowClicked($event, this.followStatus)}>
                                 {this.followStatus ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>

@@ -2219,7 +2219,7 @@ declare global {
     };
     interface HTMLUrUserElementEventMap {
         "userClicked": string;
-        "userFollowClicked": string;
+        "userFollowClicked": [string, boolean];
     }
     interface HTMLUrUserElement extends Components.UrUser, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrUserElementEventMap>(type: K, listener: (this: HTMLUrUserElement, ev: UrUserCustomEvent<HTMLUrUserElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3504,7 +3504,7 @@ declare namespace LocalJSX {
         "followers"?: number;
         "loading"?: boolean;
         "onUserClicked"?: (event: UrUserCustomEvent<string>) => void;
-        "onUserFollowClicked"?: (event: UrUserCustomEvent<string>) => void;
+        "onUserFollowClicked"?: (event: UrUserCustomEvent<[string, boolean]>) => void;
         "showStats"?: boolean;
         "userCover"?: string;
         "userCoverFallback"?: string;
