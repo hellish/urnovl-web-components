@@ -143,6 +143,11 @@
 :host .profile .actions ur-button {
     width: 100%;
     padding-bottom: 5px;
+    transition: all 0.2s ease;
+}
+
+:host .profile .actions ur-button:hover {
+    transform: translateY(-1px);
 }
 
 :host .profile .created-by,
