@@ -3,6 +3,7 @@ import { Editor, Extension } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
+import Placeholder from '@tiptap/extension-placeholder';
 
 @Component({
     tag: 'ur-editor',
@@ -13,62 +14,97 @@ export class UrEditor {
     private editor: Editor;
     private editorContainer?: HTMLDivElement;
 
-    @Element() hostElement: HTMLElement;
+    /**
+     * Stores the last valid HTML state before hitting limits
+     */
+    private lastValidHTML: string | null = null;
+
+    @Element()
+    hostElement: HTMLElement;
 
     /**
      * The content to edit
      */
-    @Prop() content: string = '';
+    @Prop()
+    content: string = '';
 
     /**
      * Whether the editor is disabled
      */
-    @Prop() disabled: boolean = false;
+    @Prop()
+    disabled: boolean = false;
 
     /**
      * Placeholder text when content is empty
      */
-    @Prop() placeholder: string = 'Start typing...';
+    @Prop()
+    placeholder: string = 'Tell your story...';
+
+    /**
+     * Label for word counter
+     */
+    @Prop()
+    wordLabel: string = 'Words';
+
+    /**
+     * Label for character counter
+     */
+    @Prop()
+    charLabel: string = 'Characters';
 
     /**
      * Enable bold formatting
      */
-    @Prop() enableBold: boolean = true;
+    @Prop()
+    enableBold: boolean = true;
 
     /**
      * Enable italic formatting
      */
-    @Prop() enableItalic: boolean = true;
+    @Prop()
+    enableItalic: boolean = true;
 
     /**
      * Enable underline formatting
      */
-    @Prop() enableUnderline: boolean = true;
+    @Prop()
+    enableUnderline: boolean = true;
 
     /**
      * Enable text alignment
      */
-    @Prop() enableTextAlign: boolean = true;
+    @Prop()
+    enableTextAlign: boolean = true;
 
     /**
      * Enable blockquote
      */
-    @Prop() enableBlockquote: boolean = true;
+    @Prop()
+    enableBlockquote: boolean = true;
 
     /**
-     * Optional max length for content
+     * Optional max length for content (in characters)
      */
-    @Prop() maxLength: number = 0;
+    @Prop()
+    maxLength: number = 0;
 
     /**
-     * Show character counter
+     * Optional max word count
      */
-    @Prop() showCounter: boolean = false;
+    @Prop()
+    maxWords: number = 0;
+
+    /**
+     * Show character and word counter
+     */
+    @Prop()
+    showCounter: boolean = false;
 
     /**
      * Show fixed toolbar or only selection tooltip
      */
-    @Prop() showFixedToolbar: boolean = true;
+    @Prop()
+    showFixedToolbar: boolean = true;
 
     /**
      * Internal state to track formatting states
@@ -88,6 +124,11 @@ export class UrEditor {
      * Internal state to track character count
      */
     @State() charCount: number = 0;
+
+    /**
+     * Internal state to track word count
+     */
+    @State() wordCount: number = 0;
 
     /**
      * State to track the selection tooltip position and visibility
@@ -115,6 +156,28 @@ export class UrEditor {
     contentChanged: EventEmitter<string>;
 
     /**
+     * Watch for changes to maxLength - ensure mutual exclusivity with maxWords
+     */
+    @Watch('maxLength')
+    maxLengthUpdated(newValue: number) {
+        // If setting a character limit, disable any word limit
+        if (newValue > 0 && this.maxWords > 0) {
+            this.maxWords = 0;
+        }
+    }
+
+    /**
+     * Watch for changes to maxWords - ensure mutual exclusivity with maxLength
+     */
+    @Watch('maxWords')
+    maxWordsUpdated(newValue: number) {
+        // If setting a word limit, disable any character limit
+        if (newValue > 0 && this.maxLength > 0) {
+            this.maxLength = 0;
+        }
+    }
+
+    /**
      * Watch for content changes from outside
      */
     @Watch('content')
@@ -123,7 +186,7 @@ export class UrEditor {
             const currentHTML = this.editor.getHTML();
             if (newContent !== currentHTML) {
                 this.editor.commands.setContent(newContent, false);
-                this.updateCharCount();
+                this.updateCounts();
             }
         }
     }
@@ -139,14 +202,55 @@ export class UrEditor {
     }
 
     /**
-     * Update the character count based on editor content
+     * Update both character and word counts based on editor content
      */
-    private updateCharCount() {
+    private updateCounts() {
         if (this.editor) {
-            // Get plain text content for accurate character count
+            // Get plain text content for accurate counts
             const text = this.editor.getText();
             this.charCount = text ? text.length : 0;
+
+            // Calculate word count by splitting on whitespace and filtering out empty strings
+            const words = text
+                ? text
+                      .trim()
+                      .split(/\s+/)
+                      .filter(word => word.length > 0)
+                : [];
+            this.wordCount = words.length;
         }
+    }
+
+    /**
+     * Check if the current text exceeds the active maximum limit
+     * Only one type of limit (character or word) can be active at a time
+     */
+    private isExceedingLimits(text: string): boolean {
+        // If no limits are set, content never exceeds limits
+        if (this.maxLength <= 0 && this.maxWords <= 0) {
+            return false;
+        }
+
+        // Character limit takes precedence if both are set
+        if (this.maxLength > 0) {
+            const charCount = text ? text.length : 0;
+            return charCount > this.maxLength;
+        }
+
+        // Word limit check
+        if (this.maxWords > 0) {
+            const words = text
+                ? text
+                      .trim()
+                      .split(/\s+/)
+                      .filter(word => word.length > 0)
+                : [];
+            const wordCount = words.length;
+            return wordCount > this.maxWords;
+        }
+
+        // If we get here, no limits are exceeded
+        return false;
     }
 
     /**
@@ -256,27 +360,80 @@ export class UrEditor {
             );
         }
 
+        // Add placeholder extension
+        extensions.push(
+            Placeholder.configure({
+                placeholder: this.placeholder,
+                emptyEditorClass: 'is-editor-empty',
+                emptyNodeClass: 'is-node-empty',
+                showOnlyWhenEditable: true,
+                showOnlyCurrent: false,
+            }),
+        );
+
         this.editor = new Editor({
             element: this.editorContainer,
             extensions,
             content: this.content,
             editable: !this.disabled,
-            onUpdate: ({ editor }) => {
-                this.updateCharCount();
-                this.contentChanged.emit(editor.getHTML());
+            onUpdate: ({ editor, transaction }) => {
+                // Get the current content
+                const currentHTML = editor.getHTML();
+                const currentText = editor.getText();
+
+                // Update counts
+                this.updateCounts();
+
+                // Check if content exceeds any limits
+                if (this.isExceedingLimits(currentText)) {
+                    // If it does, prevent the update by preserving the existing valid state
+                    const preventTransaction = editor.state.tr.setMeta('preventUpdate', true);
+                    editor.view.dispatch(preventTransaction);
+
+                    // We need to use setTimeout to ensure we don't interfere with the current transaction
+                    setTimeout(() => {
+                        // If we have a saved valid state with formatting intact
+                        if (this.lastValidHTML) {
+                            // Store cursor position before setting content
+                            const pos = editor.state.selection.anchor;
+
+                            // Use the previous HTML which preserved all formatting
+                            editor.commands.setContent(this.lastValidHTML, false);
+
+                            // Try to restore cursor position as much as possible
+                            if (pos > 0) {
+                                const newPos = Math.min(pos, editor.state.doc.content.size);
+                                editor.commands.setTextSelection(newPos);
+                            }
+                        }
+
+                        // Re-update counts after reverting
+                        this.updateCounts();
+                    }, 0);
+                } else {
+                    // If content is valid, save it as the last valid state
+                    this.lastValidHTML = currentHTML;
+                    // And emit the update
+                    this.contentChanged.emit(currentHTML);
+                }
             },
             onSelectionUpdate: () => {
                 // Only update formatting state, tooltip is managed by mouse events
                 this.updateFormattingState();
             },
             // Add transaction handler to detect formatting changes
-            onTransaction: () => {
+            onTransaction: ({ transaction }) => {
+                // Skip if this transaction was marked to prevent update
+                if (transaction.getMeta('preventUpdate')) {
+                    return;
+                }
+
                 this.updateFormattingState();
             },
         });
 
         // Initialize states
-        this.updateCharCount();
+        this.updateCounts();
         this.updateFormattingState();
     }
 
@@ -348,9 +505,12 @@ export class UrEditor {
     @Method()
     async setContent(content: string): Promise<void> {
         if (this.editor) {
-            this.editor.commands.setContent(content, false);
-            this.updateCharCount();
-            this.updateFormattingState();
+            // Check if the new content would exceed limits before setting
+            if (!this.isExceedingLimits(content)) {
+                this.editor.commands.setContent(content, false);
+                this.updateCounts();
+                this.updateFormattingState();
+            }
         }
     }
 
@@ -361,7 +521,7 @@ export class UrEditor {
     async clearContent(): Promise<void> {
         if (this.editor) {
             this.editor.commands.clearContent();
-            this.updateCharCount();
+            this.updateCounts();
             this.updateFormattingState();
         }
     }
@@ -401,124 +561,118 @@ export class UrEditor {
         this.editor?.chain().focus().setTextAlign(alignment).run();
     };
 
-    /**
-     * Get CSS class for toolbar button
-     */
-    private getButtonClass(isActive: boolean) {
-        return {
-            'toolbar-button': true,
-            'is-active': isActive,
-        };
+    // Add this function to your component to render formatting buttons consistently
+    private renderFormattingButtons() {
+        return (
+            <fragment>
+                {this.enableBold && (
+                    <ur-button-icon
+                        class={{
+                            'toolbar-button': true,
+                            'is-active': this.formattingState.bold,
+                        }}
+                        icon="format_bold"
+                        selected={this.formattingState.bold}
+                        disabled={this.disabled}
+                        onClick={this.handleBold}
+                    ></ur-button-icon>
+                )}
+
+                {this.enableItalic && (
+                    <ur-button-icon
+                        class={{
+                            'toolbar-button': true,
+                            'is-active': this.formattingState.italic,
+                        }}
+                        icon="format_italic"
+                        selected={this.formattingState.italic}
+                        disabled={this.disabled}
+                        onClick={this.handleItalic}
+                    ></ur-button-icon>
+                )}
+
+                {this.enableUnderline && (
+                    <ur-button-icon
+                        class={{
+                            'toolbar-button': true,
+                            'is-active': this.formattingState.underline,
+                        }}
+                        icon="format_underlined"
+                        selected={this.formattingState.underline}
+                        disabled={this.disabled}
+                        onClick={this.handleUnderline}
+                    ></ur-button-icon>
+                )}
+
+                {this.enableBlockquote && (
+                    <ur-button-icon
+                        class={{
+                            'toolbar-button': true,
+                            'is-active': this.formattingState.blockquote,
+                        }}
+                        icon="format_quote"
+                        selected={this.formattingState.blockquote}
+                        disabled={this.disabled}
+                        onClick={this.handleBlockquote}
+                    ></ur-button-icon>
+                )}
+
+                {this.enableTextAlign && (
+                    <div class="align-buttons">
+                        <ur-button-icon
+                            class={{
+                                'toolbar-button': true,
+                                'is-active': this.formattingState.textAlignLeft,
+                            }}
+                            icon="format_align_left"
+                            selected={this.formattingState.textAlignLeft}
+                            disabled={this.disabled}
+                            onClick={() => this.handleAlign('left')}
+                        ></ur-button-icon>
+
+                        <ur-button-icon
+                            class={{
+                                'toolbar-button': true,
+                                'is-active': this.formattingState.textAlignCenter,
+                            }}
+                            icon="format_align_center"
+                            selected={this.formattingState.textAlignCenter}
+                            disabled={this.disabled}
+                            onClick={() => this.handleAlign('center')}
+                        ></ur-button-icon>
+
+                        <ur-button-icon
+                            class={{
+                                'toolbar-button': true,
+                                'is-active': this.formattingState.textAlignRight,
+                            }}
+                            icon="format_align_right"
+                            selected={this.formattingState.textAlignRight}
+                            disabled={this.disabled}
+                            onClick={() => this.handleAlign('right')}
+                        ></ur-button-icon>
+
+                        <ur-button-icon
+                            class={{
+                                'toolbar-button': true,
+                                'is-active': this.formattingState.textAlignJustify,
+                            }}
+                            icon="format_align_justify"
+                            selected={this.formattingState.textAlignJustify}
+                            disabled={this.disabled}
+                            onClick={() => this.handleAlign('justify')}
+                        ></ur-button-icon>
+                    </div>
+                )}
+            </fragment>
+        );
     }
 
     render() {
         return (
             <div class="ur-editor">
                 {/* Fixed Toolbar - Can be toggled with showFixedToolbar prop */}
-                {this.showFixedToolbar && (
-                    <div class="editor-toolbar">
-                        {this.enableBold && (
-                            <button type="button" title="Bold" class={this.getButtonClass(this.formattingState.bold)} onClick={this.handleBold} disabled={this.disabled}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableItalic && (
-                            <button type="button" title="Italic" class={this.getButtonClass(this.formattingState.italic)} onClick={this.handleItalic} disabled={this.disabled}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableUnderline && (
-                            <button
-                                type="button"
-                                title="Underline"
-                                class={this.getButtonClass(this.formattingState.underline)}
-                                onClick={this.handleUnderline}
-                                disabled={this.disabled}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M8 3v9a4 4 0 1 0 8 0V3h2v9a6 6 0 1 1-12 0V3h2zM4 20h16v2H4v-2z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableBlockquote && (
-                            <button
-                                type="button"
-                                title="Quote"
-                                class={this.getButtonClass(this.formattingState.blockquote)}
-                                onClick={this.handleBlockquote}
-                                disabled={this.disabled}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableTextAlign && (
-                            <div class="align-buttons">
-                                <button
-                                    type="button"
-                                    title="Align Left"
-                                    class={this.getButtonClass(this.formattingState.textAlignLeft)}
-                                    onClick={() => this.handleAlign('left')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm0 15h14v2H3v-2zm0-5h18v2H3v-2zm0-5h14v2H3V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Align Center"
-                                    class={this.getButtonClass(this.formattingState.textAlignCenter)}
-                                    onClick={() => this.handleAlign('center')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm2 15h14v2H5v-2zm-2-5h18v2H3v-2zm2-5h14v2H5V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Align Right"
-                                    class={this.getButtonClass(this.formattingState.textAlignRight)}
-                                    onClick={() => this.handleAlign('right')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm4 15h14v2H7v-2zm-4-5h18v2H3v-2zm4-5h14v2H7V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Justify"
-                                    class={this.getButtonClass(this.formattingState.textAlignJustify)}
-                                    onClick={() => this.handleAlign('justify')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm0 15h18v2H3v-2zm0-5h18v2H3v-2zm0-5h18v2H3V9z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                )}
+                {this.showFixedToolbar && <div class="editor-toolbar">{this.renderFormattingButtons()}</div>}
 
                 {/* Selection Tooltip - appears when text is selected */}
                 {this.selectionTooltip.visible && (
@@ -529,116 +683,24 @@ export class UrEditor {
                             left: `${this.selectionTooltip.left}px`,
                         }}
                     >
-                        {this.enableBold && (
-                            <button type="button" title="Bold" class={this.getButtonClass(this.formattingState.bold)} onClick={this.handleBold} disabled={this.disabled}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableItalic && (
-                            <button type="button" title="Italic" class={this.getButtonClass(this.formattingState.italic)} onClick={this.handleItalic} disabled={this.disabled}>
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" />
-                                </svg>
-                            </button>
-                        )}
-
-                        {this.enableUnderline && (
-                            <button
-                                type="button"
-                                title="Underline"
-                                class={this.getButtonClass(this.formattingState.underline)}
-                                onClick={this.handleUnderline}
-                                disabled={this.disabled}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M8 3v9a4 4 0 1 0 8 0V3h2v9a6 6 0 1 1-12 0V3h2zM4 20h16v2H4v-2z" />
-                                </svg>
-                            </button>
-                        )}
-                        
-                        {this.enableBlockquote && (
-                            <button
-                                type="button"
-                                title="Quote"
-                                class={this.getButtonClass(this.formattingState.blockquote)}
-                                onClick={this.handleBlockquote}
-                                disabled={this.disabled}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
-                                </svg>
-                            </button>
-                        )}
-                        
-                        {this.enableTextAlign && (
-                            <div class="align-buttons">
-                                <button
-                                    type="button"
-                                    title="Align Left"
-                                    class={this.getButtonClass(this.formattingState.textAlignLeft)}
-                                    onClick={() => this.handleAlign('left')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm0 15h14v2H3v-2zm0-5h18v2H3v-2zm0-5h14v2H3V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Align Center"
-                                    class={this.getButtonClass(this.formattingState.textAlignCenter)}
-                                    onClick={() => this.handleAlign('center')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm2 15h14v2H5v-2zm-2-5h18v2H3v-2zm2-5h14v2H5V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Align Right"
-                                    class={this.getButtonClass(this.formattingState.textAlignRight)}
-                                    onClick={() => this.handleAlign('right')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm4 15h14v2H7v-2zm-4-5h18v2H3v-2zm4-5h14v2H7V9z" />
-                                    </svg>
-                                </button>
-                                <button
-                                    type="button"
-                                    title="Justify"
-                                    class={this.getButtonClass(this.formattingState.textAlignJustify)}
-                                    onClick={() => this.handleAlign('justify')}
-                                    disabled={this.disabled}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                        <path fill="none" d="M0 0h24v24H0z" />
-                                        <path d="M3 4h18v2H3V4zm0 15h18v2H3v-2zm0-5h18v2H3v-2zm0-5h18v2H3V9z" />
-                                    </svg>
-                                </button>
-                            </div>
-                        )}
+                        {this.renderFormattingButtons()}
                     </div>
                 )}
 
                 {/* Editor Content */}
-                <div class="editor-content" ref={el => (this.editorContainer = el as HTMLDivElement)} data-placeholder={this.placeholder}></div>
+                <div class="editor-content" ref={el => (this.editorContainer = el as HTMLDivElement)}></div>
 
-                {/* Character Counter */}
-                {this.showCounter && this.maxLength > 0 && (
-                    <div class="char-counter">
-                        {this.charCount} / {this.maxLength}
+                {/* Character and Word Counter */}
+                {this.showCounter && (
+                    <div class="content-counter">
+                        <div class="word-counter">
+                            {this.wordLabel}: {this.wordCount}
+                            {this.maxWords > 0 ? ` / ${this.maxWords}` : ''}
+                        </div>
+                        <div class="char-counter">
+                            {this.charLabel}: {this.charCount}
+                            {this.maxLength > 0 ? ` / ${this.maxLength}` : ''}
+                        </div>
                     </div>
                 )}
             </div>

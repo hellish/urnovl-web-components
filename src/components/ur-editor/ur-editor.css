@@ -9,6 +9,7 @@
     --ur-color-outline: var(--mdui-color-outline);
     --ur-color-surface-container-lowest: var(--mdui-color-surface-container-lowest);
 
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
     background-color: rgb(var(--ur-color-background));
 }
 
@@ -30,11 +31,15 @@
     margin-bottom: 16px;
 }
 
+:host fragment {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 :host .toolbar-button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
     margin: 0 4px;
     border-radius: 4px;
     display: flex;
@@ -77,6 +82,7 @@
     min-height: 150px;
     outline: none;
     flex-grow: 1;
+    font-family: 'Georgia', 'Times New Roman', Times, serif;
 }
 
 /* Style for the placeholder */
@@ -84,6 +90,15 @@
     content: attr(data-placeholder);
     color: rgba(var(--ur-color-on-background), 0.5);
     pointer-events: none;
+}
+
+:host .word-counter {
+    padding: 4px 0;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    opacity: 0.3;
 }
 
 :host .char-counter {
@@ -172,7 +187,6 @@
     margin: 1.5rem 0;
     padding: 1rem 1.5rem;
     border-left: 4px solid rgba(var(--ur-color-primary), 0.8);
-    background-color: rgba(var(--ur-color-surface-container-lowest), 0.6);
     font-style: italic;
     position: relative;
 }
@@ -263,7 +277,6 @@
     }
 
     :host .toolbar-button {
-        padding: 4px;
         margin: 0 2px;
     }
 
@@ -313,3 +326,12 @@
     scrollbar-width: thin; /* Thin scrollbar */
     scrollbar-color: #343a40 #f0f0f0; /* Thumb color and track color */
 }
+
+:host .ProseMirror p.is-editor-empty:first-child::before {
+    color: rgba(var(--ur-color-on-background), 0.5);
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+    font-style: italic;
+  }

@@ -1,5 +1,4 @@
 import { html } from 'lit';
-// Removed the unused import
 import '../components/ur-editor/ur-editor'; // Adjust the path as necessary
 
 // Define interface for the custom element
@@ -70,8 +69,13 @@ const Template = args => {
                     ?enable-italic=${args.enableItalic}
                     ?enable-underline=${args.enableUnderline}
                     ?enable-text-align=${args.enableTextAlign}
+                    ?enable-blockquote=${args.enableBlockquote}
                     ?show-counter=${args.showCounter}
                     .maxLength=${args.maxLength}
+                    .maxWords=${args.maxWords}
+                    .wordLabel=${args.wordLabel}
+                    .charLabel=${args.charLabel}
+                    ?show-fixed-toolbar=${args.showFixedToolbar}
                     @contentChanged=${handleContentChanged}
                 ></ur-editor>
             </div>
@@ -116,9 +120,17 @@ export default {
             control: 'boolean',
             description: 'Enable text alignment options',
         },
+        enableBlockquote: {
+            control: 'boolean',
+            description: 'Enable blockquote formatting',
+        },
         showCounter: {
             control: 'boolean',
-            description: 'Show character counter',
+            description: 'Show character and word counters',
+        },
+        showFixedToolbar: {
+            control: 'boolean',
+            description: 'Show fixed toolbar or only selection tooltip',
         },
         maxLength: {
             control: {
@@ -127,32 +139,80 @@ export default {
                 max: 1000,
                 step: 10,
             },
-            description: 'Maximum number of characters allowed',
+            description: 'Maximum number of characters allowed (0 = no limit, cannot be used with maxWords)',
+        },
+        maxWords: {
+            control: {
+                type: 'number',
+                min: 0,
+                max: 500,
+                step: 5,
+            },
+            description: 'Maximum number of words allowed (0 = no limit, cannot be used with maxLength)',
+        },
+        wordLabel: {
+            control: 'text',
+            description: 'Label for word counter',
+        },
+        charLabel: {
+            control: 'text',
+            description: 'Label for character counter',
         },
     },
 };
 
-// Default story
+// Default story - No limit
 export const Default = {
     args: {
-        content: '<p>This is a basic editor. Try formatting this text!</p>',
-        placeholder: 'Start typing...',
+        content: '<p>This is a simple rich text editor with formatting options.</p>',
+        placeholder: 'Write your story...',
         disabled: false,
         enableBold: true,
         enableItalic: true,
         enableUnderline: true,
         enableTextAlign: true,
-        showCounter: false,
+        enableBlockquote: true,
+        showCounter: true,
+        showFixedToolbar: true,
         maxLength: 0,
+        maxWords: 0,
+        wordLabel: 'Words',
+        charLabel: 'Characters',
     },
 };
 
-// Editor with character limit
-export const WithCharacterLimit = {
+// Story with character limit
+export const CharacterLimit = {
     args: {
         ...Default.args,
-        content: "<p>This editor has a character limit of 100 characters. The counter below will show how many characters you've used.</p>",
+        content:
+            '<p>This editor has a character limit of 200. Try typing more text to see how the counter works. The editor will prevent you from exceeding the limit while preserving any formatting.</p>',
         showCounter: true,
-        maxLength: 100,
+        maxLength: 200,
+        maxWords: 0,
+        charLabel: 'Characters',
+    },
+};
+
+// Story with word limit
+export const WordLimit = {
+    args: {
+        ...Default.args,
+        content:
+            '<p>This editor has a word limit of 30. Try typing more words to see how the counter works. The editor will stop accepting new words when you reach the limit.</p>',
+        showCounter: true,
+        maxLength: 0,
+        maxWords: 30,
+        wordLabel: 'Words',
+    },
+};
+
+// Disabled editor
+export const Disabled = {
+    args: {
+        ...Default.args,
+        content: '<p>This editor is disabled and cannot be edited.</p>',
+        disabled: true,
+        showCounter: true,
     },
 };
