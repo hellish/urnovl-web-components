@@ -198,6 +198,12 @@ export class UrEditor {
     disabledUpdated(isDisabled: boolean) {
         if (this.editor) {
             this.editor.setEditable(!isDisabled);
+            // Also update the editor container's attribute
+            if (isDisabled) {
+                this.hostElement.setAttribute('disabled', '');
+            } else {
+                this.hostElement.removeAttribute('disabled');
+            }
         }
     }
 
@@ -276,6 +282,11 @@ export class UrEditor {
      */
     componentDidLoad() {
         this.initEditor();
+
+        // Set initial disabled state
+        if (this.disabled) {
+            this.hostElement.setAttribute('disabled', '');
+        }
 
         // Add event listeners for mouse up/down
         if (this.editorContainer) {
