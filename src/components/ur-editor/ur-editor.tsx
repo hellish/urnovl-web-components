@@ -387,7 +387,7 @@ export class UrEditor {
             extensions,
             content: this.content,
             editable: !this.disabled,
-            onUpdate: ({ editor, transaction }) => {
+            onUpdate: ({ editor }) => {
                 // Get the current content
                 const currentHTML = editor.getHTML();
                 const currentText = editor.getText();
