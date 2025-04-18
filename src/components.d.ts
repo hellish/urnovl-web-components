@@ -183,6 +183,7 @@ export namespace Components {
         "size": string;
     }
     interface UrCircularProgress {
+        "height"?: string;
         /**
           * The maximum value of the progress indicator. Defaults to 1.
          */
@@ -191,6 +192,7 @@ export namespace Components {
           * The current value of the progress indicator. If not specified, the progress indicator will be in an indeterminate state.
          */
         "value"?: number;
+        "width"?: string;
     }
     interface UrCommentForm {
         "disabled": boolean;
@@ -213,6 +215,80 @@ export namespace Components {
         "overlayHeader": boolean;
         "showHeader": boolean;
         "variant": 'mobile' | 'desktop';
+    }
+    interface UrEditor {
+        /**
+          * Label for character counter
+         */
+        "charLabel": string;
+        /**
+          * Public method to clear content
+         */
+        "clearContent": () => Promise<void>;
+        /**
+          * The content to edit
+         */
+        "content": string;
+        /**
+          * Whether the editor is disabled
+         */
+        "disabled": boolean;
+        /**
+          * Enable blockquote
+         */
+        "enableBlockquote": boolean;
+        /**
+          * Enable bold formatting
+         */
+        "enableBold": boolean;
+        /**
+          * Enable italic formatting
+         */
+        "enableItalic": boolean;
+        /**
+          * Enable text alignment
+         */
+        "enableTextAlign": boolean;
+        /**
+          * Enable underline formatting
+         */
+        "enableUnderline": boolean;
+        /**
+          * Public method to get HTML content
+         */
+        "getHTML": () => Promise<string>;
+        /**
+          * Public method to get text content
+         */
+        "getText": () => Promise<string>;
+        /**
+          * Optional max length for content (in characters)
+         */
+        "maxLength": number;
+        /**
+          * Optional max word count
+         */
+        "maxWords": number;
+        /**
+          * Placeholder text when content is empty
+         */
+        "placeholder": string;
+        /**
+          * Public method to set content
+         */
+        "setContent": (content: string) => Promise<void>;
+        /**
+          * Show character and word counter
+         */
+        "showCounter": boolean;
+        /**
+          * Show fixed toolbar or only selection tooltip
+         */
+        "showFixedToolbar": boolean;
+        /**
+          * Label for word counter
+         */
+        "wordLabel": string;
     }
     interface UrForm {
         "resetForm": () => Promise<void>;
@@ -880,6 +956,68 @@ export namespace Components {
         "value": string | string[];
         "variant": 'filled' | 'outlined';
     }
+    interface UrSnackbar {
+        /**
+          * Text for the action button
+         */
+        "action"?: string;
+        /**
+          * Action button color
+         */
+        "actionColor": string;
+        /**
+          * Whether the action button is in loading state
+         */
+        "actionLoading": boolean;
+        /**
+          * Auto close delay in milliseconds
+         */
+        "autoCloseDelay": number;
+        /**
+          * Background color
+         */
+        "backColor": string;
+        /**
+          * Material icon name for the close button
+         */
+        "closeIcon"?: string;
+        /**
+          * Whether to close when clicking outside
+         */
+        "closeOnOutsideClick": boolean;
+        /**
+          * Whether to show a close button
+         */
+        "closeable": boolean;
+        /**
+          * Text color
+         */
+        "fontColor": string;
+        /**
+          * Message text
+         */
+        "message": string;
+        /**
+          * Maximum number of text lines
+         */
+        "messageLine"?: 1 | 2;
+        /**
+          * Controls whether the snackbar is open
+         */
+        "open": boolean;
+        /**
+          * Position of the snackbar
+         */
+        "placement": 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
+        /**
+          * Border radius
+         */
+        "radius": string;
+        /**
+          * Z-index
+         */
+        "zIndex": string;
+    }
     interface UrSwitch {
         "checked": boolean;
         "checkedIcon": string;
@@ -1156,6 +1294,10 @@ export interface UrDialogCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrDialogElement;
 }
+export interface UrEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrEditorElement;
+}
 export interface UrFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrFormElement;
@@ -1263,6 +1405,10 @@ export interface UrReaderCustomEvent<T> extends CustomEvent<T> {
 export interface UrSelectCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSelectElement;
+}
+export interface UrSnackbarCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrSnackbarElement;
 }
 export interface UrSwitchCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1491,6 +1637,23 @@ declare global {
     var HTMLUrDialogElement: {
         prototype: HTMLUrDialogElement;
         new (): HTMLUrDialogElement;
+    };
+    interface HTMLUrEditorElementEventMap {
+        "contentChanged": string;
+    }
+    interface HTMLUrEditorElement extends Components.UrEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrEditorElementEventMap>(type: K, listener: (this: HTMLUrEditorElement, ev: UrEditorCustomEvent<HTMLUrEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrEditorElementEventMap>(type: K, listener: (this: HTMLUrEditorElement, ev: UrEditorCustomEvent<HTMLUrEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrEditorElement: {
+        prototype: HTMLUrEditorElement;
+        new (): HTMLUrEditorElement;
     };
     interface HTMLUrFormElementEventMap {
         "formValid": void;
@@ -2140,6 +2303,27 @@ declare global {
         prototype: HTMLUrSelectElement;
         new (): HTMLUrSelectElement;
     };
+    interface HTMLUrSnackbarElementEventMap {
+        "urOpen": void;
+        "urOpened": void;
+        "urClose": void;
+        "urClosed": void;
+        "urActionClick": void;
+    }
+    interface HTMLUrSnackbarElement extends Components.UrSnackbar, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrSnackbarElementEventMap>(type: K, listener: (this: HTMLUrSnackbarElement, ev: UrSnackbarCustomEvent<HTMLUrSnackbarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrSnackbarElementEventMap>(type: K, listener: (this: HTMLUrSnackbarElement, ev: UrSnackbarCustomEvent<HTMLUrSnackbarElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrSnackbarElement: {
+        prototype: HTMLUrSnackbarElement;
+        new (): HTMLUrSnackbarElement;
+    };
     interface HTMLUrSwitchElementEventMap {
         "switchChange": boolean;
     }
@@ -2355,6 +2539,7 @@ declare global {
         "ur-circular-progress": HTMLUrCircularProgressElement;
         "ur-comment-form": HTMLUrCommentFormElement;
         "ur-dialog": HTMLUrDialogElement;
+        "ur-editor": HTMLUrEditorElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
         "ur-library-shelf-selector": HTMLUrLibraryShelfSelectorElement;
@@ -2397,6 +2582,7 @@ declare global {
         "ur-reader": HTMLUrReaderElement;
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
+        "ur-snackbar": HTMLUrSnackbarElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
@@ -2597,6 +2783,7 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface UrCircularProgress {
+        "height"?: string;
         /**
           * The maximum value of the progress indicator. Defaults to 1.
          */
@@ -2605,6 +2792,7 @@ declare namespace LocalJSX {
           * The current value of the progress indicator. If not specified, the progress indicator will be in an indeterminate state.
          */
         "value"?: number;
+        "width"?: string;
     }
     interface UrCommentForm {
         "disabled"?: boolean;
@@ -2629,6 +2817,68 @@ declare namespace LocalJSX {
         "overlayHeader"?: boolean;
         "showHeader"?: boolean;
         "variant"?: 'mobile' | 'desktop';
+    }
+    interface UrEditor {
+        /**
+          * Label for character counter
+         */
+        "charLabel"?: string;
+        /**
+          * The content to edit
+         */
+        "content"?: string;
+        /**
+          * Whether the editor is disabled
+         */
+        "disabled"?: boolean;
+        /**
+          * Enable blockquote
+         */
+        "enableBlockquote"?: boolean;
+        /**
+          * Enable bold formatting
+         */
+        "enableBold"?: boolean;
+        /**
+          * Enable italic formatting
+         */
+        "enableItalic"?: boolean;
+        /**
+          * Enable text alignment
+         */
+        "enableTextAlign"?: boolean;
+        /**
+          * Enable underline formatting
+         */
+        "enableUnderline"?: boolean;
+        /**
+          * Optional max length for content (in characters)
+         */
+        "maxLength"?: number;
+        /**
+          * Optional max word count
+         */
+        "maxWords"?: number;
+        /**
+          * Event emitted when content changes
+         */
+        "onContentChanged"?: (event: UrEditorCustomEvent<string>) => void;
+        /**
+          * Placeholder text when content is empty
+         */
+        "placeholder"?: string;
+        /**
+          * Show character and word counter
+         */
+        "showCounter"?: boolean;
+        /**
+          * Show fixed toolbar or only selection tooltip
+         */
+        "showFixedToolbar"?: boolean;
+        /**
+          * Label for word counter
+         */
+        "wordLabel"?: string;
     }
     interface UrForm {
         /**
@@ -3415,6 +3665,88 @@ declare namespace LocalJSX {
         "value"?: string | string[];
         "variant"?: 'filled' | 'outlined';
     }
+    interface UrSnackbar {
+        /**
+          * Text for the action button
+         */
+        "action"?: string;
+        /**
+          * Action button color
+         */
+        "actionColor"?: string;
+        /**
+          * Whether the action button is in loading state
+         */
+        "actionLoading"?: boolean;
+        /**
+          * Auto close delay in milliseconds
+         */
+        "autoCloseDelay"?: number;
+        /**
+          * Background color
+         */
+        "backColor"?: string;
+        /**
+          * Material icon name for the close button
+         */
+        "closeIcon"?: string;
+        /**
+          * Whether to close when clicking outside
+         */
+        "closeOnOutsideClick"?: boolean;
+        /**
+          * Whether to show a close button
+         */
+        "closeable"?: boolean;
+        /**
+          * Text color
+         */
+        "fontColor"?: string;
+        /**
+          * Message text
+         */
+        "message"?: string;
+        /**
+          * Maximum number of text lines
+         */
+        "messageLine"?: 1 | 2;
+        /**
+          * Emitted when the action button is clicked
+         */
+        "onUrActionClick"?: (event: UrSnackbarCustomEvent<void>) => void;
+        /**
+          * Emitted when the snackbar starts to close
+         */
+        "onUrClose"?: (event: UrSnackbarCustomEvent<void>) => void;
+        /**
+          * Emitted after the snackbar closes and animations complete
+         */
+        "onUrClosed"?: (event: UrSnackbarCustomEvent<void>) => void;
+        /**
+          * Emitted when the snackbar starts to open
+         */
+        "onUrOpen"?: (event: UrSnackbarCustomEvent<void>) => void;
+        /**
+          * Emitted after the snackbar opens and animations complete
+         */
+        "onUrOpened"?: (event: UrSnackbarCustomEvent<void>) => void;
+        /**
+          * Controls whether the snackbar is open
+         */
+        "open"?: boolean;
+        /**
+          * Position of the snackbar
+         */
+        "placement"?: 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end';
+        /**
+          * Border radius
+         */
+        "radius"?: string;
+        /**
+          * Z-index
+         */
+        "zIndex"?: string;
+    }
     interface UrSwitch {
         "checked"?: boolean;
         "checkedIcon"?: string;
@@ -3696,6 +4028,7 @@ declare namespace LocalJSX {
         "ur-circular-progress": UrCircularProgress;
         "ur-comment-form": UrCommentForm;
         "ur-dialog": UrDialog;
+        "ur-editor": UrEditor;
         "ur-form": UrForm;
         "ur-hero": UrHero;
         "ur-library-shelf-selector": UrLibraryShelfSelector;
@@ -3738,6 +4071,7 @@ declare namespace LocalJSX {
         "ur-reader": UrReader;
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
+        "ur-snackbar": UrSnackbar;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
@@ -3772,6 +4106,7 @@ declare module "@stencil/core" {
             "ur-circular-progress": LocalJSX.UrCircularProgress & JSXBase.HTMLAttributes<HTMLUrCircularProgressElement>;
             "ur-comment-form": LocalJSX.UrCommentForm & JSXBase.HTMLAttributes<HTMLUrCommentFormElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
+            "ur-editor": LocalJSX.UrEditor & JSXBase.HTMLAttributes<HTMLUrEditorElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-library-shelf-selector": LocalJSX.UrLibraryShelfSelector & JSXBase.HTMLAttributes<HTMLUrLibraryShelfSelectorElement>;
@@ -3814,6 +4149,7 @@ declare module "@stencil/core" {
             "ur-reader": LocalJSX.UrReader & JSXBase.HTMLAttributes<HTMLUrReaderElement>;
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
+            "ur-snackbar": LocalJSX.UrSnackbar & JSXBase.HTMLAttributes<HTMLUrSnackbarElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
