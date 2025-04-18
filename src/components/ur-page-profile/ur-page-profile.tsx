@@ -1,4 +1,4 @@
-import { Component, Event, Host, Prop, h, EventEmitter } from '@stencil/core';
+import { Component, Event, Host, Prop, State, h, EventEmitter } from '@stencil/core';
 import { Icons } from './icons';
 
 import { PageFollowEvent, PageMemberEvent } from '../../models/page';
@@ -145,12 +145,15 @@ export class UrPageProfile {
     @Prop()
     followed = false;
 
-    @Prop()
+    @Prop({ mutable: true })
     memberRequestStatus: 'idle' | 'pending' | 'accepted' | 'rejected' = 'idle';
 
     // All events remain the same
     @Event()
     member;
+
+    @State()
+    memberButtonHoverState: 'default' | 'hover' = 'default';
 
     @Event()
     donate;
@@ -196,38 +199,37 @@ export class UrPageProfile {
     }
 
     private handleBecomeMemberClicked() {
-        if (this.memberRequestStatus !== 'idle') {
-            return;
+        if (this.memberRequestStatus === 'pending') {
+            // Emit cancel event for pending request
+            this.pageMemberClicked.emit({
+                pageId: this.pageId,
+                status: 'canceled'
+            });
+        } else if (this.memberRequestStatus === 'accepted') {
+            // Emit leave event for current member
+            this.pageMemberClicked.emit({
+                pageId: this.pageId,
+                status: 'leave'
+            });
+        } else if (this.memberRequestStatus === 'idle' || this.memberRequestStatus === 'rejected') {
+            // Emit pending event for new request
+            this.pageMemberClicked.emit({
+                pageId: this.pageId,
+                status: 'pending'
+            });
         }
-        this.memberRequestStatus = 'pending';
-        this.pageMemberClicked.emit({
-            pageId: this.pageId,
-            status: this.memberRequestStatus,
-        });
     }
-
-    // private handleAcceptMembershipRequest() {
-    //     this.memberRequestStatus = 'accepted';
-    //     this.pageMemberClicked.emit({
-    //         pageId: this.pageId,
-    //         status: this.memberRequestStatus,
-    //     });
-    // }
-    //
-    // private handleRejectMembershipRequest() {
-    //     this.memberRequestStatus = 'rejected';
-    //     this.pageMemberClicked.emit({
-    //         pageId: this.pageId,
-    //         status: this.memberRequestStatus,
-    //     });
-    // }
 
     private getBecomeMemberButtonText() {
         switch (this.memberRequestStatus) {
             case 'pending':
-                return 'Request Pending...';
+                return this.memberButtonHoverState === 'hover'
+                    ? 'Cancel Request'
+                    : 'Request Pending';
             case 'accepted':
-                return 'You\'re a Member';
+                return this.memberButtonHoverState === 'hover'
+                    ? 'Cancel Membership'
+                    : 'You\'re a Member';
             case 'rejected':
                 return this.becomeMemberText;
             default:
@@ -386,7 +388,8 @@ export class UrPageProfile {
                     <ur-button
                         class="follow"
                         variant="outlined"
-                        disabled={this.memberRequestStatus === 'pending' || this.memberRequestStatus === 'accepted'}
+                        onMouseEnter={() => this.memberButtonHoverState = 'hover'}
+                        onMouseLeave={() => this.memberButtonHoverState = 'default'}
                         onClick={() => this.handleBecomeMemberClicked()}
                     >
                         {this.getBecomeMemberButtonText()}

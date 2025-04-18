@@ -9,7 +9,7 @@ export type PageFollowEvent = {
 
 export type PageMemberEvent = {
     pageId: string;
-    status: 'idle' | 'pending' | 'accepted' | 'rejected';
+    status: 'idle' | 'pending' | 'accepted' | 'rejected' | 'canceled' | 'leave';
 }
 
 export type LoadingPage = {

@@ -58,22 +58,21 @@
 
 ## Events
 
-| Event               | Description | Type                                                                                        |
-| ------------------- | ----------- | ------------------------------------------------------------------------------------------- |
-| `donate`            |             | `CustomEvent<any>`                                                                          |
-| `emailClick`        |             | `CustomEvent<any>`                                                                          |
-| `facebookClick`     |             | `CustomEvent<any>`                                                                          |
-| `followersClick`    |             | `CustomEvent<any>`                                                                          |
-| `linkedinClick`     |             | `CustomEvent<any>`                                                                          |
-| `member`            |             | `CustomEvent<any>`                                                                          |
-| `membersClick`      |             | `CustomEvent<any>`                                                                          |
-| `pageCreatorClick`  |             | `CustomEvent<any>`                                                                          |
-| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                       |
-| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "pending" \| "accepted" \| "rejected" \| "idle"; }>` |
-| `phoneClick`        |             | `CustomEvent<any>`                                                                          |
-| `sendMessage`       |             | `CustomEvent<any>`                                                                          |
-| `twitterClick`      |             | `CustomEvent<any>`                                                                          |
-| `websiteClick`      |             | `CustomEvent<any>`                                                                          |
+| Event               | Description | Type                                                                                                                 |
+| ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| `donate`            |             | `CustomEvent<any>`                                                                                                   |
+| `emailClick`        |             | `CustomEvent<any>`                                                                                                   |
+| `facebookClick`     |             | `CustomEvent<any>`                                                                                                   |
+| `followersClick`    |             | `CustomEvent<any>`                                                                                                   |
+| `linkedinClick`     |             | `CustomEvent<any>`                                                                                                   |
+| `membersClick`      |             | `CustomEvent<any>`                                                                                                   |
+| `pageCreatorClick`  |             | `CustomEvent<any>`                                                                                                   |
+| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                                                |
+| `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "pending" \| "accepted" \| "rejected" \| "idle" \| "canceled" \| "leave"; }>` |
+| `phoneClick`        |             | `CustomEvent<any>`                                                                                                   |
+| `sendMessage`       |             | `CustomEvent<any>`                                                                                                   |
+| `twitterClick`      |             | `CustomEvent<any>`                                                                                                   |
+| `websiteClick`      |             | `CustomEvent<any>`                                                                                                   |
 
 
 ## Dependencies
