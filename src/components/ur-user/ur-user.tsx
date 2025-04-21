@@ -15,31 +15,31 @@ export class UrUser {
     userId: string;
 
     @Prop()
-    loading: boolean = false;
+    loading = false;
 
     @Prop()
-    followStatus: boolean = false;
+    followed = false;
 
     @Prop()
-    userTitle: string = 'User title'
+    userTitle = 'User title'
 
     @Prop()
     userCover: string;
 
     @Prop()
-    userCoverFallback: string = USER_COVER_FALLBACK;
+    userCoverFallback = USER_COVER_FALLBACK;
 
     @Prop()
-    followers: number = 0;
+    followers = 0;
 
     @Prop()
-    showStats: boolean = true;
+    showStats = true;
 
     @Prop()
     userDescription: string;
 
     @Prop()
-    borderRadius: string = '8px';
+    borderRadius = '8px';
 
     @Event()
     userClicked: EventEmitter<string>;
@@ -54,8 +54,7 @@ export class UrUser {
     handleFollowClicked($event, followed) {
         $event.stopPropagation();
         $event.preventDefault();
-        this.followStatus = !followed;
-        this.userFollowClicked.emit([ this.userId, this.followStatus ]);
+        this.userFollowClicked.emit([ this.userId, !followed ]);
     }
 
     handleUserClicked($event) {
@@ -105,8 +104,8 @@ export class UrUser {
                         <div class="actions">
                             <ur-button class="follow"
                                        variant="outlined"
-                                       onClick={($event) => this.handleFollowClicked($event, this.followStatus)}>
-                                {this.followStatus ? 'Unfollow' : 'Follow'}
+                                       onClick={($event) => this.handleFollowClicked($event, this.followed)}>
+                                {this.followed ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>
                     </section>

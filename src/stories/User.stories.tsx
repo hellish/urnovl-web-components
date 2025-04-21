@@ -1,9 +1,11 @@
 import { html } from 'lit';
+import { ulid } from "ulid";
 import '../components/ur-user/ur-user';
 import { USERS } from '../data/user';
 
 const User = ({
     userId,
+    followed,
     userTitle,
     userCover,
     followers,
@@ -12,23 +14,43 @@ const User = ({
     borderRadius = '8px',
     width,
     loading = false,
-}) => html`
-    <style>
-        ur-user {
-            --user-width: ${width};
-            --user-border-radius: ${borderRadius};
-        }
-    </style>
-    <ur-user
-        user-id="${userId}"
-        user-description="${userDescription}"
-        user-title="${userTitle}"
-        user-cover="${userCover}"
-        followers="${followers}"
-        show-stats="${showStats}"
-        loading=${loading}
-    </ur-user>
-`;
+}) => {
+    const id = ulid();
+
+    return html`
+        <style>
+            ur-user {
+                --user-width: ${width};
+                --user-border-radius: ${borderRadius};
+            }
+        </style>
+        <ur-user
+            id="${id}
+            user-id="${userId}"
+            user-description="${userDescription}"
+            user-title="${userTitle}"
+            user-cover="${userCover}"
+            followers="${followers}"
+            show-stats="${showStats}"
+            loading=${loading}
+            followed=${followed}
+        </ur-user>
+        <script>
+            let t${id} = document.getElementsByTagName('ur-user')
+            for (var i = 0; i < t${id}.length; i++) {
+                (function(el, index) {
+                    el.addEventListener('userFollowClicked', function(e) {
+                        const [id, followed] = e.detail
+                        console.log('userFollowClicked', index, id, followed, "t${id}")
+                        el.setAttribute('followed', followed);
+                    });
+                })(t${id}[i], i)
+
+
+            }
+        </script>
+    `;
+}
 
 export default {
     title: 'Urnovl/Business/User',
@@ -37,6 +59,11 @@ export default {
 
 export const Default = {
     args: USERS[0],
+};
+
+export const Followed = {
+    args: USERS[0],
+    followed: true,
 };
 
 export const BrokenCover = {

@@ -960,7 +960,7 @@ export namespace Components {
     }
     interface UrUser {
         "borderRadius": string;
-        "followStatus": boolean;
+        "followed": boolean;
         "followers": number;
         "loading": boolean;
         "showStats": boolean;
@@ -3500,7 +3500,7 @@ declare namespace LocalJSX {
     }
     interface UrUser {
         "borderRadius"?: string;
-        "followStatus"?: boolean;
+        "followed"?: boolean;
         "followers"?: number;
         "loading"?: boolean;
         "onUserClicked"?: (event: UrUserCustomEvent<string>) => void;
