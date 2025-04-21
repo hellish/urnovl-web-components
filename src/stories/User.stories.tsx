@@ -1,11 +1,10 @@
 import { html } from 'lit';
-import { ulid } from "ulid";
+import { ulid } from 'ulid';
 import '../components/ur-user/ur-user';
 import { USERS } from '../data/user';
 
 const User = ({
     userId,
-    followed,
     userTitle,
     userCover,
     followers,
@@ -14,6 +13,7 @@ const User = ({
     borderRadius = '8px',
     width,
     loading = false,
+    followed = false,
 }) => {
     const id = ulid();
 
@@ -42,11 +42,9 @@ const User = ({
                     el.addEventListener('userFollowClicked', function(e) {
                         const [id, followed] = e.detail
                         console.log('userFollowClicked', index, id, followed, "t${id}")
-                        el.setAttribute('followed', followed);
+                        el.setAttribute('followed', !followed);
                     });
                 })(t${id}[i], i)
-
-
             }
         </script>
     `;
@@ -62,8 +60,10 @@ export const Default = {
 };
 
 export const Followed = {
-    args: USERS[0],
-    followed: true,
+    args: {
+        ...USERS[0],
+        followed: true,
+    }
 };
 
 export const BrokenCover = {

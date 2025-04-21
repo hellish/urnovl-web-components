@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { ulid } from 'ulid';
 import '../components/ur-page/ur-page';
 import { PAGES } from '../data/page';
 
@@ -12,23 +13,42 @@ const Page = ({
     borderRadius = '8px',
     width,
     loading = false,
-}) => html`
-    <style>
-        ur-page {
-            --page-width: ${width};
-            --page-border-radius: ${borderRadius};
-        }
-    </style>
-    <ur-page
-        page-id="${pageId}"
-        page-description="${pageDescription}"
-        page-title="${pageTitle}"
-        page-cover="${pageCover}"
-        followers="${followers}"
-        show-stats="${showStats}"
-        loading=${loading}
-    </ur-page>
-`;
+    followed = false,
+}) => {
+    const id = ulid();
+
+    return html`
+        <style>
+            ur-page {
+                --page-width: ${width};
+                --page-border-radius: ${borderRadius};
+            }
+        </style>
+        <ur-page
+            id="${id}"
+            page-id="${pageId}"
+            page-description="${pageDescription}"
+            page-title="${pageTitle}"
+            page-cover="${pageCover}"
+            followers="${followers}"
+            show-stats="${showStats}"
+            loading=${loading}
+            followed=${followed}
+        </ur-page>
+        <script>
+            let t${id} = document.getElementsByTagName('ur-page')
+            for (var i = 0; i < t${id}.length; i++) {
+                (function(el, index) {
+                    el.addEventListener('pageFollowClicked', function(e) {
+                        const [id, followed] = e.detail
+                        console.log('pageFollowClicked', index, id, followed, "t${id}")
+                        el.setAttribute('followed', !followed);
+                    });
+                })(t${id}[i], i)
+            }
+        </script>
+    `;
+}
 
 export default {
     title: 'Urnovl/Business/Page',
@@ -37,6 +57,13 @@ export default {
 
 export const Default = {
     args: PAGES[0],
+};
+
+export const Followed = {
+    args: {
+        ...PAGES[0],
+        followed: true,
+    }
 };
 
 export const BrokenCover = {

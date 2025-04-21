@@ -1,5 +1,5 @@
 import { html } from "lit";
-
+import { ulid } from 'ulid';
 import creator from '../../assets/images/avatar.svg';
 import publisher from '../../assets/images/publisher.svg';
 
@@ -37,10 +37,14 @@ const PageProfile = ({
     pageCreatorImage = null,
     pageCreationDate = null,
     isPageOwner = false,
+    followed = false
 }) => {
+    const id = ulid();
+
     return html`
         <div style="width:${containerWidth};">
             <ur-page-profile
+                id="${id}"
                 platform=${platform}
                 is-page-owner=${isPageOwner}
                 name=${name}
@@ -69,7 +73,20 @@ const PageProfile = ({
                 page-creator-name=${pageCreatorName}
                 page-creator-image=${pageCreatorImage}
                 page-creation-date=${pageCreationDate}
+                followed=${followed}
             ></ur-page-profile>
+            <script>
+                let t${id} = document.getElementsByTagName('ur-page-profile')
+                for (var i = 0; i < t${id}.length; i++) {
+                    (function(el, index) {
+                        el.addEventListener('pageFollowClicked', function(e) {
+                            const [id, followed] = e.detail
+                            console.log('pageFollowClicked', index, id, followed, "t${id}")
+                            el.setAttribute('followed', !followed);
+                        });
+                    })(t${id}[i], i)
+                }
+            </script>
         </div>`;
 }
 
@@ -110,6 +127,37 @@ export const Wider = {
         pageCreatorName: 'Malik Abubakari',
         pageCreatorImage: creator,
         pageCreationDate: 'May 25, 2015'
+    })
+};
+
+export const Followed = {
+    render: () => PageProfile({
+        containerWidth: '350px',
+        location: "London, UK",
+        about: DESCRIPTION,
+        facebook_url: 'https://facebook.com',
+        pageType: 'Publisher',
+        twitter_url: 'https://twitter.com',
+        linkedin_url: 'https://linkedin.com',
+        phone: '999666333',
+        email: 'urnovl@gmail.com',
+        website: 'https://urnovl.co',
+        stories: 0,
+        views: 350745,
+        following: 1556,
+        followers: 1557,
+        members: 17,
+        showFollow: true,
+        showBecomeAMember: true,
+        showDonate: true,
+        showSendMessage: true,
+        languages: [ "Greek", "English", "Bulgarian", "Albanian" ],
+        genres: [ "Horror", "Thriller" ],
+        literatureTypes: [ "Poetry", "Prose", "Poetry" ],
+        pageCreatorName: 'Malik Abubakari',
+        pageCreatorImage: creator,
+        pageCreationDate: 'May 25, 2015',
+        followed: true
     })
 };
 

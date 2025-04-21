@@ -51,10 +51,10 @@ export class UrUser {
         this.el.style.setProperty("--page-border-radius", this.borderRadius);
     }
 
-    handleFollowClicked($event, followed) {
+    handleFollowClicked($event: Event) {
         $event.stopPropagation();
         $event.preventDefault();
-        this.userFollowClicked.emit([ this.userId, !followed ]);
+        this.userFollowClicked.emit([ this.userId, this.followed ]);
     }
 
     handleUserClicked($event) {
@@ -104,7 +104,7 @@ export class UrUser {
                         <div class="actions">
                             <ur-button class="follow"
                                        variant="outlined"
-                                       onClick={($event) => this.handleFollowClicked($event, this.followed)}>
+                                       onClick={($event) => this.handleFollowClicked($event)}>
                                 {this.followed ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>
