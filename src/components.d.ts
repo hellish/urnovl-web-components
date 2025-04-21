@@ -5,6 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { FeedbackType } from "./components/ur-feedback/ur-feedback";
 import { Locale } from "./models/locale";
 import { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 import { CustomContent, Novl } from "./models/novl";
@@ -14,6 +15,7 @@ import { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./
 import { PageGrid } from "./data/page-carousel";
 import { User, UserCustomContent } from "./models/user";
 import { UserBreakpoints, UserGrid } from "./data/user-carousel";
+export { FeedbackType } from "./components/ur-feedback/ur-feedback";
 export { Locale } from "./models/locale";
 export { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 export { CustomContent, Novl } from "./models/novl";
@@ -289,6 +291,63 @@ export namespace Components {
           * Label for word counter
          */
         "wordLabel": string;
+    }
+    interface UrFeedback {
+        /**
+          * Description text for the modal
+         */
+        "descriptionText": string;
+        "emailLabel": string;
+        "emailPlaceholder": string;
+        /**
+          * Text for failure message
+         */
+        "failureText": string;
+        /**
+          * Text for the feedback radio option
+         */
+        "feedbackText": string;
+        /**
+          * Handle failed submission
+         */
+        "handleSubmitFailure": () => Promise<void>;
+        /**
+          * Handle successful submission
+         */
+        "handleSubmitSuccess": () => Promise<void>;
+        "messageLabel": string;
+        /**
+          * Placeholder text for the textarea
+         */
+        "placeholderText": string;
+        /**
+          * Text for the press radio option
+         */
+        "pressText": string;
+        /**
+          * Reset the form
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Text for the send button
+         */
+        "sendText": string;
+        /**
+          * Text for success message
+         */
+        "successText": string;
+        /**
+          * Text for the support radio option
+         */
+        "supportText": string;
+        /**
+          * Title text for the modal
+         */
+        "titleText": string;
+        /**
+          * Whether the user is logged in
+         */
+        "user": boolean;
     }
     interface UrForm {
         "resetForm": () => Promise<void>;
@@ -1298,6 +1357,10 @@ export interface UrEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrEditorElement;
 }
+export interface UrFeedbackCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrFeedbackElement;
+}
 export interface UrFormCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrFormElement;
@@ -1654,6 +1717,23 @@ declare global {
     var HTMLUrEditorElement: {
         prototype: HTMLUrEditorElement;
         new (): HTMLUrEditorElement;
+    };
+    interface HTMLUrFeedbackElementEventMap {
+        "feedbackSubmit": { type: FeedbackType; text: string; email?: string };
+    }
+    interface HTMLUrFeedbackElement extends Components.UrFeedback, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrFeedbackElementEventMap>(type: K, listener: (this: HTMLUrFeedbackElement, ev: UrFeedbackCustomEvent<HTMLUrFeedbackElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrFeedbackElementEventMap>(type: K, listener: (this: HTMLUrFeedbackElement, ev: UrFeedbackCustomEvent<HTMLUrFeedbackElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrFeedbackElement: {
+        prototype: HTMLUrFeedbackElement;
+        new (): HTMLUrFeedbackElement;
     };
     interface HTMLUrFormElementEventMap {
         "formValid": void;
@@ -2540,6 +2620,7 @@ declare global {
         "ur-comment-form": HTMLUrCommentFormElement;
         "ur-dialog": HTMLUrDialogElement;
         "ur-editor": HTMLUrEditorElement;
+        "ur-feedback": HTMLUrFeedbackElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
         "ur-library-shelf-selector": HTMLUrLibraryShelfSelectorElement;
@@ -2879,6 +2960,55 @@ declare namespace LocalJSX {
           * Label for word counter
          */
         "wordLabel"?: string;
+    }
+    interface UrFeedback {
+        /**
+          * Description text for the modal
+         */
+        "descriptionText"?: string;
+        "emailLabel"?: string;
+        "emailPlaceholder"?: string;
+        /**
+          * Text for failure message
+         */
+        "failureText"?: string;
+        /**
+          * Text for the feedback radio option
+         */
+        "feedbackText"?: string;
+        "messageLabel"?: string;
+        /**
+          * Event emitted when feedback is submitted
+         */
+        "onFeedbackSubmit"?: (event: UrFeedbackCustomEvent<{ type: FeedbackType; text: string; email?: string }>) => void;
+        /**
+          * Placeholder text for the textarea
+         */
+        "placeholderText"?: string;
+        /**
+          * Text for the press radio option
+         */
+        "pressText"?: string;
+        /**
+          * Text for the send button
+         */
+        "sendText"?: string;
+        /**
+          * Text for success message
+         */
+        "successText"?: string;
+        /**
+          * Text for the support radio option
+         */
+        "supportText"?: string;
+        /**
+          * Title text for the modal
+         */
+        "titleText"?: string;
+        /**
+          * Whether the user is logged in
+         */
+        "user"?: boolean;
     }
     interface UrForm {
         /**
@@ -4029,6 +4159,7 @@ declare namespace LocalJSX {
         "ur-comment-form": UrCommentForm;
         "ur-dialog": UrDialog;
         "ur-editor": UrEditor;
+        "ur-feedback": UrFeedback;
         "ur-form": UrForm;
         "ur-hero": UrHero;
         "ur-library-shelf-selector": UrLibraryShelfSelector;
@@ -4107,6 +4238,7 @@ declare module "@stencil/core" {
             "ur-comment-form": LocalJSX.UrCommentForm & JSXBase.HTMLAttributes<HTMLUrCommentFormElement>;
             "ur-dialog": LocalJSX.UrDialog & JSXBase.HTMLAttributes<HTMLUrDialogElement>;
             "ur-editor": LocalJSX.UrEditor & JSXBase.HTMLAttributes<HTMLUrEditorElement>;
+            "ur-feedback": LocalJSX.UrFeedback & JSXBase.HTMLAttributes<HTMLUrFeedbackElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
             "ur-library-shelf-selector": LocalJSX.UrLibraryShelfSelector & JSXBase.HTMLAttributes<HTMLUrLibraryShelfSelectorElement>;

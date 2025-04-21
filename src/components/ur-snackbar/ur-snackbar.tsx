@@ -47,7 +47,7 @@ export class UrSnackbar {
      * Maximum number of text lines
      */
     @Prop()
-    messageLine?: 1 | 2;
+    messageLine?: 1 | 2 = 1;
 
     /**
      * Auto close delay in milliseconds
