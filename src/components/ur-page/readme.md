@@ -23,10 +23,10 @@
 
 ## Events
 
-| Event               | Description | Type                                                  |
-| ------------------- | ----------- | ----------------------------------------------------- |
-| `pageClicked`       |             | `CustomEvent<string>`                                 |
-| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>` |
+| Event               | Description | Type                             |
+| ------------------- | ----------- | -------------------------------- |
+| `pageClicked`       |             | `CustomEvent<string>`            |
+| `pageFollowClicked` |             | `CustomEvent<[string, boolean]>` |
 
 
 ## Dependencies
