@@ -9,7 +9,7 @@ import { Locale } from "./models/locale";
 import { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 import { CustomContent, Novl } from "./models/novl";
 import { Breakpoints, Grid } from "./data/novl-carousel";
-import { Page, PageCustomContent, PageFollowEvent, PageMemberEvent } from "./models/page";
+import { Page, PageCustomContent, PageMemberEvent } from "./models/page";
 import { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
 import { PageGrid } from "./data/page-carousel";
 import { User, UserCustomContent } from "./models/user";
@@ -18,7 +18,7 @@ export { Locale } from "./models/locale";
 export { NotificationEvent, NotificationType } from "./components/ur-notification/ur-notification.types";
 export { CustomContent, Novl } from "./models/novl";
 export { Breakpoints, Grid } from "./data/novl-carousel";
-export { Page, PageCustomContent, PageFollowEvent, PageMemberEvent } from "./models/page";
+export { Page, PageCustomContent, PageMemberEvent } from "./models/page";
 export { Breakpoints as Breakpoints1, CustomContent as CustomContent1 } from "./components";
 export { PageGrid } from "./data/page-carousel";
 export { User, UserCustomContent } from "./models/user";
@@ -1817,7 +1817,7 @@ declare global {
     };
     interface HTMLUrPageElementEventMap {
         "pageClicked": string;
-        "pageFollowClicked": PageFollowEvent;
+        "pageFollowClicked": [string, boolean];
     }
     interface HTMLUrPageElement extends Components.UrPage, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrPageElementEventMap>(type: K, listener: (this: HTMLUrPageElement, ev: UrPageCustomEvent<HTMLUrPageElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -1865,7 +1865,7 @@ declare global {
         "phoneClick": any;
         "websiteClick": any;
         "pageCreatorClick": any;
-        "pageFollowClicked": PageFollowEvent;
+        "pageFollowClicked": [string, boolean];
         "pageMemberClicked": PageMemberEvent;
     }
     interface HTMLUrPageProfileElement extends Components.UrPageProfile, HTMLStencilElement {
@@ -3047,7 +3047,7 @@ declare namespace LocalJSX {
         "followers"?: number;
         "loading"?: boolean;
         "onPageClicked"?: (event: UrPageCustomEvent<string>) => void;
-        "onPageFollowClicked"?: (event: UrPageCustomEvent<PageFollowEvent>) => void;
+        "onPageFollowClicked"?: (event: UrPageCustomEvent<[string, boolean]>) => void;
         "pageCover"?: string;
         "pageCoverFallback"?: string;
         "pageDescription"?: string;
@@ -3103,7 +3103,7 @@ declare namespace LocalJSX {
         "onMember"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onMembersClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onPageCreatorClick"?: (event: UrPageProfileCustomEvent<any>) => void;
-        "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<PageFollowEvent>) => void;
+        "onPageFollowClicked"?: (event: UrPageProfileCustomEvent<[string, boolean]>) => void;
         "onPageMemberClicked"?: (event: UrPageProfileCustomEvent<PageMemberEvent>) => void;
         "onPhoneClick"?: (event: UrPageProfileCustomEvent<any>) => void;
         "onSendMessage"?: (event: UrPageProfileCustomEvent<any>) => void;
