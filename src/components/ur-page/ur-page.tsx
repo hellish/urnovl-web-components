@@ -1,6 +1,5 @@
 import { Component, Host, h, Prop, Event, Element, EventEmitter } from '@stencil/core';
 import { PAGE_COVER_FALLBACK } from '../../data/page';
-import { PageFollowEvent } from '../../models/page';
 
 @Component({
   tag: 'ur-page',
@@ -8,6 +7,7 @@ import { PageFollowEvent } from '../../models/page';
   shadow: true,
 })
 export class UrPage {
+
     @Element()
     el: HTMLElement;
 
@@ -45,19 +45,16 @@ export class UrPage {
     pageClicked: EventEmitter<string>;
 
     @Event({ bubbles: true, composed: true })
-    pageFollowClicked: EventEmitter<PageFollowEvent>;
+    pageFollowClicked: EventEmitter<[string, boolean]>;
 
     componentDidLoad() {
         this.el.style.setProperty("--page-border-radius", this.borderRadius);
     }
 
-    handleFollowClicked(event: Event) {
-        event.stopPropagation(); // Prevent the click from bubbling to the page click handler
-        this.followed = !this.followed;
-        this.pageFollowClicked.emit({
-            pageId: this.pageId,
-            followed: this.followed
-        });
+    handleFollowClicked($event: Event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        this.pageFollowClicked.emit([ this.pageId, this.followed ]);
     }
 
     renderLoading() {
@@ -103,9 +100,7 @@ export class UrPage {
                         <div class="actions">
                             <ur-button class="follow"
                                        variant="outlined"
-                                       onClick={(event) => {
-                                           this.handleFollowClicked(event);
-                                       }}>
+                                       onClick={($event) => this.handleFollowClicked($event)}>
                                 {this.followed ? 'Unfollow' : 'Follow'}
                             </ur-button>
                         </div>

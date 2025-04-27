@@ -68,7 +68,7 @@
 | `member`            |             | `CustomEvent<any>`                                                                                                   |
 | `membersClick`      |             | `CustomEvent<any>`                                                                                                   |
 | `pageCreatorClick`  |             | `CustomEvent<any>`                                                                                                   |
-| `pageFollowClicked` |             | `CustomEvent<{ pageId: string; followed: boolean; }>`                                                                |
+| `pageFollowClicked` |             | `CustomEvent<[string, boolean]>`                                                                                     |
 | `pageMemberClicked` |             | `CustomEvent<{ pageId: string; status: "pending" \| "accepted" \| "rejected" \| "idle" \| "canceled" \| "leave"; }>` |
 | `phoneClick`        |             | `CustomEvent<any>`                                                                                                   |
 | `sendMessage`       |             | `CustomEvent<any>`                                                                                                   |

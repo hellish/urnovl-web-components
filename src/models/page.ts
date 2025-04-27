@@ -2,11 +2,6 @@ export type PageCustomContent = {
     content: (index: number) => string;
 }
 
-export type PageFollowEvent = {
-    pageId: string;
-    followed: boolean;
-}
-
 export type PageMemberEvent = {
     pageId: string;
     status: 'idle' | 'pending' | 'accepted' | 'rejected' | 'canceled' | 'leave';

@@ -1,6 +1,6 @@
 {
     "name": "urnovl-web-components",
-    "version": "0.0.204-c",
+    "version": "0.0.206",
     "description": "Web components for Urnovl",
     "main": "dist/index.cjs.js",
     "module": "dist/index.js",
@@ -59,7 +59,8 @@
         "storybook": "^8.4.6",
         "storybook-addon-stencil": "^0.2.3",
         "storybook-dark-mode": "^4.0.2",
-        "typescript": "^5.5.4"
+        "typescript": "^5.5.4",
+        "ulid": "^3.0.0"
     },
     "license": "MIT",
     "dependencies": {

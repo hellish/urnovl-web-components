@@ -1,7 +1,7 @@
-import { Component, Event, Host, Prop, State, h, EventEmitter } from '@stencil/core';
+import { Component, Event, Host, Prop, State, h, EventEmitter, Watch } from '@stencil/core';
 import { Icons } from './icons';
 
-import { PageFollowEvent, PageMemberEvent } from '../../models/page';
+import { PageMemberEvent } from '../../models/page';
 
 import '../ur-avatar/ur-avatar';
 import '../ur-button/ur-button';
@@ -13,6 +13,7 @@ import '../ur-time-ago/ur-time-ago';
     shadow: true,
 })
 export class UrPageProfile {
+
     @Prop()
     pageId: string;
 
@@ -189,10 +190,15 @@ export class UrPageProfile {
     pageCreatorClick;
 
     @Event({ bubbles: true, composed: true })
-    pageFollowClicked: EventEmitter<PageFollowEvent>;
+    pageFollowClicked: EventEmitter<[string, boolean]>;
 
     @Event()
     pageMemberClicked: EventEmitter<PageMemberEvent>;
+
+    @Watch('followed')
+    handleFollowedChanged() {
+        this.updateFollowText();
+    }
 
     componentWillLoad() {
         this.updateFollowText();
@@ -241,13 +247,10 @@ export class UrPageProfile {
         this.followText = this.followed ? 'Unfollow' : 'Follow';
     }
 
-    private handleFollowClicked() {
-        this.followed = !this.followed;
-        this.updateFollowText();
-        this.pageFollowClicked.emit({
-            pageId: this.pageId,
-            followed: this.followed
-        });
+    private handleFollowClicked($event: Event) {
+        $event.stopPropagation();
+        $event.preventDefault();
+        this.pageFollowClicked.emit([ this.pageId, this.followed ]);
     }
 
     render() {
@@ -288,7 +291,6 @@ export class UrPageProfile {
                         this.renderPageCreationDate(),
                     ]}
 
-                    {/* Mobile Main Version - Only shows avatar, title, actions */}
                     {this.platform === 'mobile-main' && (
                         <div class="mobile-main-content">
                             <div class="avatar">
@@ -303,7 +305,6 @@ export class UrPageProfile {
                         </div>
                     )}
 
-                    {/* Stats and additional sections - hidden in mobile-main */}
                     {this.platform === 'mobile-secondary' && [
                         this.renderLocation(),
                         this.renderSocialLinks(),
@@ -380,7 +381,7 @@ export class UrPageProfile {
         return (
             <div class={`actions ${this.platform === 'mobile-main' ? 'actions--mobile-main' : ''}`}>
                 {this.showFollow && (
-                    <ur-button class="follow" onClick={() => this.handleFollowClicked()}>
+                    <ur-button class="follow" onClick={($event) => this.handleFollowClicked($event)}>
                         {this.followText}
                     </ur-button>
                 )}
