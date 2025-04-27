@@ -1,0 +1,1 @@
+import{_ as e,c as a}from"./class-map-D9WDFjdt.js";import{h as s}from"./entry-preview-BcHUnPw7.js";import{s as t,a as o}from"./svg-tag-DnJ0JIim.js";let r=class extends s{render(){return o('<path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>')}};r.styles=t;r=e([a("mdui-icon-clear")],r);
