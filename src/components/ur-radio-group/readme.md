@@ -49,11 +49,13 @@ Type: `Promise<boolean>`
 
 ### Used by
 
+ - [ur-feedback](../ur-feedback)
  - [ur-library-shelf-selector](../ur-library-shelf-selector)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-feedback --> ur-radio-group
   ur-library-shelf-selector --> ur-radio-group
   style ur-radio-group fill:#f9f,stroke:#333,stroke-width:4px
 ```

@@ -26,11 +26,13 @@
 
 ### Used by
 
+ - [ur-feedback](../ur-feedback)
  - [ur-library-shelf-selector](../ur-library-shelf-selector)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-feedback --> ur-radio-button
   ur-library-shelf-selector --> ur-radio-button
   style ur-radio-button fill:#f9f,stroke:#333,stroke-width:4px
 ```

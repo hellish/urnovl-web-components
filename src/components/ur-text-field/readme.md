@@ -47,6 +47,7 @@
 ### Used by
 
  - [ur-comment-form](../ur-comment-form)
+ - [ur-feedback](../ur-feedback)
  - [ur-library-shelf-selector](../ur-library-shelf-selector)
  - [ur-user-profile-settings-form](../ur-user-profile-settings-form)
 
@@ -54,6 +55,7 @@
 ```mermaid
 graph TD;
   ur-comment-form --> ur-text-field
+  ur-feedback --> ur-text-field
   ur-library-shelf-selector --> ur-text-field
   ur-user-profile-settings-form --> ur-text-field
   style ur-text-field fill:#f9f,stroke:#333,stroke-width:4px

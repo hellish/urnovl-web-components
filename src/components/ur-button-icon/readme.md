@@ -30,6 +30,7 @@
  - [ur-autosave-drawer](../ur-autosave-drawer)
  - [ur-chapter-item](../ur-chapter-item)
  - [ur-comment-form](../ur-comment-form)
+ - [ur-editor](../ur-editor)
  - [ur-locale-filter-panel](../ur-locale-filter-panel)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
  - [ur-main-menu](../ur-main-menu)
@@ -49,6 +50,7 @@ graph TD;
   ur-autosave-drawer --> ur-button-icon
   ur-chapter-item --> ur-button-icon
   ur-comment-form --> ur-button-icon
+  ur-editor --> ur-button-icon
   ur-locale-filter-panel --> ur-button-icon
   ur-main-desktop-top-app-bar --> ur-button-icon
   ur-main-menu --> ur-button-icon

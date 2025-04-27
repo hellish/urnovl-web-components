@@ -27,6 +27,7 @@
 
  - [ur-chapter-item](../ur-chapter-item)
  - [ur-comment-form](../ur-comment-form)
+ - [ur-feedback](../ur-feedback)
  - [ur-hero](../ur-hero)
  - [ur-library-shelf-selector](../ur-library-shelf-selector)
  - [ur-main-desktop-top-app-bar](../ur-main-desktop-top-app-bar)
@@ -47,6 +48,7 @@
 graph TD;
   ur-chapter-item --> ur-button
   ur-comment-form --> ur-button
+  ur-feedback --> ur-button
   ur-hero --> ur-button
   ur-library-shelf-selector --> ur-button
   ur-main-desktop-top-app-bar --> ur-button

@@ -21,13 +21,23 @@ export class UrCircularProgress {
     @Prop({ reflect: true })
     value?: number;
 
+    @Prop({ reflect: true })
+    width?: string;
+
+    @Prop({ reflect: true })
+    height?: string;
+
     /**
      * Render the circular progress component.
      */
     render() {
         return (
             <Host>
-                <mdui-circular-progress max={this.max} value={this.value !== undefined ? this.value : undefined}></mdui-circular-progress>
+                <mdui-circular-progress 
+                    max={this.max} 
+                    value={this.value !== undefined ? this.value : undefined} 
+                    style={{ "width": this.width, "height": this.height }}
+                ></mdui-circular-progress>
             </Host>
         );
     }
