@@ -1,0 +1,1 @@
+import{_ as s,c as r}from"./class-map-CvfWHz58.js";import{i as t}from"./entry-preview-CxXhOGqP.js";import{s as c,a as o}from"./svg-tag-B1kmCZ6g.js";let e=class extends t{render(){return o('<path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>')}};e.styles=c;e=s([r("mdui-icon-check")],e);
