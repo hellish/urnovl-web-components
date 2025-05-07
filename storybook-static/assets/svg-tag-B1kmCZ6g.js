@@ -1,1 +1,0 @@
-import{a as i,x as o}from"./entry-preview-CxXhOGqP.js";import{o as s}from"./index-rsUJIYwf.js";const r=i`:host{display:inline-block;width:1em;height:1em;line-height:1;font-size:1.5rem}`,g=t=>o`<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">${s(t)}</svg>`;export{g as a,r as s};

@@ -12,31 +12,31 @@ export class UrBottomSheet {
     private dragStartTime: number = 0;
     private isDragging: boolean = false;
 
-    @Element() 
+    @Element()
     el: HTMLElement;
 
-    @Prop() 
+    @Prop()
     open = false;
 
-    @Prop() 
+    @Prop()
     selectedDetent: 'large' | 'medium' | 'small' = 'large';
 
-    @Prop() 
+    @Prop()
     backdropDismiss = true;
 
-    @State() 
+    @State()
     private currentDetent: 'large' | 'medium' | 'small' = 'large';
 
-    @State() 
+    @State()
     private dragPosition: number = 0;
 
-    @State() 
+    @State()
     private isVisible: boolean = false;
 
-    @Event() 
+    @Event()
     dismiss: EventEmitter<void>;
 
-    @Event() 
+    @Event()
     detentChange: EventEmitter<string>;
 
     @Watch('open')
@@ -156,7 +156,7 @@ export class UrBottomSheet {
         // Reset to the selected detent
         this.currentDetent = this.selectedDetent;
         this.detentChange.emit(this.selectedDetent);
-    
+
         // Simply remove the transform to let CSS handle the positioning
         this.sheetElement.style.transition = 'transform var(--transition-duration) ease';
         this.sheetElement.style.transform = '';
