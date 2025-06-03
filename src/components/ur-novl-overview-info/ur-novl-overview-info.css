@@ -43,8 +43,8 @@
 }
 
 :host .overview.small-device .visibility-toggle {
-    top: 12px;
-    left: 24px;
+    bottom: 12px;
+    right: 24px;
     height: 30px;
     position: absolute;
     padding: 0 12px 0 0;
@@ -109,7 +109,8 @@
 
 :host .inner-cover {
     max-width: 380px;
-    max-height: 210px;
+    max-height: 250px;
+    height: calc(40%);
     position: relative;
     overflow: hidden;
 }

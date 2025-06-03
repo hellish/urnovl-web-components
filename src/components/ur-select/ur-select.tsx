@@ -79,11 +79,27 @@ export class UrSelect {
 
     componentDidLoad() {
         console.log('Preselected value(s) on load:', this.value);
-    
-        // Access the shadow root
-        const shadowRoot = this.host.shadowRoot;
-    
-        if (shadowRoot) {
+        
+        // Use a small delay to ensure all web components are fully initialized
+        setTimeout(() => {
+            try {
+                this.initializeComponentStyling();
+            } catch (error) {
+                console.warn('Error during component initialization:', error);
+            }
+        }, 50);
+    }
+
+    private initializeComponentStyling() {
+        // Access the shadow root safely
+        const shadowRoot = this.host?.shadowRoot;
+        
+        if (!shadowRoot) {
+            console.warn('Shadow root not available');
+            return;
+        }
+
+        try {
             // Select the mdui-select element
             const mduiSelect = shadowRoot.querySelector('mdui-select');
             const menuItems = shadowRoot.querySelectorAll('mdui-menu-item');
@@ -105,18 +121,24 @@ export class UrSelect {
             }
     
             // Style and log each menu item
-            menuItems.forEach((item, index) => {
-                item.style.backgroundColor = index % 2 === 0 ? 'lightgreen' : 'lightcoral'; // Alternate colors
-                item.style.fontSize = '9px'; // Example font size
-                console.log('Styled menu item:', item.outerHTML); // Log each menu item
-            });
+            if (menuItems && menuItems.length > 0) {
+                menuItems.forEach((item, index) => {
+                    if (item && item.style) {
+                        item.style.backgroundColor = index % 2 === 0 ? 'lightgreen' : 'lightcoral'; // Alternate colors
+                        item.style.fontSize = '9px'; // Example font size
+                        console.log('Styled menu item:', item.outerHTML); // Log each menu item
+                    }
+                });
+            }
 
             // Fetch and style the <input> element
             const inputElement = shadowRoot.querySelector('input') as HTMLInputElement;
-            if (inputElement) {
+            if (inputElement && inputElement.style) {
                 inputElement.style.backgroundColor = 'red'; // Style the input
                 inputElement.style.color = 'white'; // Adjust text color for contrast
             }
+        } catch (error) {
+            console.warn('Error styling ur-select components:', error);
         }
     }
 
@@ -185,7 +207,12 @@ export class UrSelect {
         );
     }
 
-    private get host(): HTMLElement {
-        return this as unknown as HTMLElement; // Casting this component instance as an HTMLElement
+    private get host(): HTMLElement | null {
+        try {
+            return this as unknown as HTMLElement; // Casting this component instance as an HTMLElement
+        } catch (error) {
+            console.warn('Error accessing host element:', error);
+            return null;
+        }
     }
 }

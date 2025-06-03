@@ -39,6 +39,9 @@ export class UrPage {
     pageDescription: string;
 
     @Prop()
+    pageType: string;
+
+    @Prop()
     borderRadius: string = '8px';
 
     @Event({ bubbles: true, composed: true })
@@ -87,7 +90,7 @@ export class UrPage {
                     </section>
                     <section class='info'>
                         <div class='title'>{this.pageTitle}</div>
-                        <div class="description">{this.pageDescription}</div>
+                        <div class="description">{this.pageType}</div>
                         {this.showStats &&
                             <div class='stats'>
                                 <div class="followers">

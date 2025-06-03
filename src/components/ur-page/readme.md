@@ -18,6 +18,7 @@
 | `pageDescription`   | `page-description`    |             | `string`  | `undefined`           |
 | `pageId`            | `page-id`             |             | `string`  | `undefined`           |
 | `pageTitle`         | `page-title`          |             | `string`  | `'Page title'`        |
+| `pageType`          | `page-type`           |             | `string`  | `undefined`           |
 | `showStats`         | `show-stats`          |             | `boolean` | `true`                |
 
 

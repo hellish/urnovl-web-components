@@ -1,0 +1,183 @@
+:host {
+    display: block;
+    width: 100%;
+
+    --ur-color-background: var(--mdui-color-background);
+    --ur-color-on-background: var(--mdui-color-on-background);
+    --ur-color-on-complete-surface: #1a5100;
+    --ur-color-complete-surface: #C6F4D0;
+    --ur-color-primary: var(--mdui-color-primary);
+    --ur-color-primary-container: var(--mdui-color-primary-container);
+    --ur-color-on-surface-lite: var(--mdui-color-on-surface-lite);
+    --ur-color-surface-container-high: var(--mdui-color-surface-container-high);
+}
+
+.stepper-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Individual Step Indicator */
+.step-indicator {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.step-inline-info-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.step-indicator-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+/* Step Marker (Circle with number or icon) */
+.step-marker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgb(var(--mdui-color-secondary));
+    color: rgb(var(--mdui-color-on-secondary));
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.step-indicator.active .step-marker {
+    background-color: rgb(var(--mdui-color-primary)) !important;
+    border-color: rgb(var(--mdui-color-primary)) !important;
+    color: rgb(var(--mdui-color-on-primary)) !important;
+    box-shadow: 0 2px 8px rgba(var(--mdui-color-primary), 0.4) !important;
+}
+
+.step-indicator.completed .step-marker {
+    background-color: rgb(var(--mdui-color-primary));
+    border-color: rgb(var(--mdui-color-primary));
+    color: rgb(var(--mdui-color-on-primary));
+}
+
+.step-indicator.skipped .step-marker {
+    background-color: rgb(var(--mdui-color-error-container));
+    border-color: rgb(var(--mdui-color-error));
+    color: rgb(var(--mdui-color-on-error-container));
+}
+
+.step-number {
+    line-height: 1;
+}
+
+.step-marker mdui-icon {
+    font-size: 1.25rem;
+}
+
+/* Step Content (Title and Description) */
+.step-content {
+    margin-top: 8px;
+    margin-left: 16px;
+    flex: 1;
+    border-left: 2px solid rgb(var(--mdui-color-outline-variant));
+}
+
+.step-indicator.active .step-content {
+    border-left: 2px solid rgb(var(--mdui-color-primary));
+}
+
+.step-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgb(var(--mdui-color-on-surface));
+    line-height: 1.25;
+    margin-bottom: 0.25rem;
+}
+
+.step-indicator.active .step-title {
+    color: rgb(var(--mdui-color-primary));
+}
+
+.step-indicator.completed .step-title {
+    color: rgb(var(--mdui-color-primary));
+}
+
+.step-description {
+    font-size: 0.75rem;
+    color: rgb(var(--mdui-color-on-surface-variant));
+    line-height: 1.4;
+    max-width: 200px;
+}
+
+/* Step Connectors */
+.step-connector {
+    position: absolute;
+    left: 1.25rem;
+    top: 3.5rem;
+    width: 2px;
+    height: calc(100% + 1rem);
+    background-color: rgb(var(--mdui-color-outline-variant));
+    transition: background-color 0.3s ease;
+    z-index: 1;
+}
+
+.step-indicator.completed .step-connector {
+    background-color: rgb(var(--mdui-color-primary));
+}
+
+/* Hide connector for last step */
+.step-indicator:last-child .step-connector {
+    display: none;
+}
+
+.step-indicator.completed .step-marker {
+    background-color: var(--ur-color-complete-surface);
+    color: var(--ur-color-on-complete-surface);
+}
+
+/* Step Slot Content */
+.step-slot-content {
+    margin-left: 22px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 16px;
+    background-color: rgb(var(--mdui-color-surface-container-low));
+    border-radius: 8px;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Step Actions (Navigation Buttons) */
+.step-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    padding-top: 16px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 1000px;
+    }
+}

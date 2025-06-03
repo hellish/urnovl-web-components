@@ -393,7 +393,7 @@ export class UrUserPageProfile {
                         </div>
                     </div>
                 }
-                { this.isProfileOwner && (
+                {
                     <div>
                         <div class="stat">
                             <div class="key">{this.pagesFollowingText}</div>
@@ -402,7 +402,7 @@ export class UrUserPageProfile {
                             </div>
                         </div>
                     </div>
-                )}
+                }
             </div>
         );
     }

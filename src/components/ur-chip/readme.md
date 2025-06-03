@@ -28,6 +28,7 @@
  - [ur-novl-overview-info](../ur-novl-overview-info)
  - [ur-novl-summary](../ur-novl-summary)
  - [ur-page-profile](../ur-page-profile)
+ - [ur-stepper](../ur-stepper)
 
 ### Graph
 ```mermaid
@@ -35,6 +36,7 @@ graph TD;
   ur-novl-overview-info --> ur-chip
   ur-novl-summary --> ur-chip
   ur-page-profile --> ur-chip
+  ur-stepper --> ur-chip
   style ur-chip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

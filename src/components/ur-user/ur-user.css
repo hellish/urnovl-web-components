@@ -46,8 +46,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -83,8 +87,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -104,8 +112,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -127,8 +139,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 
@@ -161,8 +177,12 @@
     animation-iteration-count: infinite;
     animation-timing-function: linear;
     animation-name: placeholderAnimate;
-    background: #f6f7f8;
-    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background: linear-gradient(
+        to right,
+        rgba(var(--ur-color-on-background), 0.04) 2%,
+        rgba(var(--ur-color-on-background), 0.12) 18%,
+        rgba(var(--ur-color-on-background), 0.04) 33%
+    );
     background-size: 1000px;
 }
 

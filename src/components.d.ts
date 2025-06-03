@@ -365,6 +365,42 @@ export namespace Components {
         "heroTitleColor": string;
         "layout": 'left' | 'right' | 'center';
     }
+    interface UrImageUploader {
+        "acceptTypes": string;
+        "backgroundColor": string;
+        "borderRadius": string;
+        "borderStyle": string;
+        /**
+          * Method to clear image programmatically
+         */
+        "clearImage": () => Promise<void>;
+        "disabled": boolean;
+        "enableNativeUpload": boolean;
+        /**
+          * Method to get current image URL
+         */
+        "getImageUrl": () => Promise<string | null>;
+        /**
+          * Method to get selected file for manual upload
+         */
+        "getSelectedFile": () => Promise<File | null>;
+        "height": string;
+        "hoverBackgroundColor": string;
+        "loading": boolean;
+        "maxFileSize": number;
+        "maxHeight": string;
+        "placeholderText": string;
+        /**
+          * Method to programmatically set image URL (useful for Ionic native camera results)
+         */
+        "setImageUrl": (url: string, fileName?: string) => Promise<void>;
+        /**
+          * Method to set uploading state from application
+         */
+        "setUploadingState": (uploading: boolean) => Promise<void>;
+        "showFileName": boolean;
+        "width": string;
+    }
     interface UrLibraryShelfSelector {
         "chooseButtonText": string;
         "chooseShelfLabelText": string;
@@ -717,6 +753,7 @@ export namespace Components {
         "pageDescription": string;
         "pageId": string;
         "pageTitle": string;
+        "pageType": string;
         "showStats": boolean;
     }
     interface UrPageCarousel {
@@ -1077,6 +1114,80 @@ export namespace Components {
          */
         "zIndex": string;
     }
+    interface UrStepper {
+        /**
+          * Whether completed steps can be clicked to navigate back
+         */
+        "allowStepNavigation": boolean;
+        /**
+          * Text for the Complete button (last step)
+         */
+        "completeButtonText": string;
+        /**
+          * Text for the Complete step
+         */
+        "completeStepText": string;
+        /**
+          * Icon to show for completed steps
+         */
+        "completedStepIcon": string;
+        /**
+          * Currently active step (1-based index)
+         */
+        "currentStep": number;
+        /**
+          * Custom CSS class for styling
+         */
+        "customClass": string;
+        /**
+          * Navigate to a specific step
+         */
+        "goToStep": (stepNumber: number) => Promise<void>;
+        /**
+          * Mark a step as completed
+         */
+        "markStepComplete": (stepNumber: number) => Promise<void>;
+        /**
+          * Mark a step as invalid
+         */
+        "markStepInvalid": (stepNumber: number) => Promise<void>;
+        /**
+          * Whether the next button should be disabled
+         */
+        "nextButtonDisabled": boolean;
+        /**
+          * Text for the Next button
+         */
+        "nextButtonText": string;
+        /**
+          * Text for the Ongoing step
+         */
+        "ongoingStepText": string;
+        /**
+          * Text for the Previous button
+         */
+        "previousButtonText": string;
+        /**
+          * Reset the stepper to first step
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Whether to show step numbers
+         */
+        "showStepNumbers": boolean;
+        /**
+          * Number of steps in the stepper
+         */
+        "stepCount": number;
+        /**
+          * Step descriptions array
+         */
+        "stepDescriptions": string[];
+        /**
+          * Step titles array
+         */
+        "stepTitles": string[];
+    }
     interface UrSwitch {
         "checked": boolean;
         "checkedIcon": string;
@@ -1262,60 +1373,6 @@ export namespace Components {
         "storiesTabText": string;
         "transactionsTabText": string;
     }
-    interface UrWizardStep {
-        /**
-          * Custom CSS class for the component
-         */
-        "customClass": string;
-        /**
-          * Determines if the step can be skipped
-         */
-        "isSkippable": boolean;
-        /**
-          * Validation state of the step
-         */
-        "isValid": boolean;
-        /**
-          * Title of the "Next" button
-         */
-        "nextButtonTitle": string;
-        /**
-          * Title of the "Previous" button
-         */
-        "previousButtonTitle": string;
-        /**
-          * Reset the form within the step
-         */
-        "resetStepForm": () => Promise<void>;
-        /**
-          * Determines if the "Next" button is visible
-         */
-        "showNext": boolean;
-        /**
-          * Determines if the "Previous" button is visible
-         */
-        "showPrevious": boolean;
-        /**
-          * Step number of the wizard
-         */
-        "step": number;
-        /**
-          * Title of the wizard step
-         */
-        "stepTitle": string;
-        /**
-          * Trigger form submission programmatically
-         */
-        "submitStepForm": () => Promise<void>;
-        /**
-          * Subtitle or instructions for the step
-         */
-        "subtitle": string;
-        /**
-          * Custom validation message
-         */
-        "validationMessage": string;
-    }
 }
 export interface UrAutosaveDrawerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1368,6 +1425,10 @@ export interface UrFormCustomEvent<T> extends CustomEvent<T> {
 export interface UrHeroCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrHeroElement;
+}
+export interface UrImageUploaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrImageUploaderElement;
 }
 export interface UrLibraryShelfSelectorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -1473,6 +1534,10 @@ export interface UrSnackbarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSnackbarElement;
 }
+export interface UrStepperCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLUrStepperElement;
+}
 export interface UrSwitchCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrSwitchElement;
@@ -1504,10 +1569,6 @@ export interface UrUserProfileSettingsFormCustomEvent<T> extends CustomEvent<T> 
 export interface UrUserProfileTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLUrUserProfileTabsElement;
-}
-export interface UrWizardStepCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLUrWizardStepElement;
 }
 declare global {
     interface HTMLUrAutosaveDrawerElementEventMap {
@@ -1770,6 +1831,27 @@ declare global {
     var HTMLUrHeroElement: {
         prototype: HTMLUrHeroElement;
         new (): HTMLUrHeroElement;
+    };
+    interface HTMLUrImageUploaderElementEventMap {
+        "fileSelected": File;
+        "fileDropped": File;
+        "fileCleared": void;
+        "uploadError": { error: string; file?: File };
+        "nativeUploadRequested": void;
+    }
+    interface HTMLUrImageUploaderElement extends Components.UrImageUploader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrImageUploaderElementEventMap>(type: K, listener: (this: HTMLUrImageUploaderElement, ev: UrImageUploaderCustomEvent<HTMLUrImageUploaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrImageUploaderElementEventMap>(type: K, listener: (this: HTMLUrImageUploaderElement, ev: UrImageUploaderCustomEvent<HTMLUrImageUploaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrImageUploaderElement: {
+        prototype: HTMLUrImageUploaderElement;
+        new (): HTMLUrImageUploaderElement;
     };
     interface HTMLUrLibraryShelfSelectorElementEventMap {
         "chooseShelfEvent": { shelfName: string };
@@ -2404,6 +2486,25 @@ declare global {
         prototype: HTMLUrSnackbarElement;
         new (): HTMLUrSnackbarElement;
     };
+    interface HTMLUrStepperElementEventMap {
+        "stepChanged": { from: number; to: number };
+        "stepCompleted": { step: number; data?: any };
+        "allStepsCompleted": void;
+    }
+    interface HTMLUrStepperElement extends Components.UrStepper, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLUrStepperElementEventMap>(type: K, listener: (this: HTMLUrStepperElement, ev: UrStepperCustomEvent<HTMLUrStepperElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLUrStepperElementEventMap>(type: K, listener: (this: HTMLUrStepperElement, ev: UrStepperCustomEvent<HTMLUrStepperElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLUrStepperElement: {
+        prototype: HTMLUrStepperElement;
+        new (): HTMLUrStepperElement;
+    };
     interface HTMLUrSwitchElementEventMap {
         "switchChange": boolean;
     }
@@ -2586,24 +2687,6 @@ declare global {
         prototype: HTMLUrUserProfileTabsElement;
         new (): HTMLUrUserProfileTabsElement;
     };
-    interface HTMLUrWizardStepElementEventMap {
-        "stepCompleted": { step: number; formData: { [key: string]: any } };
-        "stepBack": number;
-    }
-    interface HTMLUrWizardStepElement extends Components.UrWizardStep, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLUrWizardStepElementEventMap>(type: K, listener: (this: HTMLUrWizardStepElement, ev: UrWizardStepCustomEvent<HTMLUrWizardStepElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
-    }
-    var HTMLUrWizardStepElement: {
-        prototype: HTMLUrWizardStepElement;
-        new (): HTMLUrWizardStepElement;
-    };
     interface HTMLElementTagNameMap {
         "ur-autosave-drawer": HTMLUrAutosaveDrawerElement;
         "ur-avatar": HTMLUrAvatarElement;
@@ -2623,6 +2706,7 @@ declare global {
         "ur-feedback": HTMLUrFeedbackElement;
         "ur-form": HTMLUrFormElement;
         "ur-hero": HTMLUrHeroElement;
+        "ur-image-uploader": HTMLUrImageUploaderElement;
         "ur-library-shelf-selector": HTMLUrLibraryShelfSelectorElement;
         "ur-linear-progress": HTMLUrLinearProgressElement;
         "ur-list": HTMLUrListElement;
@@ -2664,6 +2748,7 @@ declare global {
         "ur-segment-button": HTMLUrSegmentButtonElement;
         "ur-select": HTMLUrSelectElement;
         "ur-snackbar": HTMLUrSnackbarElement;
+        "ur-stepper": HTMLUrStepperElement;
         "ur-switch": HTMLUrSwitchElement;
         "ur-tabs": HTMLUrTabsElement;
         "ur-text-field": HTMLUrTextFieldElement;
@@ -2677,7 +2762,6 @@ declare global {
         "ur-user-profile": HTMLUrUserProfileElement;
         "ur-user-profile-settings-form": HTMLUrUserProfileSettingsFormElement;
         "ur-user-profile-tabs": HTMLUrUserProfileTabsElement;
-        "ur-wizard-step": HTMLUrWizardStepElement;
     }
 }
 declare namespace LocalJSX {
@@ -3036,6 +3120,27 @@ declare namespace LocalJSX {
         "heroTitleColor"?: string;
         "layout"?: 'left' | 'right' | 'center';
         "onCtaClicked"?: (event: UrHeroCustomEvent<void>) => void;
+    }
+    interface UrImageUploader {
+        "acceptTypes"?: string;
+        "backgroundColor"?: string;
+        "borderRadius"?: string;
+        "borderStyle"?: string;
+        "disabled"?: boolean;
+        "enableNativeUpload"?: boolean;
+        "height"?: string;
+        "hoverBackgroundColor"?: string;
+        "loading"?: boolean;
+        "maxFileSize"?: number;
+        "maxHeight"?: string;
+        "onFileCleared"?: (event: UrImageUploaderCustomEvent<void>) => void;
+        "onFileDropped"?: (event: UrImageUploaderCustomEvent<File>) => void;
+        "onFileSelected"?: (event: UrImageUploaderCustomEvent<File>) => void;
+        "onNativeUploadRequested"?: (event: UrImageUploaderCustomEvent<void>) => void;
+        "onUploadError"?: (event: UrImageUploaderCustomEvent<{ error: string; file?: File }>) => void;
+        "placeholderText"?: string;
+        "showFileName"?: boolean;
+        "width"?: string;
     }
     interface UrLibraryShelfSelector {
         "chooseButtonText"?: string;
@@ -3433,6 +3538,7 @@ declare namespace LocalJSX {
         "pageDescription"?: string;
         "pageId"?: string;
         "pageTitle"?: string;
+        "pageType"?: string;
         "showStats"?: boolean;
     }
     interface UrPageCarousel {
@@ -3877,6 +3983,76 @@ declare namespace LocalJSX {
          */
         "zIndex"?: string;
     }
+    interface UrStepper {
+        /**
+          * Whether completed steps can be clicked to navigate back
+         */
+        "allowStepNavigation"?: boolean;
+        /**
+          * Text for the Complete button (last step)
+         */
+        "completeButtonText"?: string;
+        /**
+          * Text for the Complete step
+         */
+        "completeStepText"?: string;
+        /**
+          * Icon to show for completed steps
+         */
+        "completedStepIcon"?: string;
+        /**
+          * Currently active step (1-based index)
+         */
+        "currentStep"?: number;
+        /**
+          * Custom CSS class for styling
+         */
+        "customClass"?: string;
+        /**
+          * Whether the next button should be disabled
+         */
+        "nextButtonDisabled"?: boolean;
+        /**
+          * Text for the Next button
+         */
+        "nextButtonText"?: string;
+        /**
+          * Event emitted when all steps are completed
+         */
+        "onAllStepsCompleted"?: (event: UrStepperCustomEvent<void>) => void;
+        /**
+          * Event emitted when step changes
+         */
+        "onStepChanged"?: (event: UrStepperCustomEvent<{ from: number; to: number }>) => void;
+        /**
+          * Event emitted when step is completed
+         */
+        "onStepCompleted"?: (event: UrStepperCustomEvent<{ step: number; data?: any }>) => void;
+        /**
+          * Text for the Ongoing step
+         */
+        "ongoingStepText"?: string;
+        /**
+          * Text for the Previous button
+         */
+        "previousButtonText"?: string;
+        /**
+          * Whether to show step numbers
+         */
+        "showStepNumbers"?: boolean;
+        /**
+          * Number of steps in the stepper
+         */
+        "stepCount"?: number;
+        /**
+          * Step descriptions array
+         */
+        "stepDescriptions"?: string[];
+        /**
+          * Step titles array
+         */
+        "stepTitles"?: string[];
+    }
     interface UrSwitch {
         "checked"?: boolean;
         "checkedIcon"?: string;
@@ -4089,60 +4265,6 @@ declare namespace LocalJSX {
         "storiesTabText"?: string;
         "transactionsTabText"?: string;
     }
-    interface UrWizardStep {
-        /**
-          * Custom CSS class for the component
-         */
-        "customClass"?: string;
-        /**
-          * Determines if the step can be skipped
-         */
-        "isSkippable"?: boolean;
-        /**
-          * Validation state of the step
-         */
-        "isValid"?: boolean;
-        /**
-          * Title of the "Next" button
-         */
-        "nextButtonTitle"?: string;
-        /**
-          * Event emitted when navigating back
-         */
-        "onStepBack"?: (event: UrWizardStepCustomEvent<number>) => void;
-        /**
-          * Event emitted when the step is completed
-         */
-        "onStepCompleted"?: (event: UrWizardStepCustomEvent<{ step: number; formData: { [key: string]: any } }>) => void;
-        /**
-          * Title of the "Previous" button
-         */
-        "previousButtonTitle"?: string;
-        /**
-          * Determines if the "Next" button is visible
-         */
-        "showNext"?: boolean;
-        /**
-          * Determines if the "Previous" button is visible
-         */
-        "showPrevious"?: boolean;
-        /**
-          * Step number of the wizard
-         */
-        "step"?: number;
-        /**
-          * Title of the wizard step
-         */
-        "stepTitle"?: string;
-        /**
-          * Subtitle or instructions for the step
-         */
-        "subtitle"?: string;
-        /**
-          * Custom validation message
-         */
-        "validationMessage"?: string;
-    }
     interface IntrinsicElements {
         "ur-autosave-drawer": UrAutosaveDrawer;
         "ur-avatar": UrAvatar;
@@ -4162,6 +4284,7 @@ declare namespace LocalJSX {
         "ur-feedback": UrFeedback;
         "ur-form": UrForm;
         "ur-hero": UrHero;
+        "ur-image-uploader": UrImageUploader;
         "ur-library-shelf-selector": UrLibraryShelfSelector;
         "ur-linear-progress": UrLinearProgress;
         "ur-list": UrList;
@@ -4203,6 +4326,7 @@ declare namespace LocalJSX {
         "ur-segment-button": UrSegmentButton;
         "ur-select": UrSelect;
         "ur-snackbar": UrSnackbar;
+        "ur-stepper": UrStepper;
         "ur-switch": UrSwitch;
         "ur-tabs": UrTabs;
         "ur-text-field": UrTextField;
@@ -4216,7 +4340,6 @@ declare namespace LocalJSX {
         "ur-user-profile": UrUserProfile;
         "ur-user-profile-settings-form": UrUserProfileSettingsForm;
         "ur-user-profile-tabs": UrUserProfileTabs;
-        "ur-wizard-step": UrWizardStep;
     }
 }
 export { LocalJSX as JSX };
@@ -4241,6 +4364,7 @@ declare module "@stencil/core" {
             "ur-feedback": LocalJSX.UrFeedback & JSXBase.HTMLAttributes<HTMLUrFeedbackElement>;
             "ur-form": LocalJSX.UrForm & JSXBase.HTMLAttributes<HTMLUrFormElement>;
             "ur-hero": LocalJSX.UrHero & JSXBase.HTMLAttributes<HTMLUrHeroElement>;
+            "ur-image-uploader": LocalJSX.UrImageUploader & JSXBase.HTMLAttributes<HTMLUrImageUploaderElement>;
             "ur-library-shelf-selector": LocalJSX.UrLibraryShelfSelector & JSXBase.HTMLAttributes<HTMLUrLibraryShelfSelectorElement>;
             "ur-linear-progress": LocalJSX.UrLinearProgress & JSXBase.HTMLAttributes<HTMLUrLinearProgressElement>;
             "ur-list": LocalJSX.UrList & JSXBase.HTMLAttributes<HTMLUrListElement>;
@@ -4282,6 +4406,7 @@ declare module "@stencil/core" {
             "ur-segment-button": LocalJSX.UrSegmentButton & JSXBase.HTMLAttributes<HTMLUrSegmentButtonElement>;
             "ur-select": LocalJSX.UrSelect & JSXBase.HTMLAttributes<HTMLUrSelectElement>;
             "ur-snackbar": LocalJSX.UrSnackbar & JSXBase.HTMLAttributes<HTMLUrSnackbarElement>;
+            "ur-stepper": LocalJSX.UrStepper & JSXBase.HTMLAttributes<HTMLUrStepperElement>;
             "ur-switch": LocalJSX.UrSwitch & JSXBase.HTMLAttributes<HTMLUrSwitchElement>;
             "ur-tabs": LocalJSX.UrTabs & JSXBase.HTMLAttributes<HTMLUrTabsElement>;
             "ur-text-field": LocalJSX.UrTextField & JSXBase.HTMLAttributes<HTMLUrTextFieldElement>;
@@ -4295,7 +4420,6 @@ declare module "@stencil/core" {
             "ur-user-profile": LocalJSX.UrUserProfile & JSXBase.HTMLAttributes<HTMLUrUserProfileElement>;
             "ur-user-profile-settings-form": LocalJSX.UrUserProfileSettingsForm & JSXBase.HTMLAttributes<HTMLUrUserProfileSettingsFormElement>;
             "ur-user-profile-tabs": LocalJSX.UrUserProfileTabs & JSXBase.HTMLAttributes<HTMLUrUserProfileTabsElement>;
-            "ur-wizard-step": LocalJSX.UrWizardStep & JSXBase.HTMLAttributes<HTMLUrWizardStepElement>;
         }
     }
 }

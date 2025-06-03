@@ -39,9 +39,9 @@
  - [ur-page-profile](../ur-page-profile)
  - [ur-profile-card](../ur-profile-card)
  - [ur-reader](../ur-reader)
+ - [ur-stepper](../ur-stepper)
  - [ur-user](../ur-user)
  - [ur-user-page-profile](../ur-user-page-profile)
- - [ur-wizard-step](../ur-wizard-step)
 
 ### Graph
 ```mermaid
@@ -60,9 +60,9 @@ graph TD;
   ur-page-profile --> ur-button
   ur-profile-card --> ur-button
   ur-reader --> ur-button
+  ur-stepper --> ur-button
   ur-user --> ur-button
   ur-user-page-profile --> ur-button
-  ur-wizard-step --> ur-button
   style ur-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

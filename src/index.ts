@@ -8,8 +8,8 @@
  * to consume components of this package as outlined in the `README.md`.
  */
 
-export type { Novl } from './models/novl';
-export type { Page } from './models/page';
-export type { User } from './models/user';
-export type { Locale } from './models/locale';
+export { Novl } from './models/novl';
+export { Page } from './models/page';
+export { User } from './models/user';
+export { Locale } from './models/locale';
 // export type { Components } from './components.d.ts';
