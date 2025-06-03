@@ -26,12 +26,14 @@
 
 ### Used by
 
+ - [ur-library-shelf-selector](../ur-library-shelf-selector)
  - [ur-novl-overview-info](../ur-novl-overview-info)
  - [ur-user-profile-settings-form](../ur-user-profile-settings-form)
 
 ### Graph
 ```mermaid
 graph TD;
+  ur-library-shelf-selector --> ur-switch
   ur-novl-overview-info --> ur-switch
   ur-user-profile-settings-form --> ur-switch
   style ur-switch fill:#f9f,stroke:#333,stroke-width:4px

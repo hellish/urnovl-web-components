@@ -1855,7 +1855,7 @@ declare global {
     };
     interface HTMLUrLibraryShelfSelectorElementEventMap {
         "chooseShelfEvent": { shelfName: string };
-        "createShelfEvent": { shelfName: string };
+        "createShelfEvent": { shelfName: string; isPublic: boolean };
     }
     interface HTMLUrLibraryShelfSelectorElement extends Components.UrLibraryShelfSelector, HTMLStencilElement {
         addEventListener<K extends keyof HTMLUrLibraryShelfSelectorElementEventMap>(type: K, listener: (this: HTMLUrLibraryShelfSelectorElement, ev: UrLibraryShelfSelectorCustomEvent<HTMLUrLibraryShelfSelectorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -3150,7 +3150,7 @@ declare namespace LocalJSX {
         "createNewShelfSubtitleText"?: string;
         "newShelfPlaceholder"?: string;
         "onChooseShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
-        "onCreateShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string }>) => void;
+        "onCreateShelfEvent"?: (event: UrLibraryShelfSelectorCustomEvent<{ shelfName: string; isPublic: boolean }>) => void;
         "orCreateNewShelf"?: string;
         "selectedShelf"?: string;
         "shelves"?: { name: string }[];

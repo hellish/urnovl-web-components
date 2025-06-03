@@ -20,7 +20,7 @@ export class UrLibraryShelfSelector {
     createNewShelfLabelText = 'Create a new shelf';
 
     @Prop()
-    createNewShelfSubtitleText = 'Create a shelve and organize your favorite stories in your Library.';
+    createNewShelfSubtitleText = 'Create a shelf and organize your favorite stories in your Library.';
 
     @Prop()
     orCreateNewShelf = 'or create a new one';
@@ -37,11 +37,14 @@ export class UrLibraryShelfSelector {
     @State()
     newShelfName = '';
 
+    @State()
+    isShelfPublic = true;
+
     @Event()
     chooseShelfEvent: EventEmitter<{ shelfName: string }>;
 
     @Event()
-    createShelfEvent: EventEmitter<{ shelfName: string }>;
+    createShelfEvent: EventEmitter<{ shelfName: string; isPublic: boolean }>;
 
     // Capture the valueSelected event directly from radio buttons
     @Listen('valueSelected', { capture: true })
@@ -75,6 +78,10 @@ export class UrLibraryShelfSelector {
         this.newShelfName = event.detail.value;
     };
 
+    private handlePublicToggle = (event: CustomEvent<boolean>) => {
+        this.isShelfPublic = event.detail;
+    };
+
     private handleChoose = (event: Event) => {
         event.preventDefault();
         this.chooseShelfEvent.emit({ shelfName: this.selectedShelf });
@@ -82,7 +89,10 @@ export class UrLibraryShelfSelector {
 
     private handleCreate = (event: Event) => {
         event.preventDefault();
-        this.createShelfEvent.emit({ shelfName: this.newShelfName });
+        this.createShelfEvent.emit({ 
+            shelfName: this.newShelfName, 
+            isPublic: this.isShelfPublic 
+        });
     };
 
     render() {
@@ -131,6 +141,14 @@ export class UrLibraryShelfSelector {
                                 value={this.newShelfName}
                                 onValueChanged={this.handleNewShelfInput}
                             ></ur-text-field>
+                            
+                            <div class="public-shelf-toggle">
+                                <span class="toggle-title">Make the shelf public</span>
+                                <ur-switch 
+                                    checked={this.isShelfPublic}
+                                    onSwitchChange={this.handlePublicToggle}
+                                ></ur-switch>
+                            </div>
                         </div>
 
                         <div class="action-button">

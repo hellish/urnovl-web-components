@@ -29,3 +29,16 @@
     flex-direction: column;
     gap: 16px;
 }
+
+:host .public-shelf-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+:host .public-shelf-toggle .toggle-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ur-color-on-background);
+}
